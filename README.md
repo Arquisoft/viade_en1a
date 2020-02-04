@@ -15,3 +15,4 @@ More information about how this project has been setup is available [in the wiki
 ## Contributors
 
 - [Jose Emilio Labra Gayo](http://labra.weso.es)
+- [Daniel Rückert García](https://polectron.xyz)
