@@ -16,3 +16,5 @@ More information about how this project has been setup is available [in the wiki
 
 - [Jose Emilio Labra Gayo](http://labra.weso.es)
 - Víctor Gonzalo Cristóbal
+- [Daniel Rückert García](https://polectron.xyz)
+- [Lucía Blanco Llera]
