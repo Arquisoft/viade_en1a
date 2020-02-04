@@ -18,4 +18,5 @@ More information about how this project has been setup is available [in the wiki
 - Lucía Blanco Llera
 - Víctor Gonzalo Cristóbal
 - [Daniel Rückert García](https://polectron.xyz)
-
+- Adrián Pérez Manso
+- Nut Bandera González
