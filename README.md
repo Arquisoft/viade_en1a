@@ -14,11 +14,9 @@ More information about how this project has been setup is available [in the wiki
 
 ## Contributors
 
-<<<<<<< HEAD
-
-=======
 - [Jose Emilio Labra Gayo](http://labra.weso.es)
+- Adrián Pérez Manso
+- Víctor Gonzalo Cristóbal
 - [Daniel Rückert García](https://polectron.xyz)
 - [Lucía Blanco Llera]
 - Nut Bandera González
->>>>>>> 9733599398d9128f83101932f6e2de98ef89a7a9
