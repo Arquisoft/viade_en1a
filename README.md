@@ -18,7 +18,7 @@ More information about how this project has been setup is available [in the wiki
 - Lucía Blanco Llera
 - Víctor Gonzalo Cristóbal
 - [Daniel Rückert García](https://polectron.xyz)
-- Daniel Adrian Mare
 - Adrián Pérez Manso
+- Daniel Adrian Mare
 - Nut Bandera González
 - Sofía García Barbés
