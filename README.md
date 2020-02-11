@@ -22,3 +22,8 @@ More information about how this project has been setup is available [in the wiki
 - Daniel Adrian Mare
 - Nut Bandera González
 - Sofía García Barbés
+
+
+## Building 
+
+This project requires [Node](https://nodejs.org/)
