@@ -26,4 +26,4 @@ More information about how this project has been setup is available [in the wiki
 
 ## Building 
 
-This project requires Node
+This project requires [Node](https://nodejs.org/)
