@@ -24,6 +24,27 @@ More information about how this project has been setup is available [in the wiki
 - Sofía García Barbés
 
 
-## Building 
+## Requirements
 
-This project requires [Node](https://nodejs.org/)
+- Node.js
+- Ruby
+- Asciidoctor and Asciidoctor Diagram
+
+```
+sudo apt-get update
+sudo apt-get -y install ruby nodejs
+sudo gem install asciidoctor asciidoctor-diagram
+```
+
+## Running project
+
+```
+npm install
+npm start
+```
+
+## Building documentation
+
+```
+npm run docs
+```` 
