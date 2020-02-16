@@ -68,10 +68,10 @@ A table with quality goals and concrete scenarios, ordered by priorities
 |*_Usability_*  | Non-technical people should easily use the application. | High, medium
 |*_Confidentiality_*  | The control of user data should be decentralized. | High, High
 |*_Security_*  | The application should't have vulnerable points. | High, Medium
-|*_Portability_* | The system could work on a mobile device. | Low, Medium
-|*_Maintainability_* | As Solid is a pioneer evolutive technology, our application should be able to accept changes and be maintained. | Medium, Low
 |*_Performance efficiency_* | The response and processing times of the application should be quick. | High, Medium
+|*_Maintainability_* | As Solid is a pioneer evolutive technology, our application should be able to accept changes and be maintained. | Medium, Low
 |*_Availability_* | Online independence: The user should be able to use the application without need of Internet connection. | Medium, Medium
+|*_Portability_* | The system could work on a mobile device. | Low, High
 
 
 
