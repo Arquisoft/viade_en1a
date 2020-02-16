@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Lucía Blanco.
+          Learn React. Developed using Docker.
         </a>
       </header>
     </div>
