@@ -40,7 +40,7 @@ These are the *functional* requirements our application will provide:
 
 . Users can share the data stored in their pods with other single users or with groups of users selected by them.
 
-. Users will get a notification everytime s route gets shared with them.
+. Users will get a notification everytime a route is shared with them.
 
 
 
@@ -86,6 +86,6 @@ Table with role names, person names, and their expectations with respect to the 
 |Role/Name|Expectations
 | *_Teachers of the course_* | The teachers of the course expect the students to deliver a project which is completely functional and fulfills the requirements provided.
 | *_Users_* | The people who will use the application expect it to be easy to use, functional and secure.
-| *_Inrupt_* | Tim Berners Lee ans his team expect to us to provide an application which help in the decentralization of the web by using _SOLID_ and its principles.
-| *_Future Developers_* | Next year students and other developers wold expect the code to be understandable and easy to maintain.
-| *_The Team_* | As programmers, we expect to learn new development evironments and develop a final product that we can be proud of.
+| *_Inrupt_* | Tim Berners Lee ans his team expect us to provide an application which helps in the decentralization of the web by using _SOLID_ and its principles.
+| *_Future Developers_* | Next year students and other developers would expect the code to be understandable and easy to maintain.
+| *_The Team_* | As programmers, we expect to learn new development environments and develop a final product that we can be proud of.
