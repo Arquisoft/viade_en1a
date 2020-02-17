@@ -19,7 +19,11 @@ Various options:
 * Context diagrams
 * Lists of communication partners and their interfaces.
 ****
+Viade is an application that will allow the user to store routes, view them on a map, share them with friends who are also using Viade, alongside multimedia like videos and pictures of said routes. 
 
+Storing routes can be done either by importing them from other applications or by using Viade as a route tracker, meaning that if used from a mobile device, it can use its GPS capabilities in order to create and store the route on the go.
+
+Our objective is to develop Viade as a decentralized application, so users will be the ones storing all their information and thus, increasing the privacy and data security of the system, by not having any central server to store and manage said data.
 
 === Business Context
 
