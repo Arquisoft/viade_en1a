@@ -25,10 +25,6 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 
 |React | The appplication must work with react
 |Solid| The application must work with solid
-|Team | The team is composed of seven people
-|Time | The application must be completed before the end of the curse
-|Scope | Decentralized application for managing routes 
-|Data |  Data storage is separated from the app
 
 |=========================================================
 
