@@ -21,21 +21,21 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 .Technical Constraints
 [width="80%",options="header"]
 |=========================================================
-|Constraint |Description 
+|*Constraint* |*Description* 
 
-|React | The appplication must work with react
-|Solid| The application must work with solid
+|*_React_* | The appplication must work with react
+|*_Solid_*| The application must work with solid
 
 |=========================================================
 
 .Organizational Constraints
 [width="80%",options="header"]
 |=========================================================
-|Constraint |Description 
+|*Constraint* |*Description* 
 
-|Team | The team is composed of seven people
-|Time | The application must be completed before the end of the curse
-|Scope | Decentralized application for managing routes 
-|Data |  Data storage is separated from the app
+|*_Team_* | The team is composed of seven people
+|*_Time_* | The application must be completed before the end of the curse
+|*_Scope_* | Decentralized application for managing routes 
+|*_Data_* |  Data storage is separated from the app
 
 |=========================================================
