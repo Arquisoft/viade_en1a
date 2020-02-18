@@ -60,7 +60,7 @@ A table with quality goals and concrete scenarios, ordered by priorities
 ****
 * _Quality goal_: Annotate and qualify the functionality.
 * _Scenario_: Describe how the system should behave. It specifies quality requirements.
-* _Priority_: It has two values values: importance for success, and how difficult it is to be achieved. 
+* _Priority_: It has two values: importance for success, and how difficult it is to be achieved. 
 
 [options="header",cols="1,2,1"]
 |===
