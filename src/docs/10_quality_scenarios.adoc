@@ -36,7 +36,7 @@ The quality tree is a high-level overview of the quality goals and requirements:
 In any case the tree should include links to the scenarios of the following section.
 ****
 
-= image:qualityTree.jpg[Quality tree] 
+= image:images/qualityTree.jpg[Quality tree] 
 
 === Quality Scenarios
 
@@ -72,13 +72,13 @@ A table with quality goals and concrete scenarios, ordered by priorities.
 [options="header",cols="1,2,1"]
 |===
 |Quality goal|Scenario|Priority
-|*_Usability_*  | Non-technical people should easily use the application. In case they want to look for information, the content should be found quickly. | High, medium
+|*_Usability_*  | Non-technical people should easily use the application. In case they want to look for information, the content should be found quickly. | High, Medium
 |*_Confidentiality_*  | The control of user data should be decentralized. This way the user has a complete control of the data they share and receive. | High, High
 |*_Interoperability_*  | Our system should be able to exchange data with other systems and present that data so it can be understood by the user. | High, High
-|*_Integrity_*  | The application should't have vulnerable points: a third part shouldn't be able to access the data. | High, Medium
+|*_Integrity_*  | The application shouldn't have vulnerable points: a third party shouldn't be able to access the data. | High, Medium
 |*_Performance efficiency_* | The response and processing times of the application should be quick. | High, Medium
-|*_Testability_* | The architecture should be designed in such a way that it succesfully passes the tests for its implementation. | High, Medium
-|*_Modifyability_* | As Solid is a pioneer evolutive technology, our application should be able to accept changes and be modifyed. | Medium, Low
+|*_Testability_* | The architecture should be designed in such a way that it successfully passes the tests for its implementation. | High, Medium
+|*_Modifiability_* | As Solid is a pioneer evolutive technology, our application should be able to accept changes and be modified. | Medium, Low
 |*_Availability_* | Online independence: The user should be able to use the application without need of Internet connection. | Medium, Medium
 |*_Portability_* | The system could work on a mobile device. | Low, High
 |===
