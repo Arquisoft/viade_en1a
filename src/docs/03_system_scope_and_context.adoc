@@ -63,8 +63,43 @@ together with a mapping table showing the relationships between channels and inp
 
 ****
 
-**<Diagram or Table>**
+@startuml
 
-**<optionally: Explanation of technical interfaces>**
+title deployment - Technical Context\n
 
-**<Mapping Input/Output to Channels>**
+:Sender: as U1
+:Receiver: as U2
+
+frame ViaDe as GUI1 {
+    component [Graphic User\nInterface 1] as gui1
+}
+
+frame ViaDe as GUI2 {
+    component [Graphic User\nInterface 2] as gui2
+}
+
+database "POD 1" as P1 {
+    folder Routes as r1
+}
+
+database "POD 2" as P2 {
+    folder Routes as r2
+}
+
+U1 --> GUI1: Web Browser/\nNative App
+U2 --> GUI2: Web Browser/\nNative App
+
+GUI1 ----> P1: Store route\n(https)
+P1 ----> GUI1: View route\n(https)
+GUI1 ----> P2: Share route\n(https)
+P2 -up---> GUI2: Notify/\nview shared route\n(https)
+
+@enduml
+
+[options="header",cols="2,2"]
+|===
+|Business interface|Channel
+|*_Routes data_*  | Device GPS, file input, manual input.
+|*_Sharing or storing routes_*  | Upload to a POD (https).
+|*_Viewing routes_*  | Download from a POD (https).
+|===
