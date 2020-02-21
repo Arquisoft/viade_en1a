@@ -63,8 +63,8 @@ together with a mapping table showing the relationships between channels and inp
 
 ****
 
-@startuml
-
+[plantuml,"Technical context diagram",png]
+----
 title deployment - Technical Context\n
 
 :Sender: as U1
@@ -94,7 +94,7 @@ P1 ----> GUI1: View route\n(https)
 GUI1 ----> P2: Share route\n(https)
 P2 -up---> GUI2: Notify/\nview shared route\n(https)
 
-@enduml
+----
 
 [options="header",cols="2,2"]
 |===
