@@ -16,7 +16,7 @@ This should be your motto for systematic detection and evaluation of risks and t
 List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
 ****
 
-Because of the complexity of this project and the use of technologies we have never tried before, the team may encounter some problems while developing the application. This are some of the problems we expect to have and, hopefully, surpass.
+Because of the complexity of this project and the use of technologies we have never tried before, the team may encounter some problems while developing the application. These are some of the problems we expect to have and, hopefully, surpass.
 
 . *Use of _React_:* No member of the team has ever worked with _React_ , so learning how this new language works will probably slow down the development.
 . *Use of _SOLID_:* None of us has ever worked with servers before and we had never heard of _SOLID_, so it is a scary and hard topic to tackle for all members of the team.
