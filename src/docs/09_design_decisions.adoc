@@ -25,7 +25,7 @@ Various options:
 * ADR (architecture decision record) for every important decision
 ****
 
-[options="header",cols="4"]
+[options="header"]
 |===
 |Decision|Description|Advantage(s)|Disadvantage(s)
 |*_Arc42_* 
