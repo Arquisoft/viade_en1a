@@ -24,3 +24,12 @@ Various options:
 * more detailed in form of separate sections per decision
 * ADR (architecture decision record) for every important decision
 ****
+
+[options="header",cols="2,2"]
+|===
+|Decission|Description
+|*_Arc42_*  | It provides a template for documentation and communication for the development of the project. Arc 42 eases the process of developing and improving the software architecture.
+|*_React_*  | React is the framework chosen to implement the user interfaces. It is based on JavaScript. It also allows the creation of mobile applications by means of Reac Native.
+|*_Solid PODs_*  | The routes data will be stored in the users' PODs, allowing users to reserve the right of deciding who can access that data.
+|*_GitHub_*  | This is where the project's repository will be located, facilitating us coordinating and taking decissions. Using Git allows us to mantain a different set of branches, with different purposes (e.g., develop, release, master...).
+|===
