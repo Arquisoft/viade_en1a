@@ -50,18 +50,14 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 ****
 
 
-=== _<Concept 1>_
+=== Route
 
-_<explanation>_
+It is the main concept in this application, representing a sequence of points in the space.
 
+* For the user, they are shown as a graphic polyline in a map.
+* On the logic of the system, they are treated as a collection of coordinates.
+* The coordinates are stored in the PODs.
 
+=== POD
 
-=== _<Concept 2>_
-
-_<explanation>_
-
-...
-
-=== _<Concept n>_
-
-_<explanation>_
+Routes of each user are stored in a decentralized way, so that every user has associated a storage device, which is the POD.

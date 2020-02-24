@@ -43,9 +43,51 @@ Alternatively (or additionally) you can use a table.
 The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.
 ****
 
-**<Diagram or Table>**
+[plantuml,"Business context diagram - Access to my routes",png]
+----
+title Business Context - Access to my routes\n
 
-**<optionally: Explanation of external domain interfaces>**
+:User A: as A
+
+node "System" as Sys{
+}
+
+database "A's POD" as AP {
+    folder Routes as r1
+}
+
+cloud "Map" as Map{
+}
+
+A -right-> Sys : \nMy routes
+Sys -down-> AP: get A's stored routes
+r1 -up-> Sys
+Sys -left-> Map : set routes on map
+Map -left-> A : show routes
+
+----
+
+[plantuml,"Business context diagram - Share routes",png]
+----
+title Business Context - Share routes\n
+
+:User A: as A
+
+node "System" as Sys{
+}
+
+:User B: as B
+
+database "A's POD" as AP {
+    folder Routes as r1
+}
+
+A -right-> Sys : share to B
+Sys -down-> AP: get A's stored routes
+r1 -up-> Sys
+Sys -right-> B : routes of A / User B is notified
+
+----
 
 === Technical Context
 
