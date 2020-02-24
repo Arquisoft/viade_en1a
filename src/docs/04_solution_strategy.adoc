@@ -5,7 +5,8 @@
 [role="arc42help"]
 ****
 .Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
+A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. 
+These include
 
 * technology decisions
 * decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
@@ -22,3 +23,11 @@ Motivate what you have decided and why you decided that way,
 based upon your problem statement, the quality goals and key constraints.
 Refer to details in the following sections.
 ****
+
+The application will be built using JavaScript's library React and Solid. We use react for creating user interfaces, designing 
+different views for each state of the application. The libary also allows to manage the data of the application in an easy way,
+which is useful for our application, whose data is always changing. 
+Solid is a platform used for developing linked-data applications that are completely decentralized. It allows users to have full
+control of their own data, including access control and storage location. This is achieved by using PODs, which are unique for each 
+user. We follow this approach since Solid provides an easy way to save the data of each user and share it with others users and 
+React allows us to develop the user interface in a simple way.
