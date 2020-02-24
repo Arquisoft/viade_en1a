@@ -25,24 +25,11 @@ Various options:
 * ADR (architecture decision record) for every important decision
 ****
 
-[options="header",cols="4"]
+[options="header",cols="2,2"]
 |===
-|Decision|Description|Advantage(s)|Disadvantage(s)
-|*_Arc42_* 
-    |It provides a template for documentation and communication for the development of the project. Arc 42 eases the process of developing and improving the software architecture.
-    |Commonly used template in Europe for software documentation, which can be converted into and HTML page with relative ease for its release to the internet.
-    |Even though it has some guidelines, it's not really restrictive nor hand-holding, meaning that we'll be a bit lost while trying to document our application, as we have no experience with Arc42.
-
-|*_React_* 
-    |React is the framework chosen to implement the user interfaces. It is based on JavaScript. It also allows the creation of mobile applications by means of React Native. 
-    | One of the main advantages of using React are its libraries for working with the Solid. 
-    |The main drawback for its election is the fact that we have never worked with it, meaning that we have no experience with React.
-|*_Solid PODs_* 
-    |The routes data will be stored in the users' PODs, allowing users to reserve the right of deciding who can access that data. 
-    |Since the aim of the project is developing a decentralized application, Solid PODs are a good candidate for data storing. Free, Open Source and gaining popularity, it is an interesting option to use as a base for our application.
-    |Again, the lack of experience with this technology can be considered as a drawback. Moreover, Solid  itself is still a project in progress, which will undoubtly lead to problems.
-|*_GitHub_* 
-    |This is where the project's repository will be located, facilitating us coordinating and taking decissions. Using Git allows us to mantain a different set of branches, with different purposes (e.g., develop, release, master...).
-    |Since this a 7 people teamwork, the usage of Git is unquestionable. While there are a bunch of Git hosts, Github is the most used and a feature rich one, meaning that there are no real reasons for using another alternative.
-    |The usage of GitHub hardly has any disadvantage, aside from it's learning curve, which is not a huge problem.
+|Decission|Description
+|*_Arc42_*  | It provides a template for documentation and communication for the development of the project. Arc 42 eases the process of developing and improving the software architecture.
+|*_React_*  | React is the framework chosen to implement the user interfaces. It is based on JavaScript. It also allows the creation of mobile applications by means of Reac Native.
+|*_Solid PODs_*  | The routes data will be stored in the users' PODs, allowing users to reserve the right of deciding who can access that data.
+|*_GitHub_*  | This is where the project's repository will be located, facilitating us coordinating and taking decissions. Using Git allows us to mantain a different set of branches, with different purposes (e.g., develop, release, master...).
 |===

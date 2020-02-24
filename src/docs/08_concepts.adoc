@@ -58,10 +58,6 @@ It is the main concept in this application, representing a sequence of points in
 * On the logic of the system, they are treated as a collection of coordinates.
 * The coordinates are stored in the PODs.
 
-=== Solid POD
+=== POD
 
-Storage device based on Solid that stores user data in a private and decentralized approach. In our application, it's main uses will be:
-
-* Storing routes. Both imported and tracked routes will be stored in the user's Solid POD. This also includes any multimedia the user has decided to add to the route.
-
-* Sharing routes with other users by allowing them to retrieve it and store them in their own PODs.
+Routes of each user are stored in a decentralized way, so that every user has associated a storage device, which is the POD.
