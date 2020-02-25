@@ -33,57 +33,8 @@ zoom into this black box using additional deployment diagrams:
 when your infrastructure is more complex.
 * When your (hardware) stakeholders prefer other kinds of diagrams rather than the deployment diagram, let them use any kind that is able to show nodes and channels of the infrastructure.
 ****
-=== TO BE DONE
+ 
+ 
+TO BE DONE
 
 
-=== Infrastructure Level 1
-
-[role="arc42help"]
-****
-Describe (usually in a combination of diagrams, tables, and text):
-
-*  the distribution of your system to multiple locations, environments, computers, processors, .. as well as the physical connections between them
-*  important justification or motivation for this deployment structure
-* Quality and/or performance features of the infrastructure
-*  the mapping of software artifacts to elements of the infrastructure
-
-For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.
-****
-
-
-_**<Overview Diagram>**_
-
-Motivation::
-
-_<explanation in text form>_
-
-Quality and/or Performance Features::
-
-_<explanation in text form>_
-
-Mapping of Building Blocks to Infrastructure::
-_<description of the mapping>_
-
-
-=== Infrastructure Level 2
-
-[role="arc42help"]
-****
-Here you can include the internal structure of (some) infrastructure elements from level 1.
-
-Please copy the structure from level 1 for each selected element.
-****
-
-==== _<Infrastructure Element 1>_
-
-_<diagram + explanation>_
-
-==== _<Infrastructure Element 2>_
-
-_<diagram + explanation>_
-
-...
-
-==== _<Infrastructure Element n>_
-
-_<diagram + explanation>_
