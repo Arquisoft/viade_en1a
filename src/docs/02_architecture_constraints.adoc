@@ -25,7 +25,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 
 |*_React_* | The appplication must work with react
 |*_Solid_*| The application must work with solid
-
+|*_RDF_*| The application must follow RDF specifications
 |=========================================================
 
 .Organizational Constraints
@@ -38,4 +38,13 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 |*_Scope_* | Decentralized application for managing routes 
 |*_Data_* |  Data storage is separated from the app
 
+|=========================================================
+
+.Conventions
+[width="80%",options="header"]
+|=========================================================
+|*Constraint* |*Description* 
+
+|*_JS Styling_* | Follow https://google.github.io/styleguide/jsguide.html[google styling conventions]
+|*_JS Documentation_*| Use https://jsdoc.app/[JSDoc]
 |=========================================================

@@ -58,18 +58,39 @@ In the best case you will get away with examples or simple signatures.
 
 ****
 
-_**<Overview Diagram>**_
+The application will be designed following a MVC (Model View Controller) pattern, therefore the main structure of the application will be as follows:
+
+[plantuml,"MVC Block Diagram",png]
+----
+package "MVC" {
+
+    [Model] as Model
+
+    [View] as View
+
+    [Controller] as Controller
+}
+
+ 
+
+View --> Model : uses
+
+Controller --> Model: uses
+
+Controller --> View
+
+View --> Controller
+----
 
 Motivation::
 
-_<text explanation>_
+MVC is a very often used software design pattern for implementing user interfaces.
 
 
 Contained Building Blocks::
-_<Description of contained building block (black boxes)>_
-
-Important Interfaces::
-_<Description of important interfaces>_
+* *Model*: Central component, detials the structure of the application, it's data, logic and rules.
+* *View*: Representation of the information, graphical interface.
+* *Controller*: Accepts input and converts it to commands for the model or view.
 
 [role="arc42help"]
 ****
@@ -91,7 +112,7 @@ If you use a list of black box descriptions then you fill in a separate black bo
 Its headline is the name of the black box.
 ****
 
-
+////
 ==== <Name black box 1>
 
 [role="arc42help"]
@@ -205,3 +226,4 @@ _<white box template>_
 ==== White Box <_building block y.1_>
 
 _<white box template>_
+////

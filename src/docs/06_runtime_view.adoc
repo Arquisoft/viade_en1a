@@ -30,25 +30,31 @@ There are many notations for describing scenarios, e.g.
 
 ****
 
-=== <Runtime Scenario 1>
+=== <Add track>
 
 
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
+* A user can add tracks to their pod.
 
-It is possible to use a sequence diagram:
-
-[plantuml,"Sequence diagram",png]
+[plantuml,"Sequence diagram 1",png]
 ----
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+actor Alice
+participant Track_Controller
+participant Pod_Controller
+entity Track
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+Alice -> Track_Controller: Upload track file (KML)
+activate Track_Controller
+
+Track_Controller -> Track: Build track
+activate Track
+Track -> Track_Controller
+deactivate Track
+
+Track_Controller -> Pod_Controller: Store track
+activate Pod_Controller
+Pod_Controller -> Track_Controller: Return
+deactivate Pod_Controller
+
+Track_Controller -> Alice : End
+deactivate Track_Controller
 ----
-=== <Runtime Scenario 2>
-
-=== ...
-
-=== <Runtime Scenario n>

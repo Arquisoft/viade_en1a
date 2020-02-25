@@ -5,7 +5,8 @@
 [role="arc42help"]
 ****
 .Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
+A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. 
+These include
 
 * technology decisions
 * decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
@@ -22,3 +23,20 @@ Motivate what you have decided and why you decided that way,
 based upon your problem statement, the quality goals and key constraints.
 Refer to details in the following sections.
 ****
+
+.*Technology decisions*
+
+The application will be built using React and Solid. We use React for creating user interfaces and managing the data of the application
+in an easy way, which is useful for our application, whose data is always changing. 
+Solid is a platform used for developing decentralized applications. It allows users to have full
+control of their own data, by means of PODs, which are unique for each user. We follow this approach since Solid provides an easy way 
+to save the data of each user and share it with others users and React allows us to develop the user interface in a simple way.
+
+.*Architectural decisions*
+The architectural pattern used to develop the aplication is the MVC pattern. We use this pattern in order to separate the data acess, 
+presentation layer and business logic. By using this approach we get rid of the coupling between layers.
+
+.*Organizational decisions*
+The way of working is based on the division of the work in small teams inside de whole team. The team has regular meetings, where we decide how
+to divide that work. The team communicates frequently in order to make the development of the application easier.    
+

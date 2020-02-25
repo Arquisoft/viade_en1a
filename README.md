@@ -46,5 +46,12 @@ npm start
 ## Building documentation
 
 ```
+Node and Ruby are required. 
+npm install
+gem install asciidoctor
+gem install asciidoctor-diagram 
 npm run docs
+
+Note: if the command gem install asciidoctor-diagram takes a long time to finish, do Ctrl+C, and you will see magic.
+
 ```` 
