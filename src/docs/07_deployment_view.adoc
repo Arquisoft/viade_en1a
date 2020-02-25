@@ -33,6 +33,8 @@ zoom into this black box using additional deployment diagrams:
 when your infrastructure is more complex.
 * When your (hardware) stakeholders prefer other kinds of diagrams rather than the deployment diagram, let them use any kind that is able to show nodes and channels of the infrastructure.
 ****
+=== TO BE DONE
+
 
 === Infrastructure Level 1
 
@@ -48,7 +50,6 @@ Describe (usually in a combination of diagrams, tables, and text):
 For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.
 ****
 
-=== TO BE DONE
 
 _**<Overview Diagram>**_
 
