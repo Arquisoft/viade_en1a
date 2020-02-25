@@ -34,6 +34,7 @@ More information about how this project has been setup is available [in the wiki
 sudo apt-get update
 sudo apt-get -y install ruby nodejs
 sudo gem install asciidoctor asciidoctor-diagram
+sudo apt-get -y install graphviz
 ```
 
 ## Running project
