@@ -88,8 +88,12 @@ include::10_quality_scenarios.adoc[]
 include::11_technical_risks.adoc[]
 
 <<<<
-// 12. Glossary
-include::12_glossary.adoc[]
+// 12. Prototypes
+include::12_prototypes.adoc[]
+
+<<<<
+// 13. Glossary
+include::13_glossary.adoc[]
 
 <<<<
 // About
