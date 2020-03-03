@@ -1,0 +1,50 @@
+[[section-architecture-constraints]]
+== Architecture Constraints
+
+
+[role="arc42help"]
+****
+.Contents
+Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+
+.Motivation
+Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
+Constraints must always be dealt with; they may be negotiable, though.
+
+.Form
+Simple tables of constraints with explanations.
+If needed you can subdivide them into
+technical constraints, organizational and political constraints and
+conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
+****
+
+.Technical Constraints
+[width="80%",options="header"]
+|=========================================================
+|*Constraint* |*Description* 
+
+|*_React_* | The appplication must work with react
+|*_Solid_*| The application must work with solid
+|*_RDF_*| The application must follow RDF specifications
+|=========================================================
+
+.Organizational Constraints
+[width="80%",options="header"]
+|=========================================================
+|*Constraint* |*Description* 
+
+|*_Team_* | The team is composed of seven people
+|*_Time_* | The application must be completed before the end of the curse
+|*_Scope_* | Decentralized application for managing routes 
+|*_Data_* |  Data storage is separated from the app
+
+|=========================================================
+
+.Conventions
+[width="80%",options="header"]
+|=========================================================
+|*Constraint* |*Description* 
+
+|*_JS Styling_* | Follow https://google.github.io/styleguide/jsguide.html[google styling conventions]
+|*_JS Documentation_*| Use https://jsdoc.app/[JSDoc]
+|=========================================================

@@ -1,0 +1,147 @@
+[[section-system-scope-and-context]]
+== System Scope and Context
+
+
+[role="arc42help"]
+****
+.Contents
+System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
+(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
+
+If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
+
+.Motivation
+The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
+
+.Form
+Various options:
+
+* Context diagrams
+* Lists of communication partners and their interfaces.
+****
+Viade is an application that will allow the user to store routes, view them on a map, share them with friends who are also using Viade, alongside multimedia like videos and pictures of said routes. 
+
+Storing routes can be done either by importing them from other applications or by using Viade as a route tracker, meaning that if used from a mobile device, it can use its GPS capabilities in order to create and store the route on the go.
+
+Our objective is to develop Viade as a decentralized application, so users will be the ones storing all their information and thus, increasing the privacy and data security of the system, by not having any central server to store and manage said data.
+
+=== Business Context
+
+[role="arc42help"]
+****
+.Contents
+Specification of *all* communication partners (users, IT-systems, ...) with explanations of domain specific inputs and outputs or interfaces.
+Optionally you can add domain specific formats or communication protocols.
+
+.Motivation
+All stakeholders should understand which data are exchanged with the environment of the system.
+
+.Form
+All kinds of diagrams that show the system as a black box and specify the domain interfaces to communication partners.
+
+Alternatively (or additionally) you can use a table.
+The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.
+****
+
+[plantuml,"Business context diagram - Access to my routes",png]
+----
+title Business Context - Access to my routes\n
+
+:User A: as A
+
+node "System" as Sys{
+}
+
+database "A's POD" as AP {
+    folder Routes as r1
+}
+
+cloud "Map" as Map{
+}
+
+A -right-> Sys : \nMy routes
+Sys -down-> AP: get A's stored routes
+r1 -up-> Sys
+Sys -left-> Map : set routes on map
+Map -left-> A : show routes
+
+----
+
+[plantuml,"Business context diagram - Share routes",png]
+----
+title Business Context - Share routes\n
+
+:User A: as A
+
+node "System" as Sys{
+}
+
+:User B: as B
+
+database "A's POD" as AP {
+    folder Routes as r1
+}
+
+A -right-> Sys : share to B
+Sys -down-> AP: get A's stored routes
+r1 -up-> Sys
+Sys -right-> B : routes of A / User B is notified
+
+----
+
+=== Technical Context
+
+[role="arc42help"]
+****
+.Contents
+Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.
+
+.Motivation
+Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.
+
+.Form
+E.g. UML deployment diagram describing channels to neighboring systems,
+together with a mapping table showing the relationships between channels and input/output.
+
+****
+
+[plantuml,"Technical context diagram",png]
+----
+title deployment - Technical Context\n
+
+:Sender: as U1
+:Receiver: as U2
+
+frame ViaDe as GUI1 {
+    component [Graphic User\nInterface 1] as gui1
+}
+
+frame ViaDe as GUI2 {
+    component [Graphic User\nInterface 2] as gui2
+}
+
+database "POD 1" as P1 {
+    folder Routes as r1
+}
+
+database "POD 2" as P2 {
+    folder Routes as r2
+}
+
+U1 --> GUI1: Web Browser/\nNative App
+U2 --> GUI2: Web Browser/\nNative App
+
+GUI1 ----> P1: Store route\n(https)
+P1 ----> GUI1: View route\n(https)
+GUI1 ----> P2: Share route\n(https)
+P2 -up---> GUI2: Notify/\nview shared route\n(https)
+
+----
+
+[options="header",cols="2,2"]
+|===
+|Business interface|Channel
+|*_Routes data_*  | Device GPS, file input, manual input.
+|*_Sharing or storing routes_*  | Upload to a POD (https).
+|*_Viewing routes_*  | Download from a POD (https).
+|===
