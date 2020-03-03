@@ -6,6 +6,7 @@ import Profile from './Profile';
 import TextEditor from './TextEditor';
 import { GamePage, GameList } from './TicTacToe';
 import { FormModelConverter, FormModelRenderer } from './FormModel';
+import Friends from './Friends';
 
 export {
   Login,
@@ -18,5 +19,6 @@ export {
   GameList,
   FormModelConverter,
   FormModelRenderer,
-  TextEditor
+  TextEditor,
+  Friends
 };

@@ -12,16 +12,7 @@ const Navigation = ({ navigation }: Props) => (
         navigation.map(item => (
           <li key={item.id} data-testid="item">
             <NavLink to={item.to} activeClassName="active">
-              <span className="icon">
-                <img
-                  src={item.icon}
-                  alt={item.id}
-                  className="nav-icon"
-                  width="24px"
-                  height="20px"
-                  style={{ width: '24px' }}
-                />
-              </span>
+              {item.icon}
               <span className="label">{item.label}</span>
             </NavLink>
           </li>

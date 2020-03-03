@@ -13,7 +13,8 @@ import {
   GamePage,
   FormModelConverter,
   FormModelRenderer,
-  TextEditor
+  TextEditor,
+  Friends
 } from './containers';
 
 const privateRoutes = [
@@ -21,6 +22,11 @@ const privateRoutes = [
     id: 'welcome',
     path: '/welcome',
     component: Welcome
+  },
+  {
+    id: 'friends',
+    path: '/friends',
+    component: Friends
   },
   {
     id: 'profile',
