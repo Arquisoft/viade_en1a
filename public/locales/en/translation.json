@@ -46,7 +46,7 @@
     "next": "Next"
   },
   "navBar": {
-    "welcome": "My Routes",
+    "welcome": "Home",
     "logOut": "Log out",
     "profile": "My Profile",
     "formModelRender": "Form Model Render",
