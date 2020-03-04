@@ -49,7 +49,7 @@
     "welcome": "Inicio",
     "formModel": "Form Model",
     "logOut": "Cerrar Sesión",
-    "profile": "Mis Amigos",
+    "profile": "Mi Perfil",
     "formModelRender": "Form Model Render",
     "formModelConvert": "Form Model Convert",
     "text-editor": "Editor de Textos",
@@ -66,7 +66,7 @@
     },
     "tictactoe": "Juego",
     "maps": "Mapas",
-    "friends": "Amigos"
+    "friends": "Mis Amigos"
   },
   "footer": {
     "version": "Versión"
@@ -87,7 +87,7 @@
     "fairUsageExamples": "<0><0>Si su aplicación es combatible con Solid, usted puede utilizarlo para indicarlo, de lo contrario no usarlo.</0><1>No utilice el nombre de Inrupt como parte del nombre de su empresa, sitio web, dominio,  servicio o nombre de la aplicación. No modifique o utilice nuestros logos como suyos.</1><2>Si lo desea, puede usar el logotipo de Inrupt para indicar que su aplicación funciona con el SDK de Inrupt, pero asegúrese de que el contexto sea claro para el usuario. Por ejemplo su propio logotipo siempre debe ser más grande que el logotipo de Inrupt.</2></0>",
     "fairUsageSummary": "En general, aplique sentido común y honestidad a su uso de los logotipos de Solid o Inrupt. No utilice para implicar una asociación o respaldo oficial donde no exista.",
     "contactUsTitle": "Acerca de",
-    "contactUsText": "<0>Esta aplicación ha sido creada por el equipo EN1A para la asignatura de Arquitectura del Software de Uniovi con la colaboración de Inrupt</0>",
+    "contactUsText": "<0>Esta aplicación ha sido creada por el equipo EN1A para la asignatura de Arquitectura del Software de la Universidad de Oviedo, con la colaboración de Inrupt. Viade es un sistema de manejo de rutas descentralizado, basado en las especificaciones de Solid.</0>",
     "evolvingMessage": "<0>El SDK se encuentra en constante evolución. Revisa el <1>Calendario de Desarrollo</1>  para lo que está planeado.</0>",
     "implementing": "Esta última version se basa en las anteriores, incluye:",
     "version010": "<0><0>Mejores prácticas para la <0>Internacionalización</0>, con selector de lenguaje para la sesión.</0><1>Habilidad para actualizar la imagen de perfil en la página de bienvenida.</1> </0>",
