@@ -1,19 +1,19 @@
 import React from 'react';
-import { LoggedIn, LoggedOut, Image, Value, Link } from '@solid/react';
+import {LogoutButton, LoggedOut} from '@solid/react';
+import {Redirect, BrowserRouter as Router} from 'react-router-dom';
 
-function Home(props) {
-
-    //const actualName = props.name.split("//")[1].split(".")[0];
+function Home() {
 
     return (
-        <div>
-            <LoggedIn>
+        <Router>
+            <div>
                 <p>Welcome back</p>
-            </LoggedIn>
-            <LoggedOut>
-                <p>You are not logged in, and this is a members-only area!</p>
-            </LoggedOut>
-        </div>
+                <LogoutButton/>
+                <LoggedOut>
+                <Redirect to="/"/>    
+                </LoggedOut>
+            </div>
+        </Router>
     );
 }
 
