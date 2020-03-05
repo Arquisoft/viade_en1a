@@ -46,9 +46,9 @@
     "next": "Next"
   },
   "navBar": {
-    "welcome": "My Routes",
+    "welcome": "Home",
     "logOut": "Log out",
-    "profile": "My Friends",
+    "profile": "My Profile",
     "formModelRender": "Form Model Render",
     "formModelConvert": "Form Model Convert",
     "text-editor": "Text Editor",
@@ -63,7 +63,9 @@
       "noinbox": "Global inbox not found. Please create one and try again.",
       "fetchingError": "Error fetching notifications from Pod"
     },
-    "tictactoe": "Game"
+    "tictactoe": "Game",
+    "maps": "Maps",
+    "friends": "My Friends"
   },
   "footer": {
     "version": "Version"
@@ -84,7 +86,7 @@
     "fairUsageExamples": "<0><0> If your application is Solid compatible, you can use the Solid logo to indicate that. If not, please don’t misrepresent yourself by using the Solid logo.</0><1>Please don't use the inrupt name as a part of your company name, website name, domain name, service name, or app name. Don't use our logo as your own or modify it to fit into your own logo.</1><2>If you’d like, you may use the inrupt logo to indicate that your application is powered by inrupt’s SDK, but please make sure the context is clear to the user. Your own logo should always be larger than inrupt’s logo, for example.</2></0>",
     "fairUsageSummary": "In general, please apply common sense and honesty to your use of Solid or inrupt logos. Don’t use either to imply a partnership or official endorsement where none exists.",
     "contactUsTitle": "About",
-    "contactUsText": "<0>This application was created by the EN1A team for Uniovi's Software Architecture subject in collaboration with Inrupt.</0>",
+    "contactUsText": "<0>This application was created by the EN1A team for Uniovi's Software Architecture subject in collaboration with Inrupt. Viade is a decentralized routes management system based on the solid specifications.</0>",
     "evolvingMessage": "<0>The SDK is continually evolving. Take a look at the <1>Release Timeline</1>  for what’s been implemented as part of the previous releases, and what's currently planned.</0>",
     "implementing": "This latest release builds on the prior versions:",
     "version010": "<0><0><0>Internationalization</0> best practices, with application session language selection.</0><0>Ability to update your profile image on the Welcome page.</0> </0>",
