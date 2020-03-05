@@ -46,7 +46,7 @@
     "next": "Siguiente"
   },
   "navBar": {
-    "welcome": "Mis Rutas",
+    "welcome": "Inicio",
     "formModel": "Form Model",
     "logOut": "Cerrar Sesión",
     "profile": "Mis Amigos",
@@ -64,7 +64,9 @@
       "noinbox": "No se encontró ningún inbox en su POD, debes tener al menos uno para jugar.",
       "fetchingError": "Error en las notificaciones"
     },
-    "tictactoe": "Juego"
+    "tictactoe": "Juego",
+    "maps": "Mapas",
+    "friends": "Amigos"
   },
   "footer": {
     "version": "Versión"

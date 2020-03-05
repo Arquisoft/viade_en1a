@@ -1,18 +1,28 @@
 /**
  * Object mapping of known possible inboxes for the user
  */
+
+import React from 'react';
+import * as Icon from 'react-feather';
+
 export const NavigationItems = [
   {
     id: 'welcome',
-    icon: '/img/icon/apps.svg',
+    icon: <Icon.Home/>,
     label: 'navBar.welcome',
     to: '/welcome'
   },
   {
+    id: 'maps',
+    icon: <Icon.Map/>,
+    label: 'navBar.maps',
+    to: '/maps'
+  },
+  {
     id: 'profile',
-    icon: '/img/people.svg',
-    label: 'navBar.profile',
-    to: '/profile'
+    icon: <Icon.Users/>,
+    label: 'navBar.friends',
+    to: '/friends'
   }
 ];
 
