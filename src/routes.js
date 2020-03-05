@@ -14,7 +14,8 @@ import {
   FormModelConverter,
   FormModelRenderer,
   TextEditor,
-  Friends
+  Friends,
+  Maps
 } from './containers';
 
 const privateRoutes = [
@@ -22,6 +23,11 @@ const privateRoutes = [
     id: 'welcome',
     path: '/welcome',
     component: Welcome
+  },
+  {
+    id: 'maps',
+    path: '/maps',
+    component: Maps
   },
   {
     id: 'friends',
