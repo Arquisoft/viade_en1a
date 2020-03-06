@@ -9,12 +9,8 @@ import {
   Welcome,
   RegistrationSuccess,
   Profile,
-  GameList,
-  GamePage,
-  FormModelConverter,
-  FormModelRenderer,
-  TextEditor,
-  Friends
+  Friends,
+  Maps
 } from './containers';
 
 const privateRoutes = [
@@ -22,6 +18,11 @@ const privateRoutes = [
     id: 'welcome',
     path: '/welcome',
     component: Welcome
+  },
+  {
+    id: 'maps',
+    path: '/maps',
+    component: Maps
   },
   {
     id: 'friends',
@@ -32,31 +33,6 @@ const privateRoutes = [
     id: 'profile',
     path: '/profile',
     component: Profile
-  },
-  {
-    id: 'tictactoe',
-    path: '/tictactoe',
-    component: GameList
-  },
-  {
-    id: 'tictactoegame',
-    path: '/tictactoe/:gameId',
-    component: GamePage
-  },
-  {
-    id: 'text-editor',
-    path: '/text-editor',
-    component: TextEditor
-  },
-  {
-    id: 'formmodelconverter',
-    path: '/formmodel/converter',
-    component: FormModelConverter
-  },
-  {
-    id: 'formmodelrenderer',
-    path: '/formmodel/renderer',
-    component: FormModelRenderer
   }
 ];
 
