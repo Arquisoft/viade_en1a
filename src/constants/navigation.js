@@ -23,6 +23,12 @@ export const NavigationItems = [
     icon: <Icon.Users/>,
     label: 'navBar.friends',
     to: '/friends'
+  },
+  {
+    id: 'myroutes',
+    icon: <Icon.Database/>,
+    label: 'navBar.myRoutes',
+    to: '/myroutes'
   }
 ];
 

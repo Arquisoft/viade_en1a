@@ -14,7 +14,8 @@ import {
   FormModelConverter,
   FormModelRenderer,
   TextEditor,
-  Friends
+  Friends,
+  MyRoutes
 } from './containers';
 
 const privateRoutes = [
@@ -57,6 +58,11 @@ const privateRoutes = [
     id: 'formmodelrenderer',
     path: '/formmodel/renderer',
     component: FormModelRenderer
+  },
+  {
+    id: 'myroutes',
+    path: '/myroutes',
+    component: MyRoutes
   }
 ];
 
