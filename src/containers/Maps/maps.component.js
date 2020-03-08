@@ -1,19 +1,23 @@
 import React, {Component} from 'react';
 import {Map, GoogleApiWrapper} from 'google-maps-react';
 import {ButtonStyled, MapsWrapper2, MapsCard, MapsSideBar} from './maps.style';
+import RoutesSideBar from './routesSideBar.component';
 
 const mapStyles = {
     marginLeft: '21%',
     marginBottom: '10%'
 };
 
+
 export class Maps extends Component {
     render() {
+
         return (
             <MapsWrapper2>
                 
                 <MapsCard>
                     <MapsSideBar>Your routes:</MapsSideBar>
+                    <input type="file" name="file" onChange={this.onChangeHandler}/>
                 </MapsCard>
 
                 <MapsCard>
