@@ -14,13 +14,15 @@ export class Maps extends Component {
 
         return (
             <MapsWrapper2>
-                
+
                 <MapsCard>
-                    <MapsSideBar>Your routes:</MapsSideBar>
-                    <input type="file" name="file" onChange={this.onChangeHandler}/>
+
+                    <RoutesSideBar/>
+
                 </MapsCard>
 
                 <MapsCard>
+                    <div>
                     <Map
                         google={this.props.google}
                         zoom={14}
@@ -29,11 +31,12 @@ export class Maps extends Component {
                             lat: 43.5453,
                             lng: -5.66193
                         }}
-                     ></Map>
+                    />
+                    </div>
                 </MapsCard>
 
             </MapsWrapper2>
-                
+
         );
     }
 }
