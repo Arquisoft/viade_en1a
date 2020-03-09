@@ -25,11 +25,7 @@ class RoutesSideBar extends Component {
             selectedFile: event.target.files[0],
             loaded: 0
         });
-    };
-    onClickHandler = () => {
-        let routes =()=> {};
-        this.setState(this.state.routes.concat(name= this.state.selectedFile.name));
-        this.setState(this.state.selectedFile= null);
+        this.setState({routes: [...this.state.routes, this.state.selectedFile]});
     };
 
     render() {
@@ -38,12 +34,6 @@ class RoutesSideBar extends Component {
             <aside>
                 <RoutesHeader/>
                 <input type="file" name="file" onChange={this.onChangeHandler}/>
-                <button type="button" onClick={this.onClickHandler}>Upload</button>
-                <div>
-                    {this.state.routes.map((route)=> {
-                        <RoutesInfo filename={route.filename}/>
-                    })}
-                </div>
             </aside>
         );
     }
