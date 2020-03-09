@@ -1,20 +1,23 @@
 import React, {Component} from 'react';
 
-class RoutesInfo extends Component{
-    state={
-        filename: this.props.filename
-};
+class RoutesInfo extends Component {
     constructor(props) {
-    super(props);
+        super(props);
 
     }
+
     render() {
-        return (
-            <div>
-            <p> This is a route</p>
-            </div>
-        );
-    }
+            const rows = this.props.map((route) => {
+                return (
+                    <tr>
+                        <td>{route.name}</td>
+                    </tr>
+                )
+            });
+
+            return <tbody>{rows}</tbody>
+
+    };
 }
 
 export default RoutesInfo;

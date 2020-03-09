@@ -7,33 +7,38 @@ const RoutesHeader = () => {
 
 class RoutesSideBar extends Component {
 
-    state = {
-        routes: [],
-    };
-
     constructor(props) {
         super(props);
 
         this.state = {
-            selectedFile: null
+            selectedFile: null,
+            routes: []
         };
 
     }
 
     onChangeHandler = event => {
-        this.setState({
-            selectedFile: event.target.files[0],
-            loaded: 0
-        });
-        this.setState({routes: [...this.state.routes, this.state.selectedFile]});
+        const filename = event.target.files[0].name;
+        const routes = [...this.state.routes, filename];
+        this.setState({routes});
     };
 
     render() {
+        const RoutesData = () => {
 
+            const data = this.state.routes.map((route) => {
+                return (
+                    <li key={route}>{route}</li>
+                );
+            });
+            return <ul>{data}</ul>
+        }
         return (
             <aside>
                 <RoutesHeader/>
                 <input type="file" name="file" onChange={this.onChangeHandler}/>
+                <RoutesData/>
+
             </aside>
         );
     }
