@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import data from '@solid/query-ldflex';
-import { namedNode } from '@rdfjs/data-model';
 import { FriendsPageContent } from './friends.component';
-import { successToaster, errorToaster } from '@utils';
 
 export class FriendsComponent extends Component<Props> {
 
@@ -25,9 +23,10 @@ export class FriendsComponent extends Component<Props> {
     }
 
     getProfileData = async () => {
+        const { webId } = this.props;
+
         this.setState({ isLoading: true });
         let hasImage;
-        const { webId } = this.props;
 
         const user = data[webId];
 
@@ -56,7 +55,7 @@ export class FriendsComponent extends Component<Props> {
                 "webId": friendWebId,
                 "name": name,
                 "image": image
-            }
+            };
 
             friends.push(friend_obj);
         }
