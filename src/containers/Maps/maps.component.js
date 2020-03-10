@@ -16,22 +16,20 @@ export class Maps extends Component {
             <MapsWrapper2>
 
                 <MapsCard>
-
                     <RoutesSideBar/>
-
                 </MapsCard>
 
                 <MapsCard>
                     <div>
-                    <Map
-                        google={this.props.google}
-                        zoom={14}
-                        style={mapStyles}
-                        initialCenter={{
-                            lat: 43.5453,
-                            lng: -5.66193
-                        }}
-                    />
+                        <Map
+                            google={this.props.google}
+                            zoom={14}
+                            style={mapStyles}
+                            initialCenter={{
+                                lat: 43.5453,
+                                lng: -5.66193
+                            }}
+                        />
                     </div>
                 </MapsCard>
 

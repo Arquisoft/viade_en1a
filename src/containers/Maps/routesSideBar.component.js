@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import RoutesInfo from "./routesInfo.component.js";
 
 const RoutesHeader = () => {
     return (<h2>Your routes:</h2>)
@@ -18,8 +17,11 @@ class RoutesSideBar extends Component {
     }
 
     onChangeHandler = event => {
-        const filename = event.target.files[0].name;
-        const routes = [...this.state.routes, filename];
+        const files = [...event.target.files];
+        let routes = [...this.state.routes];
+        files.forEach((file) => {
+            routes = [...routes, file.name];
+        });
         this.setState({routes});
     };
 
@@ -36,7 +38,7 @@ class RoutesSideBar extends Component {
         return (
             <aside>
                 <RoutesHeader/>
-                <input type="file" name="file" onChange={this.onChangeHandler}/>
+                <input type="file" name="file" onChange={this.onChangeHandler} multiple/>
                 <RoutesData/>
 
             </aside>
