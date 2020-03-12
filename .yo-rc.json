@@ -1,0 +1,8 @@
+{
+  "@inrupt/generator-solid-react": {
+    "promptValues": {
+      "appName": "FirstApp",
+      "appVersion": "0.1.0"
+    }
+  }
+}
