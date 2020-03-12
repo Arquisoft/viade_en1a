@@ -22,7 +22,7 @@ export {
   FormModelConverter,
   FormModelRenderer,
   TextEditor,
-  MyRoutes
+  MyRoutes,
   Friends,
   Maps
 };

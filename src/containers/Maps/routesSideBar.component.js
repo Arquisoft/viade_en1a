@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import FC from 'solid-file-client';
+import auth from 'solid-auth-client';
 
 const RoutesHeader = () => {
     return (<h2>Your routes:</h2>)
@@ -14,6 +16,9 @@ class RoutesSideBar extends Component {
             routes: []
         };
 
+        
+
+        this.fc = new FC( auth );
     }
 
     onChangeHandler = event => {
@@ -24,6 +29,19 @@ class RoutesSideBar extends Component {
         });
         this.setState({routes});
     };
+
+    async onClickHandler(){
+        if(this.state.routes.length != 0){
+            var session = await auth.currentSession();
+            var url = session.webId.split("profile/card#me")[0] + "prueba/";
+            if(!await this.fc.itemExists(url)){
+                await this.fc.createFolder(url);
+            }
+            this.state.routes.forEach( async (route) => {
+                await this.fc.createFile(url + "prueba.txt" , route, "text/plain");
+            });
+        }
+    }
 
     render() {
         const RoutesData = () => {
@@ -40,7 +58,7 @@ class RoutesSideBar extends Component {
                 <RoutesHeader/>
                 <input type="file" name="file" onChange={this.onChangeHandler} multiple/>
                 <RoutesData/>
-
+                <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler.bind(this)}>Upload to your POD</button>
             </aside>
         );
     }

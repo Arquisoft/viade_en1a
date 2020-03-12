@@ -10,7 +10,7 @@ import {
   RegistrationSuccess,
   Profile,
   Friends,
-  MyRoutes
+  MyRoutes,
   Maps
 } from './containers';
 
