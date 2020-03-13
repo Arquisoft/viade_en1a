@@ -16,39 +16,54 @@ class RoutesSideBar extends Component {
             routes: []
         };
 
-        
-
         this.fc = new FC( auth );
+        this.uploadedFiles = false;
     }
 
     onChangeHandler = event => {
+        this.uploadedFiles = false;
         const files = [...event.target.files];
         let routes = [...this.state.routes];
-        files.forEach((file) => {
-            routes = [...routes, file.name];
+        files.forEach((file) => {  
+            if(file.name.endsWith(".json")){
+                routes = [...routes, file];
+                this.uploadedFiles = true;
+            }else{
+                alert(file.name + " is not valid");
+            }
+            
         });
         this.setState({routes});
     };
 
     async onClickHandler(){
-        if(this.state.routes.length != 0){
-            var session = await auth.currentSession();
-            var url = session.webId.split("profile/card#me")[0] + "prueba/";
-            if(!await this.fc.itemExists(url)){
-                await this.fc.createFolder(url);
-            }
-            this.state.routes.forEach( async (route) => {
-                await this.fc.createFile(url + "prueba.txt" , route, "text/plain");
-            });
+        var session = await auth.currentSession();
+        var url = session.webId.split("profile/card#me")[0] + "routes/";
+        if(!await this.fc.itemExists(url)){
+            await this.fc.createFolder(url);
+        }
+        this.state.routes.forEach( async (route) => {
+            //var name = this.getRouteName(route);
+            await this.fc.createFile(url + route.name , route, "text/plain");
+        });
+    }
+
+    getRouteName(route){
+        var fileReader = new FileReader();
+        fileReader.readAsText(route);
+        fileReader.onload = function() {
+            var obj = JSON.parse(fileReader.result);
+            console.log(obj.routeName);
+            return obj.routeName;
         }
     }
 
     render() {
         const RoutesData = () => {
-
             const data = this.state.routes.map((route) => {
+                var routeName = this.getRouteName(route);
                 return (
-                    <li key={route}>{route}</li>
+                    <li key={routeName}>{routeName}</li>
                 );
             });
             return <ul>{data}</ul>
@@ -56,9 +71,9 @@ class RoutesSideBar extends Component {
         return (
             <aside>
                 <RoutesHeader/>
-                <input type="file" name="file" onChange={this.onChangeHandler} multiple/>
+                <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
                 <RoutesData/>
-                <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler.bind(this)}>Upload to your POD</button>
+                <button disabled={!this.uploadedFiles}type="button" class="btn btn-success btn-block" onClick={this.onClickHandler.bind(this)}>Upload to your POD</button>
             </aside>
         );
     }
