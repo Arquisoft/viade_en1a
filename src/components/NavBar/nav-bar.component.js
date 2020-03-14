@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Navigation, Toolbar, HamburgerButton, MobileNavigation } from './children';
+import nav_logo from './../../assets/img/my_nav_logo.png';
 
 type Props = {
   t: Function,
@@ -58,7 +59,7 @@ const NavBar = (props: Props) => {
       <section className="header-wrap">
         <div className="logo-block">
           <Link to="/welcome">
-            <img src="/img/my_nav_logo.png" alt="inrupt" />
+            <img src= {nav_logo} alt="inrupt" />
           </Link>
         </div>
 
