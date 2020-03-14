@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import data from '@solid/query-ldflex';
-import { FriendsPageContent } from './friends.component';
+import { FriendsPageContent } from './notifications.component';
 
 export class NotificationsComponent extends Component<Props> {
 
@@ -15,10 +14,13 @@ export class NotificationsComponent extends Component<Props> {
     
     render() {
         const { friends } = this.state;
-        const { webId } = this.props;
+        const { webId } = "";
 
         return (
+		
             <FriendsPageContent {...{ friends, webId }} />
+			
+			
         );
     }
 }
