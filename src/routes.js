@@ -37,7 +37,7 @@ const privateRoutes = [
 ];
 
 const Routes = () => (
-  <Router>
+  <Router basename="/viade_en1a">
     <Fragment>
       <Switch>
         <NotLoggedInLayout component={Login} path="/login" exact />
@@ -45,7 +45,7 @@ const Routes = () => (
         <NotLoggedInLayout path="/register/success" component={RegistrationSuccess} exact />
         <PublicLayout path="/404" component={PageNotFound} exact />
         <Redirect from="/" to="/welcome" exact />
-        <PrivateLayout path="/viade_en1a/" routes={privateRoutes} />
+        <PrivateLayout path="/" routes={privateRoutes} />
         <Redirect to="/404" />
       </Switch>
     </Fragment>
