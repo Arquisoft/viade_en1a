@@ -10,7 +10,8 @@ import {
   RegistrationSuccess,
   Profile,
   Friends,
-  Maps
+  Maps,
+  Notifications
 } from './containers';
 
 const privateRoutes = [
@@ -33,6 +34,11 @@ const privateRoutes = [
     id: 'profile',
     path: '/profile',
     component: Profile
+  },
+  {
+    id: 'notifications',
+    path: '/notifications',
+    component: Notifications
   }
 ];
 

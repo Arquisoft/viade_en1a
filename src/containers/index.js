@@ -8,6 +8,7 @@ import { GamePage, GameList } from './TicTacToe';
 import { FormModelConverter, FormModelRenderer } from './FormModel';
 import Friends from './Friends';
 import Maps from "./Maps";
+import Notifications from "./Notifications";
 
 export {
   Login,
@@ -22,5 +23,6 @@ export {
   FormModelRenderer,
   TextEditor,
   Friends,
-  Maps
+  Maps, 
+  Notifications
 };

@@ -44,7 +44,7 @@ const NotificationsPanel = ({
       <React.Fragment>
         <Tabs {...{ list: tabs, click: filterNotification }} />
         <NotificationList {...{ notifications, markAsRead, deleteNotification }} />
-		<NavLink to={'friends'} style={style}>
+		<NavLink to={'/notifications'} style={style}>
               <span className="label">Ver todas</span>
             </NavLink>
 	  </React.Fragment>
