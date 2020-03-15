@@ -38,7 +38,7 @@ class RoutesSideBar extends Component {
 
     async onClickHandler(){
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "routes/";
+        var url = session.webId.split("profile/card#me")[0] + "robots/";
         if(!await this.fc.itemExists(url)){
             await this.fc.createFolder(url);
         }
@@ -46,6 +46,8 @@ class RoutesSideBar extends Component {
             //var name = this.getRouteName(route);
             await this.fc.createFile(url + route.name , route, "text/plain");
         });
+        document.getElementById("btnPod").innerHTML = "Uploaded";
+        document.getElementById("btnPod").disabled = true;
     }
 
     getRouteName(route){
@@ -73,7 +75,7 @@ class RoutesSideBar extends Component {
                 <RoutesHeader/>
                 <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
                 <RoutesData/>
-                <button disabled={!this.uploadedFiles}type="button" class="btn btn-success btn-block" onClick={this.onClickHandler.bind(this)}>Upload to your POD</button>
+                <button id="btnPod" disabled={!this.uploadedFiles}type="button" class="btn btn-success btn-block" onClick={this.onClickHandler.bind(this)}>Upload to your POD</button>
             </aside>
         );
     }
