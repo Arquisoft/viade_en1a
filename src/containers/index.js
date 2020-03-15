@@ -8,7 +8,7 @@ import { GamePage, GameList } from './TicTacToe';
 import { FormModelConverter, FormModelRenderer } from './FormModel';
 import Friends from './Friends';
 import Maps from "./Maps";
-import MyRoutes from './MyRoutes';
+import Notifications from "./Notifications";
 
 export {
   Login,
@@ -24,5 +24,6 @@ export {
   TextEditor,
   MyRoutes,
   Friends,
-  Maps
+  Maps, 
+  Notifications
 };

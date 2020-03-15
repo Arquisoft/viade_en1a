@@ -18,10 +18,7 @@
     "errorGrantingAccess": "There was an error giving access to your file, please try again.",
     "saved": "Your file was saved successfully.",
     "notEditable": "(not editable)",
-    "notSharable": "(log in and load a doc on your own pod to give others access)",
-    "seeAll": "See all",
-    "noNotifications": "No notifications to show"
-
+    "notSharable": "(log in and load a doc on your own pod to give others access)"
   },
   "login": {
     "title": "Hi! Welcome to Solid.",
@@ -52,7 +49,6 @@
     "welcome": "Home",
     "logOut": "Log out",
     "profile": "My Profile",
-    "myRoutes": "My Routes",
     "formModelRender": "Form Model Render",
     "formModelConvert": "Form Model Convert",
     "text-editor": "Text Editor",
@@ -250,5 +246,4 @@
     "save": "Save",
     "grantAccess": "Grant Access"
   }
-    
 }

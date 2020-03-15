@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Map, GoogleApiWrapper} from 'google-maps-react';
-import {ButtonStyled, MapsWrapper2, MapsCard, MapsSideBar} from './maps.style';
-import RoutesSideBar from './routesSideBar.component';
+import { MapsWrapper2, MapsCard, MapsSideBar} from './maps.style';
 
 const mapStyles = {
     marginLeft: '21%',

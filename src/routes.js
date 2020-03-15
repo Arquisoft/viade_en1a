@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { PrivateLayout, PublicLayout, NotLoggedInLayout } from '@layouts';
-import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Switch, Redirect } from 'react-router-dom';
 
 import {
   Login,
@@ -10,8 +10,8 @@ import {
   RegistrationSuccess,
   Profile,
   Friends,
-  MyRoutes,
-  Maps
+  Maps,
+  Notifications
 } from './containers';
 
 const privateRoutes = [
@@ -34,6 +34,11 @@ const privateRoutes = [
     id: 'profile',
     path: '/profile',
     component: Profile
+  },
+  {
+    id: 'notifications',
+    path: '/notifications',
+    component: Notifications
   }
 ];
 

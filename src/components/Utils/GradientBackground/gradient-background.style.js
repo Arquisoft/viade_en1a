@@ -15,7 +15,7 @@ export const Gradient = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/img/background-pattern.svg');
+    background-image: url('/viade_en1a/img/background-pattern.svg');
     filter: opacity(30%);
   }
 `;
