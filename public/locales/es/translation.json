@@ -248,5 +248,8 @@
     "load": "Cargar",
     "save": "Guardar",
     "grantAccess": "Dar Acceso"
+  },
+  "routes":{
+    "yourRoutes": "Tus rutas"    
   }
 }

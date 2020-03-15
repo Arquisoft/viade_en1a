@@ -249,5 +249,8 @@
     "load": "Load",
     "save": "Save",
     "grantAccess": "Grant Access"
+  },
+  "routes":{
+    "yourRoutes": "Your routes"    
   }
 }
