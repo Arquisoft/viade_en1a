@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 import {
     FriendsWrapper,
     FriendsContainer
@@ -7,12 +9,13 @@ import {
 
 export const FriendsPageContent = props => {
     
+    const { t } = useTranslation();
 
     return (
         <FriendsWrapper>
             <FriendsContainer className="card">
                 <ul>
-                    <p>No notifications to show</p>
+                    <p>{t('notifications.noNotifications')}</p>
                 </ul>
             </FriendsContainer>
         </FriendsWrapper>
