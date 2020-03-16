@@ -5,7 +5,7 @@ import { MapsSideBar } from './maps.style';
 
 
 const RoutesHeader = () => {
-    return (<h2>Upload your routes</h2>)
+    return (<h2>Upload your routes</h2>);
 };
 
 /**
