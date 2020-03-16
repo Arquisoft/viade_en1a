@@ -52,6 +52,7 @@
     "welcome": "Home",
     "logOut": "Log out",
     "profile": "My Profile",
+    "myRoutes": "My Routes",
     "formModelRender": "Form Model Render",
     "formModelConvert": "Form Model Convert",
     "text-editor": "Text Editor",
