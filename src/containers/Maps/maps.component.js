@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import RoutesSideBar from './routesSideBar.component';
 import GoogleMapReact from 'google-map-react';
-import {Map, GoogleApiWrapper} from 'google-maps-react';
-import {ButtonStyled, MapsWrapper2, MapsCard, MapsSideBar} from './maps.style';
-
-
 
 const MyMarker = ({text}) => <div>{text}</div>;
 
