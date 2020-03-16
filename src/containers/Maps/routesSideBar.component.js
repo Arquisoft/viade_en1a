@@ -38,7 +38,7 @@ class RoutesSideBar extends Component {
 
     async onClickHandler(){
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "robots/";
+        var url = session.webId.split("profile/card#me")[0] + "routes/";
         if(!await this.fc.itemExists(url)){
             await this.fc.createFolder(url);
         }

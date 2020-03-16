@@ -22,7 +22,6 @@ export {
   FormModelConverter,
   FormModelRenderer,
   TextEditor,
-  MyRoutes,
   Friends,
   Maps, 
   Notifications
