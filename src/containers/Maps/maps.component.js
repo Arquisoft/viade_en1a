@@ -7,10 +7,12 @@ import GoogleMapReact from 'google-map-react';
 
 const MyMarker = ({text}) => <div>{text}</div>;
 
+    /**
 const mapStyles = {
     marginLeft: '21%',
     marginBottom: '10%'
 };
+     **/
 
 class SimpleMap extends Component {
     static defaultProps = {

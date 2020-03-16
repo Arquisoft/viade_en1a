@@ -8,7 +8,7 @@ const RoutesHeader = () => {
     return (<h2>Upload your routes</h2>)
 };
 
-
+/**
 const Styles = {
     text: {
         color: 'white',
@@ -26,7 +26,7 @@ const Styles = {
         height: 40
       }
 };
-
+ **/
 
 
 class RoutesSideBar extends Component {
