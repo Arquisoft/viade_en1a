@@ -60,15 +60,19 @@ left: 0;
 }
 `;
 
-
-export const MapsSideBar = styled.div`
+export const styledUploadButton = `
+  top: 80%;
+  left: 5%;
+  bottom: 10%;
+}`;
+export const MapsSideBar = styled.aside`
   border-right: 1px solid blue;
   overflow-y: scroll;
   horizontal=false;
   width: 20%;
   padding: 0;
   position: fixed;
-  top: 10%;
+  top: 20%;
   left: 0;
   bottom: 10%;
 }
