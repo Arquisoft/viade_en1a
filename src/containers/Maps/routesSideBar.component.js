@@ -3,12 +3,12 @@ import FC from 'solid-file-client';
 import auth from 'solid-auth-client';
 import { MapsSideBar } from './maps.style';
 
-/*
+
 const RoutesHeader = () => {
-    return (<h2>Upload routes</h2>)
+    return (<h2>Upload your routes</h2>);
 };
-*/
-/*
+
+/**
 const Styles = {
     text: {
         color: 'white',
@@ -26,7 +26,7 @@ const Styles = {
         height: 40
       }
 };
-*/
+ **/
 
 
 class RoutesSideBar extends Component {
@@ -95,9 +95,10 @@ class RoutesSideBar extends Component {
         }
         return (
             <aside>
+                <RoutesHeader/>
                 <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
                 <RoutesData/>
-                <button id="btnPod" disabled={!this.uploadedFiles}type="button" class="btn btn-success btn-block" onClick={this.onClickHandler.bind(this)}>Upload to your POD</button>
+                <button id="btnPod" disabled={!this.uploadedFiles}type="button" className="btn btn-success btn-block" onClick={this.onClickHandler.bind(this)}>Upload to your POD</button>
                 <MapsSideBar>
                     Here your routes
                 </MapsSideBar>

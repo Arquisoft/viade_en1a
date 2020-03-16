@@ -1,8 +1,4 @@
 {
-  "name": "viade_en1a",
-  "version": "0.1.0",
-  "homepage": "https://arquisoft.github.io/viade_en1a/",
-  "private": false,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.12",
     "@fortawesome/free-brands-svg-icons": "^5.8.0",
@@ -24,6 +20,7 @@
     "flag-icon-css": "^3.3.0",
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "7.0.0",
+    "google-map-react": "^1.1.6",
     "gh-pages": "^2.2.0",
     "google-maps-react": "^2.0.2",
     "i18next": "^15.0.4",
@@ -142,6 +139,9 @@
       ]
     ]
   },
+  "name": "solid-app",
+  "version": "0.1.0",
+  "private": false,
   "devDependencies": {
     "@babel/core": "7.1.6",
     "@babel/runtime": "^7.4.0",
