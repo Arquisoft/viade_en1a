@@ -41,18 +41,22 @@ class SimpleMap extends Component {
     };
 
     handleApiLoaded = (map, maps) => {
-        maps.data.loadGeoJson("./exampleRoute.json")
+        map.data.loadGeoJson('https://storage.googleapis.com/mapsdevsite/json/google.json')//exampleRoute.json
+        map.data.setMap(map);
     };
 
     render() {
         return (
-            // Important! Always set the container height explicitly
-            <div style={{height: '100vh', width: '100%'}}>
+            <div style={{height: '100vh', width: '100%', display: 'flex', flex: 'row'}}>
+                <div style={{height: '100vh', width: '20%', }}>
+                <RoutesSideBar/>
+                </div>
+            <div style={{height: '100vh', width: '80%'}}>
                 <GoogleMapReact
                     bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
-                    defaultCenter={this.props.center}
-                    defaultZoom={this.props.zoom}
-                    yesIWantToUseGoogleMapApiInternals
+                    defaultCenter={[43.358756869202914, -5.861785411834717]}
+                    defaultZoom={12}
+                    yesIWantToUseGoogleMapApiInternals={true}
                     onGoogleApiLoaded={({ map, maps }) => this.handleApiLoaded(map, maps)}
                 >
                     <AnyReactComponent
@@ -62,41 +66,9 @@ class SimpleMap extends Component {
                     />
                 </GoogleMapReact>
             </div>
+            </div>
         );
     }
 }
 
 export default SimpleMap;
-
-
-/*
-export class Maps extends Component {
-    render() {
-
-        return (
-            <MapsWrapper2>
-
-                <MapsCard>
-                    <RoutesSideBar/>
-                </MapsCard>
-
-                <MapsCard>
-                    <div>
-                        <Map
-                            google={this.props.google}
-                            onLoad={onMapLoad}
-                        />
-                    </div>
-                </MapsCard>
-
-            </MapsWrapper2>
-
-        );
-    }
-}
-*/
-/*
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ'
-})(Maps);
- */
