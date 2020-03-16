@@ -3,7 +3,7 @@ import { AccessControlList } from '@inrupt/solid-react-components';
 import { resourceExists, createDoc, createDocument } from './ldflex-helper';
 import { storageHelper, errorToaster, permissionHelper } from '@utils';
 
-const appPath = process.env.REACT_APP_TICTAC_PATH;
+const appPath = process.env.REACT_APP_MAPS_PATH;
 
 /**
  * Creates a valid string that represents the application path. This is the

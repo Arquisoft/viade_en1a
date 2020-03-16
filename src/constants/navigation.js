@@ -37,4 +37,13 @@ export const ProfileOptions = [
     onClick: 'logOut',
     icon: 'lock'
   }
+
+/*    COMPONENTES ALTERNATIVOS GUYS   */
+
+   /*{
+    id: 'myroutes',
+    icon: <Icon.Database/>,
+    label: 'navBar.myRoutes',
+    to: '/myroutes'
+  }*/
 ];

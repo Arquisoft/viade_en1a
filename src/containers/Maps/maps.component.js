@@ -1,35 +1,16 @@
-import React, {Component, createRef} from 'react';
+import React, {Component} from 'react';
 import {Map, GoogleApiWrapper} from 'google-maps-react';
 import {ButtonStyled, MapsWrapper2, MapsCard, MapsSideBar} from './maps.style';
 
 import RoutesSideBar from './routesSideBar.component';
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = ({text}) => <div>{text}</div>;
+const MyMarker = ({text}) => <div>{text}</div>;
 
 const mapStyles = {
     marginLeft: '21%',
     marginBottom: '10%'
 };
-/*
-class Map extends Component {
-    componentDidMount() {
-        const map = new window.google.maps.Map(document.getElementById('map'), {
-            center: { lat: 41.0082, lng: 28.9784 },
-            zoom: 8
-        });
-        map.data.loadGeoJson()
-    }
-
-    render() {
-        return (
-            <div style={{ width: 500, height: 500 }} id="map" />
-
-
-        ;
-    }
-}
-*/
 
 class SimpleMap extends Component {
     static defaultProps = {
@@ -41,7 +22,7 @@ class SimpleMap extends Component {
     };
 
     handleApiLoaded = (map, maps) => {
-        map.data.loadGeoJson('https://storage.googleapis.com/mapsdevsite/json/google.json')//exampleRoute.json
+        map.data.loadGeoJson('https://storage.googleapis.com/mapsdevsite/json/google.json');//exampleRoute.json
         map.data.setMap(map);
     };
 
@@ -59,9 +40,9 @@ class SimpleMap extends Component {
                     yesIWantToUseGoogleMapApiInternals={true}
                     onGoogleApiLoaded={({ map, maps }) => this.handleApiLoaded(map, maps)}
                 >
-                    <AnyReactComponent
-                        lat={59.955413}
-                        lng={30.337844}
+                    <MyMarker
+                        lat={43.358756869202914}
+                        lng={-5.861785411834717}
                         text="My Marker"
                     />
                 </GoogleMapReact>
