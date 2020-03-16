@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import FC from 'solid-file-client';
 import auth from 'solid-auth-client';
-import { MapsSideBar,styleUploadButton } from './maps.style';
+import { MapsSideBar } from './maps.style';
 
 /*
 const RoutesHeader = () => {
     return (<h2>Upload routes</h2>)
 };
 */
+/*
 const Styles = {
     text: {
         color: 'white',
@@ -25,6 +26,7 @@ const Styles = {
         height: 40
       }
 };
+*/
 
 
 class RoutesSideBar extends Component {
