@@ -37,7 +37,7 @@ const privateRoutes = [
 ];
 
 const Routes = () => (
-  <Router basename="/viade_en1a">
+  <Router>
     <Fragment>
       <Switch>
         <NotLoggedInLayout component={Login} path="/login" exact />
