@@ -27,9 +27,16 @@ Potentially more columns in case you need translations.
 |===
 | Term         | Definition
 | *_SOLID_*     | Solid (derived from "social linked data") is a proposed set of conventions and tools for building decentralized social applications based on Linked Data principles. Solid is modular and extensible and it relies as much as possible on existing W3C standards and protocols.
+
 | *_POD_*     | User data is stored in its own Solid POD. PODs are like secure USB sticks for the Web, that you can access from anywhere. 
+
 | *_React_*     | React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called “components”.
+
 | *_Asciidoctor_*     |Asciidoctor is a fast, open source text processor and publishing toolchain for converting AsciiDoc content to HTML5, DocBook, PDF, and other formats. Asciidoctor is written in Ruby and runs on all major operating systems.
+
 | *_Node.js_*     | As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications.
+
 | *_Ruby_*     | Ruby is an interpreted, high-level, general-purpose programming language. It is dynamically typed and uses garbage collection. It supports multiple programming paradigms, including procedural, object-oriented, and functional programming. 
+
+| *_GPX_*     | GPX or GPS exchange format is an XML file format for storing coordinate data. It can store waypoints, tracks, and routes in a way that is easy to process and convert to other forms.
 |===

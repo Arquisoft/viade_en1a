@@ -18,7 +18,9 @@
     "errorGrantingAccess": "Había un error al dar acceso a tu documento. Por favor, intenta de nuevo.",
     "saved": "Tu documento ha sido guardado al pod.",
     "notEditable": "(no editable)",
-    "notSharable": "(logéate y carga undocumento en tu própio pod para poder dar acceso)"
+    "notSharable": "(logéate y carga undocumento en tu própio pod para poder dar acceso)",
+    "seeAll": "Ver todas",
+    "noNotifications": "No hay ninguna notificación"
   },
   "login": {
     "title": "Hola! Bienvenido a Solid.",
@@ -50,6 +52,7 @@
     "formModel": "Form Model",
     "logOut": "Cerrar Sesión",
     "profile": "Mi Perfil",
+    "myRoutes": "Mis Rutas",
     "formModelRender": "Form Model Render",
     "formModelConvert": "Form Model Convert",
     "text-editor": "Editor de Textos",
@@ -246,5 +249,8 @@
     "load": "Cargar",
     "save": "Guardar",
     "grantAccess": "Dar Acceso"
+  },
+  "routes":{
+    "yourRoutes": "Tus rutas"    
   }
 }
