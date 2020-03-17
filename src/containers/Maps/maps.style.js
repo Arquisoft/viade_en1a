@@ -9,7 +9,7 @@ export const MapsWrapper = styled.section`
 
 export const MapsWrapper2 = styled.section`
   width: 100%;
-  background-image: url('/img/concentric-hex-pattern_2x.png');
+  background-image: url('img/concentric-hex-pattern_2x.png');
   background-repeat: repeat;
 
   h3 {

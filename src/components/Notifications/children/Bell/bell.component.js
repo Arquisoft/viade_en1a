@@ -15,7 +15,7 @@ const Bell = ({ unread, onClick, active }: Props) => (
   <BellIcon className={`bell-icon ${active ? 'active' : ''}`} onClick={onClick} type="button">
     <div className="icon">
       {unread > 0 && <Badge badge={unread} />}
-      <img src="/img/icon/notification.svg" alt="notifications" />
+      <img src="img/icon/notification.svg" alt="notifications" />
     </div>
   </BellIcon>
 );
