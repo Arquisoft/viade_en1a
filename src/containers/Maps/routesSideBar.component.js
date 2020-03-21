@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import FC from 'solid-file-client';
 import auth from 'solid-auth-client';
 import { MapsSideBar } from './maps.style';
-import ReactDOM from 'react-dom';
 
 
 const RoutesHeader = () => {
@@ -88,7 +87,10 @@ class RoutesSideBar extends Component {
         var session = await auth.currentSession();
         var url = session.webId.split("profile/card#me")[0] + "routes/";
 
-        console.log(await this.fc.readFolder(url).url); 
+        let folder = await this.fc.readFolder( url );
+        folder.files.forEach(element => {
+            console.log(element);
+        });
     }
 
     render() {
