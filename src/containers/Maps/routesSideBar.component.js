@@ -4,9 +4,9 @@ import auth from 'solid-auth-client';
 import { MapsSideBar } from './maps.style';
 
 
-const RoutesHeader = () => {
+/*const RoutesHeader = () => {
     return (<h2>Upload your routes</h2>);
-};
+};*/
 
 /**
 const Styles = {
@@ -73,7 +73,7 @@ class RoutesSideBar extends Component {
         document.getElementById("btnPod").disabled = true;
     }
 
-    getRouteName(route){
+    async getRouteName(route){
         var fileReader = new FileReader();
         fileReader.readAsText(route);
         fileReader.onload = function() {
@@ -81,6 +81,20 @@ class RoutesSideBar extends Component {
             console.log(obj.routeName);
             return obj.routeName;
         }
+    }
+
+    async getPodRoutes(){
+        var session = await auth.currentSession();
+        var url = session.webId.split("profile/card#me")[0] + "routes/";
+
+        let folder = await this.fc.readFolder( url );
+        folder.files.forEach((element) => {
+            var node = document.createElement("button"); 
+            var textnode = document.createTextNode(element.name); 
+
+            node.appendChild(textnode); 
+            document.getElementById("panel").appendChild(node);
+        });
     }
 
     render() {
@@ -95,13 +109,17 @@ class RoutesSideBar extends Component {
         }
         return (
             <aside>
-                <RoutesHeader/>
+                
                 <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
                 <RoutesData/>
                 <button id="btnPod" disabled={!this.uploadedFiles}type="button" className="btn btn-success btn-block" onClick={this.onClickHandler.bind(this)}>Upload to your POD</button>
+                <button id="btnRoutes" type="button" className="btn btn-success btn-block" onClick={this.getPodRoutes.bind(this)}>Routes</button>
+                
                 <MapsSideBar>
                     Here your routes
                 </MapsSideBar>
+
+                <p id="panel"></p>
             </aside>
         );
     }
