@@ -58,8 +58,7 @@ class LanguageDropdown extends Component<Props> {
     ];
     return (
       <Dropdown actions={profileOpts} hover>
-        <div> {languages[language].id.toUpperCase()}</div>
-        
+        <div> {languages[language.toLocaleLowerCase().toString()].id.toUpperCase()}</div>
       </Dropdown>
     );
   }
