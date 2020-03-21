@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import FC from 'solid-file-client';
 import auth from 'solid-auth-client';
 import { MapsSideBar } from './maps.style';
+import ReactDOM from 'react-dom';
 
 
 const RoutesHeader = () => {
@@ -73,7 +74,7 @@ class RoutesSideBar extends Component {
         document.getElementById("btnPod").disabled = true;
     }
 
-    getRouteName(route){
+    async getRouteName(route){
         var fileReader = new FileReader();
         fileReader.readAsText(route);
         fileReader.onload = function() {
@@ -81,6 +82,13 @@ class RoutesSideBar extends Component {
             console.log(obj.routeName);
             return obj.routeName;
         }
+    }
+
+    async getPodRoutes(){
+        var session = await auth.currentSession();
+        var url = session.webId.split("profile/card#me")[0] + "routes/";
+
+        console.log(await this.fc.readFolder(url).url); 
     }
 
     render() {
@@ -99,6 +107,8 @@ class RoutesSideBar extends Component {
                 <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
                 <RoutesData/>
                 <button id="btnPod" disabled={!this.uploadedFiles}type="button" className="btn btn-success btn-block" onClick={this.onClickHandler.bind(this)}>Upload to your POD</button>
+                <button id="btnRoutes" type="button" className="btn btn-success btn-block" onClick={this.getPodRoutes.bind(this)}>Routes</button>
+                
                 <MapsSideBar>
                     Here your routes
                 </MapsSideBar>
