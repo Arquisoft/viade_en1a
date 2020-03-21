@@ -4,9 +4,9 @@ import auth from 'solid-auth-client';
 import { MapsSideBar } from './maps.style';
 
 
-const RoutesHeader = () => {
+/*const RoutesHeader = () => {
     return (<h2>Upload your routes</h2>);
-};
+};*/
 
 /**
 const Styles = {
@@ -89,7 +89,11 @@ class RoutesSideBar extends Component {
 
         let folder = await this.fc.readFolder( url );
         folder.files.forEach(element => {
-            console.log(element);
+            var node = document.createElement("button"); 
+            var textnode = document.createTextNode(element.name); 
+
+            node.appendChild(textnode); 
+            document.getElementById("panel").appendChild(node);
         });
     }
 
@@ -105,7 +109,7 @@ class RoutesSideBar extends Component {
         }
         return (
             <aside>
-                <RoutesHeader/>
+                
                 <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
                 <RoutesData/>
                 <button id="btnPod" disabled={!this.uploadedFiles}type="button" className="btn btn-success btn-block" onClick={this.onClickHandler.bind(this)}>Upload to your POD</button>
@@ -114,6 +118,8 @@ class RoutesSideBar extends Component {
                 <MapsSideBar>
                     Here your routes
                 </MapsSideBar>
+
+                <p id="panel"></p>
             </aside>
         );
     }
