@@ -88,7 +88,7 @@ class RoutesSideBar extends Component {
         var url = session.webId.split("profile/card#me")[0] + "routes/";
 
         let folder = await this.fc.readFolder( url );
-        folder.files.forEach(element => {
+        folder.files.forEach( (element) => {
             var node = document.createElement("button"); 
             var textnode = document.createTextNode(element.name); 
 
