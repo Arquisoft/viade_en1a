@@ -65,15 +65,11 @@ export const styledUploadButton = `
   left: 5%;
   bottom: 10%;
 }`;
-export const MapsSideBar = styled.aside`
+export const MapsSideBar = styled.div`
   border-right: 1px solid blue;
   overflow-y: scroll;
-  horizontal=false;
-  width: 20%;
+  height: 80vh;
   padding: 0;
-  position: fixed;
-  top: 20%;
   left: 0;
-  bottom: 10%;
 }
 `;

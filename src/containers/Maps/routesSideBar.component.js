@@ -2,11 +2,17 @@ import React, {Component} from 'react';
 import FC from 'solid-file-client';
 import auth from 'solid-auth-client';
 import { MapsSideBar } from './maps.style';
+import styled from "styled-components";
 
 
 /*const RoutesHeader = () => {
     return (<h2>Upload your routes</h2>);
 };*/
+
+const StyledRoutesSidebar = styled.div`
+      height: 100vh;
+      width: 20%;
+    `;
 
 /**
 const Styles = {
@@ -30,7 +36,6 @@ const Styles = {
 
 
 class RoutesSideBar extends Component {
-
     constructor(props) {
         super(props);
 
@@ -108,8 +113,7 @@ class RoutesSideBar extends Component {
             return <ul>{data}</ul>
         }
         return (
-            <aside>
-                
+            <StyledRoutesSidebar>
                 <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
                 <RoutesData/>
                 <button id="btnPod" disabled={!this.uploadedFiles}type="button" className="btn btn-success btn-block" onClick={this.onClickHandler.bind(this)}>Upload to your POD</button>
@@ -117,10 +121,10 @@ class RoutesSideBar extends Component {
                 
                 <MapsSideBar>
                     Here your routes
+                    <p id="panel"></p>
                 </MapsSideBar>
 
-                <p id="panel"></p>
-            </aside>
+            </StyledRoutesSidebar>
         );
     }
 }

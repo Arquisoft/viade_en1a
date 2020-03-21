@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import RoutesSideBar from './routesSideBar.component';
 import GoogleMapReact from 'google-map-react';
+import styled from 'styled-components';
 
 const MyMarker = ({text}) => <div>{text}</div>;
 
@@ -25,12 +26,11 @@ class SimpleMap extends Component {
         map.data.setMap(map);
     };
 
+
     render() {
         return (
             <div style={{height: "100vh", width: "100%", display: "flex", flex: "row"}}>
-                <div style={{height: "100vh", width: "20%", }}>
                 <RoutesSideBar/>
-                </div>
             <div style={{height: "100vh", width: "80%"}}>
                 <GoogleMapReact
                     bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
