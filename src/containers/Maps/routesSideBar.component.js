@@ -11,8 +11,7 @@ import styled from "styled-components";
 import {MapRoute} from './components';
 
 import {Button} from 'react-bootstrap';
-
-
+ 
 
 const StyledRoutesSidebar = styled.div`
 
@@ -57,6 +56,7 @@ class RoutesSideBar extends Component {
         this.fc = new FC(auth);
 
         this.uploadedFiles = false;
+		
 
     }
 
@@ -179,17 +179,13 @@ class RoutesSideBar extends Component {
 
 
     showRoute(route) {
-
-        alert("Showing route "+route.name);
-
+		this.props.show(route.url);
     }
 
 
 
     shareRoute(route){
-
         alert(route.url);
-
     }
 
 

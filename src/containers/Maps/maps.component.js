@@ -13,6 +13,14 @@ const mapStyles = {
      **/
 
 class SimpleMap extends Component {
+	constructor(){
+		super();
+		this.show = this.show.bind(this);
+		this.state = {
+			url : "https://storage.googleapis.com/mapsdevsite/json/google.json"
+		}
+	}
+	
     static defaultProps = {
         center: {
             lat: 59.95,
@@ -22,15 +30,18 @@ class SimpleMap extends Component {
     };
 
     handleApiLoaded = (map, maps) => {
-        map.data.loadGeoJson("https://storage.googleapis.com/mapsdevsite/json/google.json");//exampleRoute.json
+        map.data.loadGeoJson(this.state.url);
         map.data.setMap(map);
     };
-
+	
+	show = (newUrl) => {
+		this.setState({url:newUrl}); 
+	}
 
     render() {
         return (
             <div style={{height: "100vh", width: "100%", display: "flex", flex: "row"}}>
-                <RoutesSideBar/>
+                <RoutesSideBar show={this.show}/>
                 <div style={{height: "100vh", width: "80%"}}>
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
@@ -50,5 +61,6 @@ class SimpleMap extends Component {
         );
     }
 }
+
 
 export default SimpleMap;
