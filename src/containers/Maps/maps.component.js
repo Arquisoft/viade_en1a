@@ -19,7 +19,8 @@ class SimpleMap extends Component {
         this.show = this.show.bind(this);
         this.state = {
             url: "https://storage.googleapis.com/mapsdevsite/json/google.json",
-            route: ""
+            route: "",
+			features: []
         }
     }
 
@@ -39,16 +40,21 @@ class SimpleMap extends Component {
     };
 
     loadMap = () => {
-
-        this.map.data.addGeoJson(this.state.route);
+		this.setState({features: this.map.data.addGeoJson(this.state.route)});
         this.map.data.setMap(this.map);
     };
 
     log = () => {
         console.log(this.state.url);
     };
-
+	
+	deleteOldRoute = () => {
+		for (var i = 0; i < this.state.features.length; i++)
+            this.map.data.remove(this.state.features[i]);
+	}
+	
     show = (parsedRoute) => {
+		this.deleteOldRoute();
         this.setState({route: parsedRoute}, this.loadMap);
 
     };
