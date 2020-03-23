@@ -18,7 +18,8 @@ class SimpleMap extends Component {
         super();
         this.show = this.show.bind(this);
         this.state = {
-            url: "https://storage.googleapis.com/mapsdevsite/json/google.json"
+            url: "https://storage.googleapis.com/mapsdevsite/json/google.json",
+            route: ""
         }
     }
 
@@ -34,19 +35,21 @@ class SimpleMap extends Component {
     handleApiLoaded = (map, maps) => {
         this.map = map;
         this.maps = maps;
-
+        this.loadMap();
     };
 
     loadMap = () => {
-        this.map.data.loadGeoJson(this.state.url);
+
+        this.map.data.addGeoJson(this.state.route);
         this.map.data.setMap(this.map);
     };
 
-    show = (route) => {
-        console.log(route.url);
-        this.setState({url: route.url});
+    log = () => {
         console.log(this.state.url);
-        this.loadMap();
+    };
+
+    show = (parsedRoute) => {
+        this.setState({route: parsedRoute}, this.loadMap);
 
     };
 

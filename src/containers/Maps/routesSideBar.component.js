@@ -163,9 +163,10 @@ class RoutesSideBar extends Component {
     }
 
 
-    showRoute=(route)=> {
-        console.log(route);
-        this.props.show(route);
+    showRoute = async (route) => {
+        let content = await this.fc.readFile(route.url);
+        let parsedRoute = JSON.parse(content);
+        this.props.show(parsedRoute);
     };
 
 
