@@ -11,7 +11,7 @@ import styled from "styled-components";
 import {MapRoute} from './components';
 
 import {Button} from 'react-bootstrap';
- 
+
 
 const StyledRoutesSidebar = styled.div`
 
@@ -22,13 +22,11 @@ const StyledRoutesSidebar = styled.div`
     `;
 
 
-
 class RoutesSideBar extends Component {
 
     constructor(props) {
 
         super(props);
-
 
 
         this.state = {
@@ -42,24 +40,20 @@ class RoutesSideBar extends Component {
         };
 
 
-
         this.getPodRoutes = this.getPodRoutes.bind(this);
 
         this.getPodRoutes();
 
 
-
         this.deleteRoute = this.deleteRoute.bind(this);
-
 
 
         this.fc = new FC(auth);
 
         this.uploadedFiles = false;
-		
+
 
     }
-
 
 
     onChangeHandler = event => {
@@ -85,13 +79,11 @@ class RoutesSideBar extends Component {
             }
 
 
-
         });
 
         this.setState({routes});
 
     };
-
 
 
     async onClickHandler() {
@@ -107,9 +99,7 @@ class RoutesSideBar extends Component {
         }
 
 
-
         this.onClearArray();
-
 
 
         this.state.routes.forEach(async (route) => {
@@ -125,11 +115,9 @@ class RoutesSideBar extends Component {
         document.getElementById("btnPod").disabled = true;
 
 
-
         this.getPodRoutes();
 
     }
-
 
 
     async getRouteName(route) {
@@ -151,13 +139,11 @@ class RoutesSideBar extends Component {
     }
 
 
-
     async getPodRoutes() {
 
         var session = await auth.currentSession();
 
         var url = session.webId.split("profile/card#me")[0] + "routes/";
-
 
 
         let folder = await this.fc.readFolder(url);
@@ -177,20 +163,18 @@ class RoutesSideBar extends Component {
     }
 
 
+    showRoute=(route)=> {
+        console.log(route);
+        this.props.show(route);
+    };
 
-    showRoute(route) {
-		this.props.show(route.url);
-    }
 
-
-
-    shareRoute(route){
+    shareRoute(route) {
         alert(route.url);
     }
 
 
-
-    async deleteRoute(route){
+    async deleteRoute(route) {
 
         await this.fc.deleteFile(route.url);
 
@@ -201,19 +185,15 @@ class RoutesSideBar extends Component {
     }
 
 
-
-    listRoutes() {
+    listRoutes = ()=> {
 
         let list = [];
 
-
-
         for (let i = 0; i < this.state.routesList.length; i++) {
 
-            list.push(<MapRoute {...{
+            list.push(<MapRoute key={i}{...{
 
                 route: {
-
                     name: this.state.routesList[i].name,
 
                     url: this.state.routesList[i].url,
@@ -231,19 +211,16 @@ class RoutesSideBar extends Component {
         }
 
 
-
         return list;
 
-    }
-
+    };
 
 
     onClearArray = () => {
 
-        this.setState({ routesList: [] });
+        this.setState({routesList: []});
 
     };
-
 
 
     render() {
@@ -257,7 +234,6 @@ class RoutesSideBar extends Component {
                 <Button id="btnPod" disabled={!this.uploadedFiles} variant="primary" block
 
                         onClick={this.onClickHandler.bind(this)}>Upload to your POD</Button>
-
 
 
                 <MapsSideBar>
@@ -279,7 +255,6 @@ class RoutesSideBar extends Component {
     }
 
 }
-
 
 
 export default RoutesSideBar;

@@ -5,22 +5,23 @@ import * as Icon from 'react-feather';
 
 const MyMarker = ({icon}) => <div>{icon}</div>;
 
-    /**
-const mapStyles = {
+/**
+ const mapStyles = {
     marginLeft: '21%',
     marginBottom: '10%'
 };
-     **/
+ **/
 
 class SimpleMap extends Component {
-	constructor(){
-		super();
-		this.show = this.show.bind(this);
-		this.state = {
-			url : "https://storage.googleapis.com/mapsdevsite/json/google.json"
-		}
-	}
-	
+
+    constructor() {
+        super();
+        this.show = this.show.bind(this);
+        this.state = {
+            url: "https://storage.googleapis.com/mapsdevsite/json/google.json"
+        }
+    }
+
     static defaultProps = {
         center: {
             lat: 59.95,
@@ -29,14 +30,25 @@ class SimpleMap extends Component {
         zoom: 11
     };
 
+
     handleApiLoaded = (map, maps) => {
-        map.data.loadGeoJson(this.state.url);
-        map.data.setMap(map);
+        this.map = map;
+        this.maps = maps;
+
     };
-	
-	show = (newUrl) => {
-		this.setState({url:newUrl}); 
-	}
+
+    loadMap = () => {
+        this.map.data.loadGeoJson(this.state.url);
+        this.map.data.setMap(this.map);
+    };
+
+    show = (route) => {
+        console.log(route.url);
+        this.setState({url: route.url});
+        console.log(this.state.url);
+        this.loadMap();
+
+    };
 
     render() {
         return (
@@ -48,7 +60,7 @@ class SimpleMap extends Component {
                         defaultCenter={[43.358756869202914, -5.861785411834717]}
                         defaultZoom={12}
                         yesIWantToUseGoogleMapApiInternals={true}
-                        onGoogleApiLoaded={({ map, maps }) => this.handleApiLoaded(map, maps)}
+                        onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
                     >
                         <MyMarker
                             lat={43.358756869202914}
