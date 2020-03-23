@@ -18,7 +18,7 @@ class RoutesSideBar extends Component {
         this.state = {
             selectedFile: null,
             routes: [],
-            routesList: []
+            routesList: [],
         };
 
         this.getPodRoutes = this.getPodRoutes.bind(this);
@@ -92,10 +92,6 @@ class RoutesSideBar extends Component {
         alert("Showing route "+route.name);
     }
 
-    shareRoute(route){
-        alert(route.url);
-    }
-
     async deleteRoute(route){
         await this.fc.deleteFile(route.url);
         this.onClearArray();
@@ -138,6 +134,7 @@ class RoutesSideBar extends Component {
                 <Button variant="primary" block
                         onClick={this.onClearArray}>Clear</Button>
             </StyledRoutesSidebar>
+            
         );
     }
 }
