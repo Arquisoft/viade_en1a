@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Dropdown, ButtonGroup } from 'react-bootstrap';
 import * as Icon from 'react-feather';
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 const StyledMapRoute = styled.div`
   margin: 10px;
@@ -9,6 +10,7 @@ const StyledMapRoute = styled.div`
 
 export const MapRoute = props => {
     const { route } = props;
+    const { t } = useTranslation();
 
     function showRoute(){
         route.showRoute(route);
@@ -30,8 +32,8 @@ export const MapRoute = props => {
             <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 
             <Dropdown.Menu>
-                <Dropdown.Item onClick={shareRoute} href="#"><Icon.Share2/>Compartir</Dropdown.Item>
-                <Dropdown.Item onClick={deleteRoute} href="#"><Icon.Trash/>Eliminar</Dropdown.Item>
+                <Dropdown.Item onClick={shareRoute} href="#"><Icon.Share2/>{t("routes.share")}</Dropdown.Item>
+                <Dropdown.Item onClick={deleteRoute} href="#"><Icon.Trash/>{t("routes.delete")}</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
         </StyledMapRoute>

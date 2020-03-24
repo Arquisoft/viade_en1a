@@ -254,7 +254,9 @@
     "yourRoutes": "Tus rutas",
     "uploadToPOD": "Subir a tu POD",
     "hereYourRoutes": "Tus rutas aquí",
-    "clear": "Limpiar"
+    "clear": "Limpiar",
+    "share": "Compartir",
+    "delete": "Borrar"
   },
   "alt":{
     "friend": "Amigo"
