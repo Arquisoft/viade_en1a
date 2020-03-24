@@ -78,12 +78,12 @@ export class ShareRoutesComponent extends Component<Props> {
 
     async shareRoute(friend){
         var session = await auth.currentSession();
-        var targetUrl = friend.name + "routes/";
+        var targetUrl = friend.name + "inbox/";
         if (!await this.fc.itemExists(targetUrl)) {
             await this.fc.createFolder(targetUrl);
         }
         var sourceUrl = session.webId.split("profile/card#me")[0] + "routes/";
-        await this.fc.copyFile( sourceUrl + this.state.route.name, targetUrl + this.state.route.name, {withAcl:false, withMeta:false});
+        await this.fc.postFile( sourceUrl + this.state.route.name, targetUrl + "sharedRoute", this.state.route);
     }
 
     render() {
