@@ -251,6 +251,14 @@
     "grantAccess": "Dar Acceso"
   },
   "routes":{
-    "yourRoutes": "Tus rutas"    
+    "yourRoutes": "Tus rutas",
+    "uploadToPOD": "Subir a tu POD",
+    "hereYourRoutes": "Tus rutas aquí",
+    "clear": "Limpiar",
+    "share": "Compartir",
+    "delete": "Borrar"
+  },
+  "alt":{
+    "friend": "Amigo"
   }
 }
