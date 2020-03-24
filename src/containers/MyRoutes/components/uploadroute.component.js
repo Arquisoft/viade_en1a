@@ -7,4 +7,4 @@ export const UploadRoute = props => {
     return (
         <input type="file" name="file" onChange={onchangehandler}/>
     );
-}
+};

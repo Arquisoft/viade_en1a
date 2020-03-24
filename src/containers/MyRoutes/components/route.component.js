@@ -6,4 +6,4 @@ export const Route = props => {
     return (
         <li></li>//<li key={route.webId}><img width="100px" src={friend.image}/>{friend.name}</li> //Here would be the specification of the route
     );
-}
+};
