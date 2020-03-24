@@ -251,6 +251,12 @@
     "grantAccess": "Grant Access"
   },
   "routes":{
-    "yourRoutes": "Your routes"    
+    "yourRoutes": "Your routes",
+    "uploadToPOD": "Upload to your POD",
+    "hereYourRoutes": "Here your routes",
+    "clear": "Clear"
+  },
+  "alt":{
+    "friend": "Friend"
   }
 }

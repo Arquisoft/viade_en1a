@@ -5,6 +5,7 @@ import {MapsSideBar} from './maps.style';
 import styled from "styled-components";
 import {MapRoute} from './components';
 import {Button} from 'react-bootstrap';
+import { withTranslation } from "react-i18next";
 
 const StyledRoutesSidebar = styled.div`
       height: 100vh;
@@ -125,21 +126,22 @@ class RoutesSideBar extends Component {
     };
 
     render() {
+        const { t } = this.props;
         return (
             <StyledRoutesSidebar>
                 <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
                 <Button id="btnPod" disabled={!this.uploadedFiles} variant="primary" block
-                        onClick={this.onClickHandler.bind(this)}>Upload to your POD</Button>
+                        onClick={this.onClickHandler.bind(this)}>{t("routes.uploadToPOD")}</Button>
 
                 <MapsSideBar>
-                    Here your routes
+                    {t("routes.hereYourRoutes")}
                     {this.listRoutes()}
                 </MapsSideBar>
                 <Button variant="primary" block
-                        onClick={this.onClearArray}>Clear</Button>
+                        onClick={this.onClearArray}>{t("routes.clear")}</Button>
             </StyledRoutesSidebar>
         );
     }
 }
 
-export default RoutesSideBar;
+export default withTranslation()(RoutesSideBar);
