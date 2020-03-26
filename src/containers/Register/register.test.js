@@ -8,7 +8,7 @@ describe.only('Register', () => {
 
   const { container, getByTestId } = render(
     <Router>
-      <RegisterComponent t={key => key} providers={[]} />
+      <RegisterComponent t={(key) => key} providers={[]} />
     </Router>
   );
 

@@ -24,7 +24,7 @@ export class MyRoutesComponent extends Component<Props> {
         if (webId && webId !== prevProps.webId) this.getProfileData();
     }
 
-    onChangeHandler= event=>{
+    onChangeHandler = (event) => {
         this.setState({
             selectedFile: event.target.files[0],
             loaded: 0,

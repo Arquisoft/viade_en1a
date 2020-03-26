@@ -14,7 +14,7 @@ const GameBoard = styled.div`
 
 type Props = { squares: Array, onMove: Funtion, canPlay: Boolean, result: Object };
 
-const unique = seed => Date.now() + seed;
+const unique = (seed) => Date.now() + seed;
 
 const borders = {
   0: ['bottom', 'right'],

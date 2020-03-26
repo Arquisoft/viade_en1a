@@ -9,7 +9,7 @@ const Square = styled.button`
   padding: 0;
   border: none;
   background: #fff;
-  ${({ borders }) => borders && borders.map(border => `border-${border}: solid 4px;`)}
+  ${({ borders }) => borders && borders.map((border) => `border-${border}: solid 4px;`)}
   color: ${({ winner }) => (winner ? 'green' : '#000')};
   transition: border 500ms ease-out;
   &:hover {

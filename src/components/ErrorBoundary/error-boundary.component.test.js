@@ -10,7 +10,7 @@ const ErrorComponent = () => {
 };
 
 // This a hack to avoid error console when we run test
-const shallowErrors = codeRun => {
+const shallowErrors = (codeRun) => {
   const { error } = console;
 
   console.error = () => {};

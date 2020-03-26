@@ -14,7 +14,7 @@ export const sendNotification = async (opponent, content, createNotification, to
   }
 };
 
-export const findUserInboxes = async paths => {
+export const findUserInboxes = async (paths) => {
   try {
     let inboxes = [];
 
@@ -34,4 +34,4 @@ export const findUserInboxes = async paths => {
 };
 
 export const getDefaultInbox = (inboxes, inbox1, inbox2) =>
-  inboxes.find(inbox => inbox.name === inbox1) || inboxes.find(inbox => inbox.name === inbox2);
+  inboxes.find((inbox) => inbox.name === inbox1) || inboxes.find(inbox => inbox.name === inbox2);

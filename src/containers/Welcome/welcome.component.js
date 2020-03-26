@@ -18,7 +18,7 @@ import { errorToaster } from '@utils';
  * Image component will get theimage context and resolve the value to render.
  * @param props
  */
-export const WelcomePageContent = props => {
+export const WelcomePageContent = (props) => {
   const { webId, image, updatePhoto, name } = props;
   const { t } = useTranslation();
   const limit = 2100000;
@@ -46,19 +46,19 @@ export const WelcomePageContent = props => {
                   unsupported: t('welcome.errors.unsupported'),
                   maximumFiles: t('welcome.errors.maximumFiles')
                 },
-                onError: error => {
+                onError: (error) => {
                   if (error && error.statusText) {
                     errorToaster(error.statusText, t('welcome.errorTitle'));
                   }
                 },
-                onComplete: uploadedFiles => {
+                onComplete: (uploadedFiles) => {
                   updatePhoto(
                     uploadedFiles[uploadedFiles.length - 1].uri,
                     t('welcome.uploadSuccess'),
                     t('welcome.successTitle')
                   );
                 },
-                render: props => (
+                render: (props) => (
                   <ImageProfile
                     {...{
                       ...props,

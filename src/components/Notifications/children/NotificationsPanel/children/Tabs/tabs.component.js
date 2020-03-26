@@ -22,7 +22,7 @@ export const Tabs = ({ list, click, activeName }: Props) => {
    * @type {Function}
    */
   const filterByName = useCallback(
-    async name => {
+    async (name) => {
       const currentName = active === name ? '' : name;
 
       setActive(currentName);
@@ -41,7 +41,7 @@ export const Tabs = ({ list, click, activeName }: Props) => {
   return (
     <TabsContainer>
       {list &&
-        list.map(tab => (
+        list.map((tab) => (
           <Tab key={tab.path}>
             <button
               onClick={() => filterByName(tab.inboxName)}

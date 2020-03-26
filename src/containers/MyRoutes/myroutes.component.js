@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 import {
     MyRoutesWrapper,
     MyRoutesContainer
-} from './myroutes.style';
-import { Route, UploadRoute } from './components';
+} from "./myroutes.style";
+import { Route, UploadRoute } from "./components";
 
 
-export const MyRoutesPageContent = props => {
+export const MyRoutesPageContent = (props) => {
     const { routes, webId, onchangehandler } = props;
 
     return (
@@ -16,7 +16,7 @@ export const MyRoutesPageContent = props => {
                 <ul>
                     {
                         routes.map(
-                            route =>(
+                            (route) => (
                                 <Route route={route}/>
                             )
                         )

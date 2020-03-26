@@ -22,7 +22,7 @@ export const buildPathFromWebId = (webId, path) => {
  * Helper function to check for the user's pod storage value. If it doesn't exist, we assume root of the pod
  * @returns {Promise<string>}
  */
-export const getAppStorage = async webId => {
+export const getAppStorage = async (webId) => {
   const podStoragePath = await data[webId].storage;
   let podStoragePathValue =
     podStoragePath && podStoragePath.value.trim().length > 0 ? podStoragePath.value : '';
@@ -45,7 +45,7 @@ export const getAppStorage = async webId => {
  * @param folderPath
  * @returns {Promise<boolean>} Returns whether or not there were any errors during the creation process
  */
-export const createInitialFiles = async webId => {
+export const createInitialFiles = async (webId) => {
   try {
     // First, check if we have WRITE permission for the app
     const hasWritePermission = await permissionHelper.checkSpecificAppPermission(

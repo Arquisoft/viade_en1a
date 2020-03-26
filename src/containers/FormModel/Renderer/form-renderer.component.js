@@ -39,16 +39,16 @@ const FormModelRenderer = () => {
   const [isViewMode, setViewMode] = useState(true);
 
   const filteredOptions = RendererTypesList.filter(
-    item => t(`formLanguage.${item}`) === t('formLanguage.formModel')
+    (item) => t(`formLanguage.${item}`) === t('formLanguage.formModel')
   );
-  const optionsList = filteredOptions.map(item => t(`formLanguage.${item}`));
+  const optionsList = filteredOptions.map((item) => t(`formLanguage.${item}`));
 
   /**
    * Helper function to detect if choice is ShEx
    * @param value
    * @returns {boolean}
    */
-  const isShEx = value =>
+  const isShEx = (value) =>
     value === t(`formLanguage.${ConverterTypes.Shex}`) ||
     value === t(`formLanguage.${ConverterTypes.ShexLayout}`);
 
@@ -57,7 +57,7 @@ const FormModelRenderer = () => {
    * @param value
    * @returns {boolean}
    */
-  const isShacl = value =>
+  const isShacl = (value) =>
     value === t(`formLanguage.${ConverterTypes.Shacl}`) ||
     value === t(`formLanguage.${ConverterTypes.ShaclExtension}`);
 
@@ -66,7 +66,7 @@ const FormModelRenderer = () => {
    * @param value
    * @returns {boolean}
    */
-  const hasLayout = value =>
+  const hasLayout = (value) =>
     value === t(`formLanguage.${ConverterTypes.ShaclExtension}`) ||
     value === t(`formLanguage.${ConverterTypes.ShexLayout}`);
 
@@ -132,7 +132,7 @@ const FormModelRenderer = () => {
     console.log(selectedInput);
   });
 
-  const onError = e => {
+  const onError = (e) => {
     if (e.message.toString().indexOf('Validation failed') < 0) {
       errorToaster(t('formLanguage.renderer.formNotLoaded'), t('notifications.error'), {
         label: t('errorFormRender.link.label'),
@@ -233,11 +233,11 @@ const FormModelRenderer = () => {
                   onLoaded: () => setIsLoading(false),
                   onSuccess: () => {},
                   onSave: () => {},
-                  onError: error => {
+                  onError: (error) => {
                     onError(error);
                   },
-                  onAddNewField: response => onAddNewField(response),
-                  onDelete: response => onDelete(response),
+                  onAddNewField: (response) => onAddNewField(response),
+                  onDelete: (response) => onDelete(response),
                   settings: {
                     theme: {
                       inputText: 'input-wrap',

@@ -187,7 +187,7 @@ class RoutesSideBar extends Component {
     }
 
 
-    listRoutes = ()=> {
+    listRoutes = () => {
 
         let list = [];
 

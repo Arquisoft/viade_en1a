@@ -17,7 +17,7 @@ const FooterContainer = styled.div`
   width: 100%;
 `;
 
-const NotLoggedInLayout = props => {
+const NotLoggedInLayout = (props) => {
   const { component: Component, webId, ...rest } = props;
   const { t } = useTranslation();
   const ComponentWrapper = styled(Component)`
@@ -28,7 +28,7 @@ const NotLoggedInLayout = props => {
   return !webId ? (
     <Route
       {...rest}
-      component={matchProps => (
+      component={(matchProps) => (
         <Container>
           <NavBar
             {...matchProps}

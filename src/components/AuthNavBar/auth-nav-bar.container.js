@@ -1,5 +1,5 @@
-import React from 'react';
-import AuthNavBar from './auth-nav-bar.component';
+import React from "react";
+import AuthNavBar from "./auth-nav-bar.component";
 
 type Props = {
   location: Object,

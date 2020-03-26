@@ -27,7 +27,7 @@ class LanguageDropdown extends Component<Props> {
 
   getLanguage = () => localStorage.getItem('i18nextLng') || 'en';
 
-  onLanguageSelect = nextLanguage => {
+  onLanguageSelect = (nextLanguage) => {
     const { i18n } = this.props;
     toast.dismiss();
     i18n.changeLanguage(nextLanguage);

@@ -7,7 +7,7 @@ import {
 } from './notifications.style';
 
 
-export const FriendsPageContent = props => {
+export const FriendsPageContent = (props) => {
     
     const { t } = useTranslation();
 
