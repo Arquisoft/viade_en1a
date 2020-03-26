@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
-import FC from 'solid-file-client';
+import FC from "solid-file-client";
 
-import auth from 'solid-auth-client';
+import auth from "solid-auth-client";
 
-import {MapsSideBar} from './maps.style';
+import {MapsSideBar} from "./maps.style";
 
 import styled from "styled-components";
 
-import {MapRoute} from './components';
+import {MapRoute} from "./components";
 
-import {Button} from 'react-bootstrap';
+import {Button} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 
 
@@ -57,7 +57,7 @@ class RoutesSideBar extends Component {
     }
 
 
-    onChangeHandler = event => {
+    onChangeHandler = (event) => {
 
         this.uploadedFiles = false;
 
@@ -135,7 +135,7 @@ class RoutesSideBar extends Component {
 
             return obj.routeName;
 
-        }
+        };
 
     }
 
@@ -153,7 +153,7 @@ class RoutesSideBar extends Component {
 
             console.log(element);
 
-            this.setState(state => ({
+            this.setState((state) => ({
 
                 routeList: state.routesList.push({name: element.name, url: element.url})
 
