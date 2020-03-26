@@ -14,7 +14,7 @@ export class ShareRoutesComponent extends Component<Props> {
             route: null
         };
         this.fc = new FC(auth);
-        this.getRoute(window.location.href);
+        this.getRoute();
     }
 
     componentDidMount() {
@@ -63,29 +63,35 @@ export class ShareRoutesComponent extends Component<Props> {
         this.setState({ friends });
     };
 
-    async getRoute(webUrl){
-        var name = webUrl.split("=")[1];
-        
+    async getRoute(){
+        var name = this.getRouteName();
         var session = await auth.currentSession();
         var url = session.webId.split("profile/card#me")[0] + "routes/";
-        let folder = await this.fc.readFolder(url);
-        folder.files.forEach((element) => {
-            if(element.name === name){
-                this.setState({route: element});
-            }
-        });
+        var file = await this.fc.readFile(url + name);
+        if (file != null){
+            this.setState({route: file});
+        }
     }
 
     async shareRoute(friend){
-        var session = await auth.currentSession();
-        var targetUrl = friend.name + "inbox/";
+        //var session = await auth.currentSession();
+        var targetUrl = friend.name + "public/";
         if (!await this.fc.itemExists(targetUrl)) {
             await this.fc.createFolder(targetUrl);
         }
-        var sourceUrl = session.webId.split("profile/card#me")[0] + "routes/";
-        await this.fc.postFile( sourceUrl + this.state.route.name, targetUrl + "sharedRoute", this.state.route);
+        var fileName = this.getRouteNameNoExtension();
+        await this.fc.postFile( targetUrl + fileName, this.state.route, "application/json");
     }
 
+    getRouteNameNoExtension(){
+        var tmp = window.location.href.split("=")[1];
+        return tmp.substring(tmp.lastIndexOf('/') + 1);
+    }
+
+    getRouteName(){
+        return window.location.href.split("=")[1];
+    }
+    
     render() {
         const { friends } = this.state;
         const share = {
