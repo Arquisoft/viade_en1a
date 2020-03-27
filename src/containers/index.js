@@ -9,6 +9,7 @@ import { FormModelConverter, FormModelRenderer } from './FormModel';
 import Friends from './Friends';
 import Maps from "./Maps";
 import Notifications from "./Notifications";
+import ShareRoutes from "./ShareRoutes";
 
 export {
   Login,
@@ -24,5 +25,6 @@ export {
   TextEditor,
   Friends,
   Maps, 
-  Notifications
+  Notifications,
+  ShareRoutes
 };

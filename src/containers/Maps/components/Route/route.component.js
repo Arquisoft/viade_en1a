@@ -10,14 +10,11 @@ const StyledMapRoute = styled.div`
 
 export const MapRoute = (props) => {
     const { route } = props;
+    const url = "#/share?route="+route.name;
     const { t } = useTranslation();
 
     function showRoute(){
         route.showRoute(route);
-    }
-
-    function shareRoute(){
-        route.shareRoute(route);
     }
 
     function deleteRoute(){
@@ -32,7 +29,7 @@ export const MapRoute = (props) => {
             <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 
             <Dropdown.Menu>
-                <Dropdown.Item onClick={shareRoute} href="#"><Icon.Share2/>{t("routes.share")}</Dropdown.Item>
+                <Dropdown.Item href={url}><Icon.Share2/>{t("routes.share")}</Dropdown.Item>
                 <Dropdown.Item onClick={deleteRoute} href="#"><Icon.Trash/>{t("routes.delete")}</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>

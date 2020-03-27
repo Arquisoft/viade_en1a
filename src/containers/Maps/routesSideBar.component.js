@@ -36,7 +36,7 @@ class RoutesSideBar extends Component {
 
             routes: [],
 
-            routesList: []
+            routesList: [],
 
         };
 
@@ -90,8 +90,7 @@ class RoutesSideBar extends Component {
     async onClickHandler() {
 
         var session = await auth.currentSession();
-
-        var url = session.webId.split("profile/card#me")[0] + "routes/";
+        var url = session.webId.split("profile/card#me")[0] + "public/routes/";
 
         if (!await this.fc.itemExists(url)) {
 
@@ -143,9 +142,7 @@ class RoutesSideBar extends Component {
     async getPodRoutes() {
 
         var session = await auth.currentSession();
-
-        var url = session.webId.split("profile/card#me")[0] + "routes/";
-
+        var url = session.webId.split("profile/card#me")[0] + "public/routes/";
 
         let folder = await this.fc.readFolder(url);
 
@@ -163,21 +160,13 @@ class RoutesSideBar extends Component {
 
     }
 
-
     showRoute = async (route) => {
         let content = await this.fc.readFile(route.url);
         let parsedRoute = JSON.parse(content);
         this.props.show(parsedRoute);
     };
 
-
-    shareRoute(route) {
-        alert(route.url);
-    }
-
-
     async deleteRoute(route) {
-
         await this.fc.deleteFile(route.url);
 
         this.onClearArray();
@@ -242,7 +231,6 @@ class RoutesSideBar extends Component {
                 <Button variant="primary" block
                         onClick={this.onClearArray}>{t("routes.clear")}</Button>
             </StyledRoutesSidebar>
-
         );
 
     }
