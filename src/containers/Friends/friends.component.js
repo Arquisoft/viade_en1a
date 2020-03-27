@@ -6,7 +6,7 @@ import {
 import { Friend } from './components';
 
 
-export const FriendsPageContent = props => {
+export const FriendsPageContent = (props) => {
     const {friends} = props;
 
     return (
@@ -15,7 +15,7 @@ export const FriendsPageContent = props => {
                 <ul>
                     {
                         friends.map(
-                            friend =>(
+                            (friend) => (
                                 <Friend friend={friend}/>
                             )
                         )

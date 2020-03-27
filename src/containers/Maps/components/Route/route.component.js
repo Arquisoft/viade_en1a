@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button, Dropdown, ButtonGroup } from 'react-bootstrap';
-import * as Icon from 'react-feather';
+import React from "react";
+import { Button, Dropdown, ButtonGroup } from "react-bootstrap";
+import * as Icon from "react-feather";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
@@ -8,7 +8,7 @@ const StyledMapRoute = styled.div`
   margin: 10px;
 `;
 
-export const MapRoute = props => {
+export const MapRoute = (props) => {
     const { route } = props;
     const { t } = useTranslation();
 
@@ -38,4 +38,4 @@ export const MapRoute = props => {
         </Dropdown>
         </StyledMapRoute>
     );
-}
+};

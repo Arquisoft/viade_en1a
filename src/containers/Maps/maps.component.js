@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import RoutesSideBar from './routesSideBar.component';
-import GoogleMapReact from 'google-map-react';
-import * as Icon from 'react-feather';
+import React, {Component} from "react";
+import RoutesSideBar from "./routesSideBar.component";
+import GoogleMapReact from "google-map-react";
+import * as Icon from "react-feather";
 
 const MyMarker = ({icon}) => <div>{icon}</div>;
 

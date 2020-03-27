@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const UploadRoute = props => {
+export const UploadRoute = (props) => {
 
     const {onchangehandler} = props;
 

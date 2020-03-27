@@ -38,7 +38,7 @@ const NavBar = (props: Props) => {
   };
 
   const getUserProfileOptions = () => {
-    const profile = toolbar ? toolbar.filter(bar => bar.id !== 'language') : [];
+    const profile = toolbar ? toolbar.filter((bar) => bar.id !== 'language') : [];
     setProfileOption(profile);
   };
 

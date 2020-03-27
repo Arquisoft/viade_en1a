@@ -43,7 +43,7 @@ class RegisterComponent extends Component<Props, State> {
     }
   };
 
-  selectProvider = e => {
+  selectProvider = (e) => {
     const { register } = this.state;
     this.setState({
       register: { ...register, provider: e.target.value },
@@ -51,7 +51,7 @@ class RegisterComponent extends Component<Props, State> {
     });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     const {
       canContinue,
@@ -94,7 +94,7 @@ class RegisterComponent extends Component<Props, State> {
                       {t('register.alreadySolid')}
                     </Link>
                     <ul>
-                      {providers.map(providerData => (
+                      {providers.map((providerData) => (
                         <ProviderItem
                           data={providerData}
                           key={providerData.id}

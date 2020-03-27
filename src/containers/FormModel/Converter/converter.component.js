@@ -34,9 +34,9 @@ const FormModelConverter = () => {
 
   // Temporarily filtering out anything except ShEx as that's all that works currently
   const filteredOptions = ConverterTypesList.filter(
-    item => t(`formLanguage.${item}`) === t('formLanguage.shex')
+    (item) => t(`formLanguage.${item}`) === t('formLanguage.shex')
   );
-  const optionsList = filteredOptions.map(item => t(`formLanguage.${item}`));
+  const optionsList = filteredOptions.map((item) => t(`formLanguage.${item}`));
 
   const Meta = {
     shexc: {
@@ -107,7 +107,7 @@ const FormModelConverter = () => {
    * @param value
    * @returns {boolean}
    */
-  const isShEx = value =>
+  const isShEx = (value) =>
     value === t(`formLanguage.${ConverterTypes.Shex}`) ||
     value === t(`formLanguage.${ConverterTypes.ShexLayout}`);
 
@@ -116,7 +116,7 @@ const FormModelConverter = () => {
    * @param value
    * @returns {boolean}
    */
-  const hasLayout = value =>
+  const hasLayout = (value) =>
     value === t(`formLanguage.${ConverterTypes.ShaclExtension}`) ||
     value === t(`formLanguage.${ConverterTypes.ShexLayout}`);
 
@@ -176,15 +176,15 @@ const FormModelConverter = () => {
     validator.validate(data, 'text/turtle', shape, 'text/turtle', (e, report) => {
       if (report.conforms() === false) {
         let message = 'Error in ';
-        report.results().forEach(result => {
+        report.results().forEach((result) => {
           // TODO: Put this in a function to handle shacl errors
-          result.resultNode['http://www.w3.org/ns/shacl#resultPath'].forEach(m => {
+          result.resultNode['http://www.w3.org/ns/shacl#resultPath'].forEach((m) => {
             message += `${m['@id']} `;
           });
 
           message += ' with the following errors: ';
 
-          result.resultNode['http://www.w3.org/ns/shacl#resultMessage'].forEach(n => {
+          result.resultNode['http://www.w3.org/ns/shacl#resultMessage'].forEach((n) => {
             message += `${n['@value']} \n`;
           });
         });

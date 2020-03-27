@@ -118,7 +118,7 @@ class NavBarProfile extends Component<Props> {
     const { t, open, customClass } = this.props;
     const { imageLoaded, image } = this.state;
 
-    const profileOpts = ProfileOptions.map(item => ({
+    const profileOpts = ProfileOptions.map((item) => ({
       ...item,
       label: t(item.label),
       onClick: this[item.onClick]

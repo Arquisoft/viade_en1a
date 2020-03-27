@@ -43,8 +43,8 @@ function extractWacAllow(response) {
   if (wacAllowHeader) {
     wacAllowHeader // 'user="read write append control",public="read"'
       .split(',') // ['user="read write append control"', 'public="read"']
-      .map(str => str.trim())
-      .forEach(statement => {
+      .map((str) => str.trim())
+      .forEach((statement) => {
         // 'user="read write append control"'
         const parts = statement.split('='); // ['user', '"read write control"']
         if (
@@ -54,7 +54,7 @@ function extractWacAllow(response) {
         ) {
           const modeStr = parts[1].replace(/"/g, ''); // 'read write control' or ''
           if (modeStr.length) {
-            modeStr.split(' ').forEach(mode => {
+            modeStr.split(' ').forEach((mode) => {
               modes[parts[0]][mode] = true;
             });
           }
@@ -106,7 +106,7 @@ export const Editor = ({ webId }: Props) => {
     event.preventDefault();
     const doc = SolidAuth.fetch(url);
     doc
-      .then(async response => {
+      .then(async (response) => {
         const text = await response.text();
         if (response.ok) {
           setText(text);
