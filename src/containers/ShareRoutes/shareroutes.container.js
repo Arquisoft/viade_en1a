@@ -3,6 +3,7 @@ import data from '@solid/query-ldflex';
 import { ShareRoutesPageContent } from './shareroutes.component';
 import auth from 'solid-auth-client';
 import FC from 'solid-file-client';
+import { namedNode } from '@rdfjs/data-model';
 
 export class ShareRoutesComponent extends Component<Props> {
 
@@ -74,13 +75,42 @@ export class ShareRoutesComponent extends Component<Props> {
     }
 
     async shareRoute(friend){
-        //var session = await auth.currentSession();
-        var targetUrl = friend.name + "public/";
-        if (!await this.fc.itemExists(targetUrl)) {
-            await this.fc.createFolder(targetUrl);
-        }
-        var fileName = this.getRouteNameNoExtension();
-        await this.fc.postFile( targetUrl + fileName, this.state.route, "application/json");
+        var session = await auth.currentSession();
+        var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
+        await this.sendMessage(this, session, targetUrl);
+        document.getElementById("btn"+friend.webId).innerHTML = "Shared";
+        document.getElementById("btn"+friend.webId).disabled = true;
+    }
+
+    async sendMessage(app, session, targetUrl){
+        var message = {};
+        message.date = new Date(Date.now());
+        message.id = message.date.getTime();
+        message.sender = session.webId;
+        message.recipient = targetUrl;
+
+        var baseSource = session.webId.split("profile/card#me")[0];
+        var source = baseSource + "public/routes/";
+        message.content = source + app.getRouteName();
+        message.title = "Shared route by " + await app.getSessionName();
+        message.url = message.recipient + message.id + ".ttl";
+        
+        await app.buildMessage(session, message);
+    }
+
+    async buildMessage(session, message){
+        var mess = message.url;
+        await data[mess].schema$text.add(message.content);
+        await data[mess].rdfs$label.add(message.title);
+        await data[mess].schema$dateSent.add(message.date.toISOString());
+        await data[mess].rdf$type.add(namedNode('https://schema.org/Message'));
+        await data[mess].schema$sender.add(namedNode(session.webId));
+    }
+
+    async getSessionName(){
+        var session = await auth.currentSession();
+        var tmp = session.webId.split(".")[0];
+        return tmp.split("//")[1];
     }
 
     getRouteNameNoExtension(){
