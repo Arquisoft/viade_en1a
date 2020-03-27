@@ -38,12 +38,12 @@ const GameList = ({ title, games, webId, deleteGame }: GameListProps) => {
    * Set the visible game list depending on what filter the user has selected
    * @param event
    */
-  const filterGameList = event => {
+  const filterGameList = (event) => {
     const filter = event.target.value;
     if (filter === GameStatus.ALL) {
       setFilteredGames(games);
     } else {
-      const filteredList = games.filter(game => game.status === filter);
+      const filteredList = games.filter((game) => game.status === filter);
       setFilteredGames(filteredList);
     }
     setSelectedFilter(filter);
@@ -68,7 +68,7 @@ const GameList = ({ title, games, webId, deleteGame }: GameListProps) => {
       </GameListHeader>
       {filteredGames.length > 0 ? (
         <ListWrapper className="ids-container__four-column grid">
-          {filteredGames.map(game => (
+          {filteredGames.map((game) => (
             <GameItem {...{ game }} key={game.url} webId={webId} deleteGame={deleteGame} />
           ))}
         </ListWrapper>
@@ -91,7 +91,7 @@ const List = ({ webId, gamePath, sendNotification }: Props) => {
    * @param {String} field Field to get the predicate for
    * @returns {String} Predicate for a field name
    */
-  const getPredicate = field => {
+  const getPredicate = (field) => {
     const prefix = tictactoeShape['@context'][field.prefix];
     return `${prefix}${field.predicate}`;
   };
@@ -152,14 +152,14 @@ const List = ({ webId, gamePath, sendNotification }: Props) => {
    * to check if it needs to be deleted from a contains predicate
    * @param {Object} game Game to be deleted
    */
-  const deleteGame = async game => {
+  const deleteGame = async (game) => {
     const { url, deleted, documentUrl, opponent } = game;
     if (deleted) {
       await deleteGameFromContains(url, documentUrl);
     } else if (opponent.webId === webId) await resignedGame(game);
     else await ldflexHelper.deleteFile(url);
 
-    const newGames = list.filter(gameItem => gameItem.url !== url);
+    const newGames = list.filter((gameItem) => gameItem.url !== url);
     setList(newGames);
   };
 
@@ -168,7 +168,7 @@ const List = ({ webId, gamePath, sendNotification }: Props) => {
    * @param {String} webId WebId of the player to look the Info for
    * @returns {Object} An object with the basic information of the player
    */
-  const getPlayerInfo = useCallback(async webId => {
+  const getPlayerInfo = useCallback(async (webId) => {
     try {
       const name = await ldflex[webId]['vcard:fn'];
       const nameValue = name && name.value.trim().length > 0 ? name.value : webId.toString();
@@ -185,7 +185,7 @@ const List = ({ webId, gamePath, sendNotification }: Props) => {
    * @param {String} url URL for the container to get the games from
    */
   const getGames = useCallback(
-    async url => {
+    async (url) => {
       try {
         const document = await ldflexHelper.fetchLdflexDocument(url);
         let gameList = [];

@@ -19,7 +19,7 @@ const NotificationList = ({ notifications, markAsRead, deleteNotification }: Pro
   <Fragment>
     {notifications && notifications.length > 0 ? (
       <List>
-        {notifications.map(notification => (
+        {notifications.map((notification) => (
           <NotificationItem
             key={notification.id}
             notification={notification}

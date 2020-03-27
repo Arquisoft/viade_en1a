@@ -35,7 +35,7 @@ const GameForm = ({ webId, sendNotification, opponent, setOpponent }: Props) => 
    * @param {String} opponent Opponent's webId
    * @returns {Object} Game data
    */
-  const initialGame = opponent => ({
+  const initialGame = (opponent) => ({
     status: 'Invite Sent',
     created: moment().format(),
     actor: namedNode(webId),
@@ -134,7 +134,7 @@ const GameForm = ({ webId, sendNotification, opponent, setOpponent }: Props) => 
    * Creates a new game based on an opponent's webId and a game document url with an acl file
    * @param {Event} e Submit event
    */
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     try {
       e.preventDefault();
       const appPath = await storageHelper.getAppStorage(webId);
@@ -181,7 +181,7 @@ const GameForm = ({ webId, sendNotification, opponent, setOpponent }: Props) => 
               id="documentUriInput"
               type="text"
               value={documentUri}
-              onChange={e => setDocumentUri(e.target.value)}
+              onChange={(e) => setDocumentUri(e.target.value)}
               data-testid="uri-input"
             />
           </label>
@@ -193,7 +193,7 @@ const GameForm = ({ webId, sendNotification, opponent, setOpponent }: Props) => 
               id="opponentWebId"
               type="text"
               value={opponent}
-              onChange={e => setOpponent(e.target.value)}
+              onChange={(e) => setOpponent(e.target.value)}
               data-testid="webId"
             />
           </label>

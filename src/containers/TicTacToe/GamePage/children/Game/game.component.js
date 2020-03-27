@@ -85,7 +85,7 @@ const Game = ({ webId, gameURL, history }: Props) => {
    * @param {String} token Token to get the opposite
    * @returns {String} Opposite token
    */
-  const getSecondToken = useCallback(token => (token === 'X' ? 'O' : 'X'));
+  const getSecondToken = useCallback((token) => (token === 'X' ? 'O' : 'X'));
 
   /**
    * Generates the moves array for the game. An array of size 9 with all of the played moves
@@ -109,7 +109,7 @@ const Game = ({ webId, gameURL, history }: Props) => {
    * @param {String} field Field to get the predicate for
    * @returns {String} Predicate for a field name
    */
-  const getPredicate = useCallback(field => {
+  const getPredicate = useCallback((field) => {
     const prefix = tictactoeShape['@context'][field.prefix];
     return `${prefix}${field.predicate}`;
   });
@@ -130,7 +130,7 @@ const Game = ({ webId, gameURL, history }: Props) => {
    * @param {String} gamestatus New status for the game to be updated to
    */
   const changeGameStatus = useCallback(
-    async gamestatus => {
+    async (gamestatus) => {
       try {
         const predicate = 'http://data.totl.net/game/status';
         await gameDocument[predicate].set(gamestatus);
@@ -146,7 +146,7 @@ const Game = ({ webId, gameURL, history }: Props) => {
    * @param {String} webId WebId of the player to look the Info for
    * @returns {Object} An object with the basic information of the player
    */
-  const getPlayerInfo = async webId => {
+  const getPlayerInfo = async (webId) => {
     try {
       const nameData = await ldflex[webId]['vcard:fn'];
       const imageData = await ldflex[webId]['vcard:hasPhoto'];
@@ -248,7 +248,7 @@ const Game = ({ webId, gameURL, history }: Props) => {
    */
   const checkForWinnerOrTie = (moves: Array) => {
     if (!moves) return null;
-    const isMovesFull = moves.filter(move => move === null).length === 0;
+    const isMovesFull = moves.filter((move) => move === null).length === 0;
     let gameResult = {};
     for (const combination of possibleCombinations) {
       const [first, second, third] = combination;

@@ -17,7 +17,7 @@ const FooterContainer = styled.div`
   width: 100%;
 `;
 
-const PublicLayout = props => {
+const PublicLayout = (props) => {
   const webId = useWebId();
   const { component: Component, ...rest } = props;
   const { t, i18n } = useTranslation();

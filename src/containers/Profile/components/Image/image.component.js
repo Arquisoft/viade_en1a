@@ -75,15 +75,15 @@ export const Image = ({ webId, defaultProfilePhoto }: Props) => {
           unsupported: t('profile.errors.unsupported'),
           maximumFiles: t('profile.errors.maximumFiles')
         },
-        onError: error => {
+        onError: (error) => {
           if (error && error.statusText) {
             errorToaster(error.statusText, 'Error');
           }
         },
-        onComplete: uploadedFiles => {
+        onComplete: (uploadedFiles) => {
           updatePhoto(uploadedFiles[uploadedFiles.length - 1].uri);
         },
-        render: props => (
+        render: (props) => (
           <ImageProfile
             {...{
               ...props,

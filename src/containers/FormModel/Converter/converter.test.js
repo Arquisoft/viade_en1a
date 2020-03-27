@@ -8,7 +8,7 @@ describe.only('Form Model Converter', () => {
 
   const { container, getByTestId } = render(
     <Router>
-      <FormModelConverter t={key => key} />
+      <FormModelConverter t={(key) => key} />
     </Router>
   );
 

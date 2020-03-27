@@ -13,7 +13,7 @@ type Props = {
 const AuthNavBar = React.memo((props: Props) => {
   const [inboxes, setInbox] = useState([]);
   const { t, i18n } = useTranslation();
-  const navigation = NavigationItems.map(item => ({ ...item, label: t(item.label) }));
+  const navigation = NavigationItems.map((item) => ({ ...item, label: t(item.label) }));
 
   const { webId } = props;
   /**
@@ -87,7 +87,7 @@ const AuthNavBar = React.memo((props: Props) => {
           id: 'notifications'
         },
         {
-          component: props => <NavBarContainer {...{ t, i18n, webId, history, ...props }} />,
+          component: (props) => <NavBarContainer {...{ t, i18n, webId, history, ...props }} />,
           id: 'profile'
         }
       ]}

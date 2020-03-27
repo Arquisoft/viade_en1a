@@ -6,7 +6,7 @@ import LoginComponent from './login.component';
 describe('Login', () => {
   const { container, getByTestId } = render(
     <Router>
-      <LoginComponent t={key => key} />
+      <LoginComponent t={(key) => key} />
     </Router>
   );
 

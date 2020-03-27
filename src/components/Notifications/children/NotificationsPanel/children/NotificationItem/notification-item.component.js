@@ -43,7 +43,7 @@ const NotificationItem = ({ notification, markAsRead, children, deleteNotificati
         <Img
           src={actorImage}
           alt="Creator"
-          onError={e => {
+          onError={(e) => {
             e.target.onerror = null;
             e.target.src = defaultImage;
           }}

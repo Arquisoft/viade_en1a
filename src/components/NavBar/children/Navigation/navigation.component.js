@@ -9,7 +9,7 @@ const Navigation = ({ navigation }: Props) => (
   <nav role="navigation" className="nav nav__primary">
     <ul>
       {navigation &&
-        navigation.map(item => (
+        navigation.map((item) => (
           <li key={item.id} data-testid="item">
             <NavLink to={item.to} activeClassName="active">
               {item.icon}

@@ -30,7 +30,7 @@ const Profile = ({ webId }: Props) => {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onError = e => {
+  const onError = (e) => {
     if (e.message.toString().indexOf('Validation failed') < 0) {
       errorToaster(t('formLanguage.renderer.formNotLoaded'), t('notifications.error'), {
         label: t('errorFormRender.link.label'),
@@ -85,11 +85,11 @@ const Profile = ({ webId }: Props) => {
                   onLoaded: () => setIsLoading(false),
                   onSuccess: () => {},
                   onSave: () => {},
-                  onError: error => {
+                  onError: (error) => {
                     onError(error);
                   },
-                  onAddNewField: response => onAddNewField(response),
-                  onDelete: response => onDelete(response),
+                  onAddNewField: (response) => onAddNewField(response),
+                  onDelete: (response) => onDelete(response),
                   settings: {
                     theme: {
                       inputText: 'input-wrap',

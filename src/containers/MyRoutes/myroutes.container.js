@@ -24,12 +24,12 @@ export class MyRoutesComponent extends Component<Props> {
         if (webId && webId !== prevProps.webId) this.getProfileData();
     }
 
-    onChangeHandler= event=>{
+    onChangeHandler = (event) => {
         this.setState({
             selectedFile: event.target.files[0],
             loaded: 0,
         });
-    }
+    };
 
     getProfileData = async () => {
         this.setState({ isLoading: true });
@@ -61,7 +61,7 @@ export class MyRoutesComponent extends Component<Props> {
                 "webId": friendWebId,
                 "name": name,
                 "image": image
-            }
+            };
 
             friends.push(friend_obj);
         }
