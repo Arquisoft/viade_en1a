@@ -6,6 +6,6 @@ export const Friend = (props) => {
     const { t } = useTranslation();
 
     return (
-        <li key={friend.webId}><img width="100px" src={friend.image} alt={t("alt.friend")}/><a href={friend.name}> {friend.name}</a></li>
+        <li key={friend.webId}><img className="friend-img" width="100px" src={friend.image} alt={t("alt.friend")}/><a href={friend.name}> {friend.name}</a></li>
     );
 };

@@ -4,6 +4,7 @@ import { ShareRoutesPageContent } from './shareroutes.component';
 import auth from 'solid-auth-client';
 import FC from 'solid-file-client';
 import { namedNode } from '@rdfjs/data-model';
+import { FriendsContainer } from "../Friends/friends.style";
 
 export class ShareRoutesComponent extends Component<Props> {
 
@@ -50,7 +51,7 @@ export class ShareRoutesComponent extends Component<Props> {
             if (imageLd && imageLd.value) {
                 image = imageLd.value;
             } else {
-                image = "";
+                image = "img/noimg.svg";
             }
 
             var friend_obj = {
@@ -129,7 +130,9 @@ export class ShareRoutesComponent extends Component<Props> {
         }
 
         return (
-            <ShareRoutesPageContent {...{ friends, share }} />
+            <FriendsContainer className="card">
+                <ShareRoutesPageContent {...{ friends, share }} />
+            </FriendsContainer>
         );
     }
 }
