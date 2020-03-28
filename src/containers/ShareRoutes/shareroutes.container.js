@@ -4,7 +4,7 @@ import { ShareRoutesPageContent } from './shareroutes.component';
 import auth from 'solid-auth-client';
 import FC from 'solid-file-client';
 import { namedNode } from '@rdfjs/data-model';
-import { FriendsContainer } from '../Friends/friends.style';
+import { FriendsContainer } from "../Friends/friends.style";
 
 export class ShareRoutesComponent extends Component<Props> {
 
