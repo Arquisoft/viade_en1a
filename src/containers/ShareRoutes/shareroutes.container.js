@@ -78,11 +78,17 @@ class ShareRoutesComponent extends Component<Props> {
     async shareRoute(friend){
         const { t } = this.props;
 
-        var session = await auth.currentSession();
-        var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
-        await this.sendMessage(this, session, targetUrl);
-        document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
-        document.getElementById("btn"+friend.webId).disabled = true;
+        try{
+            var session = await auth.currentSession();
+            var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
+            await this.sendMessage(this, session, targetUrl);
+            document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
+            document.getElementById("btn"+friend.webId).disabled = true;
+        }catch(error){
+            console.log(error);
+            alert("Could not share the route");
+        }
+        
     }
 
     async sendMessage(app, session, targetUrl){
