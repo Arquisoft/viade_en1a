@@ -4,8 +4,9 @@ import { ShareRoutesPageContent } from './shareroutes.component';
 import auth from 'solid-auth-client';
 import FC from 'solid-file-client';
 import { namedNode } from '@rdfjs/data-model';
+import { withTranslation } from "react-i18next";
 
-export class ShareRoutesComponent extends Component<Props> {
+class ShareRoutesComponent extends Component<Props> {
 
     constructor(props) {
         super(props);
@@ -75,10 +76,12 @@ export class ShareRoutesComponent extends Component<Props> {
     }
 
     async shareRoute(friend){
+        const { t } = this.props;
+
         var session = await auth.currentSession();
         var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
         await this.sendMessage(this, session, targetUrl);
-        document.getElementById("btn"+friend.webId).innerHTML = "Shared";
+        document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
         document.getElementById("btn"+friend.webId).disabled = true;
     }
 
@@ -133,3 +136,4 @@ export class ShareRoutesComponent extends Component<Props> {
         );
     }
 }
+export default withTranslation()(ShareRoutesComponent);

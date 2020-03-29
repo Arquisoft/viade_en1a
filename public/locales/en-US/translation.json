@@ -257,7 +257,9 @@
     "hereYourRoutes": "Here your routes",
     "clear": "Clear",
     "share": "Share",
-    "delete": "Delete"
+    "delete": "Delete",
+    "cancel" : "Cancel",
+    "shared" : "Shared"
   },
   "alt":{
     "friend": "Friend"
