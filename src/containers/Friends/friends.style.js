@@ -38,4 +38,8 @@ export const FriendsContainer = styled.div`
   button {
     margin-left: 8px;
   }
+
+  .friend-img {
+    border-radius: 50%;
+  }
 `;

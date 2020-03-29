@@ -5,6 +5,7 @@ import auth from 'solid-auth-client';
 import FC from 'solid-file-client';
 import { namedNode } from '@rdfjs/data-model';
 import { withTranslation } from "react-i18next";
+import { FriendsContainer } from "../Friends/friends.style";
 
 class ShareRoutesComponent extends Component<Props> {
 
@@ -51,7 +52,7 @@ class ShareRoutesComponent extends Component<Props> {
             if (imageLd && imageLd.value) {
                 image = imageLd.value;
             } else {
-                image = "";
+                image = "img/noimg.svg";
             }
 
             var friend_obj = {
@@ -138,7 +139,9 @@ class ShareRoutesComponent extends Component<Props> {
         }
 
         return (
-            <ShareRoutesPageContent {...{ friends, share }} />
+            <FriendsContainer className="card">
+                <ShareRoutesPageContent {...{ friends, share }} />
+            </FriendsContainer>
         );
     }
 }
