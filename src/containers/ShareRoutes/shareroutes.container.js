@@ -4,9 +4,10 @@ import { ShareRoutesPageContent } from './shareroutes.component';
 import auth from 'solid-auth-client';
 import FC from 'solid-file-client';
 import { namedNode } from '@rdfjs/data-model';
+import { withTranslation } from "react-i18next";
 import { FriendsContainer } from "../Friends/friends.style";
 
-export class ShareRoutesComponent extends Component<Props> {
+class ShareRoutesComponent extends Component<Props> {
 
     constructor(props) {
         super(props);
@@ -76,11 +77,19 @@ export class ShareRoutesComponent extends Component<Props> {
     }
 
     async shareRoute(friend){
-        var session = await auth.currentSession();
-        var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
-        await this.sendMessage(this, session, targetUrl);
-        document.getElementById("btn"+friend.webId).innerHTML = "Shared";
-        document.getElementById("btn"+friend.webId).disabled = true;
+        const { t } = this.props;
+
+        try{
+            var session = await auth.currentSession();
+            var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
+            await this.sendMessage(this, session, targetUrl);
+            document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
+            document.getElementById("btn"+friend.webId).disabled = true;
+        }catch(error){
+            console.log(error);
+            alert("Could not share the route");
+        }
+        
     }
 
     async sendMessage(app, session, targetUrl){
@@ -136,3 +145,4 @@ export class ShareRoutesComponent extends Component<Props> {
         );
     }
 }
+export default withTranslation()(ShareRoutesComponent);

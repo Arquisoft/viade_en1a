@@ -1,3 +1,3 @@
-import { ShareRoutesComponent } from './shareroutes.container';
+import ShareRoutesComponent from './shareroutes.container';
 
 export default ShareRoutesComponent;
