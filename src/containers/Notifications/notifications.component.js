@@ -7,17 +7,20 @@ import {
 } from './notifications.style';
 
 
-export const FriendsPageContent = (props) => {
-    
+export const NotificationsPageContent = (props) => {
+
     const { t } = useTranslation();
+    const notifications = props.notifications;
+    const getNotificationsFromInbox = props.getNotificationsFromInbox;
+    console.log(notifications);
 
     return (
-        <FriendsWrapper>
-            <FriendsContainer className="card">
-                <ul>
-                    <p>{t('notifications.noNotifications')}</p>
-                </ul>
-            </FriendsContainer>
-        </FriendsWrapper>
+        <div className="card">
+            <h3>Notificaciones</h3>
+
+            <ul>
+                <li>Holi</li>
+            </ul>
+        </div>
     );
 }
