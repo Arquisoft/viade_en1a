@@ -103,7 +103,7 @@ const GameForm = ({ webId, sendNotification, opponent, setOpponent }: Props) => 
               title: 'Tictactoe invitation',
               summary: 'has invited you to play Tic-Tac-Toe.',
               actor: webId,
-              object: documentUri,
+              object:documentUri,
               target
             },
             to.path,
