@@ -1,17 +1,13 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 
-import {
-    FriendsWrapper,
-    FriendsContainer
-} from './notifications.style';
 
 
 export const NotificationsPageContent = (props) => {
 
-    const { t } = useTranslation();
-    const notifications = props.notifications;
-    const getNotificationsFromInbox = props.getNotificationsFromInbox;
+    //const { t } = useTranslation();
+   // const notifications = props.notifications;
+    //const getNotificationsFromInbox = props.getNotificationsFromInbox;
     //console.log(notifications);
 
     return (
