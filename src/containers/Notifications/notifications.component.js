@@ -12,7 +12,7 @@ export const NotificationsPageContent = (props) => {
     const { t } = useTranslation();
     const notifications = props.notifications;
     const getNotificationsFromInbox = props.getNotificationsFromInbox;
-    console.log(notifications);
+    //console.log(notifications);
 
     return (
         <div className="card">
