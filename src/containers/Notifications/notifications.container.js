@@ -17,7 +17,7 @@ export class NotificationsComponent extends Component<Props> {
     }
 
     componentDidMount() {
-        const { webId } = this.props; //unnecesary??
+        const webId = this.props; //unnecesary??
         if (webId){
             this.getProfileData();
         } 
@@ -25,7 +25,7 @@ export class NotificationsComponent extends Component<Props> {
     }
 
     componentDidUpdate(prevProps) {
-        const { webId } = this.props;
+        const webId = this.props;
         if (webId && webId !== prevProps.webId){
             this.getProfileData();
         }
@@ -71,7 +71,7 @@ export class NotificationsComponent extends Component<Props> {
     }
 
     render() {
-        const { notifications } = this.state; //unnecesary??
+        const notifications = this.state;
         const getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
 
         return (
