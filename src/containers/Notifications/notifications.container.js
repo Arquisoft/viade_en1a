@@ -17,14 +17,18 @@ export class NotificationsComponent extends Component<Props> {
     }
 
     componentDidMount() {
-        const { webId } = this.props;
-        if (webId) this.getProfileData();
+        const { webId } = this.props; //unnecesary??
+        if (webId){
+            this.getProfileData();
+        } 
         this.render();
     }
 
     componentDidUpdate(prevProps) {
         const { webId } = this.props;
-        if (webId && webId !== prevProps.webId) this.getProfileData();
+        if (webId && webId !== prevProps.webId){
+            this.getProfileData();
+        }
         this.render();
     }
 
@@ -45,10 +49,10 @@ export class NotificationsComponent extends Component<Props> {
             let notification = {};
             notification.url = inbox + file.name;
 
-            notification.label = await data[notification.url].rdfs$label
-            notification.sender = await data[notification.url].schema$sender
+            notification.label = await data[notification.url].rdfs$label;
+            notification.sender = await data[notification.url].schema$sender;
             notification.dateSent = new Date(await data[notification.url].schema$dateSent).toString();
-            notification.text = await data[notification.url].schema$text
+            notification.text = await data[notification.url].schema$text;
             notification.senderName = await data[notification.sender].vcard$fn;
 
 
@@ -67,7 +71,7 @@ export class NotificationsComponent extends Component<Props> {
     }
 
     render() {
-        const { notifications } = this.state;
+        const { notifications } = this.state; //unnecesary??
         const getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
 
         return (
