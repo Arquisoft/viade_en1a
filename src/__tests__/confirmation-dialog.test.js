@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import ConfirmationDialog from './confirmation-dialog.component';
+import ConfirmationDialog from '../components/Utils/ConfirmationDialog/confirmation-dialog.component';
 
 afterAll(cleanup);
 

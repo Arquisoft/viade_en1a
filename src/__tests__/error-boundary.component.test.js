@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import ErrorBoundary from './error-boundary.component';
+import ErrorBoundary from '../components/ErrorBoundary/error-boundary.component';
 
 import 'jest-dom/extend-expect';
 

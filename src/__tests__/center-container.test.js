@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import CenterContainer from './center-container.component';
+import CenterContainer from '../components/Utils/CenterContainer/center-container.component';
 
 afterAll(cleanup);
 

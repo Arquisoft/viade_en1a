@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-testing-library';
 import { HashRouter as Router } from 'react-router-dom';
-import LoginComponent from './login.component';
+import LoginComponent from '../containers/Login/login.component';
 
 describe('Login', () => {
   const { container, getByTestId } = render(

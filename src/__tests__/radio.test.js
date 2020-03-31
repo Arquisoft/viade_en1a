@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Radio from './radio.component';
+import Radio from '../components/Utils/Radiobutton/radio.component';
 
 afterAll(cleanup);
 

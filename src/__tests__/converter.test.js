@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import { HashRouter as Router } from 'react-router-dom';
-import FormModelConverter from './converter.component';
+import FormModelConverter from '../containers/FormModel/Converter/converter.component';
 
 describe.only('Form Model Converter', () => {
   afterAll(cleanup);

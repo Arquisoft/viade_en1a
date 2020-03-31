@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Toolbar from './toolbar.component';
+import Toolbar from '../components/NavBar/children/Toolbar/toolbar.component';
 
 afterAll(cleanup);
 

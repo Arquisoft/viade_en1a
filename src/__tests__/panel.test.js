@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Language from './language-dropdown.component';
+import Panel from '../components/Utils/Panel/panel.component';
 
 afterAll(cleanup);
 
-const { container } = render(<Language t={(key) => key} />);
+const { container } = render(<Panel />);
 
-describe('Language', () => {
+describe('Panel', () => {
   it('renders without crashing', () => {
     expect(container).toBeTruthy();
   });

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, cleanup } from "react-testing-library";
 import { HashRouter as Router } from "react-router-dom";
-import AuthNavBar from "./auth-nav-bar.component";
+import AuthNavBar from "../components/AuthNavBar/auth-nav-bar.component";
 
 describe.only("AuthNavBar", () => {
   afterAll(cleanup);

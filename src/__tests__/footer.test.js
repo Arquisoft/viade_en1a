@@ -1,17 +1,15 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Notifications from './notifications.component';
+import { HashRouter as Router } from 'react-router-dom';
+import Footer from '../components/Footer/footer.component';
 
 afterAll(cleanup);
 
 describe.only('Nav Bar', () => {
   const { container } = render(
-    <Notifications
-      {...{
-        inbox: [{ path: 'https://example/inbox' }],
-        webId: 'https://example/profile/card#me'
-      }}
-    />
+    <Router>
+      <Footer />
+    </Router>
   );
 
   it('renders without crashing', () => {

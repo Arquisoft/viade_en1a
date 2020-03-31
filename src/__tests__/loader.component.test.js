@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Loader from './loader.component';
+import Loader from '../components/Utils/Loader/loader.component';
 
 afterAll(cleanup);
 
