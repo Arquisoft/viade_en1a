@@ -1,7 +1,6 @@
 import React from "react";
 import { render, cleanup } from "react-testing-library";
 import { FriendsPageContent } from "../containers/Friends/friends.component";
-import { FriendsComponent } from "../containers/Friends/friends.container";
 
 import "jest-dom/extend-expect";
 
@@ -26,9 +25,9 @@ describe.only("FriendsComponent", () => {
     },
   ];
 
-  const webId = "https://victorgon.inrupt.net/";
+  const webId = "https://user.example/";
 
-  const { container, getByTestId } = render(
+  const { container } = render(
     <FriendsPageContent {...{ friends, webId }} />
   );
 
@@ -36,9 +35,19 @@ describe.only("FriendsComponent", () => {
     expect(container).toBeTruthy();
   });
 
-  test("renders three friend items", () => {
+  test("renders three children if the friends list", () => {
     const friendsList = document.querySelector("#friendsList");
 
     expect(friendsList.childNodes.length).toBe(3);
+  });
+
+  test("renders the right three friend items", () => {
+    const friend1 = document.querySelector("#friendfriend1");
+    const friend2 = document.querySelector("#friendfriend2");
+    const friend3 = document.querySelector("#friendfriend3");
+
+    expect(friend1).toBeTruthy();
+    expect(friend2).toBeTruthy();
+    expect(friend3).toBeTruthy();
   });
 });
