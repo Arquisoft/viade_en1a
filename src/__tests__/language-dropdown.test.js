@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Language from '../components/Utils/LanguageDropdown/language-dropdown.component';
+import Language from "../components/Utils/LanguageDropdown/language-dropdown.component";
 
 afterAll(cleanup);
 

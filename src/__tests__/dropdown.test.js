@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Dropdown from '../components/Utils/Dropdown/dropdown.component';
+import Dropdown from "../components/Utils/Dropdown/dropdown.component";
 
 afterAll(cleanup);
 

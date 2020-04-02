@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import RegistrationSuccess from '../containers/Register/children/RegistrationSuccess/registration-success.component';
+import RegistrationSuccess from "../containers/Register/children/RegistrationSuccess/registration-success.component";
 
 import 'jest-dom/extend-expect';
 

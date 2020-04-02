@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import GradientBackground from '../components/Utils/GradientBackground/gradient-background.component';
+import GradientBackground from "../components/Utils/GradientBackground/gradient-background.component";
 
 afterAll(cleanup);
 

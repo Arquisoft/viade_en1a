@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Panel from '../components/Utils/Panel/panel.component';
+import Panel from "../components/Utils/Panel/panel.component";
 
 afterAll(cleanup);
 

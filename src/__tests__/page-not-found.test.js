@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import { HashRouter as Router } from 'react-router-dom';
-import PageNotFound from '../containers/PageNotFound/page-not-found.component';
+import PageNotFound from "../containers/PageNotFound/page-not-found.component";
 
 describe('Page Not Found', () => {
   afterAll(cleanup);

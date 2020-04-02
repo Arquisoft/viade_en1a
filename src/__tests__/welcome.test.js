@@ -3,7 +3,7 @@ import { render, cleanup } from 'react-testing-library';
 import { HashRouter as Router } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { WelcomeComponent } from '../containers/Welcome/welcome.container';
+import { WelcomeComponent } from "../containers/Welcome/welcome.container";
 
 library.add(fas);
 

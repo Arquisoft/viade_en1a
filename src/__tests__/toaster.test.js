@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { render, cleanup } from 'react-testing-library';
-import Toaster from '../components/Utils/ToasterNotification/toaster.component';
+import Toaster from "../components/Utils/ToasterNotification/toaster.component";
 
 afterAll(cleanup);
 

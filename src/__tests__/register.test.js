@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import { HashRouter as Router } from 'react-router-dom';
-import { RegisterComponent } from '../containers/Register/register.component';
+import { RegisterComponent } from "../containers/Register/register.component";
 
 describe.only('Register', () => {
   afterAll(cleanup);

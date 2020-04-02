@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Badge from '../components/Utils/Badge/badge.component';
+import Badge from "../components/Utils/Badge/badge.component";
 
 import 'jest-dom/extend-expect';
 
