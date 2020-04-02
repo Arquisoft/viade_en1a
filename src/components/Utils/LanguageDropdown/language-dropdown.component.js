@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Dropdown } from '@util-components';
-import { toast } from 'react-toastify';
+import React, { Component } from "react";
+import { Dropdown } from "@util-components";
+import { toast } from "react-toastify";
 
 const languages = {
   en: {
-    id: 'en',
+    id: "en",
   },
   es: {
-    id: 'es',
+    id: "es",
   },
-  'en-US': {
-    id: 'en-US',
+  "en-US": {
+    id: "en-US",
   }
 };
 
@@ -25,7 +25,7 @@ class LanguageDropdown extends Component<Props> {
     this.state = { language: this.getLanguage() };
   }
 
-  getLanguage = () => localStorage.getItem('i18nextLng') || 'en';
+  getLanguage = () => localStorage.getItem("i18nextLng") || "en";
 
   onLanguageSelect = (nextLanguage) => {
     const { i18n } = this.props;
@@ -41,12 +41,12 @@ class LanguageDropdown extends Component<Props> {
     const { language } = this.state;
     const profileOpts = [
       {
-        label: t('navBar.languages.en'),
-        onClick: () => this.onLanguageSelect('en'),
+        label: t("navBar.languages.en"),
+        onClick: () => this.onLanguageSelect("en"),
       },
       {
-        label: t('navBar.languages.es'),
-        onClick: () => this.onLanguageSelect('es'),
+        label: t("navBar.languages.es"),
+        onClick: () => this.onLanguageSelect("es"),
         }
     ];
     return (
