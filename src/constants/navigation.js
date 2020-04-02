@@ -2,48 +2,48 @@
  * Object mapping of known possible inboxes for the user
  */
 
-import React from 'react';
-import * as Icon from 'react-feather';
+import React from "react";
+import * as Icon from "react-feather";
 
 export const NavigationItems = [
   {
-    id: 'welcome',
+    id: "welcome",
     icon: <Icon.Home/>,
-    label: 'navBar.welcome',
-    to: '/welcome'
+    label: "navBar.welcome",
+    to: "/welcome"
   },
   {
-    id: 'maps',
+    id: "maps",
     icon: <Icon.Map/>,
-    label: 'navBar.maps',
-    to: '/maps'
+    label: "navBar.maps",
+    to: "/maps"
   },
   {
-    id: 'profile',
+    id: "profile",
     icon: <Icon.Users/>,
-    label: 'navBar.friends',
-    to: '/friends'
+    label: "navBar.friends",
+    to: "/friends"
   }
 ];
 
 export const ProfileOptions = [
   {
-    label: 'navBar.profile',
-    onClick: 'profileRedirect',
-    icon: 'cog'
+    label: "navBar.profile",
+    onClick: "profileRedirect",
+    icon: "cog"
   },
   {
-    label: 'navBar.logOut',
-    onClick: 'logOut',
-    icon: 'lock'
+    label: "navBar.logOut",
+    onClick: "logOut",
+    icon: "lock"
   }
 
 /*    COMPONENTES ALTERNATIVOS GUYS   */
 
    /*{
-    id: 'myroutes',
+    id: "myroutes",
     icon: <Icon.Database/>,
-    label: 'navBar.myRoutes',
-    to: '/myroutes'
+    label: "navBar.myRoutes",
+    to: "/myroutes"
   }*/
 ];
