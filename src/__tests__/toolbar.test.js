@@ -4,16 +4,16 @@ import Toolbar from "../components/NavBar/children/Toolbar/toolbar.component";
 
 afterAll(cleanup);
 
-describe('Toolbar', () => {
+describe("Toolbar", () => {
   const { container, getByTestId } = render(
-    <Toolbar toolbar={[{ component: () => <span>Test</span>, label: 'Test', id: 'test' }]} />
+    <Toolbar toolbar={[{ component: () => <span>Test</span>, label: "Test", id: "test" }]} />
   );
 
-  test('renders without crashing', () => {
+  test("renders without crashing", () => {
     expect(container).toBeTruthy();
   });
 
-  test('renders 1 li', () => {
-    expect(getByTestId('item').children.length).toBe(1);
+  test("renders 1 li", () => {
+    expect(getByTestId("item").children.length).toBe(1);
   });
 });

@@ -5,14 +5,14 @@ import Footer from "../components/Footer/footer.component";
 
 afterAll(cleanup);
 
-describe.only('Nav Bar', () => {
+describe.only("Nav Bar", () => {
   const { container } = render(
     <Router>
       <Footer />
     </Router>
   );
 
-  it('renders without crashing', () => {
+  it("renders without crashing", () => {
     expect(container).toBeTruthy();
   });
 });

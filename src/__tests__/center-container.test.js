@@ -4,16 +4,16 @@ import CenterContainer from "../components/Utils/CenterContainer/center-containe
 
 afterAll(cleanup);
 
-describe.only('CenterContainer', () => {
+describe.only("CenterContainer", () => {
   const { container } = render(<CenterContainer className="centerContainerWrapper" />);
 
-  it('renders without crashing', () => {
+  it("renders without crashing", () => {
     expect(container).toBeTruthy();
   });
-  it('renders styled components', () => {
-    expect(document.querySelector('.centerContainerWrapper')).toBeTruthy();
+  it("renders styled components", () => {
+    expect(document.querySelector(".centerContainerWrapper")).toBeTruthy();
   });
-  it('renders properly', () => {
-    expect(document.querySelector('div.wrapper')).toBeTruthy();
+  it("renders properly", () => {
+    expect(document.querySelector("div.wrapper")).toBeTruthy();
   });
 });

@@ -4,7 +4,7 @@ import Loader from "../components/Utils/Loader/loader.component";
 
 afterAll(cleanup);
 
-it('renders without crashing', () => {
+it("renders without crashing", () => {
   const { container } = render(<Loader />);
 
   expect(container).toBeTruthy();

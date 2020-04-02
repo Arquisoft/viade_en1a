@@ -4,14 +4,14 @@ import ConfirmationDialog from "../components/Utils/ConfirmationDialog/confirmat
 
 afterAll(cleanup);
 
-describe.only('ConfirmationDialog', () => {
+describe.only("ConfirmationDialog", () => {
   const { container } = render(
     <div id="test">
-      <ConfirmationDialog options={{ message: 'This is a test' }} parentSelector="#test" />
+      <ConfirmationDialog options={{ message: "This is a test" }} parentSelector="#test" />
     </div>
   );
 
-  test('renders without crashing', () => {
+  test("renders without crashing", () => {
     expect(container).toBeTruthy();
   });
 });

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
-const Labeled = ({ label, children, component: Component = 'button', ...rest }) => {
+const Labeled = ({ label, children, component: Component = "button", ...rest }) => {
   const [hover, setHover] = useState(false);
 
   const LComponent = styled(Component)`

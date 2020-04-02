@@ -6,8 +6,8 @@ afterAll(cleanup);
 
 const { container } = render(<Radio />);
 
-describe('Radio', () => {
-  it('renders without crashing', () => {
+describe("Radio", () => {
+  it("renders without crashing", () => {
     expect(container).toBeTruthy();
   });
 });

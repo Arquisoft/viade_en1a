@@ -6,8 +6,8 @@ afterAll(cleanup);
 
 const { container } = render(<GradientBackground />);
 
-describe('GradientBackground', () => {
-  it('renders without crashing', () => {
+describe("GradientBackground", () => {
+  it("renders without crashing", () => {
     expect(container).toBeTruthy();
   });
 });

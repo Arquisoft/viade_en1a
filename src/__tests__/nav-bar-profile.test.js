@@ -6,8 +6,8 @@ afterAll(cleanup);
 
 const { container } = render(<NavBarProfile t={(key) => key} />);
 
-describe('NavBarProfile', () => {
-  it('renders without crashing', () => {
+describe("NavBarProfile", () => {
+  it("renders without crashing", () => {
     expect(container).toBeTruthy();
   });
 });

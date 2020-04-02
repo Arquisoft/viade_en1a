@@ -4,15 +4,15 @@ import Dropdown from "../components/Utils/Dropdown/dropdown.component";
 
 afterAll(cleanup);
 
-describe.only('Dropdown', () => {
+describe.only("Dropdown", () => {
   const { container, getByTestId } = render(<Dropdown className="dropDownContainer" />);
 
-  test('renders without crashing', () => {
+  test("renders without crashing", () => {
     expect(container).toBeTruthy();
   });
 
-  test('renders styled components', () => {
-    expect(document.querySelector('.dropDownContainer')).toBeTruthy();
-    expect(getByTestId('dropdownMain')).toBeTruthy();
+  test("renders styled components", () => {
+    expect(document.querySelector(".dropDownContainer")).toBeTruthy();
+    expect(getByTestId("dropdownMain")).toBeTruthy();
   });
 });

@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import { useNotification, useLiveUpdate } from '@inrupt/solid-react-components';
-import { NotificationsWrapper } from './notifications.style';
-import { Bell, NotificationsPanel } from '../index';
-import { useOnClickOutside } from '@hooks';
+import React, { useState, useRef, useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
+import { useNotification, useLiveUpdate } from "@inrupt/solid-react-components";
+import { NotificationsWrapper } from "./notifications.style";
+import { Bell, NotificationsPanel } from "../index";
+import { useOnClickOutside } from "@hooks";
 
 let oldTimestamp;
 
