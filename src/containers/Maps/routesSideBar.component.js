@@ -154,6 +154,7 @@ class RoutesSideBar extends Component {
         let folderShared = await this.fc.readFolder(urlShared);
 
         folderShared.files.forEach((elementShared) => {
+            console.log(elementShared)
 
             this.state.sharedRoutes.push({name: elementShared.name, url: elementShared.url})
 
@@ -193,15 +194,27 @@ class RoutesSideBar extends Component {
         this.onClearArray();
 
         this.getPodRoutes();
-
+        this.getSharedRoutes();
     }
 
     showSharedRoute = async (route) => {
         console.log("Not implemented.")
+
+        //example of how to get content of the shared message
+        let content = await this.fc.readFile(route.url);
+        console.log(content)
+
     };
 
     async deleteSharedRoute(route) {
-        console.log("Not implmented.")
+        await this.fc.deleteFile(route.url);
+
+        this.onClearArray();
+
+        this.getPodRoutes();
+        this.getSharedRoutes();
+
+        //you cant delete on inbox??
     }
 
 
@@ -249,7 +262,7 @@ class RoutesSideBar extends Component {
 
                     showRoute: this.showSharedRoute,
 
-                    deleteRoute: this.deleteSharedRoute
+                    deleteRoute: this.deleteRoute
 
                 }
 
