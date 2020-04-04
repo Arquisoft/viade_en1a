@@ -16,7 +16,7 @@ const route= {
 
     deleteRoute: "deleteRoute"
 
-}
+};
 
 it("MapRoute renders without crashing", () => {
     afterAll(cleanup);

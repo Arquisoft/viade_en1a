@@ -16,7 +16,7 @@ const route= {
 
     deleteRoute: "deleteRoute"
 
-}
+};
 
 it("MapRoute renders without crashing", () => {
 
@@ -25,5 +25,5 @@ it("MapRoute renders without crashing", () => {
     expect(container).toBeTruthy();
 
   });
-  
+
 });
