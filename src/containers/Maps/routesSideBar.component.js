@@ -231,6 +231,14 @@ class RoutesSideBar extends Component {
 
         }
 
+        return list;
+
+    };
+
+    listShared = () => {
+
+        let list = [];
+
         for (let i = 0; i < this.state.sharedRoutes.length; i++) {
 
             list.push(<MapRoute key={i}{...{
@@ -242,7 +250,7 @@ class RoutesSideBar extends Component {
 
                     showRoute: this.showRoute,
 
-                    shareRoute: null,
+                    shareRoute: this.shareRoute,
 
                     deleteRoute: this.deleteRoute
 
@@ -276,6 +284,8 @@ class RoutesSideBar extends Component {
                 <MapsSideBar>
                     {t("routes.hereYourRoutes")}
                     {this.listRoutes()}
+                    {t("routes.sharedRoutes")}
+                    {this.listShared()}
                 </MapsSideBar>
                 <Button variant="primary" block
                         onClick={this.onClearArray}>{t("routes.clear")}</Button>
