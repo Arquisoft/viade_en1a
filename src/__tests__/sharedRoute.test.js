@@ -19,8 +19,11 @@ const route= {
 }
 
 it("MapRoute renders without crashing", () => {
+
     afterAll(cleanup);
     const { container } = render(<SharedRoute {...{ route }} />);
     expect(container).toBeTruthy();
+
   });
+  
 });
