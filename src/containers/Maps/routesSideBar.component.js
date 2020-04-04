@@ -38,12 +38,18 @@ class RoutesSideBar extends Component {
 
             routesList: [],
 
+            sharedRoutes: [],
+
         };
 
 
         this.getPodRoutes = this.getPodRoutes.bind(this);
 
         this.getPodRoutes();
+
+        this.getSharedRoutes = this.getSharedRoutes.bind(this);
+
+        this.getSharedRoutes();
 
 
         this.deleteRoute = this.deleteRoute.bind(this);
@@ -138,6 +144,30 @@ class RoutesSideBar extends Component {
 
     }
 
+    async getSharedRoutes() {
+        var session = await auth.currentSession();
+
+        var urlShared = session.webId.split("profile/card#me")[0] + "inbox/";
+
+        let folderShared = await this.fc.readFolder(urlShared);
+
+        //console.log(folderShared);
+
+        folderShared.files.forEach((elementShared) => {
+
+            //console.log(elementShared);
+
+            /*this.setState((state) => ({
+
+                sharedRoutes: state.sharedRoutes.push({name: elementShared.name, url: elementShared.url})
+
+            }));*/
+            this.state.sharedRoutes.push({name: elementShared.name, url: elementShared.url})
+
+        });
+
+    }
+
 
     async getPodRoutes() {
 
@@ -148,29 +178,11 @@ class RoutesSideBar extends Component {
 
         folder.files.forEach((element) => {
 
-            console.log(element);
+            //console.log(element);
 
             this.setState((state) => ({
 
                 routeList: state.routesList.push({name: element.name, url: element.url})
-
-            }));
-
-        });
-
-        var urlShared = session.webId.split("profile/card#me")[0] + "inbox/";
-
-        let folderShared = await this.fc.readFolder(urlShared);
-
-        console.log(folderShared);
-
-        folderShared.files.forEach((elementShared) => {
-
-            console.log(elementShared);
-
-            this.setState((state) => ({
-
-                routeList: state.routesList.push({name: elementShared.name, url: elementShared.url})
 
             }));
 
@@ -219,6 +231,26 @@ class RoutesSideBar extends Component {
 
         }
 
+        for (let i = 0; i < this.state.sharedRoutes.length; i++) {
+
+            list.push(<MapRoute key={i}{...{
+
+                route: {
+                    name: this.state.sharedRoutes[i].name,
+
+                    url: this.state.sharedRoutes[i].url,
+
+                    showRoute: this.showRoute,
+
+                    shareRoute: null,
+
+                    deleteRoute: this.deleteRoute
+
+                }
+
+            }}/>);
+
+        }
 
         return list;
 
@@ -226,9 +258,8 @@ class RoutesSideBar extends Component {
 
 
     onClearArray = () => {
-
         this.setState({routesList: []});
-
+        this.setState({sharedRoutes: []});
     };
 
 
