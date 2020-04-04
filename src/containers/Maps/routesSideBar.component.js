@@ -158,6 +158,24 @@ class RoutesSideBar extends Component {
 
         });
 
+        var urlShared = session.webId.split("profile/card#me")[0] + "inbox/";
+
+        let folderShared = await this.fc.readFolder(urlShared);
+
+        console.log(folderShared);
+
+        folderShared.files.forEach((elementShared) => {
+
+            console.log(elementShared);
+
+            this.setState((state) => ({
+
+                routeList: state.routesList.push({name: elementShared.name, url: elementShared.url})
+
+            }));
+
+        });
+
     }
 
     showRoute = async (route) => {
