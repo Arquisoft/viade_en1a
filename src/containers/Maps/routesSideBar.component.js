@@ -154,9 +154,9 @@ class RoutesSideBar extends Component {
         let folderShared = await this.fc.readFolder(urlShared);
 
         folderShared.files.forEach((elementShared) => {
-            console.log(elementShared)
+            //console.log(elementShared)
 
-            this.state.sharedRoutes.push({name: elementShared.name, url: elementShared.url})
+            this.state.sharedRoutes.push({name: elementShared.name, url: elementShared.url});
 
         });
 
@@ -198,11 +198,11 @@ class RoutesSideBar extends Component {
     }
 
     showSharedRoute = async (route) => {
-        console.log("Not implemented.")
+        //console.log("Not implemented.")
 
         //example of how to get content of the shared message
-        let content = await this.fc.readFile(route.url);
-        console.log(content)
+        //let content = await this.fc.readFile(route.url);
+        //console.log(content)
 
     };
 

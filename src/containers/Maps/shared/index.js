@@ -1,3 +1,3 @@
-import SharedRoute from './Route';
+import SharedRoute from "./Route";
 
 export { SharedRoute };
