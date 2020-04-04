@@ -10,7 +10,9 @@ const StyledSharedRoute = styled.div`
 
 export const SharedRoute = (props) => {
     const { route } = props;
-    const url = "#/share?route="+route.name;
+
+    // const url = "#/share?route="+route.name;
+    
     const { t } = useTranslation();
 
     function showRoute(){

@@ -252,8 +252,10 @@ class RoutesSideBar extends Component {
         let list = [];
 
         for (let i = 0; i < this.state.sharedRoutes.length; i++) {
-            let rName = this.state.sharedRoutes[i].name;
-            let rUrl = this.state.sharedRoutes[i].url;
+
+            let rName = this.state.sharedRoutes[parseInt(i)].name;
+            
+            let rUrl = this.state.sharedRoutes[parseInt(i)].url;
 
             list.push(<SharedRoute key={i}{...{
 
