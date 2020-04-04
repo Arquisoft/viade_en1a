@@ -9,6 +9,7 @@ import {MapsSideBar} from "./maps.style";
 import styled from "styled-components";
 
 import {MapRoute} from "./components";
+import {SharedRoute} from "./shared";
 
 import {Button} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
@@ -54,6 +55,7 @@ class RoutesSideBar extends Component {
 
         this.deleteRoute = this.deleteRoute.bind(this);
 
+        this.deleteSharedRoute = this.deleteSharedRoute.bind(this);
 
         this.fc = new FC(auth);
 
@@ -151,17 +153,8 @@ class RoutesSideBar extends Component {
 
         let folderShared = await this.fc.readFolder(urlShared);
 
-        //console.log(folderShared);
-
         folderShared.files.forEach((elementShared) => {
 
-            //console.log(elementShared);
-
-            /*this.setState((state) => ({
-
-                sharedRoutes: state.sharedRoutes.push({name: elementShared.name, url: elementShared.url})
-
-            }));*/
             this.state.sharedRoutes.push({name: elementShared.name, url: elementShared.url})
 
         });
@@ -177,8 +170,6 @@ class RoutesSideBar extends Component {
         let folder = await this.fc.readFolder(url);
 
         folder.files.forEach((element) => {
-
-            //console.log(element);
 
             this.setState((state) => ({
 
@@ -203,6 +194,14 @@ class RoutesSideBar extends Component {
 
         this.getPodRoutes();
 
+    }
+
+    showSharedRoute = async (route) => {
+        console.log("Not implemented.")
+    };
+
+    async deleteSharedRoute(route) {
+        console.log("Not implmented.")
     }
 
 
@@ -241,18 +240,16 @@ class RoutesSideBar extends Component {
 
         for (let i = 0; i < this.state.sharedRoutes.length; i++) {
 
-            list.push(<MapRoute key={i}{...{
+            list.push(<SharedRoute key={i}{...{
 
                 route: {
                     name: this.state.sharedRoutes[i].name,
 
                     url: this.state.sharedRoutes[i].url,
 
-                    showRoute: this.showRoute,
+                    showRoute: this.showSharedRoute,
 
-                    shareRoute: this.shareRoute,
-
-                    deleteRoute: this.deleteRoute
+                    deleteRoute: this.deleteSharedRoute
 
                 }
 
