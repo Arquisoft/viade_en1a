@@ -49,7 +49,7 @@ const Profile = ({ webId }: Props) => {
   };
 
   return (
-    <ProfileWrapper data-testid="profile-component">
+    <ProfileWrapper className="profileWrapper" data-testid="profile-component">
       <ProfileContainer>
         {webId && (
           <Fragment>
