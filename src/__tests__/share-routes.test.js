@@ -9,42 +9,48 @@ afterAll(cleanup);
 
 const friends = [
     {
-        "webId": "https://victorgon.inrupt.net/",
+        "webId": "https://victorgon.inrupt.net/profile/card#me",
         "name": "Víctor",
         "image": "img/noimg.svg"
     },
     {
-        "webId": "https://adrianperezmanso.solid.community/",
+        "webId": "https://adrianperezmanso.solid.community/profile/card#me",
         "name": "Adrián",
         "image": "img/noimg.svg"
     },
     {
-        "webId": "https://fincamd.solid.community/",
+        "webId": "https://fincamd.solid.community/profile/card#me",
         "name": "Víctor",
         "image": "img/noimg.svg"
     }
 ];
 
-const share = {
-    shareRoute: () => {
-        console.log("Sharing route");
-    }
-} 
+const popupLogin = async () => {
+    let session = await solid.auth.currentSession();
+    let popupUri = 'https://solid.community/common/popup.html';
+    if (!session)
+      session = await solid.auth.popupLogin({ popupUri });
+    alert(`Logged in as ${session.webId}`);
+  }
 
 const component = <ShareRoutesComponent
     {...{
-        webId: "https://adrianperezmanso.solid.community/"
+        webId: "https://adrianperezmanso.solid.community/profile/card#me",
+        friends: friends
     }}
 />;
 
   configure({adapter: new Adapter()});
 
 it("renders without crashing", () => {
+    popupLogin();
     const { container } = render(component);
     expect(container).toBeTruthy();
   });
 
+  
   it("click share button", () => {
+    popupLogin();
     const wrapper = mount(component);
     wrapper.find(Button).at(0).simulate('click');
   });
