@@ -25,14 +25,6 @@ const friends = [
     }
 ];
 
-const popupLogin = async () => {
-    let session = await solid.auth.currentSession();
-    let popupUri = 'https://solid.community/common/popup.html';
-    if (!session)
-      session = await solid.auth.popupLogin({ popupUri });
-    alert(`Logged in as ${session.webId}`);
-  }
-
 const component = <ShareRoutesComponent
     {...{
         webId: "https://adrianperezmanso.solid.community/profile/card#me",
@@ -43,7 +35,6 @@ const component = <ShareRoutesComponent
   configure({adapter: new Adapter()});
 
 it("renders without crashing", () => {
-    popupLogin();
     const { container } = render(component);
     expect(container).toBeTruthy();
   });
