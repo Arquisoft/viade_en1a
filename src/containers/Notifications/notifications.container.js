@@ -73,7 +73,7 @@ export class NotificationsComponent extends Component<Props> {
     render() {
         const notifications = this.state;
         const getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
-        console.log("hjaja");
+       // console.log("hjaja");
 
         return (
 
