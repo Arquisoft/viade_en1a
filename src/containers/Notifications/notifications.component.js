@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 //import { useTranslation } from 'react-i18next';
 
 export const NotificationsPageContent = (props) => {
@@ -9,7 +9,7 @@ export const NotificationsPageContent = (props) => {
     //console.log(notifications);
 
     return (
-        <div className="card">
+        <div id="notificationsCard" className="card">
             <h3>Notificaciones</h3>
 
             <ul>
