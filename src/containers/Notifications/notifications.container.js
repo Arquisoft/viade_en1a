@@ -24,13 +24,13 @@ export class NotificationsComponent extends Component<Props> {
         this.render();
     }
 
-    componentDidUpdate(prevProps) {
-        const webId = this.props;
-        if (webId && webId !== prevProps.webId){
-            this.getProfileData();
-        }
-        this.render();
-    }
+    // componentDidUpdate(prevProps) {
+    //    const webId = this.props;
+    //    if (webId && webId !== prevProps.webId){
+    //        this.getProfileData();
+    //    }
+    //    this.render();
+    // }
 
     getProfileData = async () => {
         this.setState({ isLoading: true });
@@ -73,6 +73,7 @@ export class NotificationsComponent extends Component<Props> {
     render() {
         const notifications = this.state;
         const getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
+       // console.log("hjaja");
 
         return (
 

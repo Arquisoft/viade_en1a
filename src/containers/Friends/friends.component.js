@@ -11,8 +11,8 @@ export const FriendsPageContent = (props) => {
 
     return (
         <FriendsWrapper>
-            <FriendsContainer className="card">
-                <ul>
+            <FriendsContainer id="friendsContainer" className="card">
+                <ul id="friendsList">
                     {
                         friends.map(
                             (friend) => (

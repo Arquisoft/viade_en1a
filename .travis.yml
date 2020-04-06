@@ -11,7 +11,6 @@ before_install:
   - sudo apt-get -y install graphviz
 script:
   - npm install -g codecov
-  - npm install -g @inrupt/solid-react-components
   - npm test && codecov
   - npm run build
   - npm run docs

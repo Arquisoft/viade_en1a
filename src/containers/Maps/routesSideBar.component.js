@@ -9,6 +9,7 @@ import {MapsSideBar} from "./maps.style";
 import styled from "styled-components";
 
 import {MapRoute} from "./components";
+import {SharedRoute} from "./shared";
 
 import {Button} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
@@ -38,6 +39,8 @@ class RoutesSideBar extends Component {
 
             routesList: [],
 
+            sharedRoutes: [],
+
         };
 
 
@@ -45,9 +48,14 @@ class RoutesSideBar extends Component {
 
         this.getPodRoutes();
 
+        this.getSharedRoutes = this.getSharedRoutes.bind(this);
+
+        this.getSharedRoutes();
+
 
         this.deleteRoute = this.deleteRoute.bind(this);
 
+        this.deleteSharedRoute = this.deleteSharedRoute.bind(this);
 
         this.fc = new FC(auth);
 
@@ -138,6 +146,22 @@ class RoutesSideBar extends Component {
 
     }
 
+    async getSharedRoutes() {
+        var session = await auth.currentSession();
+
+        var urlShared = session.webId.split("profile/card#me")[0] + "inbox/";
+
+        let folderShared = await this.fc.readFolder(urlShared);
+
+        folderShared.files.forEach((elementShared) => {
+            //console.log(elementShared)
+
+            this.state.sharedRoutes.push({name: elementShared.name, url: elementShared.url});
+
+        });
+
+    }
+
 
     async getPodRoutes() {
 
@@ -147,8 +171,6 @@ class RoutesSideBar extends Component {
         let folder = await this.fc.readFolder(url);
 
         folder.files.forEach((element) => {
-
-            console.log(element);
 
             this.setState((state) => ({
 
@@ -172,7 +194,27 @@ class RoutesSideBar extends Component {
         this.onClearArray();
 
         this.getPodRoutes();
+        this.getSharedRoutes();
+    }
 
+    showSharedRoute = async (route) => {
+        //console.log("Not implemented.")
+
+        //example of how to get content of the shared message
+        //let content = await this.fc.readFile(route.url);
+        //console.log(content)
+
+    };
+
+    async deleteSharedRoute(route) {
+        await this.fc.deleteFile(route.url);
+
+        this.onClearArray();
+
+        this.getPodRoutes();
+        this.getSharedRoutes();
+
+        //you cant delete on inbox??
     }
 
 
@@ -201,6 +243,36 @@ class RoutesSideBar extends Component {
 
         }
 
+        return list;
+
+    };
+
+    listShared = () => {
+
+        let list = [];
+
+        for (let i = 0; i < this.state.sharedRoutes.length; i++) {
+
+            let rName = this.state.sharedRoutes[parseInt(i)].name;
+            
+            let rUrl = this.state.sharedRoutes[parseInt(i)].url;
+
+            list.push(<SharedRoute key={i}{...{
+
+                route: {
+                    name: rName,
+
+                    url: rUrl,
+
+                    showRoute: this.showSharedRoute,
+
+                    deleteRoute: this.deleteRoute
+
+                }
+
+            }}/>);
+
+        }
 
         return list;
 
@@ -208,9 +280,8 @@ class RoutesSideBar extends Component {
 
 
     onClearArray = () => {
-
         this.setState({routesList: []});
-
+        this.setState({sharedRoutes: []});
     };
 
 
@@ -227,6 +298,8 @@ class RoutesSideBar extends Component {
                 <MapsSideBar>
                     {t("routes.hereYourRoutes")}
                     {this.listRoutes()}
+                    {t("routes.sharedRoutes")}
+                    {this.listShared()}
                 </MapsSideBar>
                 <Button variant="primary" block
                         onClick={this.onClearArray}>{t("routes.clear")}</Button>
