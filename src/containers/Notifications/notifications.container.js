@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NotificationsPageContent } from "./notifications.component";
 import FC from "solid-file-client";
 import data from "@solid/query-ldflex";
 import auth from "solid-auth-client";
@@ -14,6 +13,10 @@ export class NotificationsComponent extends Component<Props> {
         };
 
         this.fc = new FC(auth);
+
+        this.getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
+        this.getNotificationsFromInbox();
+
     }
 
     componentDidMount() {
@@ -35,49 +38,66 @@ export class NotificationsComponent extends Component<Props> {
     getProfileData = async () => {
         this.setState({ isLoading: true });
 
-        var notifications = await this.getNotificationsFromInbox();
-        this.setState({ notifications: notifications });
+        /*var notifications = await this.getNotificationsFromInbox();
+        this.setState({ notifications: notifications });*/
     }
 
     async getNotificationsFromInbox() {
-        let inbox = await this.getInbox();
+        var session = await auth.currentSession();
+        var inbox = session.webId.split("profile/card#me")[0] + "inbox/";
+
         let inboxFolder = await this.fc.readFolder(inbox);
 
-        var notifications = [];
+        inboxFolder.files.forEach((elementShared) => {
 
-        inboxFolder.files.forEach(async (file) => {
-            let notification = {};
-            notification.url = inbox + file.name;
+            this.state.notifications.push({name: elementShared.name, url: elementShared.url});
 
-            notification.label = await data[notification.url].rdfs$label;
-            notification.sender = await data[notification.url].schema$sender;
-            notification.dateSent = new Date(await data[notification.url].schema$dateSent).toString();
-            notification.text = await data[notification.url].schema$text;
-            notification.senderName = await data[notification.sender].vcard$fn;
-
-
-            notifications.push(
-                notification
-            );
         });
 
-        return notifications;
+        console.log(this.state.notifications);
+
     }
 
-    async getInbox() {
-        let session = await auth.currentSession();
-        let inbox = session.webId.split("profile/card#me")[0] + "inbox/";
-        return inbox;
-    }
+    listRoutes = () => {
+
+        let list = [];
+
+        /*for (let i = 0; i < this.state.notifications.length; i++) {
+
+            list.push(<MapRoute key={i}{...{
+
+                route: {
+                    name: this.state.routesList[i].name,
+
+                    url: this.state.routesList[i].url,
+
+                    showRoute: this.showRoute,
+
+                    shareRoute: this.shareRoute,
+
+                    deleteRoute: this.deleteRoute
+
+                }
+
+            }}/>);
+            console.log(this.state.notifications[i].url)
+        }*/
+
+        return list;
+
+    };
 
     render() {
-        const notifications = this.state;
-        const getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
 
         return (
 
-            <NotificationsPageContent {...{ notifications, getNotificationsFromInbox }} />
-
+            <div id="notificationsCard" className="card">
+                <h3>Notificaciones</h3>
+                {this.listRoutes()}
+                <ul>
+                    <li>Holi</li>
+                </ul>
+            </div>
 
         );
     }

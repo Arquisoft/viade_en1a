@@ -1,20 +1,35 @@
-import React from "react";
-//import { useTranslation } from 'react-i18next';
+import React, { Component } from "react";
 
-export const NotificationsPageContent = (props) => {
+class NotificationsPageContent extends Component {
+    constructor(props) {
 
-    //const { t } = useTranslation();
-    //const notifications = props.notifications;
-    //const getNotificationsFromInbox = props.getNotificationsFromInbox;
-    //console.log(notifications);
+        super(props);
 
-    return (
-        <div id="notificationsCard" className="card">
-            <h3>Notificaciones</h3>
+        this.state = {
 
-            <ul>
-                <li>Holi</li>
-            </ul>
-        </div>
-    );
+            notifications: [],
+
+        };
+
+        this.state.notifications = props.notifications;
+        //const getNotificationsFromInbox = props.getNotificationsFromInbox;
+        console.log(this.state.notifications);
+
+    }
+    
+
+    render() {
+        return (
+            <div id="notificationsCard" className="card">
+                <h3>Notificaciones</h3>
+                <ul>
+                    <li>Holi</li>
+                </ul>
+            </div>
+        );
+
+    }
+    
 }
+
+export default NotificationsPageContent;
