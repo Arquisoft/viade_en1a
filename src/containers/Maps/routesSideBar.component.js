@@ -17,12 +17,21 @@ import { withTranslation } from "react-i18next";
 
 const StyledRoutesSidebar = styled.div`
 
-      height: 100vh;
+      height: 70vh;
 
       width: 20%;
 
-    `;
 
+
+    `;
+/*
+ background: linear-gradient(
+        to left,
+        rgba(124, 77, 255, 0.2) 0%,
+        rgba(24, 169, 230, 0.2) 50%,
+        rgba(1, 201, 234, 0.2) 100%
+      );
+      */
 
 class RoutesSideBar extends Component {
 
@@ -60,7 +69,6 @@ class RoutesSideBar extends Component {
         this.fc = new FC(auth);
 
         this.uploadedFiles = false;
-
 
     }
 

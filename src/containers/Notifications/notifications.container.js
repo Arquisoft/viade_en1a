@@ -1,83 +1,68 @@
 import React, { Component } from "react";
-import { NotificationsPageContent } from "./notifications.component";
 import FC from "solid-file-client";
-import data from "@solid/query-ldflex";
 import auth from "solid-auth-client";
 
-export class NotificationsComponent extends Component<Props> {
+import {Notis} from "./Notis";
+
+export class NotificationsComponent extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            notifications: []
+            notifications: [],
         };
 
+        this.getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
+        this.getNotificationsFromInbox();
+        
         this.fc = new FC(auth);
-    }
 
-    componentDidMount() {
-        const webId = this.props; //unnecesary??
-        if (webId){
-            this.getProfileData();
-        } 
-        this.render();
-    }
-
-    // componentDidUpdate(prevProps) {
-    //    const webId = this.props;
-    //    if (webId && webId !== prevProps.webId){
-    //        this.getProfileData();
-    //    }
-    //    this.render();
-    // }
-
-    getProfileData = async () => {
-        this.setState({ isLoading: true });
-
-        var notifications = await this.getNotificationsFromInbox();
-        this.setState({ notifications: notifications });
     }
 
     async getNotificationsFromInbox() {
-        let inbox = await this.getInbox();
+        var session = await auth.currentSession();
+        var inbox = session.webId.split("profile/card#me")[0] + "inbox/";
+
         let inboxFolder = await this.fc.readFolder(inbox);
 
-        var notifications = [];
+        inboxFolder.files.forEach( (elementShared) => {
+            
+            this.state.notifications.push({name: elementShared.name, url: elementShared.url});
 
-        inboxFolder.files.forEach(async (file) => {
-            let notification = {};
-            notification.url = inbox + file.name;
-
-            notification.label = await data[notification.url].rdfs$label;
-            notification.sender = await data[notification.url].schema$sender;
-            notification.dateSent = new Date(await data[notification.url].schema$dateSent).toString();
-            notification.text = await data[notification.url].schema$text;
-            notification.senderName = await data[notification.sender].vcard$fn;
-
-
-            notifications.push(
-                notification
-            );
         });
 
-        return notifications;
+        let notifications = [...this.state.notifications];
+        this.setState({notifications});
+
+
     }
 
-    async getInbox() {
-        let session = await auth.currentSession();
-        let inbox = session.webId.split("profile/card#me")[0] + "inbox/";
-        return inbox;
-    }
+    listNotifications = () => {
+
+        let list = [];
+
+        for (let i = 0; i < this.state.notifications.length; i++) {
+            list.push(<Notis key={i}{...{
+
+                noti: {
+                    name: this.state.notifications[parseInt(i)].name
+                }               
+
+            }}/>);
+        }
+        return list;
+
+    };
 
     render() {
-        const notifications = this.state;
-        const getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
 
         return (
 
-            <NotificationsPageContent {...{ notifications, getNotificationsFromInbox }} />
-
+            <div id="notificationsCard" className="card">
+                    <h3>Notifications</h3>
+                    {this.listNotifications()}
+            </div>
 
         );
     }
