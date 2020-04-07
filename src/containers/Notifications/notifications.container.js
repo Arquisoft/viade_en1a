@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { NotificationsPageContent } from './notifications.component';
+import React, { Component } from "react";
+import { NotificationsPageContent } from "./notifications.component";
 import FC from "solid-file-client";
 import data from "@solid/query-ldflex";
 import auth from "solid-auth-client";
@@ -73,7 +73,6 @@ export class NotificationsComponent extends Component<Props> {
     render() {
         const notifications = this.state;
         const getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
-       // console.log("hjaja");
 
         return (
 
