@@ -20,7 +20,8 @@ class SimpleMap extends Component {
         this.state = {
             url: "https://storage.googleapis.com/mapsdevsite/json/google.json",
             route: "",
-			features: []
+			features: [],
+			center: [43.358756869202914, -5.861785411834717]
         }
     }
 
@@ -54,9 +55,10 @@ class SimpleMap extends Component {
 	}
 	
     show = (parsedRoute) => {
+		let latitude = parsedRoute.features[0].geometry.coordinates[0][1];
+		let longitude = parsedRoute.features[0].geometry.coordinates[0][0];
 		this.deleteOldRoute();
-        this.setState({route: parsedRoute}, this.loadMap);
-
+        this.setState({route: parsedRoute, center: [latitude, longitude]}, this.loadMap);
     };
 
     render() {
@@ -66,10 +68,11 @@ class SimpleMap extends Component {
                 <div style={{height: "100vh", width: "80%"}}>
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
-                        defaultCenter={[43.358756869202914, -5.861785411834717]}
                         defaultZoom={12}
                         yesIWantToUseGoogleMapApiInternals={true}
+						center={this.state.center}
                         onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
+						
                     >
                         <MyMarker
                             lat={43.358756869202914}
