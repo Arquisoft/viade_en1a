@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import FC from "solid-file-client";
-import data from "@solid/query-ldflex";
 import auth from "solid-auth-client";
 
-export class NotificationsComponent extends Component<Props> {
+export class NotificationsComponent extends Component {
 
     constructor(props) {
         super(props);
@@ -12,34 +11,11 @@ export class NotificationsComponent extends Component<Props> {
             notifications: [],
         };
 
-        this.fc = new FC(auth);
-
         this.getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
         this.getNotificationsFromInbox();
-
-    }
-
-    componentDidMount() {
-        const webId = this.props; //unnecesary??
-        if (webId){
-            this.getProfileData();
-        } 
-        this.render();
-    }
-
-    // componentDidUpdate(prevProps) {
-    //    const webId = this.props;
-    //    if (webId && webId !== prevProps.webId){
-    //        this.getProfileData();
-    //    }
-    //    this.render();
-    // }
-
-    getProfileData = async () => {
-        this.setState({ isLoading: true });
-
-        /*var notifications = await this.getNotificationsFromInbox();
-        this.setState({ notifications: notifications });*/
+        
+        this.fc = new FC(auth);
+        
     }
 
     async getNotificationsFromInbox() {
@@ -54,9 +30,6 @@ export class NotificationsComponent extends Component<Props> {
 
         });
 
-        {this.listRoutes()}
-        console.log(this.state.notifications);
-
     }
 
     listRoutes = () => {
@@ -65,24 +38,8 @@ export class NotificationsComponent extends Component<Props> {
 
         for (let i = 0; i < this.state.notifications.length; i++) {
 
-            /*list.push(<MapRoute key={i}{...{
+            console.log("Hi")
 
-                route: {
-                    name: this.state.routesList[i].name,
-
-                    url: this.state.routesList[i].url,
-
-                    showRoute: this.showRoute,
-
-                    shareRoute: this.shareRoute,
-
-                    deleteRoute: this.deleteRoute
-
-                }
-
-            }}/>);*/
-
-            console.log(this.state.notifications[i].url)
         }
 
         return list;
@@ -95,6 +52,7 @@ export class NotificationsComponent extends Component<Props> {
 
             <div id="notificationsCard" className="card">
                 <h3>Notificaciones</h3>
+                {this.listRoutes()}
                 <ul>
                     <li>Holi</li>
                 </ul>
