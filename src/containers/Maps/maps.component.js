@@ -61,9 +61,9 @@ class SimpleMap extends Component {
 
     render() {
         return (
-            <div style={{height: "100vh", width: "100%", display: "flex", flex: "row"}}>
+            <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
                 <RoutesSideBar show={this.show}/>
-                <div style={{height: "100vh", width: "80%"}}>
+                <div style={{height: "80vh", width: "80%"}}>
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
                         defaultCenter={[43.358756869202914, -5.861785411834717]}

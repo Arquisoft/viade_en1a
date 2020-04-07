@@ -26,8 +26,8 @@ export class NotificationsComponent extends Component {
 
         let inboxFolder = await this.fc.readFolder(inbox);
 
-        inboxFolder.files.forEach((elementShared) => {
-            //console.log(elementShared.name);
+        inboxFolder.files.forEach( (elementShared) => {
+            
             this.state.notifications.push({name: elementShared.name, url: elementShared.url});
 
         });
@@ -37,36 +37,21 @@ export class NotificationsComponent extends Component {
 
 
     }
-    // onChangeHandler = (event) => {
-
-    //     let notifications = [...this.state.notifications];
-    //     this.setState({notifications});
-
-    // };
 
     listNotifications = () => {
 
         let list = [];
 
         for (let i = 0; i < this.state.notifications.length; i++) {
-
+            console.log(this.state.notifications[i]);
             list.push(<Notis key={i}{...{
 
                 noti: {
                     name: this.state.notifications[i].name
-                }
-    
+                }               
+
             }}/>);
         }
-
-        // list.push(<Notis key={100}{...{
-
-        //     noti: {
-        //         name: "Esta notificacion está fuera del bucle!"
-        //     }
-
-        // }}/>);
-
         return list;
 
     };
@@ -76,8 +61,7 @@ export class NotificationsComponent extends Component {
         return (
 
             <div id="notificationsCard" className="card">
-                    <h3>Notificaciones</h3>
-                    {/* <button onClick={this.onChangeHandler.bind(this)}>See your notifications HERE!</button> */}
+                    <h3>Notifications</h3>
                     {this.listNotifications()}
             </div>
 
