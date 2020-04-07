@@ -26,13 +26,20 @@ export class NotificationsComponent extends Component {
 
         inboxFolder.files.forEach((elementShared) => {
 
-            this.state.notifications.push({name: elementShared.name, url: elementShared.url});
+            notifications : this.state.notifications.push({name: elementShared.name, url: elementShared.url});
 
         });
 
     }
 
-    listRoutes = () => {
+    //onChangeHandler = (event) => {
+    //
+    //    let notifications = [...this.state.notifications];      
+    //
+    //    this.setState({notifications});
+    //};
+
+    listNotifications = () => {
 
         let list = [];
 
@@ -52,7 +59,7 @@ export class NotificationsComponent extends Component {
 
             <div id="notificationsCard" className="card">
                 <h3>Notificaciones</h3>
-                {this.listRoutes()}
+                {this.listNotifications()}
                 <ul>
                     <li>Holi</li>
                 </ul>
