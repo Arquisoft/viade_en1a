@@ -43,11 +43,10 @@ export class NotificationsComponent extends Component {
         let list = [];
 
         for (let i = 0; i < this.state.notifications.length; i++) {
-            console.log(this.state.notifications[i]);
             list.push(<Notis key={i}{...{
 
                 noti: {
-                    name: this.state.notifications[i].name
+                    name: this.state.notifications[parseInt(i)].name
                 }               
 
             }}/>);
