@@ -12,7 +12,7 @@ import {MapRoute} from "./components";
 import {SharedRoute} from "./shared";
 
 import {Button} from "react-bootstrap";
-import { withTranslation } from "react-i18next";
+import {withTranslation} from "react-i18next";
 
 
 const StyledRoutesSidebar = styled.div`
@@ -40,6 +40,8 @@ class RoutesSideBar extends Component {
             routesList: [],
 
             sharedRoutes: [],
+
+            selectedRoute: null
 
         };
 
@@ -185,7 +187,8 @@ class RoutesSideBar extends Component {
     showRoute = async (route) => {
         let content = await this.fc.readFile(route.url);
         let parsedRoute = JSON.parse(content);
-        this.props.show(parsedRoute);
+        this.setState(this.state.selectedRoute = route, this.props.show(parsedRoute));
+
     };
 
     async deleteRoute(route) {
@@ -197,6 +200,14 @@ class RoutesSideBar extends Component {
         this.getSharedRoutes();
     }
 
+    addMediaToRoute = (route, event) => {
+        const mediaElements = [...event.target.files];
+
+        mediaElements.forEach((element) => {
+            console.log(element.name);
+        });
+
+    };
     showSharedRoute = async (route) => {
         //console.log("Not implemented.")
 
@@ -235,7 +246,9 @@ class RoutesSideBar extends Component {
 
                     shareRoute: this.shareRoute,
 
-                    deleteRoute: this.deleteRoute
+                    deleteRoute: this.deleteRoute,
+
+                    addMediaToRoute: this.addMediaToRoute
 
                 }
 
@@ -254,7 +267,7 @@ class RoutesSideBar extends Component {
         for (let i = 0; i < this.state.sharedRoutes.length; i++) {
 
             let rName = this.state.sharedRoutes[parseInt(i)].name;
-            
+
             let rUrl = this.state.sharedRoutes[parseInt(i)].url;
 
             list.push(<SharedRoute key={i}{...{
@@ -286,7 +299,7 @@ class RoutesSideBar extends Component {
 
 
     render() {
-        const { t } = this.props;
+        const {t} = this.props;
         return (
 
             <StyledRoutesSidebar>
