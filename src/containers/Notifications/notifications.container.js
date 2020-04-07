@@ -27,19 +27,22 @@ export class NotificationsComponent extends Component {
         let inboxFolder = await this.fc.readFolder(inbox);
 
         inboxFolder.files.forEach((elementShared) => {
-
-            notifications : this.state.notifications.push({name: elementShared.name, url: elementShared.url});
+            //console.log(elementShared.name);
+            this.state.notifications.push({name: elementShared.name, url: elementShared.url});
 
         });
 
-    }
+        let notifications = [...this.state.notifications];
+        this.setState({notifications});
 
-    //onChangeHandler = (event) => {
-    //
-    //    let notifications = [...this.state.notifications];      
-    //
-    //    this.setState({notifications});
-    //};
+
+    }
+    // onChangeHandler = (event) => {
+
+    //     let notifications = [...this.state.notifications];
+    //     this.setState({notifications});
+
+    // };
 
     listNotifications = () => {
 
@@ -54,18 +57,15 @@ export class NotificationsComponent extends Component {
                 }
     
             }}/>);
-
-            console.log("Hi")
-
         }
 
-        list.push(<Notis key={100}{...{
+        // list.push(<Notis key={100}{...{
 
-            noti: {
-                name: "Esta notificacion está fuera del bucle!"
-            }
+        //     noti: {
+        //         name: "Esta notificacion está fuera del bucle!"
+        //     }
 
-        }}/>);
+        // }}/>);
 
         return list;
 
@@ -76,8 +76,9 @@ export class NotificationsComponent extends Component {
         return (
 
             <div id="notificationsCard" className="card">
-                <h3>Notificaciones</h3>
-                {this.listNotifications()}
+                    <h3>Notificaciones</h3>
+                    {/* <button onClick={this.onChangeHandler.bind(this)}>See your notifications HERE!</button> */}
+                    {this.listNotifications()}
             </div>
 
         );

@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Dropdown, ButtonGroup } from "react-bootstrap";
 import styled from "styled-components";
 import * as Icon from "react-feather";
-import { useTranslation } from "react-i18next";
+//import { useTranslation } from "react-i18next";
 
 const StyledNoti = styled.div`
   margin: 10px;
