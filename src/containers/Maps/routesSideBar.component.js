@@ -162,12 +162,19 @@ class RoutesSideBar extends Component {
         let folderShared = await this.fc.readFolder(urlShared);
 
         folderShared.files.forEach((elementShared) => {
-            //console.log(elementShared)
+
+            this.getFullNotification(elementShared.url);
 
             this.state.sharedRoutes.push({name: elementShared.name, url: elementShared.url});
 
         });
 
+    }
+
+    async getFullNotification(url) {
+        let fol = await this.fc.readFile(url);
+
+        console.log(fol)
     }
 
 
