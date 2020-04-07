@@ -9,7 +9,7 @@ export class NotificationsComponent extends Component<Props> {
         super(props);
 
         this.state = {
-            notifications: []
+            notifications: [],
         };
 
         this.fc = new FC(auth);
@@ -54,6 +54,7 @@ export class NotificationsComponent extends Component<Props> {
 
         });
 
+        {this.listRoutes()}
         console.log(this.state.notifications);
 
     }
@@ -62,9 +63,9 @@ export class NotificationsComponent extends Component<Props> {
 
         let list = [];
 
-        /*for (let i = 0; i < this.state.notifications.length; i++) {
+        for (let i = 0; i < this.state.notifications.length; i++) {
 
-            list.push(<MapRoute key={i}{...{
+            /*list.push(<MapRoute key={i}{...{
 
                 route: {
                     name: this.state.routesList[i].name,
@@ -79,9 +80,10 @@ export class NotificationsComponent extends Component<Props> {
 
                 }
 
-            }}/>);
+            }}/>);*/
+
             console.log(this.state.notifications[i].url)
-        }*/
+        }
 
         return list;
 
@@ -93,7 +95,6 @@ export class NotificationsComponent extends Component<Props> {
 
             <div id="notificationsCard" className="card">
                 <h3>Notificaciones</h3>
-                {this.listRoutes()}
                 <ul>
                     <li>Holi</li>
                 </ul>
