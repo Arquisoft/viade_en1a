@@ -28,6 +28,7 @@ export class NotificationsComponent extends Component {
 
         inboxFolder.files.forEach( (elementShared) => {
             
+            this.getFullNotification(elementShared.url);
             this.state.notifications.push({name: elementShared.name, url: elementShared.url});
 
         });
@@ -36,6 +37,12 @@ export class NotificationsComponent extends Component {
         this.setState({notifications});
 
 
+    }
+
+    async getFullNotification(url) {
+        let fol = await this.fc.readFile(url);
+
+        console.log(fol)
     }
 
     listNotifications = () => {
