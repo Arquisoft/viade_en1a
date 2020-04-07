@@ -1,26 +1,36 @@
 import React from "react";
 import { render, cleanup } from "react-testing-library";
 import { MapRoute } from "../containers/Maps/components/Route/route.component";
+import { SharedRoute } from "../containers/Maps/shared/Route/shared.component";
 
 describe.only("RouteComponent", () => {
 
-const route= {
-  
-    name: "Nombre ruta",
+  const route= {
+    
+      name: "Nombre ruta",
 
-    url: "url",
+      url: "url",
 
-    showRoute: "showRoute",
+      showRoute: "showRoute",
 
-    shareRoute: "shareRoute",
+      shareRoute: "shareRoute",
 
-    deleteRoute: "deleteRoute"
+      deleteRoute: "deleteRoute"
 
-};
+  };
 
-it("MapRoute renders without crashing", () => {
+  it("MapRoute renders without crashing", () => {
+      afterAll(cleanup);
+      const { container } = render(<MapRoute {...{ route }} />);
+      expect(container).toBeTruthy();
+  });
+
+
+
+  it("SharedRoute renders without crashing", () => {
     afterAll(cleanup);
-    const { container } = render(<MapRoute {...{ route }} />);
+    const { container } = render(<SharedRoute {...{ route }} />);
     expect(container).toBeTruthy();
   });
+
 });
