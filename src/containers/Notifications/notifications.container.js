@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import FC from "solid-file-client";
 import auth from "solid-auth-client";
 
+import {Notis} from "./Notis";
+
 export class NotificationsComponent extends Component {
 
     constructor(props) {
@@ -15,7 +17,7 @@ export class NotificationsComponent extends Component {
         this.getNotificationsFromInbox();
         
         this.fc = new FC(auth);
-        
+
     }
 
     async getNotificationsFromInbox() {
@@ -38,9 +40,25 @@ export class NotificationsComponent extends Component {
 
         for (let i = 0; i < this.state.notifications.length; i++) {
 
+            list.push(<Notis key={i}{...{
+
+                noti: {
+                    name: this.state.notifications[i].name
+                }
+    
+            }}/>);
+
             console.log("Hi")
 
         }
+
+        list.push(<Notis key={100}{...{
+
+            noti: {
+                name: "Esta notificacion está fuera del bucle!"
+            }
+
+        }}/>);
 
         return list;
 
@@ -53,9 +71,6 @@ export class NotificationsComponent extends Component {
             <div id="notificationsCard" className="card">
                 <h3>Notificaciones</h3>
                 {this.listRoutes()}
-                <ul>
-                    <li>Holi</li>
-                </ul>
             </div>
 
         );
