@@ -1,37 +1,28 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
 import FC from "solid-file-client";
 
 import auth from "solid-auth-client";
 
-import {MapsSideBar} from "./maps.style";
+import { MapsSideBar } from "./maps.style";
 
 import styled from "styled-components";
 
-import {MapRoute} from "./components";
-import {SharedRoute} from "./shared";
+import { MapRoute } from "./components";
+import { SharedRoute } from "./shared";
 
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 
 
 const StyledRoutesSidebar = styled.div`
 
-      height: 70vh;
+      height: 100vh;
 
       width: 20%;
 
-
-
     `;
-/*
- background: linear-gradient(
-        to left,
-        rgba(124, 77, 255, 0.2) 0%,
-        rgba(24, 169, 230, 0.2) 50%,
-        rgba(1, 201, 234, 0.2) 100%
-      );
-      */
+
 
 class RoutesSideBar extends Component {
 
@@ -49,6 +40,8 @@ class RoutesSideBar extends Component {
             routesList: [],
 
             sharedRoutes: [],
+
+            selectedRoute: null
 
         };
 
@@ -69,6 +62,9 @@ class RoutesSideBar extends Component {
         this.fc = new FC(auth);
 
         this.uploadedFiles = false;
+
+        this.addMediaToRoute = this.addMediaToRoute.bind(this);
+
 
     }
 
@@ -98,7 +94,7 @@ class RoutesSideBar extends Component {
 
         });
 
-        this.setState({routes});
+        this.setState({ routes });
 
     };
 
@@ -164,7 +160,7 @@ class RoutesSideBar extends Component {
         folderShared.files.forEach((elementShared) => {
             //console.log(elementShared)
 
-            this.state.sharedRoutes.push({name: elementShared.name, url: elementShared.url});
+            this.state.sharedRoutes.push({ name: elementShared.name, url: elementShared.url });
 
         });
 
@@ -182,7 +178,7 @@ class RoutesSideBar extends Component {
 
             this.setState((state) => ({
 
-                routeList: state.routesList.push({name: element.name, url: element.url})
+                routeList: state.routesList.push({ name: element.name, url: element.url })
 
             }));
 
@@ -193,7 +189,8 @@ class RoutesSideBar extends Component {
     showRoute = async (route) => {
         let content = await this.fc.readFile(route.url);
         let parsedRoute = JSON.parse(content);
-        this.props.show(parsedRoute);
+        this.setState(this.state.selectedRoute = route, this.props.show(parsedRoute));
+
     };
 
     async deleteRoute(route) {
@@ -205,6 +202,31 @@ class RoutesSideBar extends Component {
         this.getSharedRoutes();
     }
 
+    async addMediaToRoute(route, event) {
+        const mediaElements = [...event.target.files];
+        var session = await auth.currentSession();
+        var url = session.webId.split("profile/card#me")[0] + "public/media/";
+
+        if (!await this.fc.itemExists(url)) {
+            alert("creating folder")
+            await this.fc.createFolder(url);
+
+        }
+
+        this.onClearArray();
+
+        mediaElements.forEach(async (element) => {
+
+            if (!await this.fc.itemExists(url + element.name)) {
+                await this.fc.createFile(url + element.name, element, "text/plain");
+                console.log(element.name + " uploaded");
+            }
+
+        });
+
+        this.getPodRoutes();
+
+    };
     showSharedRoute = async (route) => {
         //console.log("Not implemented.")
 
@@ -243,11 +265,13 @@ class RoutesSideBar extends Component {
 
                     shareRoute: this.shareRoute,
 
-                    deleteRoute: this.deleteRoute
+                    deleteRoute: this.deleteRoute,
+
+                    addMediaToRoute: this.addMediaToRoute
 
                 }
 
-            }}/>);
+            }} />);
 
         }
 
@@ -262,7 +286,7 @@ class RoutesSideBar extends Component {
         for (let i = 0; i < this.state.sharedRoutes.length; i++) {
 
             let rName = this.state.sharedRoutes[parseInt(i)].name;
-            
+
             let rUrl = this.state.sharedRoutes[parseInt(i)].url;
 
             list.push(<SharedRoute key={i}{...{
@@ -278,7 +302,7 @@ class RoutesSideBar extends Component {
 
                 }
 
-            }}/>);
+            }} />);
 
         }
 
@@ -288,8 +312,8 @@ class RoutesSideBar extends Component {
 
 
     onClearArray = () => {
-        this.setState({routesList: []});
-        this.setState({sharedRoutes: []});
+        this.setState({ routesList: [] });
+        this.setState({ sharedRoutes: [] });
     };
 
 
@@ -299,10 +323,11 @@ class RoutesSideBar extends Component {
 
             <StyledRoutesSidebar>
 
-                <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
+                <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple />
+
 
                 <Button id="btnPod" disabled={!this.uploadedFiles} variant="primary" block
-                        onClick={this.onClickHandler.bind(this)}>{t("routes.uploadToPOD")}</Button>
+                    onClick={this.onClickHandler.bind(this)}>{t("routes.uploadToPOD")}</Button>
                 <MapsSideBar>
                     {t("routes.hereYourRoutes")}
                     {this.listRoutes()}
@@ -310,7 +335,7 @@ class RoutesSideBar extends Component {
                     {this.listShared()}
                 </MapsSideBar>
                 <Button variant="primary" block
-                        onClick={this.onClearArray}>{t("routes.clear")}</Button>
+                    onClick={this.onClearArray}>{t("routes.clear")}</Button>
             </StyledRoutesSidebar>
         );
 
