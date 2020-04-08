@@ -208,7 +208,6 @@ class RoutesSideBar extends Component {
         var url = session.webId.split("profile/card#me")[0] + "public/media/";
 
         if (!await this.fc.itemExists(url)) {
-            alert("creating folder")
             await this.fc.createFolder(url);
 
         }
@@ -219,14 +218,15 @@ class RoutesSideBar extends Component {
 
             if (!await this.fc.itemExists(url + element.name)) {
                 await this.fc.createFile(url + element.name, element, "text/plain");
-                console.log(element.name + " uploaded");
+                //console.log(element.name + " uploaded");
             }
 
         });
 
         this.getPodRoutes();
 
-    };
+    }
+	
     showSharedRoute = async (route) => {
         //console.log("Not implemented.")
 
