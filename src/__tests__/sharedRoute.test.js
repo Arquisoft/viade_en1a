@@ -4,11 +4,13 @@ import { SharedRoute } from "../containers/Maps/shared/Route/shared.component";
 
 describe.only("RouteComponent", () => {
 
-const route= {
-  
+const routeWrapper = {
+
     name: "Nombre ruta",
 
     url: "url",
+
+    route: "route",
 
     showRoute: "showRoute",
 
@@ -21,7 +23,7 @@ const route= {
 it("MapRoute renders without crashing", () => {
 
     afterAll(cleanup);
-    const { container } = render(<SharedRoute {...{ route }} />);
+    const {container} = render(<SharedRoute {...{routeWrapper}} />);
     expect(container).toBeTruthy();
 
   });

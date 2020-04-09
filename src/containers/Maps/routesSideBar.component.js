@@ -296,7 +296,7 @@ class RoutesSideBar extends Component {
 
             list.push(<SharedRoute key={i}{...{
 
-                route: {
+                routeWrapper: {
                     name: rName,
 
                     url: rUrl,
