@@ -174,15 +174,17 @@ class RoutesSideBar extends Component {
 
         let folder = await this.fc.readFolder(url);
 
-        folder.files.forEach((element) => {
+        for (const element of folder.files) {
+            let content = await this.fc.readFile(element.url);
+            let parsedRoute = JSON.parse(content);
 
             this.setState((state) => ({
 
-                routeList: state.routesList.push({name: element.name, url: element.url})
+                routeList: state.routesList.push({name: element.name, url: element.url, route: parsedRoute})
 
             }));
 
-        });
+        }
 
     }
 
@@ -257,10 +259,12 @@ class RoutesSideBar extends Component {
 
             list.push(<MapRoute key={i}{...{
 
-                route: {
+                routeWrapper: {
                     name: this.state.routesList[i].name,
 
                     url: this.state.routesList[i].url,
+
+                    route: this.state.routesList[i].route,
 
                     showRoute: this.showRoute,
 
