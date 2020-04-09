@@ -43,9 +43,9 @@
     "viade": "http://arquisoft.github.io/viadeSpec/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
-  "name": "Route 1",
+  "name": "RIP Viade",
   "author": "https://inadover.inrupt.net/profile/card#me",
-  "description": "Test route for our app",
+  "description": "Test route 2 for our app",
   "comments": "",
   "waypoints": [],
   "points": [

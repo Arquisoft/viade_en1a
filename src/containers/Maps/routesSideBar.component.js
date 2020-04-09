@@ -102,7 +102,7 @@ class RoutesSideBar extends Component {
     async onClickHandler() {
 
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "public/routes/";
+        var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
 
         if (!await this.fc.itemExists(url)) {
 
@@ -170,7 +170,7 @@ class RoutesSideBar extends Component {
     async getPodRoutes() {
 
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "public/routes/";
+        var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
 
         let folder = await this.fc.readFolder(url);
 
@@ -208,7 +208,7 @@ class RoutesSideBar extends Component {
     async addMediaToRoute(routeWrapper, event) {
         const mediaElements = [...event.target.files];
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "public/media/";
+        var url = session.webId.split("profile/card#me")[0] + "viade/resources/";
 
         if (!await this.fc.itemExists(url)) {
             await this.fc.createFolder(url);
