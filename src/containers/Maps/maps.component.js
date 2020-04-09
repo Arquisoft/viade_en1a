@@ -78,7 +78,7 @@ class SimpleMap extends Component {
         for (let i = 0; i < route.points.length; i++) {
             let routePoint = route.points[i];
             let pointCoordinates = [routePoint.longitude, routePoint.latitude, routePoint.elevation];
-            parsedRoute.features[0].coordinates.push(pointCoordinates);
+            parsedRoute.features[0].geometry.coordinates.push(pointCoordinates);
         }
         for (let i = 0; i < route.waypoints.length; i++) {
             let routeWaypoint = route.waypoints[i];

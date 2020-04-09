@@ -167,28 +167,30 @@ class RoutesSideBar extends Component {
     }
 
 
-    getPodRoutes = async () => {
+    async getPodRoutes() {
 
         var session = await auth.currentSession();
         var url = session.webId.split("profile/card#me")[0] + "public/routes/";
 
         let folder = await this.fc.readFolder(url);
 
-        for (const element of folder.files) {
-            let content = await this.fc.readFile(element.url);
-            let parsedRoute = JSON.parse(content);
-            console.log(element.name);
+        folder.files.forEach((element) => {
+
             this.setState((state) => ({
-                routeList: state.routesList.push({name: element.name, url: element.url, route: parsedRoute})
+
+                routeList: state.routesList.push({name: element.name, url: element.url})
 
             }));
 
-        }
+        });
 
     }
 
     showRoute = async (routeWrapper) => {
-        this.setState(this.state.selectedRoute = routeWrapper, this.props.show(routeWrapper.route));
+        let content = await this.fc.readFile(routeWrapper.url);
+        let parsedRoute = JSON.parse(content);
+
+        this.setState(this.state.selectedRoute = routeWrapper, this.props.show(parsedRoute));
 
     };
 
@@ -235,8 +237,8 @@ class RoutesSideBar extends Component {
 
     };
 
-    async deleteSharedRoute(routeWrapper) {
-        await this.fc.deleteFile(routeWrapper.url);
+    async deleteSharedRoute(route) {
+        await this.fc.deleteFile(route.url);
 
         this.onClearArray();
 
@@ -252,16 +254,13 @@ class RoutesSideBar extends Component {
         let list = [];
 
         for (let i = 0; i < this.state.routesList.length; i++) {
-            let routeContainer = this.state.routesList[i];
 
             list.push(<MapRoute key={i}{...{
 
-                routeWrapper: {
-                    name: routeContainer.name,
+                route: {
+                    name: this.state.routesList[i].name,
 
-                    url: routeContainer.url,
-
-                    route: routeContainer.route,
+                    url: this.state.routesList[i].url,
 
                     showRoute: this.showRoute,
 
