@@ -30,7 +30,7 @@ export const MapRoute = (props) => {
     return (
         <StyledMapRoute>
             <Dropdown as={ButtonGroup}>
-                <Button variant="success" onClick={showRoute}>{route.name}</Button>
+                <Button variant="success" onClick={showRoute}>{route.route.name}</Button>
 
                 <Dropdown.Toggle split variant="success" id="dropdown-split-basic"/>
 

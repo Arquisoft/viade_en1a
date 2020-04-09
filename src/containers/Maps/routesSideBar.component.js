@@ -167,34 +167,33 @@ class RoutesSideBar extends Component {
     }
 
 
-    async getPodRoutes() {
+    getPodRoutes = async () => {
 
         var session = await auth.currentSession();
         var url = session.webId.split("profile/card#me")[0] + "public/routes/";
 
         let folder = await this.fc.readFolder(url);
 
-        folder.files.forEach((element) => {
-
+        for (const element of folder.files) {
+            let content = await this.fc.readFile(element.url);
+            let parsedRoute = JSON.parse(content);
+            console.log(element.name);
             this.setState((state) => ({
-
-                routeList: state.routesList.push({ name: element.name, url: element.url })
+                routeList: state.routesList.push({name: element.name, url: element.url, route: parsedRoute})
 
             }));
 
-        });
+        }
 
     }
 
-    showRoute = async (route) => {
-        let content = await this.fc.readFile(route.url);
-        let parsedRoute = JSON.parse(content);
-        this.setState(this.state.selectedRoute = route, this.props.show(parsedRoute));
+    showRoute = async (routeWrapper) => {
+        this.setState(this.state.selectedRoute = routeWrapper, this.props.show(routeWrapper.route));
 
     };
 
-    async deleteRoute(route) {
-        await this.fc.deleteFile(route.url);
+    async deleteRoute(routeWrapper) {
+        await this.fc.deleteFile(routeWrapper.url);
 
         this.onClearArray();
 
@@ -202,7 +201,7 @@ class RoutesSideBar extends Component {
         this.getSharedRoutes();
     }
 
-    async addMediaToRoute(route, event) {
+    async addMediaToRoute(routeWrapper, event) {
         const mediaElements = [...event.target.files];
         var session = await auth.currentSession();
         var url = session.webId.split("profile/card#me")[0] + "public/media/";
@@ -226,8 +225,8 @@ class RoutesSideBar extends Component {
         this.getPodRoutes();
 
     }
-	
-    showSharedRoute = async (route) => {
+
+    showSharedRoute = async (routeWrapper) => {
         //console.log("Not implemented.")
 
         //example of how to get content of the shared message
@@ -236,8 +235,8 @@ class RoutesSideBar extends Component {
 
     };
 
-    async deleteSharedRoute(route) {
-        await this.fc.deleteFile(route.url);
+    async deleteSharedRoute(routeWrapper) {
+        await this.fc.deleteFile(routeWrapper.url);
 
         this.onClearArray();
 
@@ -253,13 +252,16 @@ class RoutesSideBar extends Component {
         let list = [];
 
         for (let i = 0; i < this.state.routesList.length; i++) {
+            let routeContainer = this.state.routesList[i];
 
             list.push(<MapRoute key={i}{...{
 
-                route: {
-                    name: this.state.routesList[i].name,
+                routeWrapper: {
+                    name: routeContainer.name,
 
-                    url: this.state.routesList[i].url,
+                    url: routeContainer.url,
+
+                    route: routeContainer.route,
 
                     showRoute: this.showRoute,
 

@@ -20,8 +20,8 @@ class SimpleMap extends Component {
         this.state = {
             url: "https://storage.googleapis.com/mapsdevsite/json/google.json",
             route: "",
-			features: [],
-			center: [43.358756869202914, -5.861785411834717]
+            features: [],
+            center: [43.358756869202914, -5.861785411834717]
         }
     }
 
@@ -41,24 +41,68 @@ class SimpleMap extends Component {
     };
 
     loadMap = () => {
-		this.setState({features: this.map.data.addGeoJson(this.state.route)});
+        this.setState({features: this.map.data.addGeoJson(this.state.route)});
         this.map.data.setMap(this.map);
     };
 
     log = () => {
         console.log(this.state.url);
     };
-	
-	deleteOldRoute = () => {
-		for (var i = 0; i < this.state.features.length; i++)
+
+    deleteOldRoute = () => {
+        for (var i = 0; i < this.state.features.length; i++)
             this.map.data.remove(this.state.features[i]);
-	}
-	
-    show = (parsedRoute) => {
-		let latitude = parsedRoute.features[0].geometry.coordinates[0][1];
-		let longitude = parsedRoute.features[0].geometry.coordinates[0][0];
-		this.deleteOldRoute();
+    };
+
+    show = (route) => {
+        let parsedRoute = this.convertToGeoJSON(route);
+        let latitude = parsedRoute.features[0].geometry.coordinates[0][1];
+        let longitude = parsedRoute.features[0].geometry.coordinates[0][0];
+        this.deleteOldRoute();
         this.setState({route: parsedRoute, center: [latitude, longitude]}, this.loadMap);
+    };
+
+    convertToGeoJSON = (route) => {
+        let parsedRoute = {
+            type: "FeatureCollection",
+            features: [
+                {
+                    type: "Feature",
+                    properties: {},
+                    geometry: {
+                        type: "LineString",
+                        coordinates: []
+                    }
+                }]
+        };
+        for (let i = 0; i < route.points.length; i++) {
+            let routePoint = route.points[i];
+            let pointCoordinates = [routePoint.longitude, routePoint.latitude, routePoint.elevation];
+            parsedRoute.features[0].coordinates.push(pointCoordinates);
+        }
+        for (let i = 0; i < route.waypoints.length; i++) {
+            let routeWaypoint = route.waypoints[i];
+            let wayPoint = {
+
+                type: "Feature",
+                properties: {
+                    name: routeWaypoint.name,
+                    description: routeWaypoint.description,
+                },
+                geometry: {
+                    type: "Point",
+                    coordinates: [
+                        routeWaypoint.longitude,
+                        routeWaypoint.latitude,
+                        routeWaypoint.elevation
+                    ]
+                }
+
+            }
+            parsedRoute.features.push(wayPoint);
+        }
+
+        return parsedRoute;
     };
 
     render() {
@@ -70,9 +114,9 @@ class SimpleMap extends Component {
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
                         defaultZoom={12}
                         yesIWantToUseGoogleMapApiInternals={true}
-						center={this.state.center}
+                        center={this.state.center}
                         onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
-						
+
                     >
                         <MyMarker
                             lat={43.358756869202914}
@@ -84,6 +128,8 @@ class SimpleMap extends Component {
             </div>
         );
     }
+
+
 }
 
 
