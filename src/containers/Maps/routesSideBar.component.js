@@ -41,8 +41,6 @@ class RoutesSideBar extends Component {
 
             sharedRoutes: [],
 
-            selectedRoute: null
-
         };
 
 
@@ -190,7 +188,7 @@ class RoutesSideBar extends Component {
 
     showRoute = async (routeWrapper) => {
         let routeData = routeWrapper.route;
-        this.setState(this.state.selectedRoute = routeWrapper, this.props.show(routeData));
+        this.props.show(routeData);
 
     };
 
