@@ -10,27 +10,27 @@ const StyledMapRoute = styled.div`
 `;
 
 export const MapRoute = (props) => {
-    const {route} = props;
-    const url = "#/share?route=" + route.name;
+    const {routeWrapper} = props;
+    const url = "#/share?route=" + routeWrapper.name;
     const {t} = useTranslation();
 
     function showRoute() {
-        route.showRoute(route);
+        routeWrapper.showRoute(routeWrapper);
     }
 
     function deleteRoute() {
-        route.deleteRoute(route);
+        routeWrapper.deleteRoute(routeWrapper);
     }
 
     function addMedia(event) {
-        route.addMediaToRoute(route, event);
+        routeWrapper.addMediaToRoute(routeWrapper, event);
     }
 
 
     return (
         <StyledMapRoute>
             <Dropdown as={ButtonGroup}>
-                <Button variant="success" onClick={showRoute}>{route.name}</Button>
+                <Button variant="success" onClick={showRoute}>{routeWrapper.route.name}</Button>
 
                 <Dropdown.Toggle split variant="success" id="dropdown-split-basic"/>
 

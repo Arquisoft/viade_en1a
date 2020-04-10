@@ -102,7 +102,7 @@ class RoutesSideBar extends Component {
     async onClickHandler() {
 
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "public/routes/";
+        var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
 
         if (!await this.fc.itemExists(url)) {
 
@@ -170,31 +170,31 @@ class RoutesSideBar extends Component {
     async getPodRoutes() {
 
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "public/routes/";
+        var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
 
         let folder = await this.fc.readFolder(url);
 
-        folder.files.forEach((element) => {
+        for (let element of folder.files) {
+            let content = await this.fc.readFile(element.url.toString());
+            let parsedRoute = JSON.parse(content);
 
             this.setState((state) => ({
 
-                routeList: state.routesList.push({ name: element.name, url: element.url })
+                routeList: state.routesList.push({name: element.name, url: element.url, route: parsedRoute})
 
             }));
 
-        });
+        }
 
     }
 
-    showRoute = async (route) => {
-        let content = await this.fc.readFile(route.url);
-        let parsedRoute = JSON.parse(content);
-        this.setState(this.state.selectedRoute = route, this.props.show(parsedRoute));
+    showRoute = async (routeWrapper) => {
+        this.setState(this.state.selectedRoute = routeWrapper, routeWrapper.route);
 
     };
 
-    async deleteRoute(route) {
-        await this.fc.deleteFile(route.url);
+    async deleteRoute(routeWrapper) {
+        await this.fc.deleteFile(routeWrapper.url);
 
         this.onClearArray();
 
@@ -202,10 +202,10 @@ class RoutesSideBar extends Component {
         this.getSharedRoutes();
     }
 
-    async addMediaToRoute(route, event) {
+    async addMediaToRoute(routeWrapper, event) {
         const mediaElements = [...event.target.files];
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "public/media/";
+        var url = session.webId.split("profile/card#me")[0] + "viade/resources/";
 
         if (!await this.fc.itemExists(url)) {
             await this.fc.createFolder(url);
@@ -226,8 +226,8 @@ class RoutesSideBar extends Component {
         this.getPodRoutes();
 
     }
-	
-    showSharedRoute = async (route) => {
+
+    showSharedRoute = async (routeWrapper) => {
         //console.log("Not implemented.")
 
         //example of how to get content of the shared message
@@ -253,13 +253,15 @@ class RoutesSideBar extends Component {
         let list = [];
 
         for (let i = 0; i < this.state.routesList.length; i++) {
-
+            let routeTemp = this.state.routesList[parseInt(i)];
             list.push(<MapRoute key={i}{...{
 
-                route: {
-                    name: this.state.routesList[i].name,
+                routeWrapper: {
+                    name: routeTemp.name,
 
-                    url: this.state.routesList[i].url,
+                    url: routeTemp.url,
+
+                    route: routeTemp.route,
 
                     showRoute: this.showRoute,
 
@@ -291,7 +293,7 @@ class RoutesSideBar extends Component {
 
             list.push(<SharedRoute key={i}{...{
 
-                route: {
+                routeWrapper: {
                     name: rName,
 
                     url: rUrl,
