@@ -287,12 +287,12 @@ class RoutesSideBar extends Component {
         for (let i = 0; i < this.state.sharedRoutes.length; i++) {
 
             let rName = this.state.sharedRoutes[parseInt(i)].name;
-
+            
             let rUrl = this.state.sharedRoutes[parseInt(i)].url;
 
             list.push(<SharedRoute key={i}{...{
 
-                routeWrapper: {
+                route: {
                     name: rName,
 
                     url: rUrl,
@@ -303,7 +303,7 @@ class RoutesSideBar extends Component {
 
                 }
 
-            }} />);
+            }}/>);
 
         }
 
