@@ -30,8 +30,8 @@ export class NotificationsComponent extends Component {
 
 
         for (let index = 0; index < inboxFolder.files.length; index++) {
-            var name = await this.getFullNotification(inboxFolder.files[index].url);
-            this.state.notifications.push({name: name, url: inboxFolder.files[index].url});
+            var name = await this.getFullNotification(inboxFolder.files[parseInt(index)].url);
+            this.state.notifications.push({name: name, url: inboxFolder.files[parseInt(index)].url});
         }
 
         let notifications = [...this.state.notifications];
