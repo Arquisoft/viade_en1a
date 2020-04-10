@@ -43,7 +43,7 @@ export class NotificationsComponent extends Component {
     async getFullNotification(url) {
         let myUrl = url.toString();
       
-        let fol = await this.fc.readFile(myUrl.toString());
+        let fol = await this.fc.readFile(myUrl);
         let getSchem = fol.split("<>");
         let getImportant = getSchem[1].split("text");
         let theUrl = getImportant[1].split("\"")[1];
