@@ -159,7 +159,8 @@ class RoutesSideBar extends Component {
 
         for (let index = 0; index < folderShared.files.length; index++) {
             var name = await this.getFullNotification(folderShared.files[parseInt(index)].url.toString());
-            this.state.sharedRoutes.push({name: name, url: folderShared.files[parseInt(index)].url});
+            let url = folderShared.files[parseInt(index)].url;
+            this.state.sharedRoutes.push({name, url});
         }
 
         let sharedRoutes = [...this.state.sharedRoutes];
