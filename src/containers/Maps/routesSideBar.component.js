@@ -174,7 +174,7 @@ class RoutesSideBar extends Component {
 
         let folder = await this.fc.readFolder(url);
 
-        for (const element of folder.files) {
+        for (let element of folder.files) {
             let content = await this.fc.readFile(element.url);
             let parsedRoute = JSON.parse(content);
 
@@ -189,10 +189,7 @@ class RoutesSideBar extends Component {
     }
 
     showRoute = async (routeWrapper) => {
-        let content = await this.fc.readFile(routeWrapper.url);
-        let parsedRoute = JSON.parse(content);
-
-        this.setState(this.state.selectedRoute = routeWrapper, this.props.show(parsedRoute));
+        this.setState(this.state.selectedRoute = routeWrapper, routeWrapper.route);
 
     };
 

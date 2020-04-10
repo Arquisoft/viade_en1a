@@ -76,12 +76,12 @@ class SimpleMap extends Component {
                 }]
         };
         for (let i = 0; i < route.points.length; i++) {
-            let routePoint = route.points[i];
+            let routePoint = route.points[parseInt(i)];
             let pointCoordinates = [routePoint.longitude, routePoint.latitude, routePoint.elevation];
             parsedRoute.features[0].geometry.coordinates.push(pointCoordinates);
         }
         for (let i = 0; i < route.waypoints.length; i++) {
-            let routeWaypoint = route.waypoints[i];
+            let routeWaypoint = route.waypoints[parseInt(i)];
             let wayPoint = {
 
                 type: "Feature",
