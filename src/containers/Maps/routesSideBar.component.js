@@ -253,15 +253,15 @@ class RoutesSideBar extends Component {
         let list = [];
 
         for (let i = 0; i < this.state.routesList.length; i++) {
-
+            let routeTemp = this.state.routesList[parseInt(i)];
             list.push(<MapRoute key={i}{...{
 
                 routeWrapper: {
-                    name: this.state.routesList[i].name,
+                    name: routeTemp.name,
 
-                    url: this.state.routesList[i].url,
+                    url: routeTemp.url,
 
-                    route: this.state.routesList[i].route,
+                    route: routeTemp.route,
 
                     showRoute: this.showRoute,
 
