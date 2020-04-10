@@ -13,7 +13,7 @@ class ShareRoutesComponent extends Component<Props> {
         super(props);
 
         this.state = {
-            friends: props.friends,
+            friends: [],
             route: null
         };
         this.fc = new FC(auth);
@@ -69,7 +69,7 @@ class ShareRoutesComponent extends Component<Props> {
     async getRoute(){
         var name = this.getRouteName();
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "routes/";
+        var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
         var file = await this.fc.readFile(url + name);
         if (file != null){
             this.setState({route: file});

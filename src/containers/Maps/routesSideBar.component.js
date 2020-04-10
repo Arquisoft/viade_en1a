@@ -189,7 +189,8 @@ class RoutesSideBar extends Component {
     }
 
     showRoute = async (routeWrapper) => {
-        this.setState(this.state.selectedRoute = routeWrapper, routeWrapper.route);
+        let routeData = routeWrapper.route;
+        this.setState(this.state.selectedRoute = routeWrapper, this.props.show(routeData));
 
     };
 
