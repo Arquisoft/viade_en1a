@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FS from "solid-file-client";
+import FC from "solid-file-client";
 import auth from "solid-auth-client";
 
 import {Notis} from "./Notis";
@@ -18,7 +18,7 @@ export class NotificationsComponent extends Component {
         this.getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
         this.getNotificationsFromInbox();
         
-        this.fc = new FS(auth);
+        this.fc = new FC(auth);
 
     }
 
@@ -41,9 +41,9 @@ export class NotificationsComponent extends Component {
     }
 
     async getFullNotification(url) {
-        let myUrl = url.toString();
-      
-        let fol = await this.fc.readFile(myUrl);
+        let myUrl = ""+ url.toString();
+        
+        let fol = await this.fc.readFile(myUrl+"");
         let getSchem = fol.split("<>");
         let getImportant = getSchem[1].split("text");
         let theUrl = getImportant[1].split("\"")[1];
