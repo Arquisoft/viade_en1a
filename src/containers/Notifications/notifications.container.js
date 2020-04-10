@@ -41,21 +41,20 @@ export class NotificationsComponent extends Component {
 
     async getFullNotification(url) {
         let fol = await this.fc.readFile(url);
-        let getSchem = fol.split("<>")
-        let getImportant = getSchem[1].split("text")
-        let theUrl = getImportant[1].split("\"")[1]
-        let theSplitUrl = theUrl.split("/")
+        let getSchem = fol.split("<>");
+        let getImportant = getSchem[1].split("text");
+        let theUrl = getImportant[1].split("\"")[1];
+        let theSplitUrl = theUrl.split("/");
 
-        let name = theSplitUrl[theSplitUrl.length-1]
+        let name = theSplitUrl[theSplitUrl.length-1];
 
-        let fullLabel = getImportant[1].split("\"")[3]
+        let fullLabel = getImportant[1].split("\"")[3];
         //let sender = fullLabel.split("Shared route ")[1]
 
-        return fullLabel +" ("+name+")"
+        return fullLabel +" ("+name+")";
     }
 
     listNotifications = () => {
-        console.log("hi");
 
         let list = [];
 
