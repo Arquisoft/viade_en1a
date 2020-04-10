@@ -227,9 +227,9 @@ class RoutesSideBar extends Component {
             list.push(<MapRoute key={i}{...{
 
                 route: {
-                    name: this.state.routesList[i].name,
+                    name: this.state.routesList[parseInt(i)].name,
 
-                    url: this.state.routesList[i].url,
+                    url: this.state.routesList[parseInt(i)].url,
 
                     showRoute: this.showRoute,
 
