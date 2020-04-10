@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FC from "solid-file-client";
+import FS from "solid-file-client";
 import auth from "solid-auth-client";
 
 import {Notis} from "./Notis";
@@ -18,7 +18,7 @@ export class NotificationsComponent extends Component {
         this.getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
         this.getNotificationsFromInbox();
         
-        this.fc = new FC(auth);
+        this.fc = new FS(auth);
 
     }
 
