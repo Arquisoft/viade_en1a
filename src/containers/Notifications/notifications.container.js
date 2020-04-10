@@ -13,6 +13,8 @@ export class NotificationsComponent extends Component {
             notifications: [],
         };
 
+        this.getFullNotification = this.getFullNotification.bind(this);
+
         this.getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
         this.getNotificationsFromInbox();
         
@@ -26,16 +28,14 @@ export class NotificationsComponent extends Component {
 
         let inboxFolder = await this.fc.readFolder(inbox);
 
-        inboxFolder.files.forEach( (elementShared) => {
-            
-            this.getFullNotification(elementShared.url);
-            this.state.notifications.push({name: elementShared.name, url: elementShared.url});
 
-        });
+        for (let index = 0; index < inboxFolder.files.length; index++) {
+            var name = await this.getFullNotification(inboxFolder.files[index].url);
+            this.state.notifications.push({name: name, url: inboxFolder.files[index].url});
+        }
 
         let notifications = [...this.state.notifications];
         this.setState({notifications});
-
 
     }
 
@@ -49,13 +49,13 @@ export class NotificationsComponent extends Component {
         let name = theSplitUrl[theSplitUrl.length-1]
 
         let fullLabel = getImportant[1].split("\"")[3]
-        let sender = fullLabel.split("Shared route ")[1]
+        //let sender = fullLabel.split("Shared route ")[1]
 
-
-        console.log(fullLabel +" ("+name+")")
+        return fullLabel +" ("+name+")"
     }
 
     listNotifications = () => {
+        console.log("hi");
 
         let list = [];
 
