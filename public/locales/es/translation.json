@@ -254,12 +254,13 @@
     "yourRoutes": "Tus rutas",
     "uploadToPOD": "Subir a tu POD",
     "hereYourRoutes": "Tus rutas aquí",
-	"sharedRoutes": "Rutas compartidas",
+    "sharedRoutes": "Rutas compartidas",
     "clear": "Limpiar",
     "share": "Compartir",
     "delete": "Borrar",
-    "cancel" : "Cancelar",
-    "shared" : "Compartido"
+    "cancel": "Cancelar",
+    "shared": "Compartido",
+    "addMedia": "Añadir multimedia"
   },
   "alt":{
     "friend": "Amigo"

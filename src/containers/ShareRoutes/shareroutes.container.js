@@ -13,7 +13,7 @@ class ShareRoutesComponent extends Component<Props> {
         super(props);
 
         this.state = {
-            friends: [],
+            friends: props.friends,
             route: null
         };
         this.fc = new FC(auth);
