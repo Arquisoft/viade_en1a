@@ -15,6 +15,16 @@ describe.only("RouteComponent", () => {
 
   };
 
+  const route = {
+
+    name: "Nombre ruta",
+
+    url: "url",
+
+    route: "route"
+
+  };
+
   it("MapRoute renders without crashing", () => {
       afterAll(cleanup);
       const {container} = render(<MapRoute {...{routeWrapper}} />);
