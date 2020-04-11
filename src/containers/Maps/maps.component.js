@@ -118,11 +118,6 @@ class SimpleMap extends Component {
                         onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
 
                     >
-                        <MyMarker
-                            lat={43.358756869202914}
-                            lng={-5.861785411834717}
-                            icon={<Icon.Home/>}
-                        />
                     </GoogleMapReact>
                 </div>
             </div>

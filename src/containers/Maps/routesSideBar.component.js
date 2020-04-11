@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 import FC from "solid-file-client";
 
 import auth from "solid-auth-client";
 
-import { MapsSideBar } from "./maps.style";
+import {MapsSideBar} from "./maps.style";
 
 import styled from "styled-components";
 
-import { MapRoute } from "./components";
-import { SharedRoute } from "./shared";
+import {MapRoute} from "./components";
+import {SharedRoute} from "./shared";
 
-import { Button } from "react-bootstrap";
-import { withTranslation } from "react-i18next";
+import {Button} from "react-bootstrap";
+import {withTranslation} from "react-i18next";
 
 
 const StyledRoutesSidebar = styled.div`
@@ -120,12 +120,19 @@ class RoutesSideBar extends Component {
 
         });
 
+        const {t} = this.props;
+
         document.getElementById("btnPod").innerHTML = "Uploaded";
 
         document.getElementById("btnPod").disabled = true;
 
 
-        this.getPodRoutes();
+        await this.getPodRoutes();
+        await this.getSharedRoutes();
+
+        document.getElementById("btnPod").innerHTML = t("routes.uploadToPOD");
+
+        document.getElementById("btnPod").disabled = false;
 
     }
 
@@ -197,8 +204,7 @@ class RoutesSideBar extends Component {
         let fol = await this.fc.readFile(url.toString());
         let getSchem = fol.split("<>");
         let urlText = getSchem[1].split("text");
-        let routeURL = urlText[1].split("\"")[1];
-        return routeURL;
+        return urlText[1].split("\"")[1];
 
     }
 
@@ -234,8 +240,8 @@ class RoutesSideBar extends Component {
 
         this.onClearArray();
 
-        this.getPodRoutes();
-        this.getSharedRoutes();
+        await this.getPodRoutes();
+        await this.getSharedRoutes();
     }
 
     async addMediaToRoute(routeWrapper, event) {
@@ -259,7 +265,8 @@ class RoutesSideBar extends Component {
 
         });
 
-        this.getPodRoutes();
+        await this.getPodRoutes();
+        await this.getSharedRoutes();
 
     }
 
@@ -274,8 +281,8 @@ class RoutesSideBar extends Component {
 
         this.onClearArray();
 
-        this.getPodRoutes();
-        this.getSharedRoutes();
+        await this.getPodRoutes();
+        await this.getSharedRoutes();
 
         //you cant delete on inbox??
     }
