@@ -154,14 +154,21 @@ class RoutesSideBar extends Component {
         var urlShared = session.webId.split("profile/card#me")[0] + "inbox/";
 
         let folderShared = await this.fc.readFolder(urlShared);
+        for (let sharedElement of folderShared.files) {
+            var name = await this.getFullNotification(sharedElement.url.toString());
+            let url = sharedElement.url;
 
-        for (let index = 0; index < folderShared.files.length; index++) {
-            var name = await this.getFullNotification(folderShared.files[parseInt(index)].url.toString());	  
-            let url = folderShared.files[parseInt(index)].url;	
-            this.state.sharedRoutes.push({name, url});	
-        }	
+            let routeUrl = await this.getSharedRoute(url);
+            console.log(routeUrl)
+            let content = await this.fc.readFile(routeUrl.toString());
 
-        let sharedRoutes = [...this.state.sharedRoutes];	
+            console.log(content);
+            let route = JSON.parse(content);
+
+            this.state.sharedRoutes.push({name, url, route});
+        }
+
+        let sharedRoutes = [...this.state.sharedRoutes];
         this.setState({sharedRoutes});
 
     }
@@ -175,17 +182,25 @@ class RoutesSideBar extends Component {
         let theSplitUrl = theUrl.split("/");	
 
 
-        let name = theSplitUrl[theSplitUrl.length-1];	        
+        let name = theSplitUrl[theSplitUrl.length-1];
 
-        let fullLabel = getImportant[1].split("\"")[3];	
-        let sender = fullLabel.split("Shared route ")[1];	
+        let fullLabel = getImportant[1].split("\"")[3];
+        let sender = fullLabel.split("Shared route ")[1];
         //console.log(name+" "+sender)	
 
 
-        return name+" "+sender;	
+        return name + " " + sender;
 
     }
 
+    async getSharedRoute(url) {
+        let fol = await this.fc.readFile(url.toString());
+        let getSchem = fol.split("<>");
+        let urlText = getSchem[1].split("text");
+        let routeURL = urlText[1].split("\"")[1];
+        return routeURL;
+
+    }
 
     async getPodRoutes() {
 
@@ -249,11 +264,8 @@ class RoutesSideBar extends Component {
     }
 
     showSharedRoute = async (routeWrapper) => {
-        //console.log("Not implemented.")
-
-        //example of how to get content of the shared message
-        //let content = await this.fc.readFile(route.url);
-        //console.log(content)
+        let routeData = routeWrapper.route;
+        this.props.show(routeData);
 
     };
 
@@ -308,16 +320,16 @@ class RoutesSideBar extends Component {
 
         for (let i = 0; i < this.state.sharedRoutes.length; i++) {
 
-            let rName = this.state.sharedRoutes[parseInt(i)].name;
-            
-            let rUrl = this.state.sharedRoutes[parseInt(i)].url;
+            let sharedRoute = this.state.sharedRoutes[parseInt(i)];
 
             list.push(<SharedRoute key={i}{...{
 
-                route: {
-                    name: rName,
+                routeWrapper: {
+                    name: sharedRoute.name,
 
-                    url: rUrl,
+                    url: sharedRoute.url,
+
+                    route: sharedRoute.route,
 
                     showRoute: this.showSharedRoute,
 
