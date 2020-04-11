@@ -11,13 +11,7 @@ describe.only("RouteComponent", () => {
 
       url: "url",
 
-      route: "route",
-
-      showRoute: "showRoute",
-
-      shareRoute: "shareRoute",
-
-      deleteRoute: "deleteRoute"
+      route: "route"
 
   };
 
@@ -31,7 +25,7 @@ describe.only("RouteComponent", () => {
 
   it("SharedRoute renders without crashing", () => {
     afterAll(cleanup);
-      const {container} = render(<SharedRoute {...{routeWrapper}} />);
+      const {container} = render(<SharedRoute {...{route}} />);
     expect(container).toBeTruthy();
   });
 
