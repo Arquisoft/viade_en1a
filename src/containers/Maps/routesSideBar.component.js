@@ -130,7 +130,7 @@ class RoutesSideBar extends Component {
         await this.getPodRoutes();
         await this.getSharedRoutes();
 
-        document.getElementById("btnPod").innerHTML = t("routes.uploadToPOD");
+        document.getElementById("btnPod").innerHTML = t("routes.uploadToPOD").toString();
 
         document.getElementById("btnPod").disabled = false;
 
@@ -147,7 +147,6 @@ class RoutesSideBar extends Component {
 
             var obj = JSON.parse(fileReader.result);
 
-            console.log(obj.routeName);
 
             return obj.routeName;
 
@@ -166,10 +165,9 @@ class RoutesSideBar extends Component {
             let url = sharedElement.url;
 
             let routeUrl = await this.getSharedRoute(url);
-            console.log(routeUrl)
+
             let content = await this.fc.readFile(routeUrl.toString());
 
-            console.log(content);
             let route = JSON.parse(content);
 
             this.state.sharedRoutes.push({name, url, route});
@@ -193,7 +191,6 @@ class RoutesSideBar extends Component {
 
         let fullLabel = getImportant[1].split("\"")[3];
         let sender = fullLabel.split("Shared route ")[1];
-        //console.log(name+" "+sender)	
 
 
         return name + " " + sender;
@@ -260,7 +257,6 @@ class RoutesSideBar extends Component {
 
             if (!await this.fc.itemExists(url + element.name)) {
                 await this.fc.createFile(url + element.name, element, "text/plain");
-                //console.log(element.name + " uploaded");
             }
 
         });
