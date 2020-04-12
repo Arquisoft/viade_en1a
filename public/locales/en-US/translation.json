@@ -261,7 +261,8 @@
     "delete": "Delete",
     "cancel": "Cancel",
     "shared": "Shared",
-    "addMedia": "Add media"
+    "addMedia": "Add media",
+	"galery": "Galery"
   },
   "alt":{
     "friend": "Friend"

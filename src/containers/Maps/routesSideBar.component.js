@@ -241,6 +241,18 @@ class RoutesSideBar extends Component {
                 await this.fc.createFile(url + element.name, element, "text/plain");
                 //console.log(element.name + " uploaded");
             }
+            routeWrapper.route.media[0] = url + element.name;
+            alert(routeWrapper.route.name + "" + routeWrapper.route.media[0]) // finish this then show images
+            // update in pod
+            
+            //this.fc.createFile(routeWrapper.url, routeWrapper.route, "json");
+            /*this.fc.fetch(routeWrapper.url, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'json'
+                  },
+                body: routeWrapper.route
+                }) */
 
         });
 
