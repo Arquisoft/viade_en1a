@@ -148,7 +148,7 @@ class SimpleMap extends Component {
                         />
                     </GoogleMapReact>
                     <h2>{t("routes.galery")}</h2>
-                    <Carousel height='auto' dragging='true'>
+                    <Carousel height='auto' dragging={true}>
                         { this.state.galery }
                     </Carousel>
                 </div>
