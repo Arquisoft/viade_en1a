@@ -94,13 +94,16 @@ Contained Building Blocks::
 [plantuml,"Models",png]
 ----
 package "Viade Models" {
-
-    [Friends] as Friends
-
     [Routes] as Routes
+}
 
+package "Solid Models" {
+    [Friends] as Friends
     [Notifications] as Notifications
 }
+
+Friends --> Friends :Sends --> Routes
+Notifications --> Routes :Include
 ----
 
 Let's explore the main models for the viade app
@@ -126,6 +129,8 @@ Friends are native elements to solid, friends are added trought the user's POD i
 
 Notifications::
 Notifications are used for alerting users of new routes that have been shared with them by friends.
+
+==== 
 
 [role="arc42help"]
 ****
