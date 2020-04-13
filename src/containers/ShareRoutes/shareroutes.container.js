@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import data from '@solid/query-ldflex';
-import { ShareRoutesPageContent } from './shareroutes.component';
-import auth from 'solid-auth-client';
-import FC from 'solid-file-client';
-import { namedNode } from '@rdfjs/data-model';
+import React, { Component } from "react";
+import data from "@solid/query-ldflex";
+import { ShareRoutesPageContent } from "./shareroutes.component";
+import auth from "solid-auth-client";
+import FC from "solid-file-client";
+import { namedNode } from "@rdfjs/data-model";
 import { withTranslation } from "react-i18next";
 import { FriendsContainer } from "../Friends/friends.style";
 
@@ -22,31 +22,31 @@ class ShareRoutesComponent extends Component<Props> {
 
     componentDidMount() {
         const { webId } = this.props;
-        if (webId) this.getProfileData();
+        if (webId) {this.getProfileData();}
     }
 
     componentDidUpdate(prevProps) {
         const { webId } = this.props;
-        if (webId && webId !== prevProps.webId) this.getProfileData();
+        if (webId && webId !== prevProps.webId) {this.getProfileData();}
     }
 
     getProfileData = async () => {
         this.setState({ isLoading: true });
         const { webId } = this.props;
 
-        const user = data[webId];
+        const user = data[parseInt(webId)];
 
         let friends = [];
 
         for await (const friend of user.friends) {
             const friendWebId = await friend.value;
 
-            const friend_data = data[friendWebId];
+            const friendData = data[parseInt(friendWebId)];
 
-            const nameLd = await friend_data.name;
+            const nameLd = await friendData.name;
 
             const name = nameLd && nameLd.value.trim().length > 0 ? nameLd.value : friendWebId.toString();
-            const imageLd = await friend_data.vcard_hasPhoto;
+            const imageLd = await friendData.vcard_hasPhoto;
 
             let image;
             if (imageLd && imageLd.value) {
@@ -55,13 +55,14 @@ class ShareRoutesComponent extends Component<Props> {
                 image = "img/noimg.svg";
             }
 
-            var friend_obj = {
-                "webId": friendWebId,
-                "name": name,
-                "image": image
+            let webId = friendWebId;
+            var friendObj = {
+                webId,
+                name,
+                image
             };
 
-            friends.push(friend_obj);
+            friends.push(friendObj);
         }
         this.setState({ friends });
     };
@@ -71,7 +72,7 @@ class ShareRoutesComponent extends Component<Props> {
         var session = await auth.currentSession();
         var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
         var file = await this.fc.readFile(url + name);
-        if (file != null){
+        if (file !== null){
             this.setState({route: file});
         }
     }
@@ -86,7 +87,6 @@ class ShareRoutesComponent extends Component<Props> {
             document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
             document.getElementById("btn"+friend.webId).disabled = true;
         }catch(error){
-            console.log(error);
             alert("Could not share the route");
         }
         
