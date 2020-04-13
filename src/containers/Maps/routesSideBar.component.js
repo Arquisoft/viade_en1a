@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 import FC from "solid-file-client";
 
 import auth from "solid-auth-client";
 
-import { MapsSideBar } from "./maps.style";
+import {MapsSideBar} from "./maps.style";
 
 import styled from "styled-components";
 
-import { MapRoute } from "./components";
-import { SharedRoute } from "./shared";
+import {MapRoute} from "./components";
+import {SharedRoute} from "./shared";
 
-import { Button } from "react-bootstrap";
-import { withTranslation } from "react-i18next";
+import {Button} from "react-bootstrap";
+import {withTranslation} from "react-i18next";
 
 
 const StyledRoutesSidebar = styled.div`
@@ -92,7 +92,7 @@ class RoutesSideBar extends Component {
 
         });
 
-        this.setState({ routes });
+        this.setState({routes});
 
     };
 
@@ -114,7 +114,6 @@ class RoutesSideBar extends Component {
 
         this.state.routes.forEach(async (route) => {
 
-            //var name = this.getRouteName(route);
 
             await this.fc.createFile(url + route.name, route, "text/plain");
 
@@ -177,23 +176,23 @@ class RoutesSideBar extends Component {
 
     }
 
-    async getFullNotification(url) {	            
-        let myUrl = url.toString();	
-        let fol = await this.fc.readFile(myUrl);	
-        let getSchem = fol.split("<>");	
-        let getImportant = getSchem[1].split("text");	
-        let theUrl = getImportant[1].split("\"")[1];	
-        let theSplitUrl = theUrl.split("/");	
+    async getFullNotification(url) {
+        let myUrl = url.toString();
+        let fol = await this.fc.readFile(myUrl);
+        let getSchem = fol.split("<>");
+        let getImportant = getSchem[1].split("text");
+        let theUrl = getImportant[1].split("\"")[1];
+        let theSplitUrl = theUrl.split("/");
 
 
-        let name = theSplitUrl[theSplitUrl.length-1];	        
+        let name = theSplitUrl[theSplitUrl.length - 1];
 
-        let fullLabel = getImportant[1].split("\"")[3];	
-        let sender = fullLabel.split("Shared route ")[1];	
+        let fullLabel = getImportant[1].split("\"")[3];
+        let sender = fullLabel.split("Shared route ")[1];
         //console.log(name+" "+sender)	
 
 
-        return name+" "+sender;	
+        return name + " " + sender;
 
     }
 
@@ -260,19 +259,14 @@ class RoutesSideBar extends Component {
             }
 
             // add media to route
-            let url = folderUrl + element.name;
+            let url = {url: folderUrl + element.name};
             routeWrapper.route.media.push(url);
 
-
-            // executing out of order
-            await this.fc.fetch(routeWrapper.url, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "json"
-                },
-                body: routeWrapper.route
-            });
         }
+        //Creates a new file and substitutes the old one
+        let routeJson = JSON.stringify(routeWrapper.route, null, 2)
+        await this.fc.createFile(routeWrapper.url, routeJson, "text/plain");
+
         await this.getPodRoutes();
         await this.getSharedRoutes();
     }
@@ -353,22 +347,22 @@ class RoutesSideBar extends Component {
 
 
     onClearArray = () => {
-        this.setState({ routesList: [] });
-        this.setState({ sharedRoutes: [] });
+        this.setState({routesList: []});
+        this.setState({sharedRoutes: []});
     };
 
 
     render() {
-        const { t } = this.props;
+        const {t} = this.props;
         return (
 
             <StyledRoutesSidebar>
 
-                <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple />
+                <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
 
 
                 <Button id="btnPod" disabled={!this.uploadedFiles} variant="primary" block
-                    onClick={this.onClickHandler.bind(this)}>{t("routes.uploadToPOD")}</Button>
+                        onClick={this.onClickHandler.bind(this)}>{t("routes.uploadToPOD")}</Button>
                 <MapsSideBar>
                     {t("routes.hereYourRoutes")}
                     {this.listRoutes()}
@@ -376,7 +370,7 @@ class RoutesSideBar extends Component {
                     {this.listShared()}
                 </MapsSideBar>
                 <Button variant="primary" block
-                    onClick={this.onClearArray}>{t("routes.clear")}</Button>
+                        onClick={this.onClearArray}>{t("routes.clear")}</Button>
             </StyledRoutesSidebar>
         );
 

@@ -15,7 +15,6 @@ class SimpleMap extends Component {
             features: [],
             center: [43.358756869202914, -5.861785411834717],
             galery: [],
-            zoom: 12
         }
     }
 
@@ -52,9 +51,8 @@ class SimpleMap extends Component {
         let parsedRoute = this.convertToGeoJSON(route);
         let latitude = parsedRoute.features[0].geometry.coordinates[0][1];
         let longitude = parsedRoute.features[0].geometry.coordinates[0][0];
-        let zoom = 16;
         this.deleteOldRoute();
-        this.setState({route: parsedRoute, center: [latitude, longitude], zoom: zoom}, this.loadMap);
+        this.setState({route: parsedRoute, center: [latitude, longitude]}, this.loadMap);
         this.createGalery(route);
     };
 
