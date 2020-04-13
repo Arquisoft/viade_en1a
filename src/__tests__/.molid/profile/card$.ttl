@@ -27,10 +27,12 @@ foaf:Person ;
     solid:account loc: ;
     solid:privateTypeIndex </settings/privateTypeIndex.ttl> ;
     solid:publicTypeIndex </settings/publicTypeIndex.ttl> ;
-    foaf:name "Victor Test" ;
+    foaf:name "POD Test" ;
+	foaf:hasPhoto <profilePic.png>;
     vcard:organization-name "Solid Community" ;
     vcard:role "Mock Profile" ;
-    foaf:img <https://i.pravatar.cc/300> ;
+    foaf:img <profilePic.png> ;
+	schem: knows n2:, dr:, in:;
     vcard:hasAddress :address .
 
 :address

@@ -22,6 +22,6 @@ describe.only("AuthNavBar", () => {
     expect(document.querySelectorAll("a[href='#/welcome']")).toBeTruthy();
     expect(document.querySelectorAll("a[href='#/maps']")).toBeTruthy();
     expect(document.querySelectorAll("a[href='#/friends']")).toBeTruthy();
-    expect(document.querySelectorAll("a[href='/#/notifications']")).toBeTruthy();
+    expect(document.querySelectorAll("a[href='#/notifications']")).toBeTruthy();
   });
 });
