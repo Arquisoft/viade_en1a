@@ -264,7 +264,7 @@ class RoutesSideBar extends Component {
 
         }
         //Creates a new file and substitutes the old one
-        let routeJson = JSON.stringify(routeWrapper.route, null, 2)
+        let routeJson = JSON.stringify(routeWrapper.route, null, 2);
         await this.fc.createFile(routeWrapper.url, routeJson, "text/plain");
 
         await this.getPodRoutes();
