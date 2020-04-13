@@ -43,4 +43,25 @@ Various options:
     | This is where the project's repository will be located, facilitating us coordinating and taking decissions. Using Git allows us to mantain a different set of branches, with different purposes (e.g., develop, release, master...).
     |Since this a 7 people teamwork, the usage of Git is unquestionable. While there are a bunch of Git hosts, Github is the most used and a feature rich one, meaning that there are no real reasons for using another alternative.
     |The usage of GitHub hardly has any disadvantage, aside from it's learning curve, which is not a huge problem.
+|*_Google Maps API_*  
+    | We decided to use this API to easily show an interactive world map in our application, and load
+    routes in it, so that users can visualize them.
+    |It is really easy to integrate in any web app, it also provides a great support for displaying routes using GeoJSON.
+    |The only disadvantage we can find is the need to use an API key, for which you will have to pay once you exceed the number of free requests. For the moment, this does not reprensent a problem for our application, since it is not being used massively.
+|*_GeoJSON_*  
+    | GeoJSON is an open standard, based in JSON, specifically designed for representing geographic elements.
+    |Those elements represented with this format can be directly shown in the Google API map, thanks to it Data Layer.
+    |It needs to be extended, since we need to add extra information to our rutes, e. g., pictures or a description.
+|*_JSON-LD_*  
+    | This provides a method for encoding Linked Data in a JSON format.
+    |JSON-LD, together with a concrete folder structure, allows us to archieve interoperability with other ViaDe apps in an easy way.
+    |This format can not be directly displayed in our map, but it is really easy to parse it into a GeoJSON format.
+|*_Molid_*  
+    | This package offers an easy way of implementing a complete mock Solid server locally, and simulate HTTP requests to it.
+    |Thanks to Molid, a sizable portion of our app can be easily tested without the need of a real POD and Internet conexion.
+    |You must create (or copy) and edit the necessary files, with the correct format, to simulate a real and functional POD.
+|*_LDflex_*  
+    | LDflex allows yo querying Linked Data from the Internet as if you were traversing a local JavaScript graph.
+    |With this package we can obtain, with an slight effort, information placed in files referred in the original file we are querying, for example, our friends' names.
+    |You are forced to fecth data in an asynchronous way, which leaded us to some problems, such as entering inifinite loops, or rendering views without contents.
 |===
