@@ -34,14 +34,14 @@ class ShareRoutesComponent extends Component<Props> {
         this.setState({ isLoading: true });
         const { webId } = this.props;
 
-        const user = data[parseInt(webId)];
+        const user = data[webId];
 
         let friends = [];
 
         for await (const friend of user.friends) {
             const friendWebId = await friend.value;
 
-            const friendData = data[parseInt(friendWebId)];
+            const friendData = data[friendWebId.toString()];
 
             const nameLd = await friendData.name;
 
@@ -110,11 +110,11 @@ class ShareRoutesComponent extends Component<Props> {
 
     async buildMessage(session, message){
         var mess = message.url;
-        await data[mess].schema$text.add(message.content);
-        await data[mess].rdfs$label.add(message.title);
-        await data[mess].schema$dateSent.add(message.date.toISOString());
-        await data[mess].rdf$type.add(namedNode('https://schema.org/Message'));
-        await data[mess].schema$sender.add(namedNode(session.webId));
+        await data[mess.toString()].schema$text.add(message.content);
+        await data[mess.toString()].rdfs$label.add(message.title);
+        await data[mess.toString()].schema$dateSent.add(message.date.toISOString());
+        await data[mess.toString()].rdf$type.add(namedNode('https://schema.org/Message'));
+        await data[mess.toString()].schema$sender.add(namedNode(session.webId));
     }
 
     async getSessionName(){
@@ -125,7 +125,7 @@ class ShareRoutesComponent extends Component<Props> {
 
     getRouteNameNoExtension(){
         var tmp = window.location.href.split("=")[1];
-        return tmp.substring(tmp.lastIndexOf('/') + 1);
+        return tmp.substring(tmp.lastIndexOf("/") + 1);
     }
 
     getRouteName(){
@@ -136,7 +136,7 @@ class ShareRoutesComponent extends Component<Props> {
         const { friends } = this.state;
         const share = {
             shareRoute: this.shareRoute.bind(this)
-        }
+        };
 
         return (
             <FriendsContainer className="card">
