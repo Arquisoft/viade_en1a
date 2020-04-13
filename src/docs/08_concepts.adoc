@@ -65,3 +65,15 @@ Storage device based on Solid that stores user data in a private and decentraliz
 * Storing routes. Both imported and tracked routes will be stored in the user's Solid POD. This also includes any multimedia the user has decided to add to the route.
 
 * Sharing routes with other users by allowing them to retrieve it and store them in their own PODs.
+
+=== Notification
+
+It is the core element in the communication between different users. 
+
+* A *notification* is sent everytime a user *shares a route* with any friend.
+
+* It contains the URL in the sender's POD of the resource that is being shared, f.i User A, which has `https://usera.pod` as his POD URL, shares a route with User B, whose
+POD is `https://userb.pod`. Thus, a notification will arrive to `https://userb.pod/inbox` with `https://usera.pod/public/routes/route.json` as the content.
+
+* In order to achieve interoperability, we need to agree about *how* this notification works. First, the different parts that shape 
+the notification, f.i content, date, sender, receiver, etc. Equally, the discussion about *where* the notification has to be sent, f.i folder `inbox/` in the POD.

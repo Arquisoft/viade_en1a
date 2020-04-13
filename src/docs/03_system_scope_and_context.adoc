@@ -9,34 +9,8 @@ Our objective is to develop Viade as a decentralized application, so users will 
 
 === Business Context
 
-[plantuml,"Business context diagram - Access to my routes",png]
+[plantuml,"Business context diagram",png]
 ----
-title Business Context - Access to my routes\n
-
-:User A: as A
-
-node "System" as Sys{
-}
-
-database "A's POD" as AP {
-    folder Routes as r1
-}
-
-cloud "Map" as Map{
-}
-
-A -right-> Sys : \nMy routes
-Sys -down-> AP: get A's stored routes
-r1 -up-> Sys
-Sys -left-> Map : set routes on map
-Map -left-> A : show routes
-
-----
-
-[plantuml,"Business context diagram - Share routes",png]
-----
-title Business Context - Share routes\n
-
 :User A: as A
 
 node "System" as Sys{
@@ -48,11 +22,29 @@ database "A's POD" as AP {
     folder Routes as r1
 }
 
-A -right-> Sys : share to B
-Sys -down-> AP: get A's stored routes
-r1 -up-> Sys
-Sys -right-> B : routes of A / User B is notified
+database "B's POD" as BP {
+    folder inbox as r2
+}
 
+cloud "Map" as Map{
+}
+
+A -right-> Sys : share to B
+A -[#0000ff]right-> Sys : My routes
+Sys -[#00ff00]right-> AP: get A's stored routes
+r1 -[#00ff00]-> Sys
+Sys -[#0000ff]down-> Map : set routes\n on map
+Map -[#0000ff]up-> A : show\n routes
+Sys ---> r2 : mail with\n route URL
+Sys -right-> B : User B is notified
+B -down-> r2 : User B\n access route
+
+legend right
+    |= Color |= Description |
+    | <size:11><back:#ff0000>           </back></size>|    Share routes |
+    | <size:11><back:#0000ff>           </back></size>|    See my routes |
+    | <size:11><back:#00ff00>           </back></size>|    Common process |
+endlegend
 ----
 
 === Technical Context
