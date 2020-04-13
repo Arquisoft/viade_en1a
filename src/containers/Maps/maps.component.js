@@ -1,18 +1,8 @@
 import React, {Component} from "react";
 import RoutesSideBar from "./routesSideBar.component";
 import GoogleMapReact from "google-map-react";
-import * as Icon from "react-feather";
 import  Carousel  from "nuka-carousel"; 
 import { withTranslation } from "react-i18next";
-
-const MyMarker = ({icon}) => <div>{icon}</div>;
-
-/**
- const mapStyles = {
-    marginLeft: '21%',
-    marginBottom: '10%'
-};
- **/
 
 class SimpleMap extends Component {
 
@@ -24,7 +14,8 @@ class SimpleMap extends Component {
             route: "",
             features: [],
             center: [43.358756869202914, -5.861785411834717],
-            galery: []
+            galery: [],
+            zoom: 12
         }
     }
 
@@ -61,8 +52,9 @@ class SimpleMap extends Component {
         let parsedRoute = this.convertToGeoJSON(route);
         let latitude = parsedRoute.features[0].geometry.coordinates[0][1];
         let longitude = parsedRoute.features[0].geometry.coordinates[0][0];
+        let zoom = 16;
         this.deleteOldRoute();
-        this.setState({route: parsedRoute, center: [latitude, longitude]}, this.loadMap);
+        this.setState({route: parsedRoute, center: [latitude, longitude], zoom: zoom}, this.loadMap);
         this.createGalery(route);
     };
 
@@ -111,15 +103,15 @@ class SimpleMap extends Component {
 
     createGalery (route) {
         var list = [];
-        for (var i = 0; i < route.media.length; i++) { 
-            if (route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length-3, route.media[parseInt(i)].url.length)==="jpg"
-            | route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length-3, route.media[parseInt(i)].url.length)==="png"){ 
+        for (var i = 0; i < route.media.length; i++) {
+            if (route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "jpg"
+                || route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "png") {
                 list.push(
-                    <img src={route.media[parseInt(i)].url} />
+                    <img alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
                 );
             } else {
                 list.push(
-                    <video controls src={route.media[parseInt(i)].url}></video>
+                    <video controls src={route.media[parseInt(i)].url}/>
                 );
             }
            
@@ -135,7 +127,7 @@ class SimpleMap extends Component {
                 <div style={{height: "60vh", width: "80%"}}>
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
-                        defaultZoom={12}
+                        defaultZoom={this.state.zoom}
 
                         yesIWantToUseGoogleMapApiInternals={true}
                         center={this.state.center}

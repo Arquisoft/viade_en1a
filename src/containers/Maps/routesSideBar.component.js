@@ -128,7 +128,7 @@ class RoutesSideBar extends Component {
         await this.getPodRoutes();
         await this.getSharedRoutes();
 
-        document.getElementById("btnPod").innerHTML = t("routes.uploadToPOD").toString();
+        document.getElementById("btnPod").innerHTML = "Upload to Pod";
 
         document.getElementById("btnPod").disabled = false;
 
@@ -244,45 +244,38 @@ class RoutesSideBar extends Component {
     async addMediaToRoute(routeWrapper, event) {
         const mediaElements = [...event.target.files];
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "viade/resources/";
+        var folderUrl = session.webId.split("profile/card#me")[0] + "viade/resources/";
 
-        if (!await this.fc.itemExists(url)) {
-            await this.fc.createFolder(url);
+        if (!await this.fc.itemExists(folderUrl)) {
+            await this.fc.createFolder(folderUrl);
 
         }
 
-       this.onClearArray();
+        this.onClearArray();
 
-        var index = routeWrapper.route.media.length;
-        var i;
         for (let element of mediaElements) {
 
-            if (!await this.fc.itemExists(url + element.name)) {
-                 await this.fc.createFile(url + element.name, element, "text/plain");
+            if (!await this.fc.itemExists(folderUrl + element.name)) {
+                await this.fc.createFile(folderUrl + element.name, element, "text/plain");
             }
 
             // add media to route
-            routeWrapper.route.media[parseInt(index)] = url + element.name;
-            index += 1;
+            let url = folderUrl + element.name;
+            routeWrapper.route.media.push(url);
+
 
             // executing out of order
             await this.fc.fetch(routeWrapper.url, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "json"
-                  },
+                },
                 body: routeWrapper.route
             });
         }
         await this.getPodRoutes();
         await this.getSharedRoutes();
     }
-
-    showSharedRoute = async (routeWrapper) => {
-        let routeData = routeWrapper.route;
-        this.props.show(routeData);
-
-    };
 
     async deleteSharedRoute(route) {
         await this.fc.deleteFile(route.url);
@@ -291,8 +284,6 @@ class RoutesSideBar extends Component {
 
         await this.getPodRoutes();
         await this.getSharedRoutes();
-
-        //you cant delete on inbox??
     }
 
 
@@ -346,7 +337,7 @@ class RoutesSideBar extends Component {
 
                     route: sharedRoute.route,
 
-                    showRoute: this.showSharedRoute,
+                    showRoute: this.showRoute,
 
                     deleteRoute: this.deleteSharedRoute
 
@@ -359,19 +350,6 @@ class RoutesSideBar extends Component {
         return list;
 
     };
-
-    async deleteSharedRoute(route) {
-
-        //console.log("I'm deleting")
-
-        await this.fc.deleteFile(route.url);
-
-        this.onClearArray();
-
-        this.getPodRoutes();
-        this.getSharedRoutes();
-
-    }
 
 
     onClearArray = () => {
