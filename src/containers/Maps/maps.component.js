@@ -15,6 +15,7 @@ class SimpleMap extends Component {
             features: [],
             center: [43.358756869202914, -5.861785411834717],
             galery: [],
+            zoom: 12
         }
     }
 
