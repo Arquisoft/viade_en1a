@@ -75,8 +75,6 @@ package "MVC" {
 Controller --> Model: "Modifies"
 
 View --> Controller : "User controller"
-
-Model --> View : "Updates"
 ----
 
 Motivation::
@@ -93,17 +91,45 @@ Contained Building Blocks::
 
 [plantuml,"Models",png]
 ----
-package "Viade Models" {
+package "ViadeModels" {
     [Routes] as Routes
 }
 
-package "Solid Models" {
+package "SolidModels" {
     [Friends] as Friends
     [Notifications] as Notifications
 }
 
+package Views{
+    [FriendsList] as FriendsList
+    [ShareRoute] as ShareRoute
+    [Maps] as Maps
+}
+
+package Controller{
+
+}
+
+database  Solid
+
 Friends --> Friends :Sends --> Routes
 Notifications --> Routes :Include
+
+
+
+ShareRoute --> Friends:Uses
+ShareRoute --> Routes:Uses
+
+FriendsList --> Friends:Uses
+
+Maps --> Routes:Lists
+
+SolidModels -->  Solid
+
+Controller --> ViadeModels: "Modifies"
+Controller --> SolidModels: "Modifies"
+
+Views --> Controller : "User controller"
 ----
 
 Let's explore the main models for the viade app
@@ -127,10 +153,11 @@ Routes are stored as json-ld and savend on the solid pod
 Friends::
 Friends are native elements to solid, friends are added trought the user's POD interface.
 
+Friends can be seen from the Friends view on the app and also when sharing a route, from which they can be selected.
+
+
 Notifications::
 Notifications are used for alerting users of new routes that have been shared with them by friends.
-
-==== 
 
 [role="arc42help"]
 ****
