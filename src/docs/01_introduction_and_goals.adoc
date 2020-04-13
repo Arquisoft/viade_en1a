@@ -103,6 +103,7 @@ Table with role names, person names, and their expectations with respect to the 
 | *_Teachers of the course_* | The teachers of the course expect the students to deliver a project which is completely functional and fulfills the requirements provided.
 | *_Users_* | The people who will use the application expect it to be easy to use, functional and secure.
 | *_Inrupt_* | Tim Berners Lee ans his team expect us to provide an application which helps in the decentralization of the web by using _SOLID_ and its principles.
-| *_Future Developers_* | Next year students and other developers would expect the code to be understandable and easy to maintain.
+| *_Future Developers_* | Other developers would expect the code to be understandable and easy to maintain.
+| *_Other students_* | Next year students would like to understand the code and its functionality, and perhaps reuse some parts of it.
 | *_The Team_* | As programmers, we expect to learn new development environments and develop a final product that we can be proud of.
 |===
