@@ -39,13 +39,11 @@ class SimpleMap extends Component {
         this.map.data.setMap(this.map);
     };
 
-    log = () => {
-        console.log(this.state.url);
-    };
-
     deleteOldRoute = () => {
-        for (var i = 0; i < this.state.features.length; i++)
-            this.map.data.remove(this.state.features[i]);
+        for (var i = 0; i < this.state.features.length; i++){
+            this.map.data.remove(this.state.features[parseInt(i)]);
+
+        }
     };
 
     show = (route) => {
@@ -93,7 +91,7 @@ class SimpleMap extends Component {
                     ]
                 }
 
-            }
+            };
             parsedRoute.features.push(wayPoint);
         }
 
