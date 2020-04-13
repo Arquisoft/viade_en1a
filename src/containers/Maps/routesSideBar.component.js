@@ -216,7 +216,7 @@ class RoutesSideBar extends Component {
     };
 
     async deleteRoute(routeWrapper) {
-        console.log(routeWrapper.url)
+        //console.log(routeWrapper.url)
         
         await this.fc.deleteFile(routeWrapper.url);
 
@@ -318,7 +318,7 @@ class RoutesSideBar extends Component {
 
     async deleteSharedRoute(route) {
 
-        console.log("I'm deleting")
+        //console.log("I'm deleting")
 
         await this.fc.deleteFile(route.url);
 
