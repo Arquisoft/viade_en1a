@@ -47,8 +47,8 @@
   "author": "https://inadover.inrupt.net/profile/card#me",
   "description": "Test route 2 for our app",
   "comments": "",
-  "waypoints": [],
   "media": [],
+  "waypoints": [],
   "points": [
     {
       "latitude": 43.356420543077334,

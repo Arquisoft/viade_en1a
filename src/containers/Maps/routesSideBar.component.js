@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 import FC from "solid-file-client";
 
 import auth from "solid-auth-client";
 
-import { MapsSideBar } from "./maps.style";
+import {MapsSideBar} from "./maps.style";
 
 import styled from "styled-components";
 
-import { MapRoute } from "./components";
-import { SharedRoute } from "./shared";
+import {MapRoute} from "./components";
+import {SharedRoute} from "./shared";
 
-import { Button } from "react-bootstrap";
-import { withTranslation } from "react-i18next";
+import {Button} from "react-bootstrap";
+import {withTranslation} from "react-i18next";
 
 
 const StyledRoutesSidebar = styled.div`
@@ -92,7 +92,7 @@ class RoutesSideBar extends Component {
 
         });
 
-        this.setState({ routes });
+        this.setState({routes});
 
     };
 
@@ -114,7 +114,6 @@ class RoutesSideBar extends Component {
 
         this.state.routes.forEach(async (route) => {
 
-            //var name = this.getRouteName(route);
 
             await this.fc.createFile(url + route.name, route, "text/plain");
 
@@ -125,8 +124,12 @@ class RoutesSideBar extends Component {
         document.getElementById("btnPod").disabled = true;
 
 
-        this.getPodRoutes();
-        this.getSharedRoutes();
+        await this.getPodRoutes();
+        await this.getSharedRoutes();
+
+        document.getElementById("btnPod").innerHTML = "Upload to Pod";
+
+        document.getElementById("btnPod").disabled = false;
 
     }
 
@@ -155,38 +158,51 @@ class RoutesSideBar extends Component {
         var urlShared = session.webId.split("profile/card#me")[0] + "inbox/";
 
         let folderShared = await this.fc.readFolder(urlShared);
+        for (let sharedElement of folderShared.files) {
+            var name = await this.getFullNotification(sharedElement.url.toString());
+            let url = sharedElement.url;
 
-        for (let index = 0; index < folderShared.files.length; index++) {
-            var name = await this.getFullNotification(folderShared.files[parseInt(index)].url.toString());	  
-            let url = folderShared.files[parseInt(index)].url;	
-            this.state.sharedRoutes.push({name, url});	
-        }	
+            let routeUrl = await this.getSharedRoute(url);
 
-        let sharedRoutes = [...this.state.sharedRoutes];	
+            let content = await this.fc.readFile(routeUrl.toString());
+
+            let route = JSON.parse(content);
+
+            this.state.sharedRoutes.push({name, url, route});
+        }
+
+        let sharedRoutes = [...this.state.sharedRoutes];
         this.setState({sharedRoutes});
 
     }
 
-    async getFullNotification(url) {	            
-        let myUrl = url.toString();	
-        let fol = await this.fc.readFile(myUrl);	
-        let getSchem = fol.split("<>");	
-        let getImportant = getSchem[1].split("text");	
-        let theUrl = getImportant[1].split("\"")[1];	
-        let theSplitUrl = theUrl.split("/");	
+    async getFullNotification(url) {
+        let myUrl = url.toString();
+        let fol = await this.fc.readFile(myUrl);
+        let getSchem = fol.split("<>");
+        let getImportant = getSchem[1].split("text");
+        let theUrl = getImportant[1].split("\"")[1];
+        let theSplitUrl = theUrl.split("/");
 
 
-        let name = theSplitUrl[theSplitUrl.length-1];	        
+        let name = theSplitUrl[theSplitUrl.length - 1];
 
-        let fullLabel = getImportant[1].split("\"")[3];	
-        let sender = fullLabel.split("Shared route ")[1];	
+        let fullLabel = getImportant[1].split("\"")[3];
+        let sender = fullLabel.split("Shared route ")[1];
         //console.log(name+" "+sender)	
 
 
-        return name+" "+sender;	
+        return name + " " + sender;
 
     }
 
+    async getSharedRoute(url) {
+        let fol = await this.fc.readFile(url.toString());
+        let getSchem = fol.split("<>");
+        let urlText = getSchem[1].split("text");
+        return urlText[1].split("\"")[1];
+
+    }
 
     async getPodRoutes() {
 
@@ -216,51 +232,52 @@ class RoutesSideBar extends Component {
     };
 
     async deleteRoute(routeWrapper) {
-        //console.log(routeWrapper.url)
-        
         await this.fc.deleteFile(routeWrapper.url);
 
         this.onClearArray();
 
-        this.getPodRoutes();
-        this.getSharedRoutes();
+        await this.getPodRoutes();
+        await this.getSharedRoutes();
     }
 
     async addMediaToRoute(routeWrapper, event) {
         const mediaElements = [...event.target.files];
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "viade/resources/";
+        var folderUrl = session.webId.split("profile/card#me")[0] + "viade/resources/";
 
-        if (!await this.fc.itemExists(url)) {
-            await this.fc.createFolder(url);
+        if (!await this.fc.itemExists(folderUrl)) {
+            await this.fc.createFolder(folderUrl);
 
         }
 
-       this.onClearArray();
+        this.onClearArray();
 
-        var index = routeWrapper.route.media.length;
-        var i;
         for (let element of mediaElements) {
 
-            if (!await this.fc.itemExists(url + element.name)) {
-                 await this.fc.createFile(url + element.name, element, "text/plain");
+            if (!await this.fc.itemExists(folderUrl + element.name)) {
+                await this.fc.createFile(folderUrl + element.name, element, "text/plain");
             }
 
             // add media to route
-            routeWrapper.route.media[parseInt(index)] = url + element.name;
-            index += 1;
+            let url = {url: folderUrl + element.name};
+            routeWrapper.route.media.push(url);
 
-            // executing out of order
-            await this.fc.fetch(routeWrapper.url, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "json"
-                  },
-                body: routeWrapper.route
-            }); 
         }
+        //Creates a new file and substitutes the old one
+        let routeJson = JSON.stringify(routeWrapper.route, null, 2);
+        await this.fc.createFile(routeWrapper.url, routeJson, "text/plain");
 
-        this.getPodRoutes();
+        await this.getPodRoutes();
+        await this.getSharedRoutes();
+    }
+
+    async deleteSharedRoute(route) {
+        await this.fc.deleteFile(route.url);
+
+        this.onClearArray();
+
+        await this.getPodRoutes();
+        await this.getSharedRoutes();
     }
 
 
@@ -303,18 +320,18 @@ class RoutesSideBar extends Component {
 
         for (let i = 0; i < this.state.sharedRoutes.length; i++) {
 
-            let rName = this.state.sharedRoutes[parseInt(i)].name;
-            
-            let rUrl = this.state.sharedRoutes[parseInt(i)].url;
+            let sharedRoute = this.state.sharedRoutes[parseInt(i)];
 
             list.push(<SharedRoute key={i}{...{
 
-                route: {
-                    name: rName,
+                routeWrapper: {
+                    name: sharedRoute.name,
 
-                    url: rUrl,
+                    url: sharedRoute.url,
 
-                    showRoute: this.showSharedRoute,
+                    route: sharedRoute.route,
+
+                    showRoute: this.showRoute,
 
                     deleteRoute: this.deleteSharedRoute
 
@@ -328,37 +345,24 @@ class RoutesSideBar extends Component {
 
     };
 
-    async deleteSharedRoute(route) {
-
-        //console.log("I'm deleting")
-
-        await this.fc.deleteFile(route.url);
-
-        this.onClearArray();
-
-        this.getPodRoutes();
-        this.getSharedRoutes();
-
-    }
-
 
     onClearArray = () => {
-        this.setState({ routesList: [] });
-        this.setState({ sharedRoutes: [] });
+        this.setState({routesList: []});
+        this.setState({sharedRoutes: []});
     };
 
 
     render() {
-        const { t } = this.props;
+        const {t} = this.props;
         return (
 
             <StyledRoutesSidebar>
 
-                <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple />
+                <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
 
 
                 <Button id="btnPod" disabled={!this.uploadedFiles} variant="primary" block
-                    onClick={this.onClickHandler.bind(this)}>{t("routes.uploadToPOD")}</Button>
+                        onClick={this.onClickHandler.bind(this)}>{t("routes.uploadToPOD")}</Button>
                 <MapsSideBar>
                     {t("routes.hereYourRoutes")}
                     {this.listRoutes()}
@@ -366,7 +370,7 @@ class RoutesSideBar extends Component {
                     {this.listShared()}
                 </MapsSideBar>
                 <Button variant="primary" block
-                    onClick={this.onClearArray}>{t("routes.clear")}</Button>
+                        onClick={this.onClearArray}>{t("routes.clear")}</Button>
             </StyledRoutesSidebar>
         );
 

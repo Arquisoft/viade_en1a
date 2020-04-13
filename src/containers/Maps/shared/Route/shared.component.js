@@ -9,25 +9,22 @@ const StyledSharedRoute = styled.div`
 `;
 
 export const SharedRoute = (props) => {
-    const { route } = props;
-
-    //console.log(route)
-    // const url = "#/share?route="+route.name;
+    const {routeWrapper} = props;
     
     const { t } = useTranslation();
 
     function showRoute(){
-        route.showRoute(route);
+        routeWrapper.showRoute(routeWrapper);
     }
 
     function deleteRoute(){
-        route.deleteRoute(route);
+        routeWrapper.deleteRoute(routeWrapper);
     }
 
     return (
         <StyledSharedRoute>
         <Dropdown as={ButtonGroup}>
-            <Button variant="success" onClick={showRoute}>{route.name}</Button>
+            <Button variant="success" onClick={showRoute}>{routeWrapper.route.name}</Button>
 
             <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 

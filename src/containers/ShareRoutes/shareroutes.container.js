@@ -100,7 +100,7 @@ class ShareRoutesComponent extends Component<Props> {
         message.recipient = targetUrl;
 
         var baseSource = session.webId.split("profile/card#me")[0];
-        var source = baseSource + "public/routes/";
+        var source = baseSource + "viade/routes/";
         message.content = source + app.getRouteName();
         message.title = "Shared route by " + await app.getSessionName();
         message.url = message.recipient + message.id + ".ttl";
