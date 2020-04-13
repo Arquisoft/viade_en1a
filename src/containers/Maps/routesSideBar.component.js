@@ -126,6 +126,7 @@ class RoutesSideBar extends Component {
 
 
         this.getPodRoutes();
+        this.getSharedRoutes();
 
     }
 
@@ -215,6 +216,8 @@ class RoutesSideBar extends Component {
     };
 
     async deleteRoute(routeWrapper) {
+        //console.log(routeWrapper.url)
+        
         await this.fc.deleteFile(routeWrapper.url);
 
         this.onClearArray();
@@ -267,26 +270,6 @@ class RoutesSideBar extends Component {
 
         this.getPodRoutes();
 
-    }
-
-    showSharedRoute = async (routeWrapper) => {
-        //console.log("Not implemented.")
-
-        //example of how to get content of the shared message
-        //let content = await this.fc.readFile(route.url);
-        //console.log(content)
-
-    };
-
-    async deleteSharedRoute(route) {
-        await this.fc.deleteFile(route.url);
-
-        this.onClearArray();
-
-        this.getPodRoutes();
-        this.getSharedRoutes();
-
-        //you cant delete on inbox??
     }
 
 
@@ -342,7 +325,7 @@ class RoutesSideBar extends Component {
 
                     showRoute: this.showSharedRoute,
 
-                    deleteRoute: this.deleteRoute
+                    deleteRoute: this.deleteSharedRoute
 
                 }
 
@@ -353,6 +336,19 @@ class RoutesSideBar extends Component {
         return list;
 
     };
+
+    async deleteSharedRoute(route) {
+
+        //console.log("I'm deleting")
+
+        await this.fc.deleteFile(route.url);
+
+        this.onClearArray();
+
+        this.getPodRoutes();
+        this.getSharedRoutes();
+
+    }
 
 
     onClearArray = () => {

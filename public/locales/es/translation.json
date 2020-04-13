@@ -264,6 +264,8 @@
 	"galery": "Galería"
   },
   "alt":{
-    "friend": "Amigo"
+    "friend": "Amigo",
+    "loading": "Esta página está cargando... No te preocupes, es solo unos segundos."
+
   }
 }
