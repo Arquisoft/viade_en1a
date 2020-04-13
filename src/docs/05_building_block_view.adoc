@@ -71,15 +71,12 @@ package "MVC" {
     [Controller] as Controller
 }
 
- 
 
-View --> Model : uses
+Controller --> Model: "Modifies"
 
-Controller --> Model: uses
+View --> Controller : "User controller"
 
-Controller --> View
-
-View --> Controller
+Model --> View : "Updates"
 ----
 
 Motivation::
@@ -91,6 +88,7 @@ Contained Building Blocks::
 * *Model*: Central component, detials the structure of the application, it's data, logic and rules.
 * *View*: Representation of the information, graphical interface.
 * *Controller*: Accepts input and converts it to commands for the model or view.
+
 
 [role="arc42help"]
 ****
