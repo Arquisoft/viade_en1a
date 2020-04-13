@@ -236,19 +236,31 @@ class RoutesSideBar extends Component {
 
         }
 
-        this.onClearArray();
+       this.onClearArray();
 
-        mediaElements.forEach(async (element) => {
+        var index = routeWrapper.route.media.length;
+        var i;
+        for (let element of mediaElements) {
 
             if (!await this.fc.itemExists(url + element.name)) {
-                await this.fc.createFile(url + element.name, element, "text/plain");
-                //console.log(element.name + " uploaded");
+                 await this.fc.createFile(url + element.name, element, "text/plain");
             }
 
-        });
+            // add media to route
+            routeWrapper.route.media[parseInt(index)] = url + element.name;
+            index += 1;
+
+            // executing out of order
+            await this.fc.fetch(routeWrapper.url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "json"
+                  },
+                body: routeWrapper.route
+            }); 
+        }
 
         this.getPodRoutes();
-
     }
 
 
