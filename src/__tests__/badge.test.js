@@ -1,5 +1,5 @@
-import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import React from "react";
+import { render, cleanup } from "react-testing-library";
 import Badge from "../components/Utils/Badge/badge.component";
 
 import "jest-dom/extend-expect";
@@ -16,6 +16,6 @@ describe.only("Badge", () => {
     expect(document.querySelector(".badgeWrapper")).toBeTruthy();
   });
   it("renders properly", () => {
-    expect(document.querySelector(".badgeWrapper")).toHaveTextContent('2');
+    expect(document.querySelector(".badgeWrapper")).toHaveTextContent("2");
   });
 });

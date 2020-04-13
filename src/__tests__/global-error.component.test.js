@@ -1,5 +1,5 @@
-import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import React from "react";
+import { render, cleanup } from "react-testing-library";
 import { GlobalError } from "../components/GlobalError/global-error.component";
 
 afterAll(cleanup);

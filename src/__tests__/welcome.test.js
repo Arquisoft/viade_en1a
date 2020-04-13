@@ -34,11 +34,11 @@ describe.only("Welcome", () => {
     expect(document.querySelector(".card")).toBeTruthy();
   });
 
-  test('renders EN1A logo', () => {
+  test("renders EN1A logo", () => {
     expect(document.querySelectorAll("img[src='img/my_logo.jpg']")).toBeTruthy();
   });
 
-  test('renders about text', () => {
+  test("renders about text", () => {
     expect(document.querySelectorAll("h3[text='Acerca de']")).toBeTruthy();
   });
 });

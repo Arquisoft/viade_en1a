@@ -7,8 +7,8 @@ import { Button } from "react-bootstrap";
 
 afterAll(cleanup);
 
-jest.mock('solid-auth-client', () => {
-  const auth = jest.requireActual('solid-auth-client');
+jest.mock("solid-auth-client", () => {
+  const auth = jest.requireActual("solid-auth-client");
   auth.currentSession = jest.fn(() => Promise.resolve({ webId: "https://adrianperezmanso.solid.community/profile/card#me" }));
   return auth;
 });
@@ -36,7 +36,7 @@ configure({adapter: new Adapter()});
  const component = <ShareRoutesComponent
   {...{
       webId: "https://example.solid.community/profile/card#me",
-      friends: friends
+      friends
   }}
 />;
 
@@ -47,7 +47,7 @@ configure({adapter: new Adapter()});
 
   it("click share button", () => {
     const wrapper = mount(component);
-    wrapper.find(Button).at(0).simulate('click');
+    wrapper.find(Button).at(0).simulate("click");
   });
 
 

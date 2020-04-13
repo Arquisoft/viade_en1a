@@ -1,5 +1,5 @@
-import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import React from "react";
+import { render, cleanup } from "react-testing-library";
 import NavBarProfile from "../components/AuthNavBar/children/NavbarProfile/nav-bar-profile.component";
 
 afterAll(cleanup);
