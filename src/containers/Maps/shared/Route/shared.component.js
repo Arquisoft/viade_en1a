@@ -9,7 +9,7 @@ const StyledSharedRoute = styled.div`
 `;
 
 export const SharedRoute = (props) => {
-    const {routeWrapper} = props;
+    const { route } = props;
 
     console.log(routeWrapper)
     // const url = "#/share?route="+route.name;

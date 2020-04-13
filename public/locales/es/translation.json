@@ -260,9 +260,12 @@
     "delete": "Borrar",
     "cancel": "Cancelar",
     "shared": "Compartido",
-    "addMedia": "Añadir multimedia"
+    "addMedia": "Añadir multimedia",
+	"galery": "Galería"
   },
   "alt":{
-    "friend": "Amigo"
+    "friend": "Amigo",
+    "loading": "Esta página está cargando... No te preocupes, es solo unos segundos."
+
   }
 }

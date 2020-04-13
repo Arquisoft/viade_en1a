@@ -1,18 +1,18 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
 import FC from "solid-file-client";
 
 import auth from "solid-auth-client";
 
-import {MapsSideBar} from "./maps.style";
+import { MapsSideBar } from "./maps.style";
 
 import styled from "styled-components";
 
-import {MapRoute} from "./components";
-import {SharedRoute} from "./shared";
+import { MapRoute } from "./components";
+import { SharedRoute } from "./shared";
 
-import {Button} from "react-bootstrap";
-import {withTranslation} from "react-i18next";
+import { Button } from "react-bootstrap";
+import { withTranslation } from "react-i18next";
 
 
 const StyledRoutesSidebar = styled.div`
@@ -120,8 +120,6 @@ class RoutesSideBar extends Component {
 
         });
 
-        const {t} = this.props;
-
         document.getElementById("btnPod").innerHTML = "Uploaded";
 
         document.getElementById("btnPod").disabled = true;
@@ -147,6 +145,7 @@ class RoutesSideBar extends Component {
 
             var obj = JSON.parse(fileReader.result);
 
+            console.log(obj.routeName);
 
             return obj.routeName;
 
@@ -187,13 +186,14 @@ class RoutesSideBar extends Component {
         let theSplitUrl = theUrl.split("/");	
 
 
-        let name = theSplitUrl[theSplitUrl.length-1];
+        let name = theSplitUrl[theSplitUrl.length-1];	        
 
-        let fullLabel = getImportant[1].split("\"")[3];
-        let sender = fullLabel.split("Shared route ")[1];
+        let fullLabel = getImportant[1].split("\"")[3];	
+        let sender = fullLabel.split("Shared route ")[1];	
+        //console.log(name+" "+sender)	
 
 
-        return name + " " + sender;
+        return name+" "+sender;	
 
     }
 
@@ -251,19 +251,31 @@ class RoutesSideBar extends Component {
 
         }
 
-        this.onClearArray();
+       this.onClearArray();
 
-        mediaElements.forEach(async (element) => {
+        var index = routeWrapper.route.media.length;
+        var i;
+        for (let element of mediaElements) {
 
             if (!await this.fc.itemExists(url + element.name)) {
-                await this.fc.createFile(url + element.name, element, "text/plain");
+                 await this.fc.createFile(url + element.name, element, "text/plain");
             }
 
-        });
+            // add media to route
+            routeWrapper.route.media[parseInt(index)] = url + element.name;
+            index += 1;
 
+            // executing out of order
+            await this.fc.fetch(routeWrapper.url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "json"
+                  },
+                body: routeWrapper.route
+            });
+        }
         await this.getPodRoutes();
         await this.getSharedRoutes();
-
     }
 
     showSharedRoute = async (routeWrapper) => {
@@ -336,7 +348,7 @@ class RoutesSideBar extends Component {
 
                     showRoute: this.showSharedRoute,
 
-                    deleteRoute: this.deleteRoute
+                    deleteRoute: this.deleteSharedRoute
 
                 }
 
@@ -347,6 +359,19 @@ class RoutesSideBar extends Component {
         return list;
 
     };
+
+    async deleteSharedRoute(route) {
+
+        //console.log("I'm deleting")
+
+        await this.fc.deleteFile(route.url);
+
+        this.onClearArray();
+
+        this.getPodRoutes();
+        this.getSharedRoutes();
+
+    }
 
 
     onClearArray = () => {

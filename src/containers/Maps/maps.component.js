@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import RoutesSideBar from "./routesSideBar.component";
 import GoogleMapReact from "google-map-react";
 import * as Icon from "react-feather";
+import  Carousel  from "nuka-carousel"; 
+import { withTranslation } from "react-i18next";
 
 const MyMarker = ({icon}) => <div>{icon}</div>;
 
@@ -21,7 +23,8 @@ class SimpleMap extends Component {
             url: "https://storage.googleapis.com/mapsdevsite/json/google.json",
             route: "",
             features: [],
-            center: [43.358756869202914, -5.861785411834717]
+            center: [43.358756869202914, -5.861785411834717],
+            galery: []
         }
     }
 
@@ -60,6 +63,7 @@ class SimpleMap extends Component {
         let longitude = parsedRoute.features[0].geometry.coordinates[0][0];
         this.deleteOldRoute();
         this.setState({route: parsedRoute, center: [latitude, longitude]}, this.loadMap);
+        this.createGalery(route);
     };
 
     convertToGeoJSON = (route) => {
@@ -105,11 +109,30 @@ class SimpleMap extends Component {
         return parsedRoute;
     };
 
+    createGalery (route) {
+        var list = [];
+        for (var i = 0; i < route.media.length; i++) { 
+            if (route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length-3, route.media[parseInt(i)].url.length)==="jpg"
+            | route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length-3, route.media[parseInt(i)].url.length)==="png"){ 
+                list.push(
+                    <img src={route.media[parseInt(i)].url} />
+                );
+            } else {
+                list.push(
+                    <video controls src={route.media[parseInt(i)].url}></video>
+                );
+            }
+           
+        }
+        this.setState({galery : list}) ;
+    }
+
     render() {
+		const { t } = this.props;
         return (
             <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
                 <RoutesSideBar show={this.show}/>
-                <div style={{height: "80vh", width: "80%"}}>
+                <div style={{height: "60vh", width: "80%"}}>
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
                         defaultZoom={12}
@@ -120,6 +143,10 @@ class SimpleMap extends Component {
 
                     >
                     </GoogleMapReact>
+                    <h2>{t("routes.galery")}</h2>
+                    <Carousel height='auto' dragging={true}>
+                        { this.state.galery }
+                    </Carousel>
                 </div>
             </div>
         );
@@ -129,4 +156,4 @@ class SimpleMap extends Component {
 }
 
 
-export default SimpleMap;
+export default  withTranslation() (SimpleMap);

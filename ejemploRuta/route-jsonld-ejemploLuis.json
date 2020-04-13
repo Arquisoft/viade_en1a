@@ -50,16 +50,16 @@
 
   "media": [
     {
-      "@id": "http://inrupt.luispc1998/viade/resources/imagen.jpg"
+      "url": "http://inrupt.luispc1998/viade/resources/imagen.jpg"
     },
     {
-      "@id": "http://inrupt.angelixus/viade/resources/video.mp4"
+      "url": "http://inrupt.angelixus/viade/resources/video.mp4"
     },
     {
-      "@id": "http://inrupt.raupemol/viade/resources/foto.png"
+      "url": "http://inrupt.raupemol/viade/resources/foto.png"
     },
     {
-      "@id": "http://inrupt.luispc1998/viade/resources/video3.mp4"
+      "url": "http://inrupt.luispc1998/viade/resources/video3.mp4"
     }
   ],
   "waypoints": [

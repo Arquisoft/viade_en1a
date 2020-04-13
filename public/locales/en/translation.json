@@ -260,9 +260,12 @@
     "delete": "Delete",
     "cancel": "Cancel",
     "shared": "Shared",
-    "addMedia": "Add media"
+    "addMedia": "Add media",
+	"galery": "Galery"
   },
   "alt":{
-    "friend": "Friend"
+    "friend": "Friend",
+    "loading": "This page is loading...Don't worry, it will take some seconds."
+
   }
 }
