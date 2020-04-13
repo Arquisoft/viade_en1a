@@ -1,17 +1,24 @@
-import React, {Component} from 'react';
-import RoutesSideBar from './routesSideBar.component';
-import GoogleMapReact from 'google-map-react';
-
-const MyMarker = ({text}) => <div>{text}</div>;
-
-    /**
-const mapStyles = {
-    marginLeft: '21%',
-    marginBottom: '10%'
-};
-     **/
+import React, {Component} from "react";
+import RoutesSideBar from "./routesSideBar.component";
+import GoogleMapReact from "google-map-react";
+import  Carousel  from "nuka-carousel"; 
+import { withTranslation } from "react-i18next";
 
 class SimpleMap extends Component {
+
+    constructor() {
+        super();
+        this.show = this.show.bind(this);
+        this.state = {
+            url: "https://storage.googleapis.com/mapsdevsite/json/google.json",
+            route: "",
+            features: [],
+            center: [43.358756869202914, -5.861785411834717],
+            galery: [],
+            zoom: 12
+        };
+    }
+
     static defaultProps = {
         center: {
             lat: 59.95,
@@ -20,35 +27,122 @@ class SimpleMap extends Component {
         zoom: 11
     };
 
+
     handleApiLoaded = (map, maps) => {
-        map.data.loadGeoJson("https://storage.googleapis.com/mapsdevsite/json/google.json");//exampleRoute.json
-        map.data.setMap(map);
+        this.map = map;
+        this.maps = maps;
+        this.loadMap();
     };
 
+    loadMap = () => {
+        this.setState({features: this.map.data.addGeoJson(this.state.route)});
+        this.map.data.setMap(this.map);
+    };
+
+    deleteOldRoute = () => {
+        for (var i = 0; i < this.state.features.length; i++){
+            this.map.data.remove(this.state.features[parseInt(i)]);
+
+        }
+    };
+
+    show = (route) => {
+        let parsedRoute = this.convertToGeoJSON(route);
+        let latitude = parsedRoute.features[0].geometry.coordinates[0][1];
+        let longitude = parsedRoute.features[0].geometry.coordinates[0][0];
+        this.deleteOldRoute();
+        this.setState({route: parsedRoute, center: [latitude, longitude]}, this.loadMap);
+        this.createGalery(route);
+    };
+
+    convertToGeoJSON = (route) => {
+        let parsedRoute = {
+            type: "FeatureCollection",
+            features: [
+                {
+                    type: "Feature",
+                    properties: {},
+                    geometry: {
+                        type: "LineString",
+                        coordinates: []
+                    }
+                }]
+        };
+        for (let i = 0; i < route.points.length; i++) {
+            let routePoint = route.points[parseInt(i)];
+            let pointCoordinates = [routePoint.longitude, routePoint.latitude, routePoint.elevation];
+            parsedRoute.features[0].geometry.coordinates.push(pointCoordinates);
+        }
+        for (let i = 0; i < route.waypoints.length; i++) {
+            let routeWaypoint = route.waypoints[parseInt(i)];
+            let wayPoint = {
+
+                type: "Feature",
+                properties: {
+                    name: routeWaypoint.name,
+                    description: routeWaypoint.description,
+                },
+                geometry: {
+                    type: "Point",
+                    coordinates: [
+                        routeWaypoint.longitude,
+                        routeWaypoint.latitude,
+                        routeWaypoint.elevation
+                    ]
+                }
+
+            };
+            parsedRoute.features.push(wayPoint);
+        }
+
+        return parsedRoute;
+    };
+
+    createGalery (route) {
+        var list = [];
+        for (var i = 0; i < route.media.length; i++) {
+            if (route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "jpg"
+                || route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "png") {
+                list.push(
+                    <img alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
+                );
+            } else {
+                list.push(
+                    <video controls src={route.media[parseInt(i)].url}/>
+                );
+            }
+           
+        }
+        this.setState({galery : list}) ;
+    }
+
     render() {
+		const { t } = this.props;
         return (
-            <div style={{height: "100vh", width: "100%", display: "flex", flex: "row"}}>
-                <div style={{height: "100vh", width: "20%", }}>
-                <RoutesSideBar/>
+            <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
+                <RoutesSideBar show={this.show}/>
+                <div style={{height: "60vh", width: "80%"}}>
+                    <GoogleMapReact
+                        bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
+                        defaultZoom={this.state.zoom}
+
+                        yesIWantToUseGoogleMapApiInternals={true}
+                        center={this.state.center}
+                        onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
+
+                    >
+                    </GoogleMapReact>
+                    <h2>{t("routes.galery")}</h2>
+                    <Carousel height='auto' dragging={true}>
+                        { this.state.galery }
+                    </Carousel>
                 </div>
-            <div style={{height: "100vh", width: "80%"}}>
-                <GoogleMapReact
-                    bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
-                    defaultCenter={[43.358756869202914, -5.861785411834717]}
-                    defaultZoom={12}
-                    yesIWantToUseGoogleMapApiInternals={true}
-                    onGoogleApiLoaded={({ map, maps }) => this.handleApiLoaded(map, maps)}
-                >
-                    <MyMarker
-                        lat={43.358756869202914}
-                        lng={-5.861785411834717}
-                        text="My Marker"
-                    />
-                </GoogleMapReact>
-            </div>
             </div>
         );
     }
+
+
 }
 
-export default SimpleMap;
+
+export default  withTranslation() (SimpleMap);

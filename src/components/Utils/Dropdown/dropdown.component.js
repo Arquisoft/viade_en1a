@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import enhanceWithClickOutside from 'react-click-outside';
-import { DropdownContainer, DropdownMain, DropdownItemContainer, Item } from './dropdown.style';
+import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import enhanceWithClickOutside from "react-click-outside";
+import { DropdownContainer, DropdownMain, DropdownItemContainer, Item } from "./dropdown.style";
 
 type Props = {
   actions: Array<Object>,
@@ -21,7 +21,7 @@ class Dropdown extends Component<Props, State> {
 
   toggleOpen = () => {
     const { open } = this.props;
-    if (!open) this.setState(prevProps => ({ open: !prevProps.open }));
+    if (!open) this.setState((prevProps) => ({ open: !prevProps.open }));
   };
 
   handleClickOutside() {

@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { UpdateContext } from '@inrupt/solid-react-components';
-import { Dropdown } from '@util-components';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { UpdateContext } from "@inrupt/solid-react-components";
+import { Dropdown } from "@util-components";
 
-import auth from 'solid-auth-client';
-import data from '@solid/query-ldflex';
-import { errorToaster } from '@utils';
-import { ProfileOptions } from '@constants/navigation';
+import auth from "solid-auth-client";
+import data from "@solid/query-ldflex";
+import { errorToaster } from "@utils";
+import { ProfileOptions } from "@constants/navigation";
 
 export const ImageContainer = styled.div`
   width: 42px;
@@ -14,8 +14,8 @@ export const ImageContainer = styled.div`
   border-radius: 50%;
   background-size: cover;
   overflow: hidden;
-  visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
-  display: ${({ show }) => (show ? 'block' : 'none')};
+  visibility: ${({ show }) => (show ? "visible" : "hidden")};
+  display: ${({ show }) => (show ? "block" : "none")};
 `;
 
 export const Img = styled.img`
@@ -47,7 +47,7 @@ let beforeContext;
 class NavBarProfile extends Component<Props> {
   constructor(props) {
     super(props);
-    this.state = { image: 'img/icon/empty-profile.svg' };
+    this.state = { image: "img/icon/empty-profile.svg" };
   }
 
   state = {
@@ -74,13 +74,13 @@ class NavBarProfile extends Component<Props> {
   }
 
   // eslint-disable-next-line react/destructuring-assignment
-  profileRedirect = () => this.props.history.push('/profile');
+  profileRedirect = () => this.props.history.push("/profile");
 
   // eslint-disable-next-line react/destructuring-assignment
-  formModelRenderRedirect = () => this.props.history.push('/formModel/renderer');
+  formModelRenderRedirect = () => this.props.history.push("/formModel/renderer");
 
   // eslint-disable-next-line react/destructuring-assignment
-  formModelConvertRedirect = () => this.props.history.push('/formModel/converter');
+  formModelConvertRedirect = () => this.props.history.push("/formModel/converter");
 
   onImageLoaded = async () => this.setState({ imageLoaded: true });
 
@@ -88,11 +88,11 @@ class NavBarProfile extends Component<Props> {
     try {
       await auth.logout();
       // Remove localStorage
-      localStorage.removeItem('solid-auth-client');
+      localStorage.removeItem("solid-auth-client");
       // Redirect to login page
-      window.location = '/viade_en1a/#/login';
+      window.location = "/viade_en1a/#/login";
     } catch (error) {
-      errorToaster(error.message, 'Error');
+      errorToaster(error.message, "Error");
     }
   };
 
@@ -110,7 +110,7 @@ class NavBarProfile extends Component<Props> {
       const image = userImage ? userImage.value : defaultimage;
       this.setState({ image });
     } catch (error) {
-      errorToaster(error.message, 'Error');
+      errorToaster(error.message, "Error");
     }
   };
 
@@ -118,7 +118,7 @@ class NavBarProfile extends Component<Props> {
     const { t, open, customClass } = this.props;
     const { imageLoaded, image } = this.state;
 
-    const profileOpts = ProfileOptions.map(item => ({
+    const profileOpts = ProfileOptions.map((item) => ({
       ...item,
       label: t(item.label),
       onClick: this[item.onClick]

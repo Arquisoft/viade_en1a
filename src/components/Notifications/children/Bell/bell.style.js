@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const BellIcon = styled.button`
+export const BellIcon = styled.a`
   position: relative;
   width: 100%;
   height: 100%;

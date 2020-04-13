@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
-import { Dropdown } from '@util-components';
-import { toast } from 'react-toastify';
+import React, { Component } from "react";
+import { Dropdown } from "@util-components";
+import { toast } from "react-toastify";
 
 const languages = {
   en: {
-    id: 'en',
-    icon: 'us'
+    id: "en",
   },
   es: {
-    id: 'es',
-    icon: 'es'
+    id: "es",
   },
-  'en-US': {
-    id: 'en-US',
-    icon: 'us'
+  "en-US": {
+    id: "en-US",
   }
 };
 
@@ -28,9 +25,9 @@ class LanguageDropdown extends Component<Props> {
     this.state = { language: this.getLanguage() };
   }
 
-  getLanguage = () => localStorage.getItem('i18nextLng') || 'en';
+  getLanguage = () => localStorage.getItem("i18nextLng") || "en";
 
-  onLanguageSelect = nextLanguage => {
+  onLanguageSelect = (nextLanguage) => {
     const { i18n } = this.props;
     toast.dismiss();
     i18n.changeLanguage(nextLanguage);
@@ -44,25 +41,17 @@ class LanguageDropdown extends Component<Props> {
     const { language } = this.state;
     const profileOpts = [
       {
-        label: t('navBar.languages.en'),
-        onClick: () => this.onLanguageSelect('en'),
-        icon: 'us',
-        customIcon: true
+        label: t("navBar.languages.en"),
+        onClick: () => this.onLanguageSelect("en"),
       },
       {
-        label: t('navBar.languages.es'),
-        onClick: () => this.onLanguageSelect('es'),
-        icon: 'es',
-        customIcon: true
-      }
+        label: t("navBar.languages.es"),
+        onClick: () => this.onLanguageSelect("es"),
+        }
     ];
     return (
       <Dropdown actions={profileOpts} hover>
-        <div
-          className={`flag-icon flag-icon-${
-            language && languages[language] ? languages[language].icon : 'us'
-          }`}
-        />
+        <div> {languages[language.toLocaleLowerCase().toString()].id.toUpperCase()}</div>
       </Dropdown>
     );
   }

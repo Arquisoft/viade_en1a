@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import NotificationItem from '../NotificationItem';
-import { List, NoNotifications } from './notification-list.style';
+import React, { Fragment } from "react";
+import NotificationItem from "../NotificationItem";
+import { List, NoNotifications } from "./notification-list.style";
 
 type Props = {
   notifications: Array,
@@ -19,7 +19,7 @@ const NotificationList = ({ notifications, markAsRead, deleteNotification }: Pro
   <Fragment>
     {notifications && notifications.length > 0 ? (
       <List>
-        {notifications.map(notification => (
+        {notifications.map((notification) => (
           <NotificationItem
             key={notification.id}
             notification={notification}

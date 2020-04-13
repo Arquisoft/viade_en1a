@@ -18,14 +18,14 @@ const LoginComponent = () => {
             <Link className="ids-link-filled ids-link-filled--primary" to="/register">
               {t('login.register')}
             </Link>
-            <a
+            {/* <a
               href="https://solid.inrupt.com/get-a-solid-pod"
               rel="noopener noreferrer"
               target="_blank"
               className="link"
             >
               {t('login.solidHelp')}
-            </a>
+            </a> */}
             <LoginTitle data-testid="login-title">
               <span>{t('login.loginTitle')}</span>
             </LoginTitle>

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 import { PrivateLayout, PublicLayout, NotLoggedInLayout } from "@layouts";
 import { HashRouter as Router, Switch, Redirect } from "react-router-dom";
 
@@ -11,34 +11,40 @@ import {
   Profile,
   Friends,
   Maps,
-  Notifications
-} from './containers';
+  Notifications,
+  ShareRoutes
+} from "./containers";
 
 const privateRoutes = [
   {
-    id: 'welcome',
-    path: '/welcome',
+    id: "welcome",
+    path: "/welcome",
     component: Welcome
   },
   {
-    id: 'maps',
-    path: '/maps',
+    id: "maps",
+    path: "/maps",
     component: Maps
   },
   {
-    id: 'friends',
-    path: '/friends',
+    id: "friends",
+    path: "/friends",
     component: Friends
   },
   {
-    id: 'profile',
-    path: '/profile',
+    id: "profile",
+    path: "/profile",
     component: Profile
   },
   {
-    id: 'notifications',
-    path: '/notifications',
+    id: "notifications",
+    path: "/notifications",
     component: Notifications
+  },
+  {
+    id: "share",
+    path: "/share",
+    component: ShareRoutes
   }
 ];
 

@@ -6,16 +6,16 @@ import {
 import { Friend } from './components';
 
 
-export const FriendsPageContent = props => {
+export const FriendsPageContent = (props) => {
     const {friends} = props;
 
     return (
         <FriendsWrapper>
-            <FriendsContainer className="card">
-                <ul>
+            <FriendsContainer id="friendsContainer" className="card">
+                <ul id="friendsList">
                     {
                         friends.map(
-                            friend =>(
+                            (friend) => (
                                 <Friend friend={friend}/>
                             )
                         )

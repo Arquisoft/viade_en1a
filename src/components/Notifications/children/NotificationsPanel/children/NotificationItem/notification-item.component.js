@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
-import moment from 'moment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Item, Body, Message, Meta, MarkAsRead, Delete, Img } from './notification-item.style';
+import React, { useCallback } from "react";
+import moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Item, Body, Message, Meta, MarkAsRead, Delete, Img } from "./notification-item.style";
 
 type Props = {
   notification: Object,
@@ -32,7 +32,7 @@ const NotificationItem = ({ notification, markAsRead, children, deleteNotificati
    */
 
   const opCurrentRead = !currentRead;
-  const defaultImage = 'img/icon/empty-profile.svg';
+  const defaultImage = "img/icon/empty-profile.svg";
   const actorImage =
     notification && notification.actor && notification.actor.image
       ? notification.actor.image
@@ -43,7 +43,7 @@ const NotificationItem = ({ notification, markAsRead, children, deleteNotificati
         <Img
           src={actorImage}
           alt="Creator"
-          onError={e => {
+          onError={(e) => {
             e.target.onerror = null;
             e.target.src = defaultImage;
           }}
@@ -62,10 +62,10 @@ const NotificationItem = ({ notification, markAsRead, children, deleteNotificati
         type="button"
         className="delete"
         onClick={() =>
-          markAsRead(notification.path, notification.id, opCurrentRead ? 'true' : 'false')
+          markAsRead(notification.path, notification.id, opCurrentRead ? "true" : "false")
         }
       >
-        <FontAwesomeIcon icon={currentRead ? 'eye-slash' : 'eye'} />
+        <FontAwesomeIcon icon={currentRead ? "eye-slash" : "eye"} />
       </MarkAsRead>
       <Delete
         type="button"

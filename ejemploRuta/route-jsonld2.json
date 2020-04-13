@@ -1,0 +1,109 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "comments": {
+      "@id": "viade:comments",
+      "@type": "@id"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "media": {
+      "@container": "@list",
+      "@id": "viade:media"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "points": {
+      "@container": "@list",
+      "@id": "viade:points"
+    },
+    "latitude": {
+      "@id": "schema:latitude",
+      "@type": "xsd:double"
+    },
+    "longitude": {
+      "@id": "schema:longitude",
+      "@type": "xsd:double"
+    },
+    "elevation": {
+      "@id": "schema:elevation",
+      "@type": "xsd:double"
+    },
+    "author": {
+      "@id": "schema:author",
+      "@type": "@id"
+    },
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "http://schema.org/",
+    "viade": "http://arquisoft.github.io/viadeSpec/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "name": "RIP Viade",
+  "author": "https://inadover.inrupt.net/profile/card#me",
+  "description": "Test route 2 for our app",
+  "comments": "",
+  "media": [],
+  "waypoints": [],
+  "points": [
+    {
+      "latitude": 43.356420543077334,
+      "longitude": -5.853899717330933,
+      "elevation": 34
+    },
+    {
+      "latitude": 43.35672477761699,
+      "longitude": -5.853760242462158,
+      "elevation": 36
+    },
+    {
+      "latitude": 43.356794985371074,
+      "longitude": -5.853599309921264,
+      "elevation": 39
+    },
+    {
+      "latitude": 43.35691199811401,
+      "longitude": -5.852665901184082,
+      "elevation": 40
+    },
+    {
+      "latitude": 43.35692759979601,
+      "longitude": -5.852236747741699,
+      "elevation": 43
+    },
+    {
+      "latitude": 43.356958803148004,
+      "longitude": -5.852011442184448,
+      "elevation": 46
+    },
+    {
+      "latitude": 43.35668577327408,
+      "longitude": -5.851947069168091,
+      "elevation": 50
+    },
+    {
+      "latitude": 43.35635813580373,
+      "longitude": -5.85195779800415,
+      "elevation": 55
+    },
+    {
+      "latitude": 43.356139709840726,
+      "longitude": -5.851914882659912,
+      "elevation": 56
+    },
+    {
+      "latitude": 43.3560695013285,
+      "longitude": -5.851625204086303,
+      "elevation": 50
+    },
+    {
+      "latitude": 43.35599929273503,
+      "longitude": -5.851035118103027,
+      "elevation": 45
+    }
+  ]
+}

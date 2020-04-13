@@ -45,13 +45,13 @@ const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
             <Content className="contentApp">
               <AuthNavBar {...{ location, webId, history }} />
               <Switch>
-                {routes.map(route => {
+                {routes.map((route) => {
                   const { component: RouteComponent } = route;
                   return (
                     <Route
                       key={route.id}
                       path={route.path}
-                      render={routerProps => <RouteComponent {...routerProps} webId={webId} />}
+                      render={(routerProps) => <RouteComponent {...routerProps} webId={webId} />}
                       webId={webId}
                       exact
                     />

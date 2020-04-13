@@ -44,7 +44,7 @@ export class FriendsComponent extends Component<Props> {
             if (imageLd && imageLd.value) {
                 image = imageLd.value;
             } else {
-                image = "";
+                image = "img/noimg.svg";
             }
 
             var friend_obj = {
