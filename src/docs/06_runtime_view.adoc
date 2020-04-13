@@ -38,23 +38,50 @@ There are many notations for describing scenarios, e.g.
 [plantuml,"Sequence diagram 1",png]
 ----
 actor Alice
+participant Tracks_List
 participant Track_Controller
+participant Track_Parser
 participant Pod_Controller
 entity Track
 
-Alice -> Track_Controller: Upload track file (KML)
+Alice -> Tracks_List: Select add track
+
+Tracks_List -> Track_Controller: Upload track file (json-ld)
 activate Track_Controller
 
-Track_Controller -> Track: Build track
-activate Track
-Track -> Track_Controller
-deactivate Track
+
 
 Track_Controller -> Pod_Controller: Store track
 activate Pod_Controller
+Pod_Controller -> Track :Use
 Pod_Controller -> Track_Controller: Return
 deactivate Pod_Controller
-
-Track_Controller -> Alice : End
 deactivate Track_Controller
+
+
+Tracks_List -> Track_Controller :Get Tracks
+activate Track_Controller
+Track_Controller -> Pod_Controller :Get Tracks
+activate Pod_Controller
+Pod_Controller -> Track :Use
+Pod_Controller -> Track_Controller: Return
+deactivate Pod_Controller
+Track_Controller -> Track_Parser :Parse Track
+activate Track_Parser
+Track_Parser -> Track_Controller :Return
+deactivate Track_Parser
+Track_Controller -> Tracks_List: Return
+deactivate Track_Controller
+Tracks_List -> Tracks_List :Refresh
 ----
+
+=== <View track>
+
+
+* A user can add see tracks from their pod.
+
+
+=== <Share track>
+
+
+* A user can share tracks from their pod to friends.
