@@ -89,6 +89,43 @@ Contained Building Blocks::
 * *View*: Representation of the information, graphical interface.
 * *Controller*: Accepts input and converts it to commands for the model or view.
 
+=== Opening Model Black Box
+
+[plantuml,"Models",png]
+----
+package "Viade Models" {
+
+    [Friends] as Friends
+
+    [Routes] as Routes
+
+    [Notifications] as Notifications
+}
+----
+
+Let's explore the main models for the viade app
+
+Routes::
+[plantuml,"Routes uml",png]
+----
+class Routes {
+  +name
+  +author
+  +description
+  +comments
+  +media
+  +waypoints
+  +points
+}
+----
+Routes are stored as json-ld and savend on the solid pod
+
+
+Friends::
+Friends are native elements to solid, friends are added trought the user's POD interface.
+
+Notifications::
+Notifications are used for alerting users of new routes that have been shared with them by friends.
 
 [role="arc42help"]
 ****
