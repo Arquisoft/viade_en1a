@@ -240,36 +240,27 @@ class RoutesSideBar extends Component {
 
         var index = routeWrapper.route.media.length;
         var i;
-        for (i=0; i<mediaElements.length; i++) {
+        for (let element in mediaElements) {
 
-            if (!await this.fc.itemExists(url + mediaElements[i].name)) {
-                 await this.fc.createFile(url + mediaElements[i].name, mediaElements[i], "text/plain");
+            if (!await this.fc.itemExists(url + element.name)) {
+                 await this.fc.createFile(url + element.name, element, "text/plain");
             }
 
             // add media to route
-            routeWrapper.route.media[index] = url + mediaElements[i].name;
+            routeWrapper.route.media[index] = url + element.name;
             index += 1;
 
             // executing out of order
-            this.fc.fetch(routeWrapper.url, {
-                method: 'PUT',
+            await this.fc.fetch(routeWrapper.url, {
+                method: "PUT",
                 headers: {
-                    'Content-Type': 'json'
+                    "Content-Type": "json"
                   },
                 body: routeWrapper.route
-            }) ;
-        };
-
-        await this.fc.fetch(routeWrapper.url, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'json'
-              },
-            body: routeWrapper.route
-        }) 
+            }); 
+        }
 
         this.getPodRoutes();
-
     }
 
 
