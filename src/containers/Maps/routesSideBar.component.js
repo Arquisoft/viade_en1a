@@ -240,14 +240,14 @@ class RoutesSideBar extends Component {
 
         var index = routeWrapper.route.media.length;
         var i;
-        for (let element in mediaElements) {
+        for (let element of mediaElements) {
 
             if (!await this.fc.itemExists(url + element.name)) {
                  await this.fc.createFile(url + element.name, element, "text/plain");
             }
 
             // add media to route
-            routeWrapper.route.media[index] = url + element.name;
+            routeWrapper.route.media[parseInt(index)] = url + element.name;
             index += 1;
 
             // executing out of order

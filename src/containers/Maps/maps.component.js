@@ -112,14 +112,14 @@ class SimpleMap extends Component {
     createGalery (route) {
         var list = [];
         for (var i = 0; i < route.media.length; i++) { 
-            if (route.media[i].url.substring(route.media[i].url.length-3, route.media[i].url.length)==="jpg"
-            | route.media[i].url.substring(route.media[i].url.length-3, route.media[i].url.length)==="png"){ 
+            if (route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length-3, route.media[parseInt(i)].url.length)==="jpg"
+            | route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length-3, route.media[parseInt(i)].url.length)==="png"){ 
                 list.push(
-                    <img src={route.media[i].url} />
+                    <img src={route.media[parseInt(i)].url} />
                 );
             } else {
                 list.push(
-                    <video controls src={route.media[i].url}></video>
+                    <video controls src={route.media[parseInt(i)].url}></video>
                 );
             }
            
