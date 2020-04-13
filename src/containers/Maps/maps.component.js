@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import RoutesSideBar from "./routesSideBar.component";
 import GoogleMapReact from "google-map-react";
 import * as Icon from "react-feather";
-import  Carousel  from 'nuka-carousel'; 
+import  Carousel  from "nuka-carousel"; 
 import { withTranslation } from "react-i18next";
 
 const MyMarker = ({icon}) => <div>{icon}</div>;
