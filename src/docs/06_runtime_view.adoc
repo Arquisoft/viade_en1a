@@ -80,6 +80,47 @@ Tracks_List -> Tracks_List :Refresh
 
 * A user can add see tracks from their pod.
 
+[plantuml,"Sequence diagram 2",png]
+----
+actor Alice
+participant Tracks_List
+participant Map_View
+participant Track_Controller
+participant Multimedia_Controller
+participant Track_Parser
+participant Pod_Controller
+entity Track
+
+Alice -> Tracks_List: Select track
+
+Tracks_List -> Track_Controller: Get track
+activate Track_Controller
+
+Track_Controller -> Pod_Controller: Fetch track
+activate Pod_Controller
+Pod_Controller -> Track :Fetch
+Pod_Controller -> Track_Controller: Return
+deactivate Pod_Controller
+
+
+Track_Controller -> Track_Parser :Parse Track
+activate Track_Parser
+Track_Parser -> Track_Controller :Return
+deactivate Track_Parser
+
+
+Track_Controller -> Multimedia_Controller :Fetch Multimedia
+activate Multimedia_Controller
+Multimedia_Controller -> Track_Controller :Return
+deactivate Multimedia_Controller
+
+Track_Controller -> Map_View :Pass Track
+Track_Controller -> Map_View :Pass Multimedia
+deactivate Track_Controller
+
+Map_View -> Map_View :Refresh
+----
+
 
 === <Share track>
 
