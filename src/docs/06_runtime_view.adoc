@@ -126,3 +126,54 @@ Map_View -> Map_View :Refresh
 
 
 * A user can share tracks from their pod to friends.
+
+[plantuml,"Sequence diagram 3",png]
+----
+actor Alice
+participant Tracks_List
+participant Sharing_View
+participant Track_Controller
+participant Friends_Controller
+participant Notification_Controller
+participant Track_Parser
+participant Pod_Controller
+entity Track
+actor Bob
+
+Alice -> Tracks_List: Select track to share
+
+Tracks_List -> Sharing_View :Change to
+activate Sharing_View
+Sharing_View -> Friends_Controller :Get friends
+activate Friends_Controller
+Friends_Controller -> Pod_Controller :Get friends
+activate Pod_Controller
+Pod_Controller -> Bob :Get
+Pod_Controller -> Friends_Controller :Return
+deactivate Pod_Controller
+Friends_Controller -> Sharing_View :Return
+deactivate Friends_Controller
+
+Alice -> Sharing_View :Select Friends (Bob)
+Alice -> Sharing_View :Press Share Button
+
+Sharing_View -> Track_Controller: Get track
+activate Track_Controller
+Track_Controller -> Pod_Controller :Get Tracks
+activate Pod_Controller
+Pod_Controller -> Track :Use
+Pod_Controller -> Track_Controller: Return
+deactivate Pod_Controller
+Track_Controller -> Track_Parser :Parse Track
+activate Track_Parser
+Track_Parser -> Track_Controller :Return
+deactivate Track_Parser
+Track_Controller -> Sharing_View: Return
+deactivate Track_Controller
+
+Sharing_View -> Pod_Controller :Store Track
+
+Sharing_View -> Notification_Controller :Send notification
+activate Sharing_View
+Notification_Controller -> Bob :Notify user
+----
