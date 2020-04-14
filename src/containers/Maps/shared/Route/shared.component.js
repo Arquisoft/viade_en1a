@@ -24,7 +24,7 @@ export const SharedRoute = (props) => {
     return (
         <StyledSharedRoute>
         <Dropdown as={ButtonGroup}>
-            <Button variant="success" onClick={showRoute}>{routeWrapper.route.name}</Button>
+            <Button variant="success" onClick={showRoute}>{routeWrapper.route.name+routeWrapper.name}</Button>
 
             <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 

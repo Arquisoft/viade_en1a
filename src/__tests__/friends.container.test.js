@@ -24,6 +24,7 @@ describe.only("Using molid", () => {
     const { container } = render(
       <FriendsComponent {...{ webId }} />
     );
+
     expect(container).toBeTruthy();
   });
 
@@ -31,7 +32,6 @@ describe.only("Using molid", () => {
     const friendsContainer = document.querySelector("#friendsContainer");
 
     expect(friendsContainer).toBeTruthy();
-    expect(document.querySelectorAll("a[href='https://drastur.solid.community/']")).toBeTruthy();
   });
 
   test("fetches the threee friends", () => {
