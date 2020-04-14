@@ -46,16 +46,16 @@ Various options:
 |*_Google Maps API_*  
     | We decided to use this API to easily show an interactive world map in our application, and load
     routes in it, so that users can visualize them.
-    |It is really easy to integrate in any web app, it also provides a great support for displaying routes using GeoJSON.
-    |The only disadvantage we can find is the need to use an API key, for which you will have to pay once you exceed the number of free requests. For the moment, this does not reprensent a problem for our application, since it is not being used massively.
+    |It is really easy to integrate in any web app, it also provides a great support for displaying routes using GeoJSON and it's the most complete map API out there.
+    |The only disadvantage we can find is the need to use an API key for which you will have to pay once you exceed the number of free requests. For the moment, this does not reprensent a problem for our application, since it is not being used massively.
 |*_GeoJSON_*  
     | GeoJSON is an open standard, based in JSON, specifically designed for representing geographic elements.
-    |Those elements represented with this format can be directly shown in the Google API map, thanks to it Data Layer.
-    |It needs to be extended, since we need to add extra information to our rutes, e. g., pictures or a description.
+    |Those elements represented with this format can be directly shown in the Google API map, thanks to its Data Layer, meaning that it offers and easy way to show the routes once they have been converted to valid GeoJson objects. Since we are using JSON-LD for storing and sharing routes, there is another advantage, since converting from JSON-LD to GeoJSON is as simple as moving attributes from one Javascript object to another.
+    |It needs to be extended, since we need to add extra information to our rutes, e. g., pictures or a description, as it is not as complete as standards like GPX, although with the usage of JSON-LD it has not been an issue for us.
 |*_JSON-LD_*  
     | This provides a method for encoding Linked Data in a JSON format.
-    |JSON-LD, together with a concrete folder structure, allows us to archieve interoperability with other ViaDe apps in an easy way.
-    |This format can not be directly displayed in our map, but it is really easy to parse it into a GeoJSON format.
+    |JSON-LD, together with an specific folder structure, allows us to archieve interoperability with other Viade apps in an easy way, while also being easy to parse and interact with thanks to the Javascript JSON object.
+    |This format can not be directly displayed in our map, but it is really easy to parse it into a GeoJSON format. It is also not compatible with those Viade apps that are using Turtle as their Linked Data format
 |*_Molid_*  
     | This package offers an easy way of implementing a complete mock Solid server locally, and simulate HTTP requests to it.
     |Thanks to Molid, a sizable portion of our app can be easily tested without the need of a real POD and Internet conexion.

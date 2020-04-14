@@ -45,6 +45,5 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 |=========================================================
 |*Constraint* |*Description* 
 
-|*_JS Styling_* | Follow https://google.github.io/styleguide/jsguide.html[google styling conventions]
 |*_JS Documentation_*| Use https://jsdoc.app/[JSDoc]
 |=========================================================
