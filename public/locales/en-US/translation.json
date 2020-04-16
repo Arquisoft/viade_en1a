@@ -266,7 +266,8 @@
     "cancel": "Cancel",
     "shared": "Shared",
     "addMedia": "Add media",
-	"galery": "Galery"
+	"galery": "Galery",
+    "covidtoggle": "Show COVID-19 data"
   },
   "alt":{
     "friend": "Friend",
