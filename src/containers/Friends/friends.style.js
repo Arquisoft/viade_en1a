@@ -24,8 +24,8 @@ export const FriendsContainer = styled.div`
   //Overriding the style guide card flexbox settings
   max-width: 80% !important;
   flex-direction: row !important;
-  padding: 50px 0 !important; //temporary fix to a style guide bug
-
+  padding: 50px !important; //temporary fix to a style guide bug
+  display: block !important;
   align-items: center;
 
   a {
@@ -34,12 +34,24 @@ export const FriendsContainer = styled.div`
       text-decoration: underline;
     }
   }
-
-  button {
-    margin-left: 8px;
+  
+  .friendBox{
+    display: inline-flex;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
   }
-
+  
   .friend-img {
-    border-radius: 50%;
+    background-color: lightgray;
+    border-radius: 5px;
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  .addUserForm {
+    margin: 20px;
+    width: 80%;
   }
 `;

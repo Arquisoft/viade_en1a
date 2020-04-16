@@ -272,5 +272,10 @@
   "alt":{
     "friend": "Friend",
     "loading": "This page is loading...Don't worry, it will take some seconds."
+  },
+  "friends": {
+    "delete": "Delete",
+    "changeGroup": "Change to group...",
+    "addFriend": "Add Friend"
   }
 }
