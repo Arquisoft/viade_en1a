@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FC from "solid-file-client";
 import auth from "solid-auth-client";
-
+import {NotificationsContainer, NotificationsWrapper} from "./notifications.style"
 import {Notis} from "./Notis";
 
 export class NotificationsComponent extends Component {
@@ -20,7 +20,7 @@ export class NotificationsComponent extends Component {
         
         this.fc = new FC(auth);
 
-    }
+    } 
 
     async getNotificationsFromInbox() {
         var session = await auth.currentSession();
@@ -81,11 +81,11 @@ export class NotificationsComponent extends Component {
     render() {
 
         return (
-
-            <div id="notificationsCard" className="card">
-                    <h3>Notifications</h3>
+            <NotificationsWrapper>
+            <NotificationsContainer id="notificationsCard" className="card">
                     {this.listNotifications()}
-            </div>
+            </NotificationsContainer>
+            </NotificationsWrapper>
 
         );
     }
