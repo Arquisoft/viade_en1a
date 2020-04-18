@@ -135,7 +135,7 @@ class SimpleMap extends Component {
     render() {
 		const { t } = this.props;
         return (
-            <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
+            <div style={{height: "50vh", width: "100%", display: "flex", flex: "row"}}>
                 <RoutesSideBar show={this.show}/>
                 <div style={{height: "60vh", width: "80%"}}>
                     <GoogleMapReact
@@ -145,12 +145,11 @@ class SimpleMap extends Component {
                         yesIWantToUseGoogleMapApiInternals={true}
                         center={this.state.center}
                         onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
-
                     >
                     </GoogleMapReact>
                     {/* <h2>{t("routes.galery")}</h2> */}
                     <Carousel slidesToShow={3} height="20vh" dragging={true} style={{textAlign:"center"/* background: "url('img/fondoGaleria.jpeg')"*/}}>
-                    
+
                         { this.state.galery }
                     </Carousel>
                 </div>
