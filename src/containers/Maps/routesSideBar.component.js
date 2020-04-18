@@ -17,9 +17,9 @@ import {withTranslation} from "react-i18next";
 
 const StyledRoutesSidebar = styled.div`
 
-      height: 100vh;
+      height: 70vh;
 
-      width: 20%;
+      width: 25%;
 
     `;
 
@@ -159,16 +159,20 @@ class RoutesSideBar extends Component {
 
         let folderShared = await this.fc.readFolder(urlShared);
         for (let sharedElement of folderShared.files) {
-            var name = await this.getFullNotification(sharedElement.url.toString());
-            let url = sharedElement.url;
+            try{
+                var name = await this.getFullNotification(sharedElement.url.toString());
+                let url = sharedElement.url;
 
-            let routeUrl = await this.getSharedRoute(url);
+                let routeUrl = await this.getSharedRoute(url);
 
-            let content = await this.fc.readFile(routeUrl.toString());
+                let content = await this.fc.readFile(routeUrl.toString());
 
-            let route = JSON.parse(content);
+                let route = JSON.parse(content);
 
-            this.state.sharedRoutes.push({name, url, route});
+                this.state.sharedRoutes.push({name, url, route});
+            } catch {
+                //do nothing
+            }
         }
 
         let sharedRoutes = [...this.state.sharedRoutes];
@@ -181,18 +185,18 @@ class RoutesSideBar extends Component {
         let fol = await this.fc.readFile(myUrl);
         let getSchem = fol.split("<>");
         let getImportant = getSchem[1].split("text");
-        let theUrl = getImportant[1].split("\"")[1];
-        let theSplitUrl = theUrl.split("/");
+        //let theUrl = getImportant[1].split("\"")[1];
+        //let theSplitUrl = theUrl.split("/");
 
 
-        let name = theSplitUrl[theSplitUrl.length - 1];
+        //let name = theSplitUrl[theSplitUrl.length - 1];
 
         let fullLabel = getImportant[1].split("\"")[3];
         let sender = fullLabel.split("Shared route ")[1];
         //console.log(name+" "+sender)	
 
-
-        return name + " " + sender;
+        //console.log(sender)
+        return sender;
 
     }
 

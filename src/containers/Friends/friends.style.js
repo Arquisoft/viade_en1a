@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FriendsWrapper = styled.section`
   width: 100%;
-  background-image: url('img/concentric-hex-pattern_2x.png');
+  background-image: url('img/fondoFriends.png');
   background-repeat: repeat;
   padding: 50px 0;
 
@@ -26,13 +26,14 @@ export const FriendsContainer = styled.div`
   flex-direction: row !important;
   padding: 50px 0 !important; //temporary fix to a style guide bug
 
-  align-items: center;
+  align-items: left;
 
   a {
     text-decoration: none;
     &:hover {
       text-decoration: underline;
     }
+    margin-left: 10px
   }
 
   button {
@@ -42,4 +43,5 @@ export const FriendsContainer = styled.div`
   .friend-img {
     border-radius: 50%;
   }
+
 `;
