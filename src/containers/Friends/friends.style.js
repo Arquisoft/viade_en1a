@@ -44,8 +44,4 @@ export const FriendsContainer = styled.div`
     border-radius: 50%;
   }
 
-  li{
-    margin-left: 100px;
-    margin-bottom: 30px;
-  }
 `;

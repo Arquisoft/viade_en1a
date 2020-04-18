@@ -35,7 +35,7 @@ export class NotificationsComponent extends Component {
                 let url = inboxFolder.files[parseInt(index)].url;
                 this.state.notifications.push({name, url });
             } catch {
-                ;
+               //do nothing ;
             }
         }
 
