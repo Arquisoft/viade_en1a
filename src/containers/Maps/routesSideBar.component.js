@@ -360,7 +360,7 @@ class RoutesSideBar extends Component {
         const {t} = this.props;
         return (
 
-            <StyledRoutesSidebar >
+            <StyledRoutesSidebar>
 
                 <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
 
