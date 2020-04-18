@@ -134,7 +134,7 @@ class SimpleMap extends Component {
 */
     render() {
         
-		const { t } = this.props;
+		//const { t } = this.props;
         return (
             <div style={{height: "50vh", width: "100%", display: "flex", flex: "row"}}>
                 <RoutesSideBar show={this.show}/>
