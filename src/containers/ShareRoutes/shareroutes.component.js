@@ -18,7 +18,7 @@ export const ShareRoutesPageContent = (props) => {
                     friends.map(
                         (friend) => (
 
-                            <li key={friend.webId}><img className="friend-img" width="100px" src={friend.image} alt="Friend"/><a href={friend.name}> {friend.name}</a> 
+                            <li key={friend.webId}><img className="friend-img" width="100px" src={friend.image} alt="Friend"/><a href={friend.name}> {friend.name}</a>
                             <Button id={"btn"+friend.webId} onClick={shareRoute.bind(this, friend)} variant="primary" block>{t("routes.share")}</Button></li>
                         )
                     )
