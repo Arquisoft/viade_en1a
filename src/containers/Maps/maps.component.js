@@ -133,6 +133,7 @@ class SimpleMap extends Component {
       }
 */
     render() {
+        
 		const { t } = this.props;
         return (
             <div style={{height: "50vh", width: "100%", display: "flex", flex: "row"}}>
@@ -148,7 +149,7 @@ class SimpleMap extends Component {
                     >
                     </GoogleMapReact>
                     {/* <h2>{t("routes.galery")}</h2> */}
-                    <Carousel waypoints slidesToShow={3} height="20vh" dragging={true} style={{textAlign:"center", background: "url('img/fondoGaleria.png')"}}>
+                    <Carousel renderBottomCenterControls={false} slidesToShow={3} height="20vh" dragging={true} style={{textAlign:"center", background: "url('img/fondoGaleria.png')"}}>
 
                         { this.state.galery }
                     </Carousel>
