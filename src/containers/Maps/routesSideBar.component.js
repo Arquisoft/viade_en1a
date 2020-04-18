@@ -19,7 +19,7 @@ const StyledRoutesSidebar = styled.div`
 
       height: 70vh;
 
-      width: 20%;
+      width: 25%;
 
     `;
 
