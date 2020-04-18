@@ -115,7 +115,23 @@ class SimpleMap extends Component {
         }
         this.setState({galery : list}) ;
     }
-
+ /*
+     groupIntoThrees = (galery) => {
+        const output = []
+        let currentGroup = []
+      
+        galery.forEach((child, index) => {
+          currentGroup.push(child)
+      
+          if (index % 3 === 2) {
+            output.push(currentGroup)
+            currentGroup = []
+          }
+        })
+      
+        return output
+      }
+*/
     render() {
 		const { t } = this.props;
         return (
@@ -133,7 +149,8 @@ class SimpleMap extends Component {
                     >
                     </GoogleMapReact>
                     {/* <h2>{t("routes.galery")}</h2> */}
-                    <Carousel height='20vh' dragging={true} style={{textAlign:"center",/* background: "url('img/fondoGaleria.jpeg')"*/}}>
+                    <Carousel slidesToShow={3} height="20vh" dragging={true} style={{textAlign:"center"/* background: "url('img/fondoGaleria.jpeg')"*/}}>
+                    
                         { this.state.galery }
                     </Carousel>
                 </div>
