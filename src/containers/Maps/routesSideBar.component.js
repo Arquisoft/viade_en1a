@@ -17,7 +17,7 @@ import {withTranslation} from "react-i18next";
 
 const StyledRoutesSidebar = styled.div`
 
-      height: 100vh;
+      height: 70vh;
 
       width: 20%;
 

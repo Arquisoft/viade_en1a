@@ -108,18 +108,34 @@ class SimpleMap extends Component {
                 );
             } else {
                 list.push(
-                    <video controls src={route.media[parseInt(i)].url}/>
+                    <video style={{margin:"auto", height: '20vh', width: "auto"}} controls src={route.media[parseInt(i)].url}/>
                 );
             }
            
         }
         this.setState({galery : list}) ;
     }
-
+ /*
+     groupIntoThrees = (galery) => {
+        const output = []
+        let currentGroup = []
+      
+        galery.forEach((child, index) => {
+          currentGroup.push(child)
+      
+          if (index % 3 === 2) {
+            output.push(currentGroup)
+            currentGroup = []
+          }
+        })
+      
+        return output
+      }
+*/
     render() {
 		const { t } = this.props;
         return (
-            <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
+            <div style={{height: "50vh", width: "100%", display: "flex", flex: "row"}}>
                 <RoutesSideBar show={this.show}/>
                 <div style={{height: "60vh", width: "80%"}}>
                     <GoogleMapReact
@@ -129,11 +145,11 @@ class SimpleMap extends Component {
                         yesIWantToUseGoogleMapApiInternals={true}
                         center={this.state.center}
                         onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
-
                     >
                     </GoogleMapReact>
                     {/* <h2>{t("routes.galery")}</h2> */}
-                    <Carousel height='20vh' dragging={true} style={{textAlign:"center",/* background: "url('img/fondoGaleria.jpeg')"*/}}>
+                    <Carousel waypoints slidesToShow={3} height="20vh" dragging={true} style={{textAlign:"center"/* background: "url('img/fondoGaleria.jpeg')"*/}}>
+
                         { this.state.galery }
                     </Carousel>
                 </div>
