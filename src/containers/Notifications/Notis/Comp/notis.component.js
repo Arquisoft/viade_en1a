@@ -15,19 +15,29 @@ export const Notis = (props) => {
  
     
     return (
-        <StyledNoti>
-            <Button variant="success" onClick={showNotification}>
-            <style>
-                {`
-                    .btn-success {
-                        background-color: green;
-                        color: white;
-                        border-radius: 20px;
-                    
-                    }
-                `}
-            </style>
-                {noti.name}</Button>
-        </StyledNoti>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <StyledNoti>
+                            <Button variant="success" onClick={showNotification}>
+                                <style>
+                                    {`
+                                        .btn-success {
+                                            background-color: green;
+                                            color: white;
+                                            border-radius: 20px;
+                                        
+                                        }
+                                    `}
+                                </style>
+                                    {noti.name}
+                            </Button>
+                        </StyledNoti>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
     );
 };
