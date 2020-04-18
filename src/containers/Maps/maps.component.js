@@ -104,7 +104,7 @@ class SimpleMap extends Component {
             if (route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "jpg"
                 || route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "png") {
                 list.push(
-                    <img style={{margin:"auto", height: '20vh', width: "auto"}} alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
+                    <img style={{margin:"auto", height: '20vh', width: "auto", border:"5px"}} alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
                 );
             } else {
                 list.push(
@@ -148,7 +148,7 @@ class SimpleMap extends Component {
                     >
                     </GoogleMapReact>
                     {/* <h2>{t("routes.galery")}</h2> */}
-                    <Carousel waypoints slidesToShow={3} height="20vh" dragging={true} style={{textAlign:"center"/* background: "url('img/fondoGaleria.jpeg')"*/}}>
+                    <Carousel waypoints slidesToShow={3} height="20vh" dragging={true} style={{textAlign:"center", background: "url('img/fondoGaleria.png')"}}>
 
                         { this.state.galery }
                     </Carousel>
