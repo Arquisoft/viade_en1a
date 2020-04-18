@@ -108,7 +108,7 @@ class SimpleMap extends Component {
                 );
             } else {
                 list.push(
-                    <video controls src={route.media[parseInt(i)].url}/>
+                    <video style={{margin:"auto", height: '20vh', width: "auto"}} controls src={route.media[parseInt(i)].url}/>
                 );
             }
            
@@ -148,7 +148,7 @@ class SimpleMap extends Component {
                     >
                     </GoogleMapReact>
                     {/* <h2>{t("routes.galery")}</h2> */}
-                    <Carousel slidesToShow={3} height="20vh" dragging={true} style={{textAlign:"center"/* background: "url('img/fondoGaleria.jpeg')"*/}}>
+                    <Carousel waypoints slidesToShow={3} height="20vh" dragging={true} style={{textAlign:"center"/* background: "url('img/fondoGaleria.jpeg')"*/}}>
 
                         { this.state.galery }
                     </Carousel>
