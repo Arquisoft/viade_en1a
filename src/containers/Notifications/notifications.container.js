@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FC from "solid-file-client";
 import auth from "solid-auth-client";
-import {NotificationsContainer, NotificationsWrapper} from "./notifications.style"
+import {NotificationsContainer, NotificationsWrapper} from "./notifications.style";
 import {Notis} from "./Notis";
 
 export class NotificationsComponent extends Component {
@@ -35,7 +35,7 @@ export class NotificationsComponent extends Component {
                 let url = inboxFolder.files[parseInt(index)].url;
                 this.state.notifications.push({name, url });
             } catch {
-
+                ;
             }
         }
 

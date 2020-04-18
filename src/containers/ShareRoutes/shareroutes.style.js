@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FriendsShareContainer = styled.div`
   background-color: #fff;
@@ -25,13 +25,7 @@ export const FriendsShareContainer = styled.div`
   .friend-img {
     border-radius: 50%;
   }
-
-  table {
-    columns: 1;
-    -webkit-columns: 1;
-    -moz-columns: 1;
-  }
-
+  
   td{
     margin-bottom: 20px;
     columns:1;
