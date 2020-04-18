@@ -115,30 +115,13 @@ class SimpleMap extends Component {
         }
         this.setState({galery : list}) ;
     }
- /*
-     groupIntoThrees = (galery) => {
-        const output = []
-        let currentGroup = []
-      
-        galery.forEach((child, index) => {
-          currentGroup.push(child)
-      
-          if (index % 3 === 2) {
-            output.push(currentGroup)
-            currentGroup = []
-          }
-        })
-      
-        return output
-      }
-*/
     render() {
         
 		//const { t } = this.props;
         return (
             <div style={{height: "50vh", width: "100%", display: "flex", flex: "row"}}>
                 <RoutesSideBar show={this.show}/>
-                <div style={{height: "60vh", width: "80%"}}>
+                <div style={{height: "55vh", width: "80%", marginLeft:"10vh", marginTop:"5vh", marginRight:"5vh"}}>
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
                         defaultZoom={this.state.zoom}
@@ -148,9 +131,8 @@ class SimpleMap extends Component {
                         onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
                     >
                     </GoogleMapReact>
-                    {/* <h2>{t("routes.galery")}</h2> */}
-                    <Carousel renderBottomCenterControls={false} slidesToShow={3} height="20vh" dragging={true} style={{textAlign:"center", background: "url('img/fondoGaleria.png')"}}>
-
+                    <Carousel renderBottomCenterControls={false} slidesToShow={3} height="20vh" dragging={true}
+                         style={{textAlign:"center", background: "url('img/fondoGaleria.png')"}}>
                         { this.state.galery }
                     </Carousel>
                 </div>

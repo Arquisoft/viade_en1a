@@ -1,8 +1,7 @@
 import React from "react";
 import { Button} from "react-bootstrap";
 import styled from "styled-components";
-const StyledNoti = styled.div
-`
+const StyledNoti = styled.div`
   margin: 10px;
   border-radius: 20px;
 `;
