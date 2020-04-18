@@ -171,7 +171,7 @@ class RoutesSideBar extends Component {
 
                 this.state.sharedRoutes.push({name, url, route});
             } catch {
-                ;
+                //do nothing
             }
         }
 

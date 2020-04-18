@@ -26,10 +26,6 @@ export const FriendsShareContainer = styled.div`
     border-radius: 50%;
   }
   
-  td{
-    margin-bottom: 20px;
-    columns:1;
-  }
 
   ul li btn{
     margin: auto;

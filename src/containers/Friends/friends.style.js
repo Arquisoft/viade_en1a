@@ -44,12 +44,6 @@ export const FriendsContainer = styled.div`
     border-radius: 50%;
   }
 
-  ul {
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-  }
-
   li{
     margin-left: 100px;
     margin-bottom: 30px;
