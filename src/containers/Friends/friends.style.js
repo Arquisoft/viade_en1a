@@ -26,13 +26,14 @@ export const FriendsContainer = styled.div`
   flex-direction: row !important;
   padding: 50px 0 !important; //temporary fix to a style guide bug
 
-  align-items: center;
+  align-items: left;
 
   a {
     text-decoration: none;
     &:hover {
       text-decoration: underline;
     }
+    margin-left: 10px
   }
 
   button {
@@ -41,5 +42,16 @@ export const FriendsContainer = styled.div`
 
   .friend-img {
     border-radius: 50%;
+  }
+
+  ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  }
+
+  li{
+    margin-left: 100px;
+    margin-bottom: 30px;
   }
 `;
