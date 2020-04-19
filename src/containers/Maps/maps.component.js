@@ -553,7 +553,7 @@ class SimpleMap extends Component {
                 radius: 50,
                 opacity: 1
             }
-        }
+        };
 
         this.show = this.show.bind(this);
         this.toggleCOVID = this.toggleCOVID.bind(this);
@@ -620,7 +620,7 @@ class SimpleMap extends Component {
                 }
             })
         }
-    }
+    };
 
     convertToGeoJSON = (route) => {
         let parsedRoute = {
@@ -684,10 +684,9 @@ class SimpleMap extends Component {
     }
 
     render() {
-		const { t } = this.props;
         return (
             <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
-                <RoutesSideBar show={this.show}/>
+                <RoutesSideBar show={this.show} toggleCOVID={this.toggleCOVID}/>
                 <div style={{height: "60vh", width: "80%"}}>
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
