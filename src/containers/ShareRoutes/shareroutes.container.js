@@ -5,7 +5,7 @@ import auth from "solid-auth-client";
 import FC from "solid-file-client";
 import { namedNode } from "@rdfjs/data-model";
 import { withTranslation } from "react-i18next";
-import { FriendsShareContainer } from "./shareroutes.style";
+import { FriendsShareContainer, ShareWrapper } from "./shareroutes.style";
 
 class ShareRoutesComponent extends Component<Props> {
 
@@ -139,9 +139,11 @@ class ShareRoutesComponent extends Component<Props> {
         };
 
         return (
+            <ShareWrapper>
             <FriendsShareContainer className="card">
                 <ShareRoutesPageContent {...{ friends, share }} />
             </FriendsShareContainer>
+            </ShareWrapper>
         );
     }
 }

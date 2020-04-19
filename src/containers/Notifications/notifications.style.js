@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const NotificationsWrapper = styled.section`
   width: 100%;
-  background-image: url('/img/fondoGaleria.png');
+  background-image: url('/img/fondoWelcome.png');
   background-repeat: repeat;
   padding: 50px 0;
 
@@ -27,5 +27,6 @@ flex-direction: row !important;
 padding: 50px 0 !important; //temporary fix to a style guide bug
 
 align-items: center;
+
 
 `;
