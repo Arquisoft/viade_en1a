@@ -36,12 +36,22 @@ export const FriendsContainer = styled.div`
     margin-left: 10px
   }
 
+  ul{
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  }
+
   button {
     margin-left: 8px;
   }
 
   .friend-img {
     border-radius: 50%;
+  }
+
+  li{
+    margin-bottom:15px;
   }
 
 `;
