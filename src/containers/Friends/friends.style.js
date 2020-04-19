@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FriendsWrapper = styled.section`
   width: 100%;
-  background-image: url('img/concentric-hex-pattern_2x.png');
+  background-image: url('img/fondoFriends.png');
   background-repeat: repeat;
   padding: 50px 0;
 
@@ -42,7 +42,7 @@ export const FriendsContainer = styled.div`
     border: 1px solid lightgray;
     border-radius: 5px;
   }
-  
+
   .friend-img {
     background-color: lightgray;
     border-radius: 5px;

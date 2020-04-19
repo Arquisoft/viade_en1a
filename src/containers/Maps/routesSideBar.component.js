@@ -19,11 +19,12 @@ import Switch from "react-switch";
 
 const StyledRoutesSidebar = styled.div`
 
-      height: 100vh;
+      height: 70vh;
 
-      width: 20%;
+      width: 25%;
 
     `;
+
 
 class RoutesSideBar extends Component {
 
@@ -163,16 +164,20 @@ class RoutesSideBar extends Component {
 
         let folderShared = await this.fc.readFolder(urlShared);
         for (let sharedElement of folderShared.files) {
-            var name = await this.getFullNotification(sharedElement.url.toString());
-            let url = sharedElement.url;
+            try{
+                var name = await this.getFullNotification(sharedElement.url.toString());
+                let url = sharedElement.url;
 
-            let routeUrl = await this.getSharedRoute(url);
+                let routeUrl = await this.getSharedRoute(url);
 
-            let content = await this.fc.readFile(routeUrl.toString());
+                let content = await this.fc.readFile(routeUrl.toString());
 
-            let route = JSON.parse(content);
+                let route = JSON.parse(content);
 
-            this.state.sharedRoutes.push({name, url, route});
+                this.state.sharedRoutes.push({name, url, route});
+            } catch {
+                //do nothing
+            }
         }
 
         let sharedRoutes = [...this.state.sharedRoutes];
@@ -195,8 +200,8 @@ class RoutesSideBar extends Component {
         let sender = fullLabel.split("Shared route ")[1];
         //console.log(name+" "+sender)	
 
-
-        return " " + sender;
+        //console.log(sender)
+        return sender;
 
     }
 

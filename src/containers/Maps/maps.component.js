@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import RoutesSideBar from "./routesSideBar.component";
 import GoogleMapReact from "google-map-react";
-import Carousel from "nuka-carousel";
-import {withTranslation} from "react-i18next";
+import  Carousel  from "nuka-carousel"; 
+import { withTranslation } from "react-i18next";
 
 class SimpleMap extends Component {
 
@@ -590,7 +590,7 @@ class SimpleMap extends Component {
     };
 
     deleteOldRoute = () => {
-        for (var i = 0; i < this.state.features.length; i++) {
+        for (var i = 0; i < this.state.features.length; i++){
             this.map.data.remove(this.state.features[parseInt(i)]);
 
         }
@@ -665,29 +665,29 @@ class SimpleMap extends Component {
         return parsedRoute;
     };
 
-    createGalery(route) {
+    createGalery (route) {
         var list = [];
         for (var i = 0; i < route.media.length; i++) {
             if (route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "jpg"
                 || route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "png") {
                 list.push(
-                    <img alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
+                    <img style={{margin:"auto", height: "20vh", width: "auto", border:"5px"}} alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
                 );
             } else {
                 list.push(
-                    <video controls src={route.media[parseInt(i)].url}/>
+                    <video style={{margin:"auto", height: "20vh", width: "auto"}} controls src={route.media[parseInt(i)].url}/>
                 );
             }
-
+           
         }
-        this.setState({galery: list});
+        this.setState({galery : list}) ;
     }
 
     render() {
-        const {t} = this.props;
+		const { t } = this.props;
         return (
             <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
-                <RoutesSideBar show={this.show} toggleCOVID={this.toggleCOVID}/>
+                <RoutesSideBar show={this.show}/>
                 <div style={{height: "60vh", width: "80%"}}>
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
@@ -700,9 +700,9 @@ class SimpleMap extends Component {
 
                     >
                     </GoogleMapReact>
-                    <h2>{t("routes.galery")}</h2>
-                    <Carousel height='auto' dragging={true}>
-                        {this.state.galery}
+                    <Carousel renderBottomCenterControls={false} slidesToShow={3} height="20vh" dragging={true}
+                         style={{textAlign:"center", background: "url('img/fondoGaleria.png')"}}>
+                        { this.state.galery }
                     </Carousel>
                 </div>
             </div>
@@ -713,4 +713,4 @@ class SimpleMap extends Component {
 }
 
 
-export default withTranslation()(SimpleMap);
+export default  withTranslation() (SimpleMap);
