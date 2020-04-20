@@ -1,9 +1,8 @@
-import styled from 'styled-components';
-import { media } from '../../utils';
+import styled from "styled-components";
 
-export const MyRoutesWrapper = styled.section`
+export const ShareWrapper = styled.section`
   width: 100%;
-  background-image: url('/img/concentric-hex-pattern_2x.png');
+  background-image: url('img/fondoFriends.png');
   background-repeat: repeat;
   padding: 50px 0;
 
@@ -18,14 +17,14 @@ export const MyRoutesWrapper = styled.section`
   }
 `;
 
-export const MyRoutesContainer = styled.div`
+export const FriendsShareContainer = styled.div`
   background-color: #fff;
   margin: 30px auto;
 
   //Overriding the style guide card flexbox settings
   max-width: 80% !important;
   flex-direction: row !important;
-  padding: 50px 0 !important; //temporary fix to a style guide bug
+  padding: 40px 0 ; //temporary fix to a style guide bug
 
   align-items: center;
 
@@ -36,7 +35,20 @@ export const MyRoutesContainer = styled.div`
     }
   }
 
-  button {
-    margin-left: 8px;
+  .shareClass{
+    margin-top: 30px;
+  }
+
+  .friend-img {
+    border-radius: 50%;
+  }
+  
+  td{
+    margin-bottom: 20px;
+    columns:1;
+  }
+
+  ul li btn{
+    margin: auto;
   }
 `;

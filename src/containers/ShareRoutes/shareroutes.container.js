@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import data from '@solid/query-ldflex';
-import { ShareRoutesPageContent } from './shareroutes.component';
-import auth from 'solid-auth-client';
-import FC from 'solid-file-client';
-import { namedNode } from '@rdfjs/data-model';
+import React, { Component } from "react";
+import data from "@solid/query-ldflex";
+import { ShareRoutesPageContent } from "./shareroutes.component";
+import auth from "solid-auth-client";
+import FC from "solid-file-client";
+import { namedNode } from "@rdfjs/data-model";
 import { withTranslation } from "react-i18next";
-import { FriendsContainer } from "../Friends/friends.style";
+import { FriendsShareContainer, ShareWrapper } from "./shareroutes.style";
 
 class ShareRoutesComponent extends Component<Props> {
 
@@ -22,12 +22,12 @@ class ShareRoutesComponent extends Component<Props> {
 
     componentDidMount() {
         const { webId } = this.props;
-        if (webId) this.getProfileData();
+        if (webId) {this.getProfileData();}
     }
 
     componentDidUpdate(prevProps) {
         const { webId } = this.props;
-        if (webId && webId !== prevProps.webId) this.getProfileData();
+        if (webId && webId !== prevProps.webId) {this.getProfileData();}
     }
 
     getProfileData = async () => {
@@ -41,12 +41,12 @@ class ShareRoutesComponent extends Component<Props> {
         for await (const friend of user.friends) {
             const friendWebId = await friend.value;
 
-            const friend_data = data[friendWebId];
+            const friendData = data[friendWebId.toString()];
 
-            const nameLd = await friend_data.name;
+            const nameLd = await friendData.name;
 
             const name = nameLd && nameLd.value.trim().length > 0 ? nameLd.value : friendWebId.toString();
-            const imageLd = await friend_data.vcard_hasPhoto;
+            const imageLd = await friendData.vcard_hasPhoto;
 
             let image;
             if (imageLd && imageLd.value) {
@@ -55,13 +55,14 @@ class ShareRoutesComponent extends Component<Props> {
                 image = "img/noimg.svg";
             }
 
-            var friend_obj = {
-                "webId": friendWebId,
-                "name": name,
-                "image": image
+            let webId = friendWebId;
+            var friendObj = {
+                webId,
+                name,
+                image
             };
 
-            friends.push(friend_obj);
+            friends.push(friendObj);
         }
         this.setState({ friends });
     };
@@ -69,9 +70,9 @@ class ShareRoutesComponent extends Component<Props> {
     async getRoute(){
         var name = this.getRouteName();
         var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "routes/";
+        var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
         var file = await this.fc.readFile(url + name);
-        if (file != null){
+        if (file !== null){
             this.setState({route: file});
         }
     }
@@ -86,7 +87,6 @@ class ShareRoutesComponent extends Component<Props> {
             document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
             document.getElementById("btn"+friend.webId).disabled = true;
         }catch(error){
-            console.log(error);
             alert("Could not share the route");
         }
         
@@ -100,7 +100,7 @@ class ShareRoutesComponent extends Component<Props> {
         message.recipient = targetUrl;
 
         var baseSource = session.webId.split("profile/card#me")[0];
-        var source = baseSource + "public/routes/";
+        var source = baseSource + "viade/routes/";
         message.content = source + app.getRouteName();
         message.title = "Shared route by " + await app.getSessionName();
         message.url = message.recipient + message.id + ".ttl";
@@ -110,11 +110,11 @@ class ShareRoutesComponent extends Component<Props> {
 
     async buildMessage(session, message){
         var mess = message.url;
-        await data[mess].schema$text.add(message.content);
-        await data[mess].rdfs$label.add(message.title);
-        await data[mess].schema$dateSent.add(message.date.toISOString());
-        await data[mess].rdf$type.add(namedNode('https://schema.org/Message'));
-        await data[mess].schema$sender.add(namedNode(session.webId));
+        await data[mess.toString()].schema$text.add(message.content);
+        await data[mess.toString()].rdfs$label.add(message.title);
+        await data[mess.toString()].schema$dateSent.add(message.date.toISOString());
+        await data[mess.toString()].rdf$type.add(namedNode('https://schema.org/Message'));
+        await data[mess.toString()].schema$sender.add(namedNode(session.webId));
     }
 
     async getSessionName(){
@@ -125,7 +125,7 @@ class ShareRoutesComponent extends Component<Props> {
 
     getRouteNameNoExtension(){
         var tmp = window.location.href.split("=")[1];
-        return tmp.substring(tmp.lastIndexOf('/') + 1);
+        return tmp.substring(tmp.lastIndexOf("/") + 1);
     }
 
     getRouteName(){
@@ -136,12 +136,14 @@ class ShareRoutesComponent extends Component<Props> {
         const { friends } = this.state;
         const share = {
             shareRoute: this.shareRoute.bind(this)
-        }
+        };
 
         return (
-            <FriendsContainer className="card">
+            <ShareWrapper>
+            <FriendsShareContainer className="card">
                 <ShareRoutesPageContent {...{ friends, share }} />
-            </FriendsContainer>
+            </FriendsShareContainer>
+            </ShareWrapper>
         );
     }
 }

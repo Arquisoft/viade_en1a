@@ -252,17 +252,20 @@
     "grantAccess": "Grant Access"
   },
   "routes":{
-    "yourRoutes": "Your routes",    
+    "yourRoutes": "Your routes",
     "uploadToPOD": "Upload to your POD",
     "hereYourRoutes": "Here your routes",
-	"sharedRoutes": "Shared Routes",
+    "sharedRoutes": "Shared Routes",
     "clear": "Clear",
     "share": "Share",
     "delete": "Delete",
-    "cancel" : "Cancel",
-    "shared" : "Shared"
+    "cancel": "Cancel",
+    "shared": "Shared",
+    "addMedia": "Add media",
+	"galery": "Galery"
   },
   "alt":{
-    "friend": "Friend"
+    "friend": "Friend",
+    "loading": "This page is loading...Don't worry, it will take some seconds."
   }
 }

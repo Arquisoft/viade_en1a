@@ -254,14 +254,18 @@
     "yourRoutes": "Tus rutas",
     "uploadToPOD": "Subir a tu POD",
     "hereYourRoutes": "Tus rutas aquí",
-	"sharedRoutes": "Rutas compartidas",
+    "sharedRoutes": "Rutas compartidas",
     "clear": "Limpiar",
     "share": "Compartir",
     "delete": "Borrar",
-    "cancel" : "Cancelar",
-    "shared" : "Compartido"
+    "cancel": "Cancelar",
+    "shared": "Compartido",
+    "addMedia": "Añadir multimedia",
+	"galery": "Galería"
   },
   "alt":{
-    "friend": "Amigo"
+    "friend": "Amigo",
+    "loading": "Esta página está cargando... No te preocupes, es solo unos segundos."
+
   }
 }

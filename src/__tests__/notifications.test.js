@@ -1,5 +1,5 @@
-import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import React from "react";
+import { render, cleanup } from "react-testing-library";
 import Notifications from "../components/Notifications/notifications.component";
 
 afterAll(cleanup);
