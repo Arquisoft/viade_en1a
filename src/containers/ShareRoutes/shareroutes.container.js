@@ -6,6 +6,7 @@ import FC from "solid-file-client";
 import { namedNode } from "@rdfjs/data-model";
 import { withTranslation } from "react-i18next";
 import { FriendsContainer } from "../Friends/friends.style";
+import SolidAclUtils from "solid-acl-utils";
 
 class ShareRoutesComponent extends Component<Props> {
 
@@ -83,13 +84,47 @@ class ShareRoutesComponent extends Component<Props> {
         try{
             var session = await auth.currentSession();
             var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
+            await this.modifyPermissions(this, session, this.getRouteName(), friend);
             await this.sendMessage(this, session, targetUrl);
             document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
             document.getElementById("btn"+friend.webId).disabled = true;
         }catch(error){
             alert("Could not share the route");
+            console.log(error);
         }
         
+    }
+
+    async modifyPermissions(app, session, routeName, friend){
+        const { AclApi, Permissions } = SolidAclUtils;
+        const { READ } = Permissions
+        
+        let base = session.webId.split("profile/card#me")[0];
+        let routeUrl = base + "viade/routes/" + routeName;
+        let aclUrl = routeUrl + ".acl";
+
+        if(!await app.fc.itemExists(aclUrl)){
+            let content = await app.buildAcl(routeName);
+            await app.fc.createFile(aclUrl, content, "text/turtle");
+        }
+        let friendWebId = friend.webId + "profile/card#me";
+        const fetch = auth.fetch.bind(auth);
+        const aclApi = new AclApi(fetch, { autoSave: true });
+        const acl = await aclApi.loadFromFileUrl(routeUrl);
+
+        await acl.addRule(READ, friendWebId);    
+    }
+
+    buildAcl(routeName){
+        let content = 
+        "@prefix acl: <http://www.w3.org/ns/auth/acl#>.\n" + 
+        "@prefix foaf: <http://xmlns.com/foaf/0.1/>.\n" + 
+        "<#owner> a acl:Authorization;\n" + 
+        "acl:agent </profile/card#me>;\n" +
+        "acl:accessTo <./"+ routeName +">;" +
+        "acl:mode acl:Write, acl:Control, acl:Read.";
+
+        return content; 
     }
 
     async sendMessage(app, session, targetUrl){
