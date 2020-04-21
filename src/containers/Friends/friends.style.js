@@ -17,6 +17,13 @@ export const FriendsWrapper = styled.section`
   }
 `;
 
+export const StyledGroupBox = styled.div`
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+`;
+
 export const FriendsContainer = styled.div`
   background-color: #fff;
   margin: 30px auto;
@@ -24,34 +31,34 @@ export const FriendsContainer = styled.div`
   //Overriding the style guide card flexbox settings
   max-width: 80% !important;
   flex-direction: row !important;
-  padding: 50px 0 !important; //temporary fix to a style guide bug
-
-  align-items: left;
+  padding: 50px !important; //temporary fix to a style guide bug
+  display: block !important;
+  align-items: center;
 
   a {
     text-decoration: none;
     &:hover {
       text-decoration: underline;
     }
-    margin-left: 10px
   }
-
-  ul{
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-  }
-
-  button {
-    margin-left: 8px;
+  
+  .friendBox{
+    display: inline-flex;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
   }
 
   .friend-img {
-    border-radius: 50%;
+    background-color: lightgray;
+    border-radius: 5px;
+    height: 250px;
+    object-fit: cover;
   }
-
-  li{
-    margin-bottom:15px;
+  
+  .addUserForm {
+    margin: 20px;
+    width: 80%;
   }
-
 `;

@@ -11,7 +11,9 @@ Describes the relevant requirements and the driving forces that software archite
 ****
 The goal of this project is to develop an application which is able to store user routes in a *decentralized* manner but still manages to share these decentralized routes with other users.
 
-The technologies that will be used in the development of this application will be _React_ in the front-end and a _SOLID_ based server in the back-end.
+The technologies that will be used in the development of this application will be _React_ in the front-end and a _SOLID_ based server in the back-end, as well as _JSON-LD_ for the parsing of routes and _GPX_ for the use of mapping data.
+
+For the foundations of the project we used an open source *generator* for Solid-React applications. 
 
 === Requirements Overview
 
@@ -34,13 +36,17 @@ Keep these excerpts as short as possible. Balance readability of this document w
 ****
 These are the *functional* requirements our application will provide:
 
-. Data stored in a decentralized way (separated from the application). Each user will have their own pods for the routes to be stored on.
+. Data stored in a decentralized way (separated from the application). Each user has their own pod for the routes to be stored on.
 
-. The users will be able to view their routes in a map.
+. Users are able to view their routes in a map.
+
+. Users have the possibility to add media elements to their routes.
 
 . Users can share the data stored in their pods with other single users or with groups of users selected by them.
 
-. Users will get a notification everytime a route is shared with them.
+. Users get a notification everytime a route is shared with them.
+
+. Users can use this application in addition to other interoperable ones, as we follow the established conventions of ViadeSpec interoperability proposed by Luis Presa.
 
 
 
@@ -97,6 +103,7 @@ Table with role names, person names, and their expectations with respect to the 
 | *_Teachers of the course_* | The teachers of the course expect the students to deliver a project which is completely functional and fulfills the requirements provided.
 | *_Users_* | The people who will use the application expect it to be easy to use, functional and secure.
 | *_Inrupt_* | Tim Berners Lee ans his team expect us to provide an application which helps in the decentralization of the web by using _SOLID_ and its principles.
-| *_Future Developers_* | Next year students and other developers would expect the code to be understandable and easy to maintain.
+| *_Future Developers_* | Other developers would expect the code to be understandable and easy to maintain.
+| *_Other students_* | Next year students would like to understand the code and its functionality, and perhaps reuse some parts of it.
 | *_The Team_* | As programmers, we expect to learn new development environments and develop a final product that we can be proud of.
 |===

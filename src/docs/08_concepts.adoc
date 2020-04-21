@@ -1,57 +1,7 @@
 [[section-concepts]]
 == Cross-cutting Concepts
 
-
-[role="arc42help"]
-****
-.Content
-This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as
-
-* domain models
-* architecture patterns or design patterns
-* rules for using specific technology
-* principal, often technical decisions of overall decisions
-* implementation rules
-
-.Motivation
-Concepts form the basis for _conceptual integrity_ (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.
-
-Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.
-
-.Form
-The form can be varied:
-
-* concept papers with any kind of structure
-* cross-cutting model excerpts or scenarios using notations of the architecture views
-* sample implementations, especially for technical concepts
-* reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)
-
-.Structure
-A potential (but not mandatory) structure for this section could be:
-
-* Domain concepts
-* User Experience concepts (UX)
-* Safety and security concepts
-* Architecture and design patterns
-* "Under-the-hood"
-* development concepts
-* operational concepts
-
-Note: it might be difficult to assign individual concepts to one specific topic
-on this list.
-
-image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
-****
-
-
 === Route
-
 It is the main concept in this application, representing a sequence of points in the space.
 
 * For the user, they are shown as a graphic polyline in a map.
@@ -59,9 +9,29 @@ It is the main concept in this application, representing a sequence of points in
 * The coordinates are stored in the PODs.
 
 === Solid POD
-
 Storage device based on Solid that stores user data in a private and decentralized approach. In our application, it's main uses will be:
 
-* Storing routes. Both imported and tracked routes will be stored in the user's Solid POD. This also includes any multimedia the user has decided to add to the route.
+* Storing routes. Imported routes will be stored in the user's Solid POD. This also includes any multimedia the user has decided to add to the route.
 
 * Sharing routes with other users by allowing them to retrieve it and store them in their own PODs.
+
+=== Notification
+
+It is the core element in the communication between different users. 
+
+* A *notification* is sent everytime a user *shares a route* with any friend.
+
+* It contains the URL in the sender's POD of the resource that is being shared, f.i User A, which has `https://usera.pod` as his POD URL, shares a route with User B, whose
+POD is `https://userb.pod`. Thus, a notification will arrive to `https://userb.pod/inbox` with `https://usera.pod/public/routes/route.json` as the content.
+
+* In order to achieve interoperability, we need to agree about *how* this notification works. First, the different parts that shape 
+the notification, f.i content, date, sender, receiver, etc. Equally, the discussion about *where* the notification has to be sent, f.i folder `inbox/` in the POD.
+
+=== JSON-LD
+Method of encoding Linked Data using JSON. Used to store the routes for sharing between PODs so that our application can be compatible with the routes done by users of other Viade applications, provided that they are storing the routes in JSON-LD and following the Viade Specification.
+
+=== Viade Specification
+Linked Data specification developed by the students of Software Architecture for making our apps and routes compatible with each other by documenting a common data model.
+
+=== Solid POD friends
+Users may add other users as friends in the Solid PODs, but as stated in Deployment View, for the sharing capabilitites to work, friendships must be reciprocal.

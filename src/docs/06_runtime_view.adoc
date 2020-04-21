@@ -38,23 +38,142 @@ There are many notations for describing scenarios, e.g.
 [plantuml,"Sequence diagram 1",png]
 ----
 actor Alice
+participant Tracks_List
 participant Track_Controller
+participant Track_Parser
 participant Pod_Controller
 entity Track
 
-Alice -> Track_Controller: Upload track file (KML)
+Alice -> Tracks_List: Select add track
+
+Tracks_List -> Track_Controller: Upload track file (json-ld)
 activate Track_Controller
 
-Track_Controller -> Track: Build track
-activate Track
-Track -> Track_Controller
-deactivate Track
+
 
 Track_Controller -> Pod_Controller: Store track
 activate Pod_Controller
+Pod_Controller -> Track :Use
+Pod_Controller -> Track_Controller: Return
+deactivate Pod_Controller
+deactivate Track_Controller
+
+
+Tracks_List -> Track_Controller :Get Tracks
+activate Track_Controller
+Track_Controller -> Pod_Controller :Get Tracks
+activate Pod_Controller
+Pod_Controller -> Track :Use
+Pod_Controller -> Track_Controller: Return
+deactivate Pod_Controller
+Track_Controller -> Track_Parser :Parse Track
+activate Track_Parser
+Track_Parser -> Track_Controller :Return
+deactivate Track_Parser
+Track_Controller -> Tracks_List: Return
+deactivate Track_Controller
+Tracks_List -> Tracks_List :Refresh
+----
+
+=== <View track>
+
+
+* A user can add see tracks from their pod.
+
+[plantuml,"Sequence diagram 2",png]
+----
+actor Alice
+participant Tracks_List
+participant Map_View
+participant Track_Controller
+participant Multimedia_Controller
+participant Track_Parser
+participant Pod_Controller
+entity Track
+
+Alice -> Tracks_List: Select track
+
+Tracks_List -> Track_Controller: Get track
+activate Track_Controller
+
+Track_Controller -> Pod_Controller: Fetch track
+activate Pod_Controller
+Pod_Controller -> Track :Fetch
 Pod_Controller -> Track_Controller: Return
 deactivate Pod_Controller
 
-Track_Controller -> Alice : End
+
+Track_Controller -> Track_Parser :Parse Track
+activate Track_Parser
+Track_Parser -> Track_Controller :Return
+deactivate Track_Parser
+
+
+Track_Controller -> Multimedia_Controller :Fetch Multimedia
+activate Multimedia_Controller
+Multimedia_Controller -> Track_Controller :Return
+deactivate Multimedia_Controller
+
+Track_Controller -> Map_View :Pass Track
+Track_Controller -> Map_View :Pass Multimedia
 deactivate Track_Controller
+
+Map_View -> Map_View :Refresh
+----
+
+
+=== <Share track>
+
+
+* A user can share tracks from their pod to friends.
+
+[plantuml,"Sequence diagram 3",png]
+----
+actor Alice
+participant Tracks_List
+participant Sharing_View
+participant Track_Controller
+participant Friends_Controller
+participant Notification_Controller
+participant Track_Parser
+participant Pod_Controller
+entity Track
+actor Bob
+
+Alice -> Tracks_List: Select track to share
+
+Tracks_List -> Sharing_View :Change to
+activate Sharing_View
+Sharing_View -> Friends_Controller :Get friends
+activate Friends_Controller
+Friends_Controller -> Pod_Controller :Get friends
+activate Pod_Controller
+Pod_Controller -> Bob :Get
+Pod_Controller -> Friends_Controller :Return
+deactivate Pod_Controller
+Friends_Controller -> Sharing_View :Return
+deactivate Friends_Controller
+
+Alice -> Sharing_View :Select Friends (Bob)
+Alice -> Sharing_View :Press Share Button
+
+Sharing_View -> Track_Controller: Get track
+activate Track_Controller
+Track_Controller -> Pod_Controller :Get Tracks
+activate Pod_Controller
+Pod_Controller -> Track :Use
+Pod_Controller -> Track_Controller: Return
+deactivate Pod_Controller
+Track_Controller -> Track_Parser :Parse Track
+activate Track_Parser
+Track_Parser -> Track_Controller :Return
+deactivate Track_Parser
+Track_Controller -> Sharing_View: Return
+deactivate Track_Controller
+
+Sharing_View -> Pod_Controller :Store Track
+
+Sharing_View -> Notification_Controller :Send notification
+activate Sharing_View
+Notification_Controller -> Bob :Notify user
 ----
