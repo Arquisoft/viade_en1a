@@ -17,7 +17,7 @@ export const Friend = (props) => {
 
     return (
         <>
-            <Card className={"friendBox"} style={{width: '18rem'}}>
+            <Card id={friend.name} className={"friendBox"} style={{width: '18rem'}}>
                 <Card.Img className={"friend-img"} variant="top" src={friend.image}/>
                 <Card.Body>
                     <Card.Title>{friend.name}</Card.Title>
