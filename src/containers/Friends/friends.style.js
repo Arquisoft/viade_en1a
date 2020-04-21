@@ -17,6 +17,13 @@ export const FriendsWrapper = styled.section`
   }
 `;
 
+export const StyledGroupBox = styled.div`
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+`;
+
 export const FriendsContainer = styled.div`
   background-color: #fff;
   margin: 30px auto;

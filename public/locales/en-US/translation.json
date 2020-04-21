@@ -276,6 +276,10 @@
   "friends": {
     "delete": "Delete",
     "changeGroup": "Change to group...",
-    "addFriend": "Add Friend"
+    "addFriend": "Add Friend",
+    "groups": "Groups",
+    "editGroups": "Edit Groups",
+    "close": "Close",
+    "save": "Save"
   }
 }

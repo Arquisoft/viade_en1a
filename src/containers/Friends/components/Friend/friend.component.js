@@ -4,11 +4,15 @@ import {Dropdown, Card} from "react-bootstrap";
 import * as Icon from "react-feather";
 
 export const Friend = (props) => {
-    const {friend, deleteFriend} = props;
+    const {friend, deleteFriend, changeFriendGroup} = props;
     const {t} = useTranslation();
 
     function btnDeleteFriend() {
         deleteFriend(friend.webId);
+    }
+
+    function btnChangeFriendGroup(){
+        changeFriendGroup(friend.webId);
     }
 
     return (
@@ -27,7 +31,7 @@ export const Friend = (props) => {
 
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={btnDeleteFriend} href="#"><Icon.Trash/>{t("friends.delete")}</Dropdown.Item>
-                            <Dropdown.Item href="#"><Icon.Archive/>{t("friends.changeGroup")}</Dropdown.Item>
+                            <Dropdown.Item onClick={btnChangeFriendGroup}><Icon.Archive/>{t("friends.changeGroup")}</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Card.Body>
