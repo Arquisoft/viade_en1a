@@ -7,6 +7,7 @@ import { namedNode } from "@rdfjs/data-model";
 import { withTranslation } from "react-i18next";
 import { FriendsContainer } from "../Friends/friends.style";
 import SolidAclUtils from "solid-acl-utils";
+import { FriendsShareContainer, ShareWrapper } from "./shareroutes.style";
 
 class ShareRoutesComponent extends Component<Props> {
 
@@ -85,7 +86,7 @@ class ShareRoutesComponent extends Component<Props> {
             var session = await auth.currentSession();
             var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
             await this.modifyPermissionsRoute(this, session, this.getRouteName(), friend);
-            await this.modifyPermissionsMedia(this, this.getRouteName(), friend);
+            await this.modifyPermissionsMedia(this, friend);
             await this.sendMessage(this, session, targetUrl);
             document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
             document.getElementById("btn"+friend.webId).disabled = true;
@@ -108,7 +109,7 @@ class ShareRoutesComponent extends Component<Props> {
         if(!(typeof media === "undefined")){
             media.forEach(async (m) => {
                 let fileUrl = m.url;
-                let mName = fileUrl.split("viade/resources")[1];
+                let mName = fileUrl.split("viade/resources/")[1];
                 await app.manageAcl(app, fileUrl, mName, friend);
             });
         }
@@ -190,9 +191,11 @@ class ShareRoutesComponent extends Component<Props> {
         };
 
         return (
-            <FriendsContainer className="card">
+            <ShareWrapper>
+            <FriendsShareContainer className="card">
                 <ShareRoutesPageContent {...{ friends, share }} />
-            </FriendsContainer>
+            </FriendsShareContainer>
+            </ShareWrapper>
         );
     }
 }

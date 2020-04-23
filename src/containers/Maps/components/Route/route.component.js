@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 import buttonStyle from "./route.module.css";
 
 const StyledMapRoute = styled.div`
-  margin: 10px;
+    margin: 5px;
 `;
 
 export const MapRoute = (props) => {
@@ -30,9 +30,24 @@ export const MapRoute = (props) => {
     return (
         <StyledMapRoute>
             <Dropdown as={ButtonGroup}>
+            <style>
+                {`
+                    .btn-success {
+                        background-color: #409214;
+                        border-radius: 0px;
+                        width:13em;
+                    }
+                    .btn-tog {
+                        background-color: green;
+                        color: white;
+                        border-radius: 20px;
+                        width:2em;
+                    }
+                `}
+            </style>
                 <Button variant="success" onClick={showRoute}>{routeWrapper.route.name}</Button>
 
-                <Dropdown.Toggle split variant="success" id="dropdown-split-basic"/>
+                <Dropdown.Toggle split variant="tog" id="dropdown-split-basic"/>
 
                 <Dropdown.Menu>
                     <Dropdown.Item href={url}><Icon.Share2/>{t("routes.share")}</Dropdown.Item>

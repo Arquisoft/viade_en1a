@@ -14,12 +14,14 @@ import {SharedRoute} from "./shared";
 import {Button} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 
+import Switch from "react-switch";
+
 
 const StyledRoutesSidebar = styled.div`
 
-      height: 100vh;
+      height: 70vh;
 
-      width: 20%;
+      width: 25%;
 
     `;
 
@@ -40,6 +42,8 @@ class RoutesSideBar extends Component {
             routesList: [],
 
             sharedRoutes: [],
+
+            COVIDchecked: true,
 
         };
 
@@ -65,6 +69,7 @@ class RoutesSideBar extends Component {
 
         this.addMediaToRoute = this.addMediaToRoute.bind(this);
 
+        this.handleCOVIDChange = this.handleCOVIDChange.bind(this);
 
     }
 
@@ -161,13 +166,17 @@ class RoutesSideBar extends Component {
 
         let folderShared = await this.fc.readFolder(urlShared);
         for (let sharedElement of folderShared.files) {
-            if(!this.checkNotLogFile(sharedElement.url.toString())){
-                var name = await this.getFullNotification(sharedElement.url.toString());
-                let url = sharedElement.url;
-                let routeUrl = await this.getSharedRoute(url);
-                let content = await this.fc.readFile(routeUrl.toString());
-                let route = JSON.parse(content);
-                this.state.sharedRoutes.push({name, url, route});
+            try{
+                if(!this.checkNotLogFile(sharedElement.url.toString())){
+                    var name = await this.getFullNotification(sharedElement.url.toString());
+                    let url = sharedElement.url;
+                    let routeUrl = await this.getSharedRoute(url);
+                    let content = await this.fc.readFile(routeUrl.toString());
+                    let route = JSON.parse(content);
+                    this.state.sharedRoutes.push({name, url, route});
+                }
+            }catch(error) {
+                //do nothing
             }
         }
 
@@ -186,18 +195,18 @@ class RoutesSideBar extends Component {
         let fol = await this.fc.readFile(myUrl);
         let getSchem = fol.split("<>");
         let getImportant = getSchem[1].split("text");
-        let theUrl = getImportant[1].split("\"")[1];
-        let theSplitUrl = theUrl.split("/");
+        //let theUrl = getImportant[1].split("\"")[1];
+        //let theSplitUrl = theUrl.split("/");
 
 
-        let name = theSplitUrl[theSplitUrl.length - 1];
+        //let name = theSplitUrl[theSplitUrl.length - 1];
 
         let fullLabel = getImportant[1].split("\"")[3];
         let sender = fullLabel.split("Shared route ")[1];
         //console.log(name+" "+sender)	
 
-
-        return name + " " + sender;
+        //console.log(sender)
+        return sender;
 
     }
 
@@ -357,6 +366,12 @@ class RoutesSideBar extends Component {
     };
 
 
+    handleCOVIDChange(COVIDchecked) {
+        this.setState({ COVIDchecked });
+        console.log("toggling on sidebar");
+        this.props.toggleCOVID(COVIDchecked);
+    }
+
     render() {
         const {t} = this.props;
         return (
@@ -374,6 +389,10 @@ class RoutesSideBar extends Component {
                     {t("routes.sharedRoutes")}
                     {this.listShared()}
                 </MapsSideBar>
+                <label>
+                    <span>{t("routes.covidtoggle")}</span>
+                    <Switch onChange={this.handleCOVIDChange} checked={this.state.COVIDchecked} />
+                </label>
                 <Button variant="primary" block
                         onClick={this.onClearArray}>{t("routes.clear")}</Button>
             </StyledRoutesSidebar>

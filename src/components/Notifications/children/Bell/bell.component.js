@@ -12,7 +12,7 @@ type Props = {
  * Bell Icon to be seen in the navbar for notifications
  */
 const Bell = ({ unread, onClick, active }: Props) => (
-  <BellIcon className={`bell-icon ${active ? "active" : ''}`} href="/#/notifications" type="button">
+  <BellIcon className={`bell-icon ${active ? "active" : ''}`} href="#/notifications" type="button">
     <div className="icon">
       {unread > 0 && <Badge badge={unread} />}
       <img src="img/icon/notification.svg" alt="notifications" />
