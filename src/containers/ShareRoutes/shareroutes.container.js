@@ -91,7 +91,6 @@ class ShareRoutesComponent extends Component<Props> {
             document.getElementById("btn"+friend.webId).disabled = true;
         }catch(error){
             alert("Could not share the route");
-            console.log(error);
         }
         
     }
@@ -106,7 +105,7 @@ class ShareRoutesComponent extends Component<Props> {
     async modifyPermissionsMedia(app, friend){
         let routeJson = JSON.parse(app.state.route);
         const { media } = routeJson;
-        if(!(typeof media === undefined)){
+        if(!(typeof media === "undefined")){
             media.forEach(async (m) => {
                 let fileUrl = m.url;
                 let mName = fileUrl.split("viade/resources")[1];
@@ -121,7 +120,6 @@ class ShareRoutesComponent extends Component<Props> {
 
         let aclUrl = fileUrl + ".acl";
         if(!await app.fc.itemExists(aclUrl)){
-            console.log("sadiofn");
             let content = await app.buildAcl(fileName);
             await app.fc.createFile(aclUrl, content, "text/turtle");
         }
