@@ -37,10 +37,10 @@ describe.only("FriendsComponent", () => {
         expect(container).toBeTruthy();
     });
 
-    test("renders three children if the friends list", () => {
+    test("renders three children of the friends list + the general container", () => {
         const friendsList = document.querySelector("#friendsContainer");
 
-        expect(friendsList.childNodes.length).toBe(3);
+        expect(friendsList.childNodes.length).toBe(4);
     });
 
     test("renders the right three friend items", () => {
