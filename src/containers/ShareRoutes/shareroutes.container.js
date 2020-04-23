@@ -5,7 +5,6 @@ import auth from "solid-auth-client";
 import FC from "solid-file-client";
 import { namedNode } from "@rdfjs/data-model";
 import { withTranslation } from "react-i18next";
-import { FriendsContainer } from "../Friends/friends.style";
 import SolidAclUtils from "solid-acl-utils";
 import { FriendsShareContainer, ShareWrapper } from "./shareroutes.style";
 
