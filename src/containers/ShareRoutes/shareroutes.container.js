@@ -7,6 +7,7 @@ import { namedNode } from "@rdfjs/data-model";
 import { withTranslation } from "react-i18next";
 import { FriendsContainer } from "../Friends/friends.style";
 import SolidAclUtils from "solid-acl-utils";
+import { FriendsShareContainer, ShareWrapper } from "./shareroutes.style";
 
 class ShareRoutesComponent extends Component<Props> {
 
@@ -191,9 +192,11 @@ class ShareRoutesComponent extends Component<Props> {
         };
 
         return (
-            <FriendsContainer className="card">
+            <ShareWrapper>
+            <FriendsShareContainer className="card">
                 <ShareRoutesPageContent {...{ friends, share }} />
-            </FriendsContainer>
+            </FriendsShareContainer>
+            </ShareWrapper>
         );
     }
 }

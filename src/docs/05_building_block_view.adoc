@@ -71,15 +71,10 @@ package "MVC" {
     [Controller] as Controller
 }
 
- 
 
-View --> Model : uses
+Controller --> Model: "Modifies"
 
-Controller --> Model: uses
-
-Controller --> View
-
-View --> Controller
+View --> Controller : "User controller"
 ----
 
 Motivation::
@@ -91,6 +86,78 @@ Contained Building Blocks::
 * *Model*: Central component, detials the structure of the application, it's data, logic and rules.
 * *View*: Representation of the information, graphical interface.
 * *Controller*: Accepts input and converts it to commands for the model or view.
+
+=== Opening Model Black Box
+
+[plantuml,"Models",png]
+----
+package "ViadeModels" {
+    [Routes] as Routes
+}
+
+package "SolidModels" {
+    [Friends] as Friends
+    [Notifications] as Notifications
+}
+
+package Views{
+    [FriendsList] as FriendsList
+    [ShareRoute] as ShareRoute
+    [Maps] as Maps
+}
+
+package Controller{
+
+}
+
+database  Solid
+
+Friends --> Friends :Sends --> Routes
+Notifications --> Routes :Include
+
+
+
+ShareRoute --> Friends:Uses
+ShareRoute --> Routes:Uses
+
+FriendsList --> Friends:Uses
+
+Maps --> Routes:Lists
+
+SolidModels -->  Solid
+
+Controller --> ViadeModels: "Modifies"
+Controller --> SolidModels: "Modifies"
+
+Views --> Controller : "User controller"
+----
+
+Let's explore the main models for the viade app
+
+Routes::
+[plantuml,"Routes uml",png]
+----
+class Routes {
+  +name
+  +author
+  +description
+  +comments
+  +media
+  +waypoints
+  +points
+}
+----
+Routes are stored as json-ld and savend on the solid pod
+
+
+Friends::
+Friends are native elements to solid, friends are added trought the user's POD interface.
+
+Friends can be seen from the Friends view on the app and also when sharing a route, from which they can be selected.
+
+
+Notifications::
+Notifications are used for alerting users of new routes that have been shared with them by friends.
 
 [role="arc42help"]
 ****

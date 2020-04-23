@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FC from "solid-file-client";
 import auth from "solid-auth-client";
-
+import {NotificationsContainer, NotificationsWrapper} from "./notifications.style";
 import {Notis} from "./Notis";
 
 export class NotificationsComponent extends Component {
@@ -20,7 +20,7 @@ export class NotificationsComponent extends Component {
         
         this.fc = new FC(auth);
 
-    }
+    } 
 
     async getNotificationsFromInbox() {
         var session = await auth.currentSession();
@@ -30,9 +30,13 @@ export class NotificationsComponent extends Component {
 
 
         for (let index = 0; index < inboxFolder.files.length; index++) {
-            var name = await this.getFullNotification(inboxFolder.files[parseInt(index)].url.toString());
-            let url = inboxFolder.files[parseInt(index)].url;
-            this.state.notifications.push({name, url });
+            try{
+                var name = await this.getFullNotification(inboxFolder.files[parseInt(index)].url.toString());
+                let url = inboxFolder.files[parseInt(index)].url;
+                this.state.notifications.push({name, url });
+            } catch {
+               //do nothing ;
+            }
         }
 
         let notifications = [...this.state.notifications];
@@ -77,11 +81,11 @@ export class NotificationsComponent extends Component {
     render() {
 
         return (
-
-            <div id="notificationsCard" className="card">
-                    <h3>Notifications</h3>
+            <NotificationsWrapper>
+            <NotificationsContainer id="notificationsCard" className="card">
                     {this.listNotifications()}
-            </div>
+            </NotificationsContainer>
+            </NotificationsWrapper>
 
         );
     }
