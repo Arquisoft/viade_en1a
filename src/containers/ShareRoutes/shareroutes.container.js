@@ -85,7 +85,7 @@ class ShareRoutesComponent extends Component<Props> {
             var session = await auth.currentSession();
             var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
             await this.modifyPermissionsRoute(this, session, this.getRouteName(), friend);
-            await this.modifyPermissionsMedia(this, this.getRouteName(), friend);
+            await this.modifyPermissionsMedia(this, friend);
             await this.sendMessage(this, session, targetUrl);
             document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
             document.getElementById("btn"+friend.webId).disabled = true;
@@ -109,7 +109,7 @@ class ShareRoutesComponent extends Component<Props> {
         if(!(typeof media === undefined)){
             media.forEach(async (m) => {
                 let fileUrl = m.url;
-                let mName = fileUrl.split("viade/resources")[1];
+                let mName = fileUrl.split("viade/resources/")[1];
                 await app.manageAcl(app, fileUrl, mName, friend);
             });
         }
@@ -121,7 +121,6 @@ class ShareRoutesComponent extends Component<Props> {
 
         let aclUrl = fileUrl + ".acl";
         if(!await app.fc.itemExists(aclUrl)){
-            console.log("sadiofn");
             let content = await app.buildAcl(fileName);
             await app.fc.createFile(aclUrl, content, "text/turtle");
         }
