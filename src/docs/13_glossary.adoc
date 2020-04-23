@@ -26,6 +26,8 @@ Potentially more columns in case you need translations.
 [options="header",cols="1,4"]
 |===
 | Term         | Definition
+| *_Viade_*     | Viade is a Solid-React application that allows you to store and view your routes as well as share them with you Solid friends in a decentralized way.
+
 | *_SOLID_*     | Solid (derived from "social linked data") is a proposed set of conventions and tools for building decentralized social applications based on Linked Data principles. Solid is modular and extensible and it relies as much as possible on existing W3C standards and protocols.
 
 | *_POD_*     | User data is stored in its own Solid POD. PODs are like secure USB sticks for the Web, that you can access from anywhere. 
@@ -39,4 +41,16 @@ Potentially more columns in case you need translations.
 | *_Ruby_*     | Ruby is an interpreted, high-level, general-purpose programming language. It is dynamically typed and uses garbage collection. It supports multiple programming paradigms, including procedural, object-oriented, and functional programming. 
 
 | *_GPX_*     | GPX or GPS exchange format is an XML file format for storing coordinate data. It can store waypoints, tracks, and routes in a way that is easy to process and convert to other forms.
+
+| *_JSON-LD_*     | JSON-LD is a method of encoding linked data for JSON, we use it in order to achieve interoperability with other Viade applications.
+
+| *_DOCKER_*     | Docker is a service that allows to deliver software in packages called containers.
+
+| *_CUCUMBER_*     | Cucumber is a behaviour-driven development software tool used for testing purposes.
+
+| *_TRAVIS_*     | Travis is a continuous integration service used for testing and building projects.
+
+| *_CODACY_*     | Codacy is a continuous integracion service that checks the quality of the project by performing an automatic review of the code.
+
+| *_CODECOV_*     | Codecov is a continuous integration tool that examines how many code lines were executed by a test suite and calculates what percentage of the project has not been tested.
 |===

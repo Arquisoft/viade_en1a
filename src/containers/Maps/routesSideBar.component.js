@@ -14,6 +14,8 @@ import {SharedRoute} from "./shared";
 import {Button} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 
+import Switch from "react-switch";
+
 
 const StyledRoutesSidebar = styled.div`
 
@@ -41,6 +43,8 @@ class RoutesSideBar extends Component {
 
             sharedRoutes: [],
 
+            COVIDchecked: true,
+
         };
 
 
@@ -63,6 +67,7 @@ class RoutesSideBar extends Component {
 
         this.addMediaToRoute = this.addMediaToRoute.bind(this);
 
+        this.handleCOVIDChange = this.handleCOVIDChange.bind(this);
 
     }
 
@@ -356,6 +361,12 @@ class RoutesSideBar extends Component {
     };
 
 
+    handleCOVIDChange(COVIDchecked) {
+        this.setState({ COVIDchecked });
+        console.log("toggling on sidebar");
+        this.props.toggleCOVID(COVIDchecked);
+    }
+
     render() {
         const {t} = this.props;
         return (
@@ -373,6 +384,10 @@ class RoutesSideBar extends Component {
                     {t("routes.sharedRoutes")}
                     {this.listShared()}
                 </MapsSideBar>
+                <label>
+                    <span>{t("routes.covidtoggle")}</span>
+                    <Switch onChange={this.handleCOVIDChange} checked={this.state.COVIDchecked} />
+                </label>
                 <Button variant="primary" block
                         onClick={this.onClearArray}>{t("routes.clear")}</Button>
             </StyledRoutesSidebar>
