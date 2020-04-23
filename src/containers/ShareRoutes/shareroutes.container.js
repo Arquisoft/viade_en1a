@@ -84,7 +84,8 @@ class ShareRoutesComponent extends Component<Props> {
         try{
             var session = await auth.currentSession();
             var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
-            await this.modifyPermissions(this, session, this.getRouteName(), friend);
+            await this.modifyPermissionsRoute(this, session, this.getRouteName(), friend);
+            await this.modifyPermissionsMedia(this, this.getRouteName(), friend);
             await this.sendMessage(this, session, targetUrl);
             document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
             document.getElementById("btn"+friend.webId).disabled = true;
@@ -95,24 +96,41 @@ class ShareRoutesComponent extends Component<Props> {
         
     }
 
-    async modifyPermissions(app, session, routeName, friend){
-        const { AclApi, Permissions } = SolidAclUtils;
-        const { READ } = Permissions
-        
+    async modifyPermissionsRoute(app, session, routeName, friend){
         let base = session.webId.split("profile/card#me")[0];
         let routeUrl = base + "viade/routes/" + routeName;
-        let aclUrl = routeUrl + ".acl";
 
+        await app.manageAcl(app, routeUrl, routeName, friend);    
+    }
+
+    async modifyPermissionsMedia(app, friend){
+        let routeJson = JSON.parse(app.state.route);
+        const { media } = routeJson;
+        if(!(typeof media === undefined)){
+            media.forEach(async (m) => {
+                let fileUrl = m.url;
+                let mName = fileUrl.split("viade/resources")[1];
+                await app.manageAcl(app, fileUrl, mName, friend);
+            });
+        }
+    }
+
+    async manageAcl(app, fileUrl, fileName, friend){
+        const { AclApi, Permissions } = SolidAclUtils;
+        const { READ } = Permissions;
+
+        let aclUrl = fileUrl + ".acl";
         if(!await app.fc.itemExists(aclUrl)){
-            let content = await app.buildAcl(routeName);
+            console.log("sadiofn");
+            let content = await app.buildAcl(fileName);
             await app.fc.createFile(aclUrl, content, "text/turtle");
         }
         let friendWebId = friend.webId + "profile/card#me";
         const fetch = auth.fetch.bind(auth);
         const aclApi = new AclApi(fetch, { autoSave: true });
-        const acl = await aclApi.loadFromFileUrl(routeUrl);
+        const acl = await aclApi.loadFromFileUrl(fileUrl);
 
-        await acl.addRule(READ, friendWebId);    
+        await acl.addRule(READ, friendWebId);
     }
 
     buildAcl(routeName){
