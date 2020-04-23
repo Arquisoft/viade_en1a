@@ -63,7 +63,7 @@
     "solid-auth-client": "^2.3.0",
     "solid-file-client": "^1.0.2",
     "styled-components": "^4.1.3",
-    "rdflib": "^1.1.0"
+    "rdflib": "1.1.0"
   },
   "scripts": {
     "predeploy": "npm run build",
