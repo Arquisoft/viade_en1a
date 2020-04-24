@@ -9,6 +9,7 @@ import Friends from "./Friends";
 import Maps from "./Maps";
 import Notifications from "./Notifications";
 import ShareRoutes from "./ShareRoutes";
+import RouteDesigner from "./RouteDesigner";
 
 export {
   Login,
@@ -23,5 +24,6 @@ export {
   Friends,
   Maps, 
   Notifications,
-  ShareRoutes
+  ShareRoutes,
+  RouteDesigner
 };

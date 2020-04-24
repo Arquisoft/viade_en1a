@@ -383,7 +383,7 @@ class RoutesSideBar extends Component {
 
                 <Button id="btnPod" disabled={!this.uploadedFiles} variant="primary" block
                         onClick={this.onClickHandler.bind(this)}>{t("routes.uploadToPOD")}</Button>
-                <MapsSideBar>
+                <MapsSideBar style={{height:"340px"}}>
                     {t("routes.hereYourRoutes")}
                     {this.listRoutes()}
                     {t("routes.sharedRoutes")}
@@ -395,6 +395,7 @@ class RoutesSideBar extends Component {
                 </label>
                 <Button variant="primary" block
                         onClick={this.onClearArray}>{t("routes.clear")}</Button>
+                <a href="#/design" class="btn btn-primary" style={{width:"100%"}}>Crear ruta</a>
             </StyledRoutesSidebar>
         );
 
