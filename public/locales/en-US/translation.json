@@ -54,6 +54,7 @@
     "logOut": "Log out",
     "profile": "My Profile",
     "myRoutes": "My Routes",
+    "design": "Design your route",
     "formModelRender": "Form Model Render",
     "formModelConvert": "Form Model Convert",
     "text-editor": "Text Editor",
@@ -266,10 +267,19 @@
     "cancel": "Cancel",
     "shared": "Shared",
     "addMedia": "Add media",
-	"galery": "Galery",
+    "galery": "Galery",
     "covidtoggle": "Show COVID-19 data"
   },
-  "alt":{
+  "routeDesigner": {
+    "selectPoints": "Select the points",
+    "uploadToPOD": "Upload to POD",
+    "acceptRoute": "Accept",
+    "cancelRoute": "Cancel",
+    "newRoute": "New Route",
+    "routeName": "Name",
+    "routeDescription": "Description"
+  },
+  "alt": {
     "friend": "Friend",
     "loading": "This page is loading...Don't worry, it will take some seconds."
   },

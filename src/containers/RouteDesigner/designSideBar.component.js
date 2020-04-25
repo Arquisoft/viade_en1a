@@ -4,12 +4,11 @@ import FC from "solid-file-client";
 
 import auth from "solid-auth-client";
 
-import {MapsSideBar} from "./maps.style";
+import {MapsSideBar} from "../Maps/maps.style";
 
 import styled from "styled-components";
 
-import {MapRoute} from "./components";
-import {SharedRoute} from "./shared";
+import {MapRoute} from "../Maps/components";
 
 import {Button} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
@@ -47,19 +46,19 @@ class DesignSideBar extends Component {
 
             <StyledDesignSidebar>
 
-                <MapsSideBar style={{height:"85%"}}>
-                    <h2>Nueva ruta</h2>
+                <MapsSideBar style={{height: "85%"}}>
+                    <h2>{t("routeDesigner.newRoute")}</h2>
                     <form>
-                        <p>Nombre:</p>
+                        <p>{t("routeDesigner.routeName")}:</p>
                         <input type="text"></input>
-                        <p>Descripción:</p>
+                        <p>{t("routeDesigner.routeDescription")}:</p>
                         <input type="text"></input>
-                    </form> 
+                    </form>
                 </MapsSideBar>
-                <Button variant="primary" block onClick={this.showRoute}>Aceptar</Button>
-                <Button variant="primary" block onClick={this.removeMarkers}>Cancelar</Button>
-                <Button variant="primary" block>Subir al POD</Button>
-            
+                <Button variant="primary" block onClick={this.showRoute}>{t("routeDesigner.acceptRoute")}</Button>
+                <Button variant="primary" block onClick={this.removeMarkers}>{t("routeDesigner.cancelRoute")}</Button>
+                <Button variant="primary" block>{t("routeDesigner.uploadToPOD")}</Button>
+
             </StyledDesignSidebar>
         );
 

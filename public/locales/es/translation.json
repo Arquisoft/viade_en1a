@@ -57,6 +57,7 @@
     "formModelConvert": "Form Model Convert",
     "text-editor": "Editor de Textos",
     "changeLanguage": "Cambiar Lenguaje",
+    "design": "Diseñar ruta",
     "languages": {
       "en": "English (Inglés)",
       "es": "Español (Español)"
@@ -265,10 +266,19 @@
     "cancel": "Cancelar",
     "shared": "Compartido",
     "addMedia": "Añadir multimedia",
-	"galery": "Galería",
+    "galery": "Galería",
     "covidtoggle": "Mostrar datos de COVID-19"
   },
-  "alt":{
+  "routeDesigner": {
+    "selectPoints": "Seleccione los puntos",
+    "uploadToPOD": "Subir al POD",
+    "acceptRoute": "Aceptar",
+    "cancelRoute": "Cancelar",
+    "newRoute": "Nueva ruta",
+    "routeName": "Nombre",
+    "routeDescription": "Descripción"
+  },
+  "alt": {
     "friend": "Amigo",
     "loading": "Esta página está cargando... No te preocupes, es solo unos segundos."
   },

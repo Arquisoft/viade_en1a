@@ -395,7 +395,7 @@ class RoutesSideBar extends Component {
                 </label>
                 <Button variant="primary" block
                         onClick={this.onClearArray}>{t("routes.clear")}</Button>
-                <a href="#/design" class="btn btn-primary" style={{width:"100%"}}>Crear ruta</a>
+                <a href="#/design" className="btn btn-primary" style={{width: "100%"}}>{t("routes.designRoute")}</a>
             </StyledRoutesSidebar>
         );
 
