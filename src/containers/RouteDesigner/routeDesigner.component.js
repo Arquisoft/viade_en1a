@@ -1,7 +1,8 @@
 import React, {Component} from "react";
-import GoogleMapReact, {Marker} from "google-map-react";
+import GoogleMapReact from "google-map-react";
 import {withTranslation} from "react-i18next";
 import DesignSideBar from "../Maps/designSideBar.component";
+import Marker from './Marker.component';
 
 
 class RouteDesigner extends Component {
@@ -17,7 +18,9 @@ class RouteDesigner extends Component {
             zoom: 12,
             showCOVID: true,
             COVIDdata: this.heatMapData,
-            markers: [],
+            markers:[
+               
+            ],
             coordinates: []
         };
     }
@@ -29,7 +32,14 @@ class RouteDesigner extends Component {
 
     handleClick = (event) => {
         // Coordinates of click
-        alert(event.lat + ", " + event.lng);
+        let newMarkers = this.state.markers;
+        newMarkers.push({
+            lat: event.lat,
+            lng: event.lng
+        })
+        this.setState({
+              markers: newMarkers
+        });
       }
 
 
@@ -47,6 +57,16 @@ class RouteDesigner extends Component {
                         onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
                         onClick={(e) => this.handleClick(e)}
                     >
+                       {this.state.markers.map((marker, i) =>{
+                            return(
+                                <Marker
+                                lat={marker.lat}
+                                lng={marker.lng}
+                                color="purple"
+                                />
+
+                            )
+                            })}   
                     </GoogleMapReact>
                 </div>
             </div>
