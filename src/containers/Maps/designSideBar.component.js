@@ -32,13 +32,22 @@ class DesignSideBar extends Component {
         super(props);
     };
 
+    removeMarkers() {
+        // Remove markers from map
+        this.props.removeMarkers();
+    }
+
+    showRoute() {
+        // Showing route
+    }
+
     render() {
         const {t} = this.props;
         return (
 
             <StyledDesignSidebar>
 
-                <MapsSideBar style={{height:"90%"}}>
+                <MapsSideBar style={{height:"85%"}}>
                     <h2>Nueva ruta</h2>
                     <form>
                         <p>Nombre:</p>
@@ -47,6 +56,8 @@ class DesignSideBar extends Component {
                         <input type="text"></input>
                     </form> 
                 </MapsSideBar>
+                <Button variant="primary" block onClick={this.showRoute}>Aceptar</Button>
+                <Button variant="primary" block onClick={this.removeMarkers}>Cancelar</Button>
                 <Button variant="primary" block>Subir al POD</Button>
             
             </StyledDesignSidebar>

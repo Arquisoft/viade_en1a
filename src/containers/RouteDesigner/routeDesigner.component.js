@@ -23,7 +23,14 @@ class RouteDesigner extends Component {
             ],
             coordinates: []
         };
+        this.removeMarkers = this.removeMarkers.bind(this);
     }
+
+    removeMarkers = () =>{
+        this.setState({
+            markers: []
+      });
+    };
 
     handleApiLoaded = (map, maps) => {
         this.map = map;
@@ -46,7 +53,7 @@ class RouteDesigner extends Component {
     render() {
         return (
             <div style={{height: "100%", width: "100%", display: "flex", flex: "row"}}>
-                <DesignSideBar/>
+                <DesignSideBar removeMarkers={this.removeMarkers}/>
                 <div style={{height: "90%", width: "80%"}}>
                     <h2>Selecciona los puntos</h2>
                     <GoogleMapReact
