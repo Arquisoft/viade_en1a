@@ -258,6 +258,7 @@
   "routes":{
     "yourRoutes": "Your routes",
     "uploadToPOD": "Upload to your POD",
+    "uploadedToPOD": "Uploaded",
     "hereYourRoutes": "Here your routes",
     "sharedRoutes": "Shared Routes",
     "clear": "Clear",
@@ -267,16 +268,19 @@
     "shared": "Shared",
     "addMedia": "Add media",
     "galery": "Galery",
-    "covidtoggle": "Show COVID-19 data"
+    "covidtoggle": "Show COVID-19 data",
+    "designRoute": "Design your route"
   },
   "routeDesigner": {
     "selectPoints": "Select the points",
-    "uploadToPOD": "Upload to POD",
-    "acceptRoute": "Accept",
-    "clearRoute": "Clear",
+    "uploadToPOD": "Finish and upload to POD",
+    "clearRoute": "Clear route",
     "newRoute": "New Route",
     "routeName": "Name",
-    "routeDescription": "Description"
+    "routeDescription": "Description",
+    "routeFormatError": "Please, add 2 or more points to the map in order to consider it as a route",
+    "nameError": "The name of the route cannot be empty",
+    "confirmClear": "Are you sure you want to delete the route?"
   },
   "alt": {
     "friend": "Friend",

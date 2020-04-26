@@ -584,7 +584,7 @@ class SimpleMap extends Component {
     };
 
     loadMap = () => {
-        if (this.state.route != null) {
+        if (this.state.route != null && this.map != null) {
             this.setState({features: this.map.data.addGeoJson(this.state.route)});
             this.map.data.setMap(this.map);
         }

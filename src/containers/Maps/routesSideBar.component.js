@@ -15,7 +15,7 @@ import {Button} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 
 import Switch from "react-switch";
-
+import $ from "jquery";
 
 const StyledRoutesSidebar = styled.div`
 
@@ -101,6 +101,11 @@ class RoutesSideBar extends Component {
 
         this.setState({routes});
 
+        const {t} = this.props;
+
+        let btnPod = $("#btnPod");
+        btnPod.html(t("routes.uploadToPOD"));
+        btnPod.prop('disabled', false);
     };
 
 
@@ -118,25 +123,21 @@ class RoutesSideBar extends Component {
 
         this.onClearArray();
 
-
-        this.state.routes.forEach(async (route) => {
-
-
+        for (let route of this.state.routes) {
             await this.fc.createFile(url + route.name, route, "text/plain");
 
-        });
+        }
+        const {t} = this.props;
 
-        document.getElementById("btnPod").innerHTML = "Uploaded";
+        let btnPod = $("#btnPod");
 
-        document.getElementById("btnPod").disabled = true;
-
+        btnPod.html(t("routes.uploadedToPOD"));
+        btnPod.prop('disabled', true);
+        $("#routeUploader").val("");
 
         await this.getPodRoutes();
         await this.getSharedRoutes();
 
-        document.getElementById("btnPod").innerHTML = "Upload to Pod";
-
-        document.getElementById("btnPod").disabled = false;
 
     }
 
@@ -378,7 +379,8 @@ class RoutesSideBar extends Component {
 
             <StyledRoutesSidebar>
 
-                <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
+                <input id="routeUploader" type="file" name="file" accept=".json"
+                       onChange={this.onChangeHandler.bind(this)} multiple/>
 
 
                 <Button id="btnPod" disabled={!this.uploadedFiles} variant="primary" block
@@ -396,7 +398,7 @@ class RoutesSideBar extends Component {
                 <Button variant="primary" block
                         onClick={this.onClearArray}>{t("routes.clear")}</Button>
                 <a href="#/design" className="btn btn-primary"
-                   style={{width: "100%"}}>{t("routeDesigner.designRoute")}</a>
+                   style={{width: "100%"}}>{t("routes.designRoute")}</a>
             </StyledRoutesSidebar>
         );
 

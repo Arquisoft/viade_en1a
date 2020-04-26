@@ -10,11 +10,7 @@ class RouteDesigner extends Component {
     constructor() {
         super();
         this.state = {
-            url: "https://storage.googleapis.com/mapsdevsite/json/google.json",
-            route: "",
-            features: [],
             center: [43.358756869202914, -5.861785411834717],
-            galery: [],
             zoom: 12,
             showCOVID: true,
             COVIDdata: this.heatMapData,
@@ -62,12 +58,15 @@ class RouteDesigner extends Component {
         });
     }
 
+    getRouteCoordinates = () => {
+        return this.state.markers;
+    }
 
     render() {
         const {t} = this.props;
         return (
             <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
-                <DesignSideBar removeMarkers={this.removeMarkers}/>
+                <DesignSideBar removeMarkers={this.removeMarkers} getRouteCoordinates={this.getRouteCoordinates}/>
                 <div style={{height: "80vh", width: "80%"}}>
                     <h2>{t("routeDesigner.selectPoints")}</h2>
                     <GoogleMapReact

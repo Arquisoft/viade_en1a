@@ -258,6 +258,7 @@
   "routes":{
     "yourRoutes": "Tus rutas",
     "uploadToPOD": "Subir a tu POD",
+    "uploadedToPOD": "Subida/s",
     "hereYourRoutes": "Tus rutas aquí",
     "sharedRoutes": "Rutas compartidas",
     "clear": "Limpiar",
@@ -267,16 +268,19 @@
     "shared": "Compartido",
     "addMedia": "Añadir multimedia",
     "galery": "Galería",
-    "covidtoggle": "Mostrar datos de COVID-19"
+    "covidtoggle": "Mostrar datos de COVID-19",
+    "designRoute": "Diseña tu ruta"
   },
   "routeDesigner": {
     "selectPoints": "Seleccione los puntos",
-    "uploadToPOD": "Subir al POD",
-    "acceptRoute": "Aceptar",
-    "clearRoute": "Limpiar",
+    "uploadToPOD": "Terminar y subir al POD",
+    "clearRoute": "Borrar ruta",
     "newRoute": "Nueva ruta",
     "routeName": "Nombre",
-    "routeDescription": "Descripción"
+    "routeDescription": "Descripción",
+    "routeFormatError": "Por favor, añada 2 o más puntos al mapa para poder considerarlo como una ruta",
+    "nameError": "El nombre de la ruta no puede quedar en blanco",
+    "confirmClear": "¿Está seguro de querer borrar la ruta?"
   },
   "alt": {
     "friend": "Amigo",
