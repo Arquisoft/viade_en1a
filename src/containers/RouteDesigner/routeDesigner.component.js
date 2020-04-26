@@ -21,7 +21,6 @@ class RouteDesigner extends Component {
             markers: [],
             coordinates: []
         };
-        this.removeMarkers = this.removeMarkers.bind(this);
     }
 
     removeMarkers = () => {

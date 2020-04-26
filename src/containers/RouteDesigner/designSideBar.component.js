@@ -31,7 +31,7 @@ class DesignSideBar extends Component {
         super(props);
     };
 
-    removeMarkers() {
+    removeMarkers = () => {
         // Remove markers from map
         this.props.removeMarkers();
     }
@@ -50,9 +50,9 @@ class DesignSideBar extends Component {
                     <h2>{t("routeDesigner.newRoute")}</h2>
                     <form>
                         <p>{t("routeDesigner.routeName")}:</p>
-                        <input type="text"></input>
+                        <input type="text"/>
                         <p>{t("routeDesigner.routeDescription")}:</p>
-                        <input type="text"></input>
+                        <input type="text"/>
                     </form>
                 </MapsSideBar>
                 <Button variant="primary" block onClick={this.showRoute}>{t("routeDesigner.acceptRoute")}</Button>
