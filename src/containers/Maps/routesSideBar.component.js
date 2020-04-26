@@ -391,11 +391,12 @@ class RoutesSideBar extends Component {
                 </MapsSideBar>
                 <label>
                     <span>{t("routes.covidtoggle")}</span>
-                    <Switch onChange={this.handleCOVIDChange} checked={this.state.COVIDchecked} />
+                    <Switch onChange={this.handleCOVIDChange} checked={this.state.COVIDchecked}/>
                 </label>
                 <Button variant="primary" block
                         onClick={this.onClearArray}>{t("routes.clear")}</Button>
-                <a href="#/design" className="btn btn-primary" style={{width: "100%"}}>{t("routes.designRoute")}</a>
+                <a href="#/design" className="btn btn-primary"
+                   style={{width: "100%"}}>{t("routeDesigner.designRoute")}</a>
             </StyledRoutesSidebar>
         );
 

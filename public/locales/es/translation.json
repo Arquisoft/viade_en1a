@@ -273,7 +273,7 @@
     "selectPoints": "Seleccione los puntos",
     "uploadToPOD": "Subir al POD",
     "acceptRoute": "Aceptar",
-    "cancelRoute": "Cancelar",
+    "clearRoute": "Limpiar",
     "newRoute": "Nueva ruta",
     "routeName": "Nombre",
     "routeDescription": "Descripción"

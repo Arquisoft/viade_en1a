@@ -56,7 +56,7 @@ class DesignSideBar extends Component {
                     </form>
                 </MapsSideBar>
                 <Button variant="primary" block onClick={this.showRoute}>{t("routeDesigner.acceptRoute")}</Button>
-                <Button variant="primary" block onClick={this.removeMarkers}>{t("routeDesigner.cancelRoute")}</Button>
+                <Button variant="primary" block onClick={this.removeMarkers}>{t("routeDesigner.clearRoute")}</Button>
                 <Button variant="primary" block>{t("routeDesigner.uploadToPOD")}</Button>
 
             </StyledDesignSidebar>

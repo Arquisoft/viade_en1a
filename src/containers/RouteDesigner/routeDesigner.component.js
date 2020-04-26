@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import GoogleMapReact from "google-map-react";
 import {withTranslation} from "react-i18next";
 import DesignSideBar from "./designSideBar.component";
-import Marker from './Marker.component';
+import Marker from './components/Marker.component';
 
 
 class RouteDesigner extends Component {
@@ -19,13 +19,15 @@ class RouteDesigner extends Component {
             showCOVID: true,
             COVIDdata: this.heatMapData,
             markers: [],
-            coordinates: []
+            routeLines: []
         };
     }
 
     removeMarkers = () => {
+        this.state.routeLines.forEach(routeLine => routeLine.setMap(null));
         this.setState({
-            markers: []
+            markers: [],
+            routeLines: []
         });
     };
 
@@ -34,15 +36,29 @@ class RouteDesigner extends Component {
         this.maps = maps;
     };
 
-    handleClick = (event) => {
+    handleClick = async (event) => {
         // Coordinates of click
-        let newMarkers = this.state.markers;
-        newMarkers.push({
-            lat: event.lat,
-            lng: event.lng
-        })
+        await this.setState({
+            markers: [...this.state.markers, {
+                lat: event.lat,
+                lng: event.lng
+            }]
+        });
+        this.drawRoute();
+    }
+
+    drawRoute = () => {
+        const self = this;
+        let routeLine = new this.maps.Polyline({
+            path: self.state.markers,
+            geodesic: true,
+            strokeColor: '#7b17a6',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+        routeLine.setMap(this.map);
         this.setState({
-            markers: newMarkers
+            routeLines: [...this.state.routeLines, routeLine]
         });
     }
 
@@ -52,7 +68,7 @@ class RouteDesigner extends Component {
         return (
             <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
                 <DesignSideBar removeMarkers={this.removeMarkers}/>
-                <div style={{height: "60vh", width: "80%"}}>
+                <div style={{height: "80vh", width: "80%"}}>
                     <h2>{t("routeDesigner.selectPoints")}</h2>
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
@@ -67,11 +83,12 @@ class RouteDesigner extends Component {
                                 <Marker key={i}
                                         lat={marker.lat}
                                         lng={marker.lng}
-                                        color="purple"
+                                        color="#7b17a6"
                                         name={"Waypoint" + i}
                                 />
 
                             )
+
                         })}
                     </GoogleMapReact>
                 </div>
