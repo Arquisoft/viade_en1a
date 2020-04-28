@@ -191,14 +191,14 @@ class ShareRoutesComponent extends Component<Props> {
     }
     
     render() {
-        const { friends, routeExists } = this.state;
+        const { friends } = this.state;
         const share = {
             shareRoute: this.shareRoute.bind(this)
         };
         return (
             <ShareWrapper>
             <FriendsShareContainer className="card">
-                {routeExists ? (<ShareRoutesPageContent {...{ friends, share }} />) : (<Redirect to="/404" />)}
+                {this.state.routeExists ? (<ShareRoutesPageContent {...{ friends, share }} />) : (<Redirect to="/404" />)}
             </FriendsShareContainer>
             </ShareWrapper>
         );
