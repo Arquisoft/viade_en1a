@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import data from "@solid/query-ldflex";
 import { ShareRoutesPageContent } from "./shareroutes.component";
 import auth from "solid-auth-client";
@@ -15,9 +16,11 @@ class ShareRoutesComponent extends Component<Props> {
 
         this.state = {
             friends: [],
-            route: null
+            route: null,
+            routeExists: true
         };
         this.fc = new FC(auth);
+        this.routeExists = true;
         this.getRoute();
     }
 
@@ -72,9 +75,13 @@ class ShareRoutesComponent extends Component<Props> {
         var name = this.getRouteName();
         var session = await auth.currentSession();
         var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
-        var file = await this.fc.readFile(url + name);
-        if (file !== null){
-            this.setState({route: file});
+        if(await this.fc.itemExists(url + name)){
+            var file = await this.fc.readFile(url + name);
+            if (file !== null){
+                this.setState({route: file});
+            }
+        }else{
+            this.setState({routeExists: false});
         }
     }
 
@@ -184,15 +191,14 @@ class ShareRoutesComponent extends Component<Props> {
     }
     
     render() {
-        const { friends } = this.state;
+        const { friends, routeExists } = this.state;
         const share = {
             shareRoute: this.shareRoute.bind(this)
         };
-
         return (
             <ShareWrapper>
             <FriendsShareContainer className="card">
-                <ShareRoutesPageContent {...{ friends, share }} />
+                {routeExists ? (<ShareRoutesPageContent {...{ friends, share }} />) : (<Redirect to="/404" />)}
             </FriendsShareContainer>
             </ShareWrapper>
         );
