@@ -685,9 +685,9 @@ class SimpleMap extends Component {
 
     render() {
         return (
-            <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
+            <div style={{ width: "100%", display: "flex", flex: "row"}}>
                 <RoutesSideBar show={this.show} toggleCOVID={this.toggleCOVID}/>
-                <div style={{height: "60vh", width: "80%"}}>
+                <div style={{height: "50vh", width: "80%", marginLeft:"10vh",marginTop:"5vh", marginRight:"5vh"}}>
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
                         defaultZoom={this.state.zoom}
@@ -699,8 +699,8 @@ class SimpleMap extends Component {
 
                     >
                     </GoogleMapReact>
-                    <Carousel renderBottomCenterControls={false} slidesToShow={3} height="20vh" dragging={true}
-                         style={{textAlign:"center", background: "url('img/fondoGaleria.png')"}}>
+                    <Carousel renderBottomCenterControls={false} slidesToShow={3} height="17vh" dragging={true}
+                         style={{  marginTop:"5vh", textAlign:"center", background: "url('img/fondoGaleria.png')"}}>
                         { this.state.galery }
                     </Carousel>
                 </div>
