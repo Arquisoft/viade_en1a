@@ -683,6 +683,25 @@ class SimpleMap extends Component {
         this.setState({galery : list}) ;
     }
 
+    fullscreen() {
+        if ("fullscreenEnabled" in document || "webkitFullscreenEnabled" in document || "mozFullScreenEnabled" in document || "msFullscreenEnabled" in document) {
+            if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+  
+                var element = document.getElementById("imagen");
+                if ("requestFullscreen" in element) {
+                    element.requestFullscreen();
+                } else if ("webkitRequestFullscreen" in element) {
+                    element.webkitRequestFullscreen();
+                } else if ("mozRequestFullScreen" in element) {
+                    element.mozRequestFullScreen();
+                } else if ("msRequestFullscreen" in element) {
+                    element.msRequestFullscreen();
+                }
+  
+            }
+        }
+    }
+
     render() {
         return (
             <div style={{ width: "100%", display: "flex", flex: "row"}}>
