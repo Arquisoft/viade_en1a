@@ -9,7 +9,7 @@ class SimpleMap extends Component {
     constructor() {
         super();
 
-        this.sayHi = this.sayHi.bind(this);
+        this.fullscreen = this.fullscreen.bind(this)
 
         this.heatMapData = {
             positions: [
@@ -667,17 +667,13 @@ class SimpleMap extends Component {
         return parsedRoute;
     };
 
-    sayHi() {
-        alert("Hi");
-    }
-
     createGalery (route) {
         var list = [];
         for (var i = 0; i < route.media.length; i++) {
             if (route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "jpg"
                 || route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "png") {
                 list.push(
-                    <img style={{margin:"auto", height: "20vh", width: "auto", border:"5px", }} onClick={this.sayHi} alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
+                    <img style={{margin:"auto", height: "20vh", width: "auto", border:"5px", }} onClick={() => this.fullscreen(i)} id={i} alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
                 );
             } else {
                 list.push(
@@ -689,11 +685,12 @@ class SimpleMap extends Component {
         this.setState({galery : list}) ;
     }
 
-    fullscreen() {
+    fullscreen(id) {
+        alert(id);
         if ("fullscreenEnabled" in document || "webkitFullscreenEnabled" in document || "mozFullScreenEnabled" in document || "msFullscreenEnabled" in document) {
             if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
   
-                var element = document.getElementById("imagen");
+               /* var element = document.getElementById("imagen");
                 if ("requestFullscreen" in element) {
                     element.requestFullscreen();
                 } else if ("webkitRequestFullscreen" in element) {
@@ -702,7 +699,7 @@ class SimpleMap extends Component {
                     element.mozRequestFullScreen();
                 } else if ("msRequestFullscreen" in element) {
                     element.msRequestFullscreen();
-                }
+                }*/
   
             }
         }
