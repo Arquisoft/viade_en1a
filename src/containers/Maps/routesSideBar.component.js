@@ -47,6 +47,8 @@ class RoutesSideBar extends Component {
 
         };
 
+        this.fc = new FC(auth);
+
 
         this.getPodRoutes = this.getPodRoutes.bind(this);
 
@@ -61,7 +63,7 @@ class RoutesSideBar extends Component {
 
         this.deleteSharedRoute = this.deleteSharedRoute.bind(this);
 
-        this.fc = new FC(auth);
+        
 
         this.uploadedFiles = false;
 
@@ -165,17 +167,15 @@ class RoutesSideBar extends Component {
         let folderShared = await this.fc.readFolder(urlShared);
         for (let sharedElement of folderShared.files) {
             try{
-                var name = await this.getFullNotification(sharedElement.url.toString());
-                let url = sharedElement.url;
-
-                let routeUrl = await this.getSharedRoute(url);
-
-                let content = await this.fc.readFile(routeUrl.toString());
-
-                let route = JSON.parse(content);
-
-                this.state.sharedRoutes.push({name, url, route});
-            } catch {
+                if(!this.checkNotLogFile(sharedElement.url.toString())){
+                    var name = await this.getFullNotification(sharedElement.url.toString());
+                    let url = sharedElement.url;
+                    let routeUrl = await this.getSharedRoute(url);
+                    let content = await this.fc.readFile(routeUrl.toString());
+                    let route = JSON.parse(content);
+                    this.state.sharedRoutes.push({name, url, route});
+                }
+            }catch(error) {
                 //do nothing
             }
         }
@@ -183,6 +183,11 @@ class RoutesSideBar extends Component {
         let sharedRoutes = [...this.state.sharedRoutes];
         this.setState({sharedRoutes});
 
+    }
+
+    checkNotLogFile(url){
+        let fileName = url.split("inbox/")[1];
+        return fileName === "log.ttl";
     }
 
     async getFullNotification(url) {

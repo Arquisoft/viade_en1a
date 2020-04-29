@@ -1,6 +1,6 @@
-import React from 'react';
-import { render, cleanup } from 'react-testing-library';
-import { HashRouter as Router } from 'react-router-dom';
+import React from "react";
+import { render, cleanup } from "react-testing-library";
+import { HashRouter as Router } from "react-router-dom";
 import Footer from "../components/Footer/footer.component";
 
 afterAll(cleanup);
