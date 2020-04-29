@@ -95,6 +95,8 @@ class ShareRoutesComponent extends Component<Props> {
             await this.modifyPermissionsMedia(this, friend);
             await this.sendMessage(this, session, targetUrl);
             document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
+            document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
+            document.getElementById("btn"+friend.webId).style.backgroundColor = "grey";
             document.getElementById("btn"+friend.webId).disabled = true;
         }catch(error){
             alert("Could not share the route");
