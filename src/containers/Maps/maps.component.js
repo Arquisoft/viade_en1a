@@ -724,7 +724,7 @@ class SimpleMap extends Component {
 
                     >
                     </GoogleMapReact>
-                    <Carousel id="carousel" renderBottomCenterControls={false} id="carousel" slidesToShow={3} height="17vh" dragging={true}
+                    <Carousel id="carousel" renderBottomCenterControls={false} slidesToShow={3} height="17vh" dragging={true}
                          style={{  marginTop:"5vh", textAlign:"center", background: "url('img/fondoGaleria.png')"}}>
                         { this.state.galery }
                     </Carousel>
