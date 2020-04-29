@@ -9,6 +9,8 @@ class SimpleMap extends Component {
     constructor() {
         super();
 
+        this.sayHi = this.sayHi.bind(this);
+
         this.heatMapData = {
             positions: [
                 {"lat": "43.3605", "lng": "-5.85532"},
@@ -665,13 +667,17 @@ class SimpleMap extends Component {
         return parsedRoute;
     };
 
+    sayHi() {
+        alert("Hi");
+    }
+
     createGalery (route) {
         var list = [];
         for (var i = 0; i < route.media.length; i++) {
             if (route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "jpg"
                 || route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "png") {
                 list.push(
-                    <img style={{margin:"auto", height: "20vh", width: "auto", border:"5px"}} alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
+                    <img style={{margin:"auto", height: "20vh", width: "auto", border:"5px", }} onClick={this.sayHi} alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
                 );
             } else {
                 list.push(
