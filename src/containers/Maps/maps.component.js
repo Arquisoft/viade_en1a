@@ -673,7 +673,7 @@ class SimpleMap extends Component {
             if (route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "jpg"
                 || route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "png") {
                 list.push(
-                    <img style={{margin:"auto", height: "20vh", width: "auto", border:"5px", }} onClick={() => this.fullscreen(this, i)} alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
+                    <img style={{margin:"auto", height: "20vh", width: "auto", border:"5px", }} /*onClick={() => this.fullscreen(this, i)}*/ alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
                 );
             } else {
                 list.push(
