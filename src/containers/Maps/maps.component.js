@@ -9,7 +9,7 @@ class SimpleMap extends Component {
     constructor() {
         super();
 
-        this.fullscreen = this.fullscreen.bind(this)
+        this.fullscreen = this.fullscreen.bind(this);
 
         this.heatMapData = {
             positions: [
@@ -690,7 +690,7 @@ class SimpleMap extends Component {
             if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
   
                 var elem = id.state.galery[i-1];
-                console.log(elem)
+                //console.log(elem)
 
                 if (elem.requestFullscreen) {
                     elem.requestFullscreen();

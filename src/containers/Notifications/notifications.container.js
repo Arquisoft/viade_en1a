@@ -37,7 +37,7 @@ export class NotificationsComponent extends Component {
                 let content = await this.fc.readFile(routeUrl.toString());
                 let route = JSON.parse(content);
                 var trueName = name+route.name+")";
-                console.log(trueName);
+                //console.log(trueName);
                 this.state.notifications.push({name, trueName, url });
             } catch {
                //do nothing ;
