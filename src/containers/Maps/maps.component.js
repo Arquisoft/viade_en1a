@@ -9,6 +9,8 @@ class SimpleMap extends Component {
     constructor() {
         super();
 
+        this.fullscreen = this.fullscreen.bind(this);
+
         this.heatMapData = {
             positions: [
                 {"lat": "43.3605", "lng": "-5.85532"},
@@ -671,7 +673,7 @@ class SimpleMap extends Component {
             if (route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "jpg"
                 || route.media[parseInt(i)].url.substring(route.media[parseInt(i)].url.length - 3, route.media[parseInt(i)].url.length) === "png") {
                 list.push(
-                    <img style={{margin:"auto", height: "20vh", width: "auto", border:"5px"}} alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
+                    <img style={{margin:"auto", height: "20vh", width: "auto", border:"5px", }} /*onClick={() => this.fullscreen(this, i)}*/ alt="Route {route.name}" src={route.media[parseInt(i)].url}/>
                 );
             } else {
                 list.push(
@@ -683,11 +685,34 @@ class SimpleMap extends Component {
         this.setState({galery : list}) ;
     }
 
+    fullscreen(id, i) {
+        if ("fullscreenEnabled" in document || "webkitFullscreenEnabled" in document || "mozFullScreenEnabled" in document || "msFullscreenEnabled" in document) {
+            if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+  
+                var elem = id.state.galery[i-1];
+                //console.log(elem)
+
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.mozRequestFullScreen) { 
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) { 
+                    elem.msRequestFullscreen();
+                } else {
+                    alert("This element does not allow fullscreen mode in your browser");
+                }
+  
+            }
+        }
+    }
+
     render() {
         return (
-            <div style={{ width: "100%", display: "flex", flex: "row"}}>
+            <div style={{ width: "100%", display: "flex", flex: "row"}} id="id1">
                 <RoutesSideBar show={this.show} toggleCOVID={this.toggleCOVID}/>
-                <div style={{height: "50vh", width: "80%", marginLeft:"10vh",marginTop:"5vh", marginRight:"5vh"}}>
+                <div style={{height: "50vh", width: "80%", marginLeft:"10vh",marginTop:"5vh", marginRight:"5vh"}} id="id2">
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
                         defaultZoom={this.state.zoom}
@@ -699,7 +724,7 @@ class SimpleMap extends Component {
 
                     >
                     </GoogleMapReact>
-                    <Carousel renderBottomCenterControls={false} slidesToShow={3} height="17vh" dragging={true}
+                    <Carousel id="carousel" renderBottomCenterControls={false} slidesToShow={3} height="17vh" dragging={true}
                          style={{  marginTop:"5vh", textAlign:"center", background: "url('img/fondoGaleria.png')"}}>
                         { this.state.galery }
                     </Carousel>
