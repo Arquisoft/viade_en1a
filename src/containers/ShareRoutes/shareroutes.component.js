@@ -9,7 +9,7 @@ export const ShareRoutesPageContent = (props) => {
     const {t} = useTranslation();
 
     function shareRoute(group) {
-        inflatedGroups[group].forEach(
+        inflatedGroups[String(group)].forEach(
             (friend) => {
                 share.shareRoute(friend);
             }
@@ -29,11 +29,11 @@ export const ShareRoutesPageContent = (props) => {
                                         placement={"top"}
                                         overlay={
                                             <Tooltip id={`tooltip-${"top"}`}>
-                                                {inflatedGroups[key].reduce(
+                                                {inflatedGroups[parseInt(key)].reduce(
                                                     (accumulator, currentValue) => {
                                                         return accumulator + ((accumulator !== "") ? ", " : "") + currentValue.name;
                                                     },
-                                                    ''
+                                                    ""
                                                 )}
                                             </Tooltip>
                                         }
