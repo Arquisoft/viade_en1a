@@ -163,7 +163,7 @@ class ShareRoutesComponent extends Component<Props> {
             let content = await app.buildAcl(fileName);
             await app.fc.createFile(aclUrl, content, "text/turtle");
         }
-        let friendWebId = friend.webId + "profile/card#me";
+        let friendWebId = friend.webId.split("profile/card#me")[0] + "profile/card#me";
         const fetch = auth.fetch.bind(auth);
         const aclApi = new AclApi(fetch, { autoSave: true });
         const acl = await aclApi.loadFromFileUrl(fileUrl);
