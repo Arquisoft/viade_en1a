@@ -19,7 +19,7 @@ import $ from "jquery";
 
 const StyledRoutesSidebar = styled.div`
 
-      height: 70vh;
+      height: 50vh;
 
       width: 25%;
 
@@ -372,29 +372,25 @@ class RoutesSideBar extends Component {
     render() {
         const {t} = this.props;
         return (
-
             <StyledRoutesSidebar>
-
                 <input id="routeUploader" type="file" name="file" accept=".json"
-                       onChange={this.onChangeHandler.bind(this)} multiple/>
-
-
+                       onChange={this.onChangeHandler.bind(this)} multiple  style={{marginTop:"10px"}}/>
                 <Button id="btnPod" disabled={!this.uploadedFiles} variant="primary" block
-                        onClick={this.onClickHandler.bind(this)}>{t("routes.uploadToPOD")}</Button>
+                        onClick={this.onClickHandler.bind(this)} style={{marginBottom:"10px"}}>{t("routes.uploadToPOD")}</Button>
                 <MapsSideBar style={{height:"340px"}}>
                     {t("routes.hereYourRoutes")}
                     {this.listRoutes()}
                     {t("routes.sharedRoutes")}
                     {this.listShared()}
                 </MapsSideBar>
-                <label>
+                <label style={{marginTop:"10px"}}>
                     <span>{t("routes.covidtoggle")}</span>
                     <Switch onChange={this.handleCOVIDChange} checked={this.state.COVIDchecked}/>
                 </label>
-                <Button variant="primary" block
-                        onClick={this.onClearArray}>{t("routes.clear")}</Button>
                 <a href="#/design" className="btn btn-primary"
                    style={{width: "100%"}}>{t("routes.designRoute")}</a>
+                <Button variant="primary" block
+                        onClick={this.onClearArray}>{t("routes.clear")}</Button>
             </StyledRoutesSidebar>
         );
 

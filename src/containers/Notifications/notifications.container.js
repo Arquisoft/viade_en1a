@@ -37,7 +37,7 @@ export class NotificationsComponent extends Component {
                 let content = await this.fc.readFile(routeUrl.toString());
                 let route = JSON.parse(content);
                 var trueName = name+route.name+")";
-                //console.log(trueName);
+                console.log(trueName);
                 this.state.notifications.push({name, trueName, url });
             } catch {
                //do nothing ;
@@ -96,6 +96,7 @@ export class NotificationsComponent extends Component {
         return (
             <NotificationsWrapper>
             <NotificationsContainer id="notificationsCard" className="card">
+                <h1>Notifications</h1>
                     {this.listNotifications()}
             </NotificationsContainer>
             </NotificationsWrapper>

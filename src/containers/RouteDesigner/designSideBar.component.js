@@ -154,8 +154,8 @@ class DesignSideBar extends Component {
                         <input id="newRouteDescription" type="text"/>
                     </form>
                 </MapsSideBar>
-                <Button variant="primary" block onClick={this.removeMarkers}>{t("routeDesigner.clearRoute")}</Button>
                 <Button variant="primary" block onClick={this.uploadToPOD}>{t("routeDesigner.uploadToPOD")}</Button>
+                <Button variant="primary" block onClick={this.removeMarkers}>{t("routeDesigner.clearRoute")}</Button>
 
             </StyledDesignSidebar>
         );

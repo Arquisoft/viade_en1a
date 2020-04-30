@@ -167,7 +167,6 @@ export const FriendsPageContent = (props) => {
             <FriendsContainer id="friendsContainer" className="card">
                 <h1>{t("friends.yourGroups")}</h1>
                 <Button variant={"info"} onClick={() => setEditGroupsModalShow(true)}>{t("friends.groups")}</Button>
-                <h1></h1>
                 {
                     Object.keys(groups).map((key) => {
                         return (
