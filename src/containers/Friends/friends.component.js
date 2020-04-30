@@ -47,7 +47,7 @@ function ChooseGroupsModal(props) {
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     {t("friends.groups")}
-                    <select value={group} onChange={e => setGroup(e.target.value)}>
+                    <select value={group} onChange={(e) => setGroup(e.target.value)}>
                         {
                             Object.keys(groups).map((key) => {
                                 return (
