@@ -1,5 +1,4 @@
 import React from "react";
-import { Button} from "react-bootstrap";
 import styled from "styled-components";
 const StyledNoti = styled.div`
   margin: 10px;
@@ -16,27 +15,34 @@ export const Notis = (props) => {
     
     return (
         <table>
-            <tbody>
+            <thead>
                 <tr>
-                    <td>
+                    <td align="center">
                         <StyledNoti>
-                            <Button variant="success" onClick={showNotification}>
+                            <ul className="Noti" variant="success" onClick={showNotification}>
                                 <style>
                                     {`
-                                        .btn-success {
-                                            background-color: green;
+                                        .Noti {
+                                            background: linear-gradient(
+                                                to right,
+                                                rgba(124, 77, 255, 0.8) 0%,
+                                                rgba(83, 97, 253, 0.8) 40%,
+                                                rgba(55, 203, 239, 0.9) 100%
+                                              );
                                             color: white;
                                             border-radius: 20px;
-                                        
+                                            width: 70vh;
+                                            height:5vh;
+                                            text-align:center;
                                         }
                                     `}
                                 </style>
                                     {noti.name}
-                            </Button>
+                            </ul>
                         </StyledNoti>
                     </td>
                 </tr>
-            </tbody>
+            </thead>
         </table>
         
     );
