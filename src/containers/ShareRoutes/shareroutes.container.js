@@ -130,8 +130,7 @@ class ShareRoutesComponent extends Component<Props> {
             await this.modifyPermissionsMedia(this, friend);
             await this.sendMessage(this, session, targetUrl);
         }catch(error){
-            alert(t("routes.shareError"));
-            console.log(error);
+            alert(t("routes.sharingError"));
         }
         
     }
