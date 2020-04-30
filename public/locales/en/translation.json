@@ -270,7 +270,8 @@
     "addMedia": "Add media",
     "galery": "Galery",
     "covidtoggle": "Show COVID-19 data",
-    "designRoute": "Design your route"
+    "designRoute": "Design your route",
+    "shareError": "Could not share the route"
   },
   "routeDesigner": {
     "selectPoints": "Select the points",

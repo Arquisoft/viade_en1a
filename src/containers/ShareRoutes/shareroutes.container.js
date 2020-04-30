@@ -7,6 +7,7 @@ import { namedNode } from "@rdfjs/data-model";
 import { withTranslation } from "react-i18next";
 import SolidAclUtils from "solid-acl-utils";
 import { FriendsShareContainer, ShareWrapper } from "./shareroutes.style";
+import {Redirect} from "react-router-dom";
 
 class ShareRoutesComponent extends Component<Props> {
 
@@ -15,7 +16,8 @@ class ShareRoutesComponent extends Component<Props> {
 
         this.state = {
             inflatedGroups: {},
-            route: null
+            route: null,
+            routeExists: true
         };
         this.fc = new FC(auth);
         this.getRoute();
@@ -128,7 +130,8 @@ class ShareRoutesComponent extends Component<Props> {
             await this.modifyPermissionsMedia(this, friend);
             await this.sendMessage(this, session, targetUrl);
         }catch(error){
-            alert("Could not share the route");
+            alert(t("routes.shareError"));
+            console.log(error);
         }
         
     }
