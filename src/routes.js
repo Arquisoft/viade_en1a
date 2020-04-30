@@ -12,7 +12,8 @@ import {
   Friends,
   Maps,
   Notifications,
-  ShareRoutes
+  ShareRoutes,
+  RouteDesigner
 } from "./containers";
 
 const privateRoutes = [
@@ -45,6 +46,11 @@ const privateRoutes = [
     id: "share",
     path: "/share",
     component: ShareRoutes
+  },
+  {
+    id: "design",
+    path: "/design",
+    component: RouteDesigner
   }
 ];
 

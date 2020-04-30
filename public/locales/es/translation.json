@@ -57,6 +57,7 @@
     "formModelConvert": "Form Model Convert",
     "text-editor": "Editor de Textos",
     "changeLanguage": "Cambiar Lenguaje",
+    "design": "Diseñar ruta",
     "languages": {
       "en": "English (Inglés)",
       "es": "Español (Español)"
@@ -257,6 +258,7 @@
   "routes":{
     "yourRoutes": "Tus rutas",
     "uploadToPOD": "Subir a tu POD",
+    "uploadedToPOD": "Subida/s",
     "hereYourRoutes": "Tus rutas aquí",
     "sharedRoutes": "Rutas compartidas",
     "clear": "Limpiar",
@@ -265,10 +267,22 @@
     "cancel": "Cancelar",
     "shared": "Compartido",
     "addMedia": "Añadir multimedia",
-	"galery": "Galería",
-    "covidtoggle": "Mostrar datos de COVID-19"
+    "galery": "Galería",
+    "covidtoggle": "Mostrar datos de COVID-19",
+    "designRoute": "Diseña tu ruta"
   },
-  "alt":{
+  "routeDesigner": {
+    "selectPoints": "Seleccione los puntos",
+    "uploadToPOD": "Terminar y subir al POD",
+    "clearRoute": "Borrar ruta",
+    "newRoute": "Nueva ruta",
+    "routeName": "Nombre",
+    "routeDescription": "Descripción",
+    "routeFormatError": "Por favor, añada 2 o más puntos al mapa para poder considerarlo como una ruta",
+    "nameError": "El nombre de la ruta no puede quedar en blanco",
+    "confirmClear": "¿Está seguro de querer borrar la ruta?"
+  },
+  "alt": {
     "friend": "Amigo",
     "loading": "Esta página está cargando... No te preocupes, es solo unos segundos."
   },

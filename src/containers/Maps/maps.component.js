@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import RoutesSideBar from "./routesSideBar.component";
 import GoogleMapReact from "google-map-react";
-import  Carousel  from "nuka-carousel"; 
-import { withTranslation } from "react-i18next";
+import Carousel from "nuka-carousel";
+import {withTranslation} from "react-i18next";
 
 class SimpleMap extends Component {
 
@@ -583,16 +583,17 @@ class SimpleMap extends Component {
     handleApiLoaded = (map, maps) => {
         this.map = map;
         this.maps = maps;
-        this.loadMap();
     };
 
     loadMap = () => {
-        this.setState({features: this.map.data.addGeoJson(this.state.route)});
-        this.map.data.setMap(this.map);
+        if (this.state.route !== null && this.map !== null) {
+            this.setState({features: this.map.data.addGeoJson(this.state.route)});
+            this.map.data.setMap(this.map);
+        }
     };
 
     deleteOldRoute = () => {
-        for (var i = 0; i < this.state.features.length; i++){
+        for (var i = 0; i < this.state.features.length; i++) {
             this.map.data.remove(this.state.features[parseInt(i)]);
 
         }
@@ -608,19 +609,19 @@ class SimpleMap extends Component {
     };
 
     toggleCOVID = (showCOVID) => {
-        console.log("toggling on map");
+
         if (showCOVID) {
             this.setState({
                 showCOVID,
                 COVIDdata: this.heatMapData
-            })
+            });
         } else {
             this.setState({
                 showCOVID,
                 COVIDdata: {
                     positions: []
                 }
-            })
+            });
         }
     };
 
@@ -688,22 +689,21 @@ class SimpleMap extends Component {
     fullscreen(id, i) {
         if ("fullscreenEnabled" in document || "webkitFullscreenEnabled" in document || "mozFullScreenEnabled" in document || "msFullscreenEnabled" in document) {
             if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
-  
+
                 var elem = id.state.galery[i-1];
-                //console.log(elem)
 
                 if (elem.requestFullscreen) {
                     elem.requestFullscreen();
-                } else if (elem.mozRequestFullScreen) { 
+                } else if (elem.mozRequestFullScreen) {
                     elem.mozRequestFullScreen();
                 } else if (elem.webkitRequestFullscreen) {
                     elem.webkitRequestFullscreen();
-                } else if (elem.msRequestFullscreen) { 
+                } else if (elem.msRequestFullscreen) {
                     elem.msRequestFullscreen();
                 } else {
                     alert("This element does not allow fullscreen mode in your browser");
                 }
-  
+
             }
         }
     }
