@@ -9,6 +9,7 @@ import {Friend} from "./components";
 import {Button, ButtonGroup, Modal} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import * as Icon from "react-feather";
+import { Loader } from '@util-components';
 
 
 function GroupBox(props) {
@@ -65,6 +66,7 @@ function ChooseGroupsModal(props) {
             <Modal.Footer>
                 <Button onClick={props.onHide}>{t("friends.close")}</Button>
             </Modal.Footer>
+            
         </Modal>
     );
 }
@@ -125,6 +127,8 @@ export const FriendsPageContent = (props) => {
     const {groups, addFriend, deleteFriend, addGroup, deleteGroup, changeFriendGroup} = props;
     const {t} = useTranslation();
 
+    let isLoading = true;
+
     function btnAddFriend() {
         if (input !== "") {
             addFriend(input, group);
@@ -164,7 +168,7 @@ export const FriendsPageContent = (props) => {
             />
             
 
-            <FriendsContainer id="friendsContainer" className="card">
+            <FriendsContainer id="friendsContainer" className="card" >
                 <h1>{t("friends.yourGroups")}</h1>
                 <Button variant={"info"} onClick={() => setEditGroupsModalShow(true)}>{t("friends.groups")}</Button>
                 {
@@ -178,12 +182,14 @@ export const FriendsPageContent = (props) => {
                                             <Friend friend={friend} deleteFriend={deleteFriend} changeFriendGroup={showChangeFriendGroupModal}/>
                                         )
                                     )
+                                    
+
                                 }
                             </>
                         )
+                        
                     })
                 }
-                
             </FriendsContainer>
 
             <FriendsContainer className="card">
@@ -194,6 +200,7 @@ export const FriendsPageContent = (props) => {
                     <select value={group} onChange={(e) => setGroup(e.target.value)}>
                         {
                             Object.keys(groups).map((key) => {
+                                isLoading=false;
                                 return (
                                     <option value={key}>{key}</option>
                                 );
@@ -204,7 +211,9 @@ export const FriendsPageContent = (props) => {
                 <ButtonGroup aria-label="FriendsButtonGroup">
                     <Button onClick={btnAddFriend}>{t("friends.addFriend")}</Button>
                 </ButtonGroup>
+                
             </FriendsContainer>
+            {isLoading && <Loader absolute/>}
         </FriendsWrapper>
     );
 };

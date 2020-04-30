@@ -18,12 +18,14 @@ export class FriendsComponent extends Component<Props> {
         this.fc = new FC(auth);
 
         this.groups = {};
+        this.isLoading=false;
 
         this.addFriend = this.addFriend.bind(this);
         this.deleteFriend = this.deleteFriend.bind(this);
         this.addGroup = this.addGroup.bind(this);
         this.deleteGroup = this.deleteGroup.bind(this);
         this.changeFriendGroup = this.changeFriendGroup.bind(this);
+        this.setIsLoading=this.setIsLoading.bind(this);
     }
 
     addGroup = async (group) => {
@@ -235,6 +237,12 @@ export class FriendsComponent extends Component<Props> {
         return aux;
     };
 
+    setIsLoading(what) {
+        console.log("First: "+this.isLoading);
+        this.isLoading=what;
+        console.log("Then: "+this.isLoading);
+    }
+
     render() {
         const groups = this.state.inflatedGroups;
         const {webId} = this.props;
@@ -245,7 +253,8 @@ export class FriendsComponent extends Component<Props> {
         const changeFriendGroup = this.changeFriendGroup;
 
         return (
-            <FriendsPageContent {...{webId, groups, addFriend, deleteFriend, addGroup, deleteGroup, changeFriendGroup}} />
+            <FriendsPageContent {...{webId, groups, addFriend, deleteFriend, addGroup, deleteGroup, changeFriendGroup}}></FriendsPageContent>
+            
         );
     }
 }

@@ -105,8 +105,9 @@ const Profile = ({ webId }: Props) => {
             </FormRenderContainer>
           </Fragment>
         )}
-        {isLoading && <Loader absolute />}
+        
       </ProfileContainer>
+      {isLoading && <Loader absolute/>}
     </ProfileWrapper>
   );
 };
