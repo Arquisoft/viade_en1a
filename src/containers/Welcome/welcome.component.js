@@ -1,6 +1,6 @@
-import React from 'react';
-import {Uploader} from '@inrupt/solid-react-components';
-import {Trans, useTranslation} from 'react-i18next';
+import React from "react";
+import {Uploader} from "@inrupt/solid-react-components";
+import {Trans, useTranslation} from "react-i18next";
 import {
     WelcomeWrapper,
     WelcomeCard,
@@ -9,9 +9,9 @@ import {
     WelcomeDetail,
     WelcomeName,
     ImageWrapper
-} from './welcome.style';
-import {ImageProfile} from '@components';
-import {errorToaster} from '@utils';
+} from "./welcome.style";
+import {ImageProfile} from "@components";
+import {errorToaster} from "@utils";
 import {Button} from "react-bootstrap";
 import {Modal} from "react-bootstrap";
 
@@ -32,13 +32,13 @@ function MyVerticallyCenteredModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                  {t('welcome.notice')}
+                    {t("welcome.notice")}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>{t('welcome.covidtitle')}</h4>
+                <h4>{t("welcome.covidtitle")}</h4>
                 <p>
-                  {t('welcome.covidbody')}
+                    {t("welcome.covidbody")}
                 </p>
                 <p>
                     <ul>
@@ -48,7 +48,7 @@ function MyVerticallyCenteredModal(props) {
                 </p>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>{t('welcome.close')}</Button>
+                <Button onClick={props.onHide}>{t("welcome.close")}</Button>
             </Modal.Footer>
         </Modal>
     );
@@ -78,32 +78,32 @@ export const WelcomePageContent = (props) => {
                 </WelcomeLogo>
                 <WelcomeProfile data-testid="welcome-profile">
                     <h3>
-                        {t('welcome.welcome')}, <WelcomeName>{name}</WelcomeName>
+                        {t("welcome.welcome")}, <WelcomeName>{name}</WelcomeName>
                     </h3>
                     <ImageWrapper>
                         <Uploader
                             {...{
-                                fileBase: webId && webId.split('/card')[0],
+                                fileBase: webId && webId.split("/card")[0],
                                 limitFiles: 1,
                                 limitSize: limit,
-                                accept: 'jpg,jpeg,png',
+                                accept: "jpg,jpeg,png",
                                 errorsText: {
-                                    sizeLimit: t('welcome.errors.sizeLimit', {
+                                    sizeLimit: t("welcome.errors.sizeLimit", {
                                         limit: `${limit / 1000000}Mbs`
                                     }),
-                                    unsupported: t('welcome.errors.unsupported'),
-                                    maximumFiles: t('welcome.errors.maximumFiles')
+                                    unsupported: t("welcome.errors.unsupported"),
+                                    maximumFiles: t("welcome.errors.maximumFiles")
                                 },
                                 onError: (error) => {
                                     if (error && error.statusText) {
-                                        errorToaster(error.statusText, t('welcome.errorTitle'));
+                                        errorToaster(error.statusText, t("welcome.errorTitle"));
                                     }
                                 },
                                 onComplete: (uploadedFiles) => {
                                     updatePhoto(
                                         uploadedFiles[uploadedFiles.length - 1].uri,
-                                        t('welcome.uploadSuccess'),
-                                        t('welcome.successTitle')
+                                        t("welcome.uploadSuccess"),
+                                        t("welcome.successTitle")
                                     );
                                 },
                                 render: (props) => (
@@ -112,8 +112,8 @@ export const WelcomePageContent = (props) => {
                                             ...props,
                                             webId,
                                             photo: image,
-                                            text: t('welcome.upload'),
-                                            uploadingText: t('welcome.uploadingText')
+                                            text: t("welcome.upload"),
+                                            uploadingText: t("welcome.uploadingText")
                                         }}
                                     />
                                 )
@@ -124,7 +124,7 @@ export const WelcomePageContent = (props) => {
             </WelcomeCard>
             <WelcomeCard className="card">
                 <WelcomeDetail data-testid="welcome-detail">
-                    <h3>{t('welcome.contactUsTitle')}</h3>
+                    <h3>{t("welcome.contactUsTitle")}</h3>
                     <Trans i18nKey="welcome.contactUsText">
                         <p>
                             This application was created by the EN14 team for Uniovi's Software Architecture subject in

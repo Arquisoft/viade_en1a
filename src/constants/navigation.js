@@ -15,8 +15,14 @@ export const NavigationItems = [
   {
     id: "maps",
     icon: <Icon.Map/>,
-    label: "navBar.maps",
+    label: "navBar.myRoutes",
     to: "/maps"
+  },
+  {
+    id: "design",
+    icon: <Icon.PenTool/>,
+    label: "navBar.design",
+    to: "/design"
   },
   {
     id: "profile",

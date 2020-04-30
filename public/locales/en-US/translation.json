@@ -54,6 +54,7 @@
     "logOut": "Log out",
     "profile": "My Profile",
     "myRoutes": "My Routes",
+    "design": "Design your route",
     "formModelRender": "Form Model Render",
     "formModelConvert": "Form Model Convert",
     "text-editor": "Text Editor",
@@ -258,6 +259,7 @@
   "routes":{
     "yourRoutes": "Your routes",
     "uploadToPOD": "Upload to your POD",
+    "uploadedToPOD": "Uploaded",
     "hereYourRoutes": "Here your routes",
     "sharedRoutes": "Shared Routes",
     "clear": "Clear",
@@ -267,10 +269,22 @@
     "return": "Return",
     "shared": "Shared",
     "addMedia": "Add media",
-	"galery": "Galery",
-    "covidtoggle": "Show COVID-19 data"
+    "galery": "Galery",
+    "covidtoggle": "Show COVID-19 data",
+    "designRoute": "Design your route"
   },
-  "alt":{
+  "routeDesigner": {
+    "selectPoints": "Select the points",
+    "uploadToPOD": "Finish and upload to POD",
+    "clearRoute": "Clear route",
+    "newRoute": "New Route",
+    "routeName": "Name",
+    "routeDescription": "Description",
+    "routeFormatError": "Please, add 2 or more points to the map in order to consider it as a route",
+    "nameError": "The name of the route cannot be empty",
+    "confirmClear": "Are you sure you want to delete the route?"
+  },
+  "alt": {
     "friend": "Friend",
     "loading": "This page is loading...Don't worry, it will take some seconds."
   },
