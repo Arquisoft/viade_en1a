@@ -99,7 +99,7 @@ class ShareRoutesComponent extends Component<Props> {
             document.getElementById("btn"+friend.webId).style.backgroundColor = "grey";
             document.getElementById("btn"+friend.webId).disabled = true;
         }catch(error){
-            alert("Could not share the route");
+            alert(t("routes.sharingError"));
         }
         
     }
