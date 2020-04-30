@@ -45,7 +45,7 @@ export const ShareRoutesPageContent = (props) => {
                                     <Icon.Share2/> {t("routes.share")}
                                 </Button></td>
                             </tr>
-                        )
+                        );
                     })
                 }
             </table>
