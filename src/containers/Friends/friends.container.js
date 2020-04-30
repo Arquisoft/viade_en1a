@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import data from '@solid/query-ldflex';
-import {FriendsPageContent} from './friends.component';
+import React, {Component} from "react";
+import data from "@solid/query-ldflex";
+import {FriendsPageContent} from "./friends.component";
 import FC from "solid-file-client";
 import auth from "solid-auth-client";
 
-import {Namespace, sym, st, graph, UpdateManager, Fetcher} from 'rdflib';
+import {Namespace, sym, st, graph, UpdateManager, Fetcher} from "rdflib";
 
 export class FriendsComponent extends Component<Props> {
 
@@ -78,7 +78,7 @@ export class FriendsComponent extends Component<Props> {
         await fetcher.load(myid);
 
         let ins = [];
-        let del = store.statementsMatching(me, FOAF('knows'), sym(friendid), profile);
+        let del = store.statementsMatching(me, FOAF("knows"), sym(friendid), profile);
 
         var aux = {};
 
@@ -129,7 +129,7 @@ export class FriendsComponent extends Component<Props> {
         const me = sym(webId);
         const profile = me.doc();
 
-        let ins = st(me, FOAF('knows'), sym(friendid), profile);
+        let ins = st(me, FOAF("knows"), sym(friendid), profile);
         let del = [];
 
         updater.update(del, ins, async (uri, ok, message) => {

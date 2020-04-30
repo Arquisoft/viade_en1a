@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import GoogleMapReact from "google-map-react";
 import {withTranslation} from "react-i18next";
 import DesignSideBar from "./designSideBar.component";
-import Marker from './components/Marker.component';
+import Marker from "./components/Marker.component";
 
 
 class RouteDesigner extends Component {
@@ -20,7 +20,7 @@ class RouteDesigner extends Component {
     }
 
     removeMarkers = () => {
-        this.state.routeLines.forEach(routeLine => routeLine.setMap(null));
+        this.state.routeLines.forEach((routeLine) => routeLine.setMap(null));
         this.setState({
             markers: [],
             routeLines: []
@@ -48,7 +48,7 @@ class RouteDesigner extends Component {
         let routeLine = new this.maps.Polyline({
             path: self.state.markers,
             geodesic: true,
-            strokeColor: '#7b17a6',
+            strokeColor: "#7b17a6",
             strokeOpacity: 1.0,
             strokeWeight: 2
         });
@@ -86,7 +86,7 @@ class RouteDesigner extends Component {
                                         name={"Waypoint" + i}
                                 />
 
-                            )
+                            );
 
                         })}
                     </GoogleMapReact>
@@ -96,4 +96,4 @@ class RouteDesigner extends Component {
     }
 }
 
-export default withTranslation()(RouteDesigner)
+export default withTranslation()(RouteDesigner);

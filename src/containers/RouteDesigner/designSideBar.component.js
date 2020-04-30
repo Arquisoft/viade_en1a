@@ -38,11 +38,9 @@ class DesignSideBar extends Component {
 
             //Upload the JSON-LD file to the POD
             let session = await auth.currentSession();
-            console.log(session);
 
             let url = session.webId.split("profile/card#me")[0] + "viade/routes/";
 
-            console.log(url);
 
             if (!await this.fc.itemExists(url)) {
                 await this.fc.createFolder(url);
@@ -117,7 +115,7 @@ class DesignSideBar extends Component {
             waypoints: [],
             points: []
         }
-        routePoints.forEach(routePoint => {
+        routePoints.forEach((routePoint) => {
             let jsonLDPoint = {
                 latitude: routePoint.lat,
                 longitude: routePoint.lng,
@@ -135,7 +133,7 @@ class DesignSideBar extends Component {
             alert(t("routeDesigner.nameError"));
             return false;
         } else if (routePoints.length < 2) {
-            alert(t("routeDesigner.routeFormatError"))
+            alert(t("routeDesigner.routeFormatError"));
             return false;
         }
         return true;

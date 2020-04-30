@@ -105,7 +105,7 @@ class RoutesSideBar extends Component {
 
         let btnPod = $("#btnPod");
         btnPod.html(t("routes.uploadToPOD"));
-        btnPod.prop('disabled', false);
+        btnPod.prop("disabled", false);
     };
 
 
@@ -132,7 +132,7 @@ class RoutesSideBar extends Component {
         let btnPod = $("#btnPod");
 
         btnPod.html(t("routes.uploadedToPOD"));
-        btnPod.prop('disabled', true);
+        btnPod.prop("disabled", true);
         $("#routeUploader").val("");
 
         await this.getPodRoutes();
@@ -152,7 +152,6 @@ class RoutesSideBar extends Component {
 
             var obj = JSON.parse(fileReader.result);
 
-            console.log(obj.routeName);
 
             return obj.routeName;
 
@@ -204,9 +203,7 @@ class RoutesSideBar extends Component {
 
         let fullLabel = getImportant[1].split("\"")[3];
         let sender = fullLabel.split("Shared route ")[1];
-        //console.log(name+" "+sender)	
 
-        //console.log(sender)
         return sender;
 
     }
@@ -369,7 +366,6 @@ class RoutesSideBar extends Component {
 
     handleCOVIDChange(COVIDchecked) {
         this.setState({ COVIDchecked });
-        console.log("toggling on sidebar");
         this.props.toggleCOVID(COVIDchecked);
     }
 

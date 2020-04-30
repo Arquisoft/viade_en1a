@@ -1,11 +1,11 @@
-import React from 'react';
-import {useState} from 'react';
+import React from "react";
+import {useState} from "react";
 import {
     FriendsWrapper,
     FriendsContainer,
     StyledGroupBox
-} from './friends.style';
-import {Friend} from './components';
+} from "./friends.style";
+import {Friend} from "./components";
 import {Button, ButtonGroup, Modal} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import * as Icon from "react-feather";
@@ -31,7 +31,7 @@ function GroupBox(props) {
 function ChooseGroupsModal(props) {
     const {t, groups, changeFriendFromGroupModal} = props;
 
-    const [group, setGroup] = useState('Default');
+    const [group, setGroup] = useState("Default");
 
     function chooseGroup() {
         changeFriendFromGroupModal(group);
@@ -48,22 +48,22 @@ function ChooseGroupsModal(props) {
                 <Modal.Title id="contained-modal-title-vcenter">
                     {t("friends.groups")}
                     <select value={group} onChange={e => setGroup(e.target.value)}>
-                    {
-                        Object.keys(groups).map((key) => {
-                            return (
-                                <option value={key}>{key}</option>
-                            )
-                        })
-                    }
+                        {
+                            Object.keys(groups).map((key) => {
+                                return (
+                                    <option value={key}>{key}</option>
+                                )
+                            })
+                        }
                     </select>
-                    <Button onClick={chooseGroup}><Icon.Save/> {t('friends.save')}</Button>
+                    <Button onClick={chooseGroup}><Icon.Save/> {t("friends.save")}</Button>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
 
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>{t('friends.close')}</Button>
+                <Button onClick={props.onHide}>{t("friends.close")}</Button>
             </Modal.Footer>
         </Modal>
     );
@@ -71,12 +71,12 @@ function ChooseGroupsModal(props) {
 
 function EditGroupsModal(props) {
     const {t, groups, addGroup, deleteGroup} = props;
-    const [input, setInput] = useState('');
+    const [input, setInput] = useState("");
 
     function btnAddGroup() {
         if (input !== "") {
             addGroup(input);
-            setInput('');
+            setInput("");
         }
     }
 
@@ -106,7 +106,7 @@ function EditGroupsModal(props) {
 
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>{t('friends.close')}</Button>
+                <Button onClick={props.onHide}>{t("friends.close")}</Button>
             </Modal.Footer>
         </Modal>
     );
@@ -114,7 +114,7 @@ function EditGroupsModal(props) {
 
 export const FriendsPageContent = (props) => {
     const [input, setInput] = useState('');
-    const [group, setGroup] = useState('Default');
+    const [group, setGroup] = useState("Default");
     const [editGroupsModalShow, setEditGroupsModalShow] = useState(false);
     const [chooseGroupsModalShow, setChooseGroupsModalShow] = useState(false);
 

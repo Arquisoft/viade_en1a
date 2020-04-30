@@ -1,4 +1,5 @@
 import React from "react";
+import React from "react";
 import {useTranslation} from "react-i18next";
 import {Dropdown, Card} from "react-bootstrap";
 import * as Icon from "react-feather";
@@ -17,7 +18,7 @@ export const Friend = (props) => {
 
     return (
         <>
-            <Card id={friend.name} className={"friendBox"} style={{width: '18rem'}}>
+            <Card id={friend.name} className={"friendBox"} style={{width: "18rem"}}>
                 <Card.Img className={"friend-img"} variant="top" src={friend.image}/>
                 <Card.Body>
                     <Card.Title>{friend.name}</Card.Title>

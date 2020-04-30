@@ -586,7 +586,7 @@ class SimpleMap extends Component {
     };
 
     loadMap = () => {
-        if (this.state.route != null && this.map != null) {
+        if (this.state.route !== null && this.map !== null) {
             this.setState({features: this.map.data.addGeoJson(this.state.route)});
             this.map.data.setMap(this.map);
         }
@@ -609,7 +609,7 @@ class SimpleMap extends Component {
     };
 
     toggleCOVID = (showCOVID) => {
-        console.log("toggling on map");
+
         if (showCOVID) {
             this.setState({
                 showCOVID,
@@ -621,7 +621,7 @@ class SimpleMap extends Component {
                 COVIDdata: {
                     positions: []
                 }
-            })
+            });
         }
     };
 
@@ -691,7 +691,6 @@ class SimpleMap extends Component {
             if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
 
                 var elem = id.state.galery[i-1];
-                //console.log(elem)
 
                 if (elem.requestFullscreen) {
                     elem.requestFullscreen();
