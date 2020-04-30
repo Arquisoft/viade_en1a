@@ -47,7 +47,7 @@ class DesignSideBar extends Component {
             }
             await this.fc.createFile(url + trimmedRouteName + ".json", jsonLDFile, "text/plain");
 
-            alert("Route Uploaded!")
+            alert("Route Uploaded!");
 
             this.clearData();
         }
@@ -120,7 +120,7 @@ class DesignSideBar extends Component {
                 latitude: routePoint.lat,
                 longitude: routePoint.lng,
                 elevation: 0
-            }
+            };
             parsedRoute.points.push(jsonLDPoint);
         });
         return parsedRoute;

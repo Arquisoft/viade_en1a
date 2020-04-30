@@ -113,12 +113,12 @@ function EditGroupsModal(props) {
 }
 
 export const FriendsPageContent = (props) => {
-    const [input, setInput] = useState('');
+    const [input, setInput] = useState("");
     const [group, setGroup] = useState("Default");
     const [editGroupsModalShow, setEditGroupsModalShow] = useState(false);
     const [chooseGroupsModalShow, setChooseGroupsModalShow] = useState(false);
 
-    const [chosenFriend, setChosenFriend] = useState('');
+    const [chosenFriend, setChosenFriend] = useState("");
 
     const {groups, addFriend, deleteFriend, addGroup, deleteGroup, changeFriendGroup} = props;
     const {t} = useTranslation();
@@ -182,13 +182,13 @@ export const FriendsPageContent = (props) => {
 
             <FriendsContainer className="card">
                 <div className={"addUserForm"}>
-                    <input type={"text"} value={input} onInput={e => setInput(e.target.value)}/>
+                    <input type={"text"} value={input} onInput={(e) => setInput(e.target.value)}/>
                     <select value={group} onChange={e => setGroup(e.target.value)}>
                         {
                             Object.keys(groups).map((key) => {
                                 return (
                                     <option value={key}>{key}</option>
-                                )
+                                );
                             })
                         }
                     </select>

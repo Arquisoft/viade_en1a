@@ -614,7 +614,7 @@ class SimpleMap extends Component {
             this.setState({
                 showCOVID,
                 COVIDdata: this.heatMapData
-            })
+            });
         } else {
             this.setState({
                 showCOVID,
