@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import data from "@solid/query-ldflex";
 import { ShareRoutesPageContent } from "./shareroutes.component";
 import auth from "solid-auth-client";
@@ -8,6 +7,7 @@ import { namedNode } from "@rdfjs/data-model";
 import { withTranslation } from "react-i18next";
 import SolidAclUtils from "solid-acl-utils";
 import { FriendsShareContainer, ShareWrapper } from "./shareroutes.style";
+import {Redirect} from "react-router-dom";
 
 class ShareRoutesComponent extends Component<Props> {
 
@@ -15,12 +15,11 @@ class ShareRoutesComponent extends Component<Props> {
         super(props);
 
         this.state = {
-            friends: [],
+            inflatedGroups: {},
             route: null,
             routeExists: true
         };
         this.fc = new FC(auth);
-        this.routeExists = true;
         this.getRoute();
     }
 
@@ -35,20 +34,41 @@ class ShareRoutesComponent extends Component<Props> {
     }
 
     getProfileData = async () => {
-        this.setState({ isLoading: true });
-        const { webId } = this.props;
+        this.setState({isLoading: true});
 
+        var session = await auth.currentSession();
+        var folderUrl = session.webId.split("profile/card#me")[0] + "viade/groups/";
+
+        if (!await this.fc.itemExists(folderUrl)) {
+            await this.fc.createFolder(folderUrl);
+        }
+
+        if (!await this.fc.itemExists(folderUrl + "groups.json")) {
+            await this.fc.createFile(folderUrl + "groups.json", JSON.stringify({}), "text/json");
+        }
+
+        this.groups = JSON.parse(await this.fc.readFile(folderUrl + "groups.json"));
+
+        this.inflateGroups(this.groups).then((r) => {
+            this.setState({inflatedGroups: r});
+        });
+    };
+
+    inflateGroups = async (groups) => {
+        let aux = {};
+        aux["Default"] = [];
+        const {webId} = this.props;
         const user = data[webId];
 
-        let friends = [];
+        Object.keys(groups).map((key) => {
+            aux[String(key)] = [];
+            return null;
+        });
 
         for await (const friend of user.friends) {
             const friendWebId = await friend.value;
-
-            const friendData = data[friendWebId.toString()];
-
+            const friendData = data[String(friendWebId)];
             const nameLd = await friendData.name;
-
             const name = nameLd && nameLd.value.trim().length > 0 ? nameLd.value : friendWebId.toString();
             const imageLd = await friendData.vcard_hasPhoto;
 
@@ -59,16 +79,31 @@ class ShareRoutesComponent extends Component<Props> {
                 image = "img/noimg.svg";
             }
 
-            let webId = friendWebId;
             var friendObj = {
-                webId,
+                "webId": friendWebId,
                 name,
                 image
             };
 
-            friends.push(friendObj);
+            let targetGroup = "Default";
+
+            // eslint-disable-next-line
+            Object.keys(groups).map((key) => {
+                groups[String(key)].map(
+                    (e) => {
+                        if (e === friendObj.webId) {
+                            targetGroup = key;
+                        }
+                        return null;
+                    }
+                );
+                return null;
+            });
+
+            aux[String(targetGroup)].push(friendObj);
         }
-        this.setState({ friends });
+
+        return aux;
     };
 
     async getRoute(){
@@ -94,10 +129,6 @@ class ShareRoutesComponent extends Component<Props> {
             await this.modifyPermissionsRoute(this, session, this.getRouteName(), friend);
             await this.modifyPermissionsMedia(this, friend);
             await this.sendMessage(this, session, targetUrl);
-            document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
-            document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
-            document.getElementById("btn"+friend.webId).style.backgroundColor = "grey";
-            document.getElementById("btn"+friend.webId).disabled = true;
         }catch(error){
             alert(t("routes.sharingError"));
         }
@@ -193,14 +224,14 @@ class ShareRoutesComponent extends Component<Props> {
     }
     
     render() {
-        const { friends } = this.state;
+        const  { inflatedGroups }  = this.state;
         const share = {
             shareRoute: this.shareRoute.bind(this)
         };
         return (
             <ShareWrapper>
             <FriendsShareContainer className="card">
-                {this.state.routeExists ? (<ShareRoutesPageContent {...{ friends, share }} />) : (<Redirect to="/404" />)}
+                {this.state.routeExists ? (<ShareRoutesPageContent {...{ inflatedGroups, share }} />) : (<Redirect to="/404" />)}
             </FriendsShareContainer>
             </ShareWrapper>
         );

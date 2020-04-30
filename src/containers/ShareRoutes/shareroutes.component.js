@@ -1,36 +1,57 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
+import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import {useTranslation} from "react-i18next";
+import * as Icon from "react-feather";
 
 export const ShareRoutesPageContent = (props) => {
 
-    const {friends, share} = props;
-    const { t } = useTranslation();
+    const {inflatedGroups, share} = props;
+    const {t} = useTranslation();
 
-    function shareRoute(friend){
-        share.shareRoute(friend);
+    function shareRoute(group) {
+        inflatedGroups[String(group)].forEach(
+            (friend) => {
+                share.shareRoute(friend);
+            }
+        );
     }
 
     return (
         <div>
             <table>
                 {
-                    friends.map(
-                        (friend) => (
-
-                            <tr key={friend.webId}>
-                                <td><img className="friend-img" width="100px" src={friend.image} alt="Friend"/></td>
-                                <td><a href={friend.name}> {friend.name}</a></td>
-                                <td><Button class= "shareClass" id={"btn"+friend.webId} onClick={shareRoute.bind(this, friend)} variant="primary" block>
-                                    {t("routes.share")}
+                    Object.keys(inflatedGroups).map((key) => {
+                        return (
+                            <tr>
+                                <td>
+                                    <OverlayTrigger
+                                        key={"top"}
+                                        placement={"top"}
+                                        overlay={
+                                            <Tooltip id={`tooltip-${"top"}`}>
+                                                {inflatedGroups[String(key)].reduce(
+                                                    (accumulator, currentValue) => {
+                                                        return accumulator + ((accumulator !== "") ? ", " : "") + currentValue.name;
+                                                    },
+                                                    ""
+                                                )}
+                                            </Tooltip>
+                                        }
+                                    >
+                                        <h3>{key}</h3>
+                                    </OverlayTrigger></td>
+                                <td><Button class="shareClass" id={"btn" + key} variant="primary"
+                                            onClick={shareRoute.bind(this, key)} block>
+                                    <Icon.Share2/> {t("routes.share")}
                                 </Button></td>
                             </tr>
-                        )
-                    )
+                        );
+                    })
                 }
             </table>
-            <Button href="#/maps" variant="secondary" block >{t("routes.cancel")}</Button>
+
+            <Button href="#/maps" variant="secondary" block><Icon.ArrowLeft/> {t("routes.return")}</Button>
         </div>
     );
-    
+
 };
