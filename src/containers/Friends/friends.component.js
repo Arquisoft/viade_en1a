@@ -87,6 +87,7 @@ function EditGroupsModal(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
+            
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     {t("friends.editGroups")}
@@ -98,6 +99,7 @@ function EditGroupsModal(props) {
                             )
                         })
                     }
+                    {t("friends.nameGroup")}
                     <input type={"text"} value={input} onInput={e => setInput(e.target.value)}/>
                     <Button onClick={btnAddGroup}><Icon.Plus/></Button>
                 </Modal.Title>
@@ -160,8 +162,12 @@ export const FriendsPageContent = (props) => {
                 deleteGroup={deleteGroup}
                 changeFriendFromGroupModal={changeFriendFromGroupModal}
             />
+            
 
             <FriendsContainer id="friendsContainer" className="card">
+                <h1>{t("friends.yourGroups")}</h1>
+                <Button variant={"info"} onClick={() => setEditGroupsModalShow(true)}>{t("friends.groups")}</Button>
+                <h1></h1>
                 {
                     Object.keys(groups).map((key) => {
                         return (
@@ -178,10 +184,13 @@ export const FriendsPageContent = (props) => {
                         )
                     })
                 }
+                
             </FriendsContainer>
 
             <FriendsContainer className="card">
                 <div className={"addUserForm"}>
+                    <h1>{t("friends.addNewFriend")}</h1>
+                    {t("friends.friendURL")}
                     <input type={"text"} value={input} onInput={(e) => setInput(e.target.value)}/>
                     <select value={group} onChange={(e) => setGroup(e.target.value)}>
                         {
@@ -195,7 +204,6 @@ export const FriendsPageContent = (props) => {
                 </div>
                 <ButtonGroup aria-label="FriendsButtonGroup">
                     <Button onClick={btnAddFriend}>{t("friends.addFriend")}</Button>
-                    <Button variant={"info"} onClick={() => setEditGroupsModalShow(true)}>{t("friends.groups")}</Button>
                 </ButtonGroup>
             </FriendsContainer>
         </FriendsWrapper>

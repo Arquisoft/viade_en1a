@@ -295,9 +295,13 @@
     "delete": "Delete",
     "changeGroup": "Change to group...",
     "addFriend": "Add Friend",
-    "groups": "Groups",
+    "groups": "Create/Edits Groups",
     "editGroups": "Edit Groups",
     "close": "Close",
-    "save": "Save"
+    "save": "Save",
+	"nameGroup": "Name of new group:",
+	"friendURL": "Your friend's URL:",
+	"addNewFriend": "Add new friend",
+	"yourGroups": "Your groups"
   }
 }
