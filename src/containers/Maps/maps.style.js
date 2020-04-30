@@ -138,7 +138,7 @@ export const MapsSideBar = styled.div`
 
   overflow-y: scroll;
 
-  height: 60vh;
+  height: 50vh;
 
   padding: 0;
 
