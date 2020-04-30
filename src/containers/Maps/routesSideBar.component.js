@@ -176,7 +176,7 @@ class RoutesSideBar extends Component {
                     this.state.sharedRoutes.push({name, url, route});
                 }
             }catch(error) {
-                //do nothing
+                console.log(error);
             }
         }
 
@@ -225,16 +225,53 @@ class RoutesSideBar extends Component {
 
         for (let element of folder.files) {
             let content = await this.fc.readFile(element.url.toString());
-            let parsedRoute = JSON.parse(content);
+            if(this.isValidRoute(element.url.toString(), content)){
+                let parsedRoute = JSON.parse(content);
 
-            this.setState((state) => ({
+                this.setState((state) => ({
 
-                routeList: state.routesList.push({name: element.name, url: element.url, route: parsedRoute})
+                    routeList: state.routesList.push({name: element.name, url: element.url, route: parsedRoute})
 
-            }));
+                }));
+            }
 
         }
 
+    }
+
+    isValidRoute(name, content){
+        if(!name.endsWith(".json")){
+            return false;
+        }
+        try{
+            let parsed = JSON.parse(content);
+            if(!parsed.hasOwnProperty("name")){
+                return false;
+            }
+            if(!parsed.hasOwnProperty("points")){
+                return false;
+            }else{
+                for (let i = 0; i < parsed.points.length; i++){
+                    if(!parsed.points[i].hasOwnProperty("longitude") || !parsed.points[i].hasOwnProperty("latitude") || !parsed.points[i].hasOwnProperty("elevation")){
+                        return false;
+                    }
+                }
+            }
+            if(!parsed.hasOwnProperty("waypoints")){
+                return false;
+            }else{
+                for(let i = 0; i < parsed.waypoints.length; i++){
+                    if(!parsed.waypoints[i].hasOwnProperty("longitude") || !parsed.waypoints[i].hasOwnProperty("latitude") || !parsed.waypoints[i].hasOwnProperty("elevation") 
+                    || !parsed.waypoints[i].hasOwnProperty("name") || !parsed.waypoints[i].hasOwnProperty("description")){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }catch(error){
+            return false;
+        }
+    
     }
 
     showRoute = async (routeWrapper) => {
