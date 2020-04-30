@@ -183,7 +183,7 @@ export const FriendsPageContent = (props) => {
             <FriendsContainer className="card">
                 <div className={"addUserForm"}>
                     <input type={"text"} value={input} onInput={(e) => setInput(e.target.value)}/>
-                    <select value={group} onChange={e => setGroup(e.target.value)}>
+                    <select value={group} onChange={(e) => setGroup(e.target.value)}>
                         {
                             Object.keys(groups).map((key) => {
                                 return (

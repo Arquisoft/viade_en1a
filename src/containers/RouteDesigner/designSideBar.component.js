@@ -114,7 +114,7 @@ class DesignSideBar extends Component {
             media: [],
             waypoints: [],
             points: []
-        }
+        };
         routePoints.forEach((routePoint) => {
             let jsonLDPoint = {
                 latitude: routePoint.lat,
