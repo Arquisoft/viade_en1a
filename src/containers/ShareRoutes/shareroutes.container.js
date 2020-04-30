@@ -61,16 +61,16 @@ class ShareRoutesComponent extends Component<Props> {
         const user = data[webId];
 
         Object.keys(groups).map((key) => {
-            aux[key] = [];
+            aux[String(key)] = [];
             return null;
         });
 
         for await (const friend of user.friends) {
             const friendWebId = await friend.value;
-            const friend_data = data[friendWebId];
-            const nameLd = await friend_data.name;
+            const friendData = data[String(friendWebId)];
+            const nameLd = await friendData.name;
             const name = nameLd && nameLd.value.trim().length > 0 ? nameLd.value : friendWebId.toString();
-            const imageLd = await friend_data.vcard_hasPhoto;
+            const imageLd = await friendData.vcard_hasPhoto;
 
             let image;
             if (imageLd && imageLd.value) {
@@ -79,19 +79,19 @@ class ShareRoutesComponent extends Component<Props> {
                 image = "img/noimg.svg";
             }
 
-            var friend_obj = {
+            var friendObj = {
                 "webId": friendWebId,
-                "name": name,
-                "image": image
+                name,
+                image
             };
 
             let targetGroup = "Default";
 
             // eslint-disable-next-line
             Object.keys(groups).map((key) => {
-                groups[key].map(
+                groups[String(key)].map(
                     (e) => {
-                        if (e === friend_obj.webId) {
+                        if (e === friendObj.webId) {
                             targetGroup = key;
                         }
                         return null;
@@ -100,7 +100,7 @@ class ShareRoutesComponent extends Component<Props> {
                 return null;
             });
 
-            aux[targetGroup].push(friend_obj);
+            aux[String(targetGroup)].push(friendObj);
         }
 
         return aux;
@@ -224,7 +224,7 @@ class ShareRoutesComponent extends Component<Props> {
     }
     
     render() {
-        const { inflatedGroups }  = this.state;
+        const  { inflatedGroups }  = this.state;
         const share = {
             shareRoute: this.shareRoute.bind(this)
         };

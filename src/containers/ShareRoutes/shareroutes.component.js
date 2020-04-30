@@ -29,7 +29,7 @@ export const ShareRoutesPageContent = (props) => {
                                         placement={"top"}
                                         overlay={
                                             <Tooltip id={`tooltip-${"top"}`}>
-                                                {inflatedGroups[parseInt(key)].reduce(
+                                                {inflatedGroups[String(key)].reduce(
                                                     (accumulator, currentValue) => {
                                                         return accumulator + ((accumulator !== "") ? ", " : "") + currentValue.name;
                                                     },
