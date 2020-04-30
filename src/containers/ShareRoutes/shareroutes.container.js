@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import data from "@solid/query-ldflex";
 import { ShareRoutesPageContent } from "./shareroutes.component";
 import auth from "solid-auth-client";
@@ -15,9 +16,11 @@ class ShareRoutesComponent extends Component<Props> {
 
         this.state = {
             friends: [],
-            route: null
+            route: null,
+            routeExists: true
         };
         this.fc = new FC(auth);
+        this.routeExists = true;
         this.getRoute();
     }
 
@@ -72,9 +75,13 @@ class ShareRoutesComponent extends Component<Props> {
         var name = this.getRouteName();
         var session = await auth.currentSession();
         var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
-        var file = await this.fc.readFile(url + name);
-        if (file !== null){
-            this.setState({route: file});
+        if(await this.fc.itemExists(url + name)){
+            var file = await this.fc.readFile(url + name);
+            if (file !== null){
+                this.setState({route: file});
+            }
+        }else{
+            this.setState({routeExists: false});
         }
     }
 
@@ -88,6 +95,8 @@ class ShareRoutesComponent extends Component<Props> {
             await this.modifyPermissionsMedia(this, friend);
             await this.sendMessage(this, session, targetUrl);
             document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
+            document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
+            document.getElementById("btn"+friend.webId).style.backgroundColor = "grey";
             document.getElementById("btn"+friend.webId).disabled = true;
         }catch(error){
             alert(t("routes.sharingError"));
@@ -188,11 +197,10 @@ class ShareRoutesComponent extends Component<Props> {
         const share = {
             shareRoute: this.shareRoute.bind(this)
         };
-
         return (
             <ShareWrapper>
             <FriendsShareContainer className="card">
-                <ShareRoutesPageContent {...{ friends, share }} />
+                {this.state.routeExists ? (<ShareRoutesPageContent {...{ friends, share }} />) : (<Redirect to="/404" />)}
             </FriendsShareContainer>
             </ShareWrapper>
         );
