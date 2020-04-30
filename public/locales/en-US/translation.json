@@ -20,7 +20,8 @@
     "notEditable": "(not editable)",
     "notSharable": "(log in and load a doc on your own pod to give others access)",
     "seeAll": "See all",
-    "noNotifications": "No notifications to show"
+    "noNotifications": "No notifications to show",
+
 
   },
   "login": {
@@ -267,7 +268,8 @@
     "shared": "Shared",
     "addMedia": "Add media",
 	"galery": "Galery",
-    "covidtoggle": "Show COVID-19 data"
+    "covidtoggle": "Show COVID-19 data",
+	"sharingError": "Could not share the route. If you are an Inrupt user, or your Solid Server is using NSS 5.2.4., there is a bug in that version."
   },
   "alt":{
     "friend": "Friend",

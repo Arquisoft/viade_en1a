@@ -90,7 +90,7 @@ class ShareRoutesComponent extends Component<Props> {
             document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
             document.getElementById("btn"+friend.webId).disabled = true;
         }catch(error){
-            alert("Could not share the route");
+            alert(t("routes.sharingError"));
         }
         
     }
