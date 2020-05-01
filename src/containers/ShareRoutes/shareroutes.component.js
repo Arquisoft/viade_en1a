@@ -56,7 +56,7 @@ export const ShareRoutesPageContent = (props) => {
                                                                 <td>
                                                                     <Button class="shareClass" id={"btn" + key}
                                                                             variant="primary"
-                                                                            onClick={share.shareRoute.bind(this, friend.webId)}
+                                                                            onClick={share.shareRoute.bind(this, friend)}
                                                                             block>
                                                                         <Icon.Share2/> {t("routes.share")}
                                                                     </Button>
