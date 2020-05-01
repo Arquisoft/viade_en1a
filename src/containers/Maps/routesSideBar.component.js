@@ -229,9 +229,6 @@ class RoutesSideBar extends Component {
 
         let folder = await this.fc.readFolder(url);
 
-        const {t} = this.props;
-        let btnChoose = $("#btnChoose");
-        btnChoose.html(t("routes.chooseFile"));
 
         for (let element of folder.files) {
             let content = await this.fc.readFile(element.url.toString());
@@ -417,7 +414,11 @@ class RoutesSideBar extends Component {
     }
 
     render() {
+        
         const {t} = this.props;
+        let btnChoose = $("#btnChoose");
+        btnChoose.html(t("routes.chooseFile"));
+
         return (
             <StyledRoutesSidebar>
                 
