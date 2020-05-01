@@ -25,7 +25,6 @@ export class FriendsComponent extends Component<Props> {
         this.addGroup = this.addGroup.bind(this);
         this.deleteGroup = this.deleteGroup.bind(this);
         this.changeFriendGroup = this.changeFriendGroup.bind(this);
-        this.setIsLoading=this.setIsLoading.bind(this);
     }
 
     addGroup = async (group) => {
