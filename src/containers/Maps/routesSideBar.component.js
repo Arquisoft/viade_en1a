@@ -176,7 +176,7 @@ class RoutesSideBar extends Component {
                     this.state.sharedRoutes.push({name, url, route});
                 }
             }catch(error) {
-                console.log(error);
+                
             }
         }
 
@@ -252,7 +252,7 @@ class RoutesSideBar extends Component {
                 return false;
             }else{
                 for (let i = 0; i < parsed.points.length; i++){
-                    if(!parsed.points[i].hasOwnProperty("longitude") || !parsed.points[i].hasOwnProperty("latitude") || !parsed.points[i].hasOwnProperty("elevation")){
+                    if(!parsed.points[parseInt(i)].hasOwnProperty("longitude") || !parsed.points[parseInt(i)].hasOwnProperty("latitude") || !parsed.points[parseInt(i)].hasOwnProperty("elevation")){
                         return false;
                     }
                 }
@@ -261,8 +261,8 @@ class RoutesSideBar extends Component {
                 return false;
             }else{
                 for(let i = 0; i < parsed.waypoints.length; i++){
-                    if(!parsed.waypoints[i].hasOwnProperty("longitude") || !parsed.waypoints[i].hasOwnProperty("latitude") || !parsed.waypoints[i].hasOwnProperty("elevation") 
-                    || !parsed.waypoints[i].hasOwnProperty("name") || !parsed.waypoints[i].hasOwnProperty("description")){
+                    if(!parsed.waypoints[parseInt(i)].hasOwnProperty("longitude") || !parsed.waypoints[parseInt(i)].hasOwnProperty("latitude") || !parsed.waypoints[parseInt(i)].hasOwnProperty("elevation") 
+                    || !parsed.waypoints[parseInt(i)].hasOwnProperty("name") || !parsed.waypoints[parseInt(i)].hasOwnProperty("description")){
                         return false;
                     }
                 }
