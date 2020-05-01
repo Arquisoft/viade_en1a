@@ -5,6 +5,7 @@ import {NotificationsContainer, NotificationsWrapper} from "./notifications.styl
 import {Notis} from "./Notis";
 import { Loader } from "@util-components";
 
+
 export class NotificationsComponent extends Component {
 
     constructor(props) {
@@ -36,15 +37,26 @@ export class NotificationsComponent extends Component {
             try{
                 var name = await this.getFullNotification(inboxFolder.files[parseInt(index)].url.toString());
                 let url = inboxFolder.files[parseInt(index)].url;
-                let routeUrl = await this.getSharedRoute(url);
+                /*let routeUrl = await this.getSharedRoute(url);
                 let content = await this.fc.readFile(routeUrl.toString());
                 let route = JSON.parse(content);
-                var trueName = name+route.name+")";
+                var trueName = name+route.name+")";*/
                 //console.log(trueName);
-                this.state.notifications.push({name, trueName, url });
+                this.state.notifications.push({name, /*trueName,*/ url });
             } catch {
                //do nothing ;
             }
+        }
+        this.isLoading=false;
+
+        if(inboxFolder.files.length===0){
+            /*let title = "No notifications";
+            let message = "You have no notifications to be shown....";
+            errorToaster(message, title);*/
+
+            name= "No notifications";
+            var url= "fakeURL";
+            this.state.notifications.push({name, /*trueName,*/ url });
         }
 
         let notifications = [...this.state.notifications];
@@ -85,12 +97,12 @@ export class NotificationsComponent extends Component {
             list.push(<Notis key={i}{...{
 
                 noti: {
-                    name: this.state.notifications[parseInt(i)].trueName
+                    name: this.state.notifications[parseInt(i)].name
                 }               
 
             }}/>);
         }
-        if(list.length>0){
+        if(list.length>0 ){
             this.isLoading=false;
         }
         
