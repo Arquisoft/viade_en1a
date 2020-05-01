@@ -237,11 +237,6 @@ export class FriendsComponent extends Component<Props> {
         return aux;
     };
 
-    setIsLoading(what) {
-        console.log("First: "+this.isLoading);
-        this.isLoading=what;
-        console.log("Then: "+this.isLoading);
-    }
 
     render() {
         const groups = this.state.inflatedGroups;

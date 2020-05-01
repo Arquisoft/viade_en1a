@@ -3,7 +3,7 @@ import FC from "solid-file-client";
 import auth from "solid-auth-client";
 import {NotificationsContainer, NotificationsWrapper} from "./notifications.style";
 import {Notis} from "./Notis";
-import { Loader } from '@util-components';
+import { Loader } from "@util-components";
 
 export class NotificationsComponent extends Component {
 
@@ -40,7 +40,7 @@ export class NotificationsComponent extends Component {
                 let content = await this.fc.readFile(routeUrl.toString());
                 let route = JSON.parse(content);
                 var trueName = name+route.name+")";
-                console.log(trueName);
+                //console.log(trueName);
                 this.state.notifications.push({name, trueName, url });
             } catch {
                //do nothing ;

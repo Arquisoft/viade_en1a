@@ -2,7 +2,7 @@ import React from "react";
 import {Button} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import * as Icon from "react-feather";
-import { Loader } from '@util-components';
+import { Loader } from "@util-components";
 import {FriendsShareContainer} from "./shareroutes.style";
 import {
     Accordion,

@@ -9,7 +9,7 @@ import {Friend} from "./components";
 import {Button, ButtonGroup, Modal} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import * as Icon from "react-feather";
-import { Loader } from '@util-components';
+import { Loader } from "}@util-components";
 
 
 function GroupBox(props) {
@@ -102,7 +102,7 @@ function EditGroupsModal(props) {
                         })
                     }
                     {t("friends.nameGroup")}
-                    <input placeHolder = {t("friends.typename")} type={"text"} value={input} onInput={e => setInput(e.target.value)}/>
+                    <input placeHolder = {t("friends.typename")} type={"text"} value={input} onInput={(e) => setInput(e.target.value)}/>
                     <Button onClick={btnAddGroup}><Icon.Plus/></Button>
                 </Modal.Title>
             </Modal.Header>
