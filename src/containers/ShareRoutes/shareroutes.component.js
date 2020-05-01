@@ -18,10 +18,10 @@ export const ShareRoutesPageContent = (props) => {
     const {inflatedGroups, share} = props;
     const {t} = useTranslation();
 
-    function shareRoute(group) {
+    function shareRoute(group, id) {
         inflatedGroups[String(group)].forEach(
             (friend) => {
-                share.shareRoute(friend);
+                share.shareRoute(friend.webId, id);
             }
         );
     }
@@ -51,9 +51,9 @@ export const ShareRoutesPageContent = (props) => {
                                                             <tr>
                                                                 <td>{friend.name}</td>
                                                                 <td>
-                                                                    <Button class="shareClass" id={"btn" + key}
+                                                                    <Button class="shareClass" id={"btn" + friend.webId.split("//")[1].split(".")[0]}
                                                                             variant="primary"
-                                                                            onClick={share.shareRoute.bind(this, friend.webId)}
+                                                                            onClick={share.shareRoute.bind(this, friend.webId, friend.webId.split("//")[1].split(".")[0])}
                                                                             block>
                                                                         <Icon.Share2/> {t("routes.share")}
                                                                     </Button>
@@ -65,7 +65,7 @@ export const ShareRoutesPageContent = (props) => {
                                             }
                                         </table>
                                         <Button class="shareClass" id={"btn" + key} variant="primary"
-                                                onClick={shareRoute.bind(this, key)} block>
+                                                onClick={shareRoute.bind(this, key, key)} block>
                                             <Icon.Share2/> {t("routes.sharewithall")}
                                         </Button>
                                     </AccordionItemPanel>

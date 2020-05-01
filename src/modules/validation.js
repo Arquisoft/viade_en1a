@@ -1,4 +1,4 @@
-export function isValidRoute(name, content){
+export function isValidJSONRoute(name, content){
     if(!name.endsWith(".json")){
         return false;
     }
@@ -39,4 +39,12 @@ export function isValidRoute(name, content){
     }catch(error){
         return false;
     }
+}
+
+export function isValidRouteName(trimmedRouteName){
+    return !trimmedRouteName.length > 0;
+}
+
+export function isValidRoutePoints(routePoints){
+    return routePoints.length < 2;
 }

@@ -1,6 +1,11 @@
 import auth from "solid-auth-client";
+import data from "@solid/query-ldflex";
+import { namedNode } from "@rdfjs/data-model";
+import SolidAclUtils from "solid-acl-utils";
+import { webId, fullWebId } from "./solidAuth.js";
 import FC from "solid-file-client";
-import { isValidRoute } from "./validation.js";
+import { isValidJSONRoute } from "./validation.js";
+import { buildAcl } from "./buildFile.js"
 
 const fc = new FC(auth);
 
@@ -12,7 +17,7 @@ export async function getPodRoutes(){
 
     for (let element of folder.files) {
         let content = await fc.readFile(element.url.toString());
-        if(isValidRoute(element.url.toString(), content)){
+        if(isValidJSONRoute(element.url.toString(), content)){
             let parsedRoute = JSON.parse(content);
             routesList.push({name: element.name, url: element.url, route: parsedRoute});
         }
@@ -33,7 +38,8 @@ export async function getSharedRoutes(){
                 let routeUrl = await getSharedRoute(url);
                 let content = await fc.readFile(routeUrl.toString());
                 let route = JSON.parse(content);
-                sharedRoutes.push({name, url, route});
+                let trueName = name+route.name+")";
+                sharedRoutes.push({name, trueName, url, route});
             }
         }catch(error) {
             
@@ -42,32 +48,28 @@ export async function getSharedRoutes(){
     return sharedRoutes;
 }
 
-export async function deleteRoute(url){
+export async function getFriendGroupsFromPOD(){
+    let groups = [];
+    let urlGroups = await webId() + "viade/groups/groups.json";
+    
+    let fileContent = await fc.readFile(urlGroups);
+    groups = JSON.parse(fileContent);
+
+    return groups;
+}
+
+export async function deleteFile(url){
     await fc.deleteFile(url);
 }
 
-export async function createRouteFile(relativeUrl, file) {
-    let fileName = relativeUrl.split("viade/routes/")[1];
-    getFileContent(file, async function(content){
-        if(isValidRoute(fileName, content)){
-            await createFile(relativeUrl, file);
-        }
-    });
-    
-}
-
-export async function createRouteText(relativeUrl, content) {
-    let fileName = relativeUrl.split("viade/routes/")[1];
-    if(isValidRoute(fileName, content)){
-        await createFile(relativeUrl, content);
-    }
+export async function deleteFileRelativePath(relativeUrl){
+    let url = await webId() + relativeUrl;
+    await deleteFile(url);
 }
 
 export async function createFile(relativeUrl, file){
     let url = await webId() + relativeUrl;
     await fc.createFile(url, file, "text/plain");
-    console.log(url);
-    console.log(file);
     return url;
 }
 
@@ -80,6 +82,41 @@ export async function createFolder(relativeUrl){
     let url = await webId() + relativeUrl;
     await fc.createFolder(url);
     return url;
+}
+
+export async function readFile(relativeUrl){
+    let url = await webId() + relativeUrl
+    return await fc.readFile(url);
+}
+
+export function getFriendInbox(friend){
+    return friend + "inbox/";
+}
+
+export async function buildNotification(message){
+    var mess = message.url;
+    await data[mess.toString()].schema$text.add(message.content);
+    await data[mess.toString()].rdfs$label.add(message.title);
+    await data[mess.toString()].schema$dateSent.add(message.date.toISOString());
+    await data[mess.toString()].rdf$type.add(namedNode('https://schema.org/Message'));
+    await data[mess.toString()].schema$sender.add(namedNode(await fullWebId()));
+}
+
+export async function manageAcl(fileUrl, fileName, friend){
+    const { AclApi, Permissions } = SolidAclUtils;
+    const { READ } = Permissions;
+
+    let aclUrl = fileUrl + ".acl";
+    if(!await fc.itemExists(aclUrl)){
+        let content = buildAcl(fileName);
+        await fc.createFile(aclUrl, content, "text/turtle");
+    }
+    let friendWebId = friend + "profile/card#me";
+    const fetch = auth.fetch.bind(auth);
+    const aclApi = new AclApi(fetch, { autoSave: true });    
+    const acl = await aclApi.loadFromFileUrl(fileUrl);
+
+    await acl.addRule(READ, friendWebId);
 }
 
 function checkNotLogFile(url){
@@ -107,16 +144,4 @@ async function getSharedRoute(url) {
     return urlText[1].split("\"")[1];
 }
 
-async function webId(){
-    let session = await auth.currentSession();
-    return session.webId.split("profile/card#me")[0];
-}
-
-async function getFileContent(file, callback){
-    var fileReader = new FileReader();
-    fileReader.readAsText(file);
-    fileReader.onload = function () {
-        callback(fileReader.result);
-    };
-}
 

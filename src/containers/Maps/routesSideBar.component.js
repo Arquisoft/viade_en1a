@@ -7,8 +7,9 @@ import {Button} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 import Switch from "react-switch";
 import $ from "jquery";
-import { getPodRoutes, getSharedRoutes, deleteRoute, createRouteFile, 
-    createRouteText, createFile, createFolder, itemExists } from "../../modules/podHandler.js";
+import { getPodRoutes, getSharedRoutes, createFile, createFolder, itemExists, deleteFile } from "../../modules/podHandler.js";
+import { getFileContent } from "../../modules/parseFile.js";
+import { isValidJSONRoute } from "../../modules/validation.js";
 
 const StyledRoutesSidebar = styled.div`
       height: 70vh;
@@ -50,14 +51,14 @@ class RoutesSideBar extends Component {
     }
 
     async deletePodRoute(routeWrapper){
-        await deleteRoute(routeWrapper.url);
+        await deleteFile(routeWrapper.url);
         this.onClearArray();
         await this.getPodRoutes();
         await this.getSharedRoutes();
     }
 
     async deleteSharedRoute(route){
-        await deleteRoute(route.url);
+        await deleteFile(route.url);
         this.onClearArray();
         await this.getPodRoutes();
         await this.getSharedRoutes();
@@ -95,7 +96,7 @@ class RoutesSideBar extends Component {
         this.onClearArray();
 
         for (let route of this.state.routes) {
-            await createRouteFile("viade/routes/" + route.name, route);
+            await this.createRouteFile("viade/routes/" + route.name, route);
         }
         const {t} = this.props;
 
@@ -118,6 +119,20 @@ class RoutesSideBar extends Component {
         this.props.show(routeData);
     };
 
+    async createRouteFile(relativeUrl, file){
+        getFileContent(file, async function(content){
+            if(isValidJSONRoute(relativeUrl, content)){
+                await createFile(relativeUrl, content);
+            }
+        });
+    }
+
+    async createRouteText(relativeUrl, text){
+        if(isValidJSONRoute(relativeUrl, text)){
+            await createFile(relativeUrl, text);
+        }
+    }
+
     async addMediaToRoute(routeWrapper, event) {
         const mediaElements = [...event.target.files];
 
@@ -139,7 +154,7 @@ class RoutesSideBar extends Component {
         //Creates a new file and substitutes the old one
         let routeJson = JSON.stringify(routeWrapper.route, null, 2);
         let routeFileName = this.getRouteFileName(routeWrapper.url);
-        await createRouteText("viade/routes/" + routeFileName, routeJson);
+        await this.createRouteText("viade/routes/" + routeFileName, routeJson);
 
         this.getPodRoutes();
         this.getSharedRoutes();
