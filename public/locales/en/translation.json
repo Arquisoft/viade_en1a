@@ -271,7 +271,8 @@
 	"galery": "Galery",
     "covidtoggle": "Show COVID-19 data",
 	"sharingError": "Could not share the route. If you are an Inrupt user, or your Solid Server is using NSS 5.2.4., there is a bug in that version.",
-    "designRoute": "Design your route"
+    "designRoute": "Design your route",
+    "sharewithall": "Share with all"
 
   },
   "routeDesigner": {

@@ -23,9 +23,8 @@ export const FriendsShareContainer = styled.div`
 
   //Overriding the style guide card flexbox settings
   max-width: 80% !important;
-  flex-direction: row !important;
-  padding: 40px 0 ; //temporary fix to a style guide bug
-
+  display: block !important;
+  padding: 40px !important; //temporary fix to a style guide bug
   align-items: center;
 
   a {
@@ -33,6 +32,10 @@ export const FriendsShareContainer = styled.div`
     &:hover {
       text-decoration: underline;
     }
+  }
+  
+  .btn{
+    margin: 10px;
   }
 
   .shareClass{
@@ -48,7 +51,7 @@ export const FriendsShareContainer = styled.div`
     columns:1;
   }
 
-  ul li btn{
+  ul li .btn{
     margin: auto;
   }
 `;
