@@ -4,7 +4,7 @@ import FC from "solid-file-client";
 
 import auth from "solid-auth-client";
 
-import {MapsSideBar} from "./maps.style";
+import {MapsSideBar, InputFile, LabelInput} from "./maps.style";
 
 import styled from "styled-components";
 
@@ -44,6 +44,7 @@ class RoutesSideBar extends Component {
             sharedRoutes: [],
 
             COVIDchecked: true,
+            labelText : ""
 
         };
 
@@ -71,6 +72,8 @@ class RoutesSideBar extends Component {
 
         this.handleCOVIDChange = this.handleCOVIDChange.bind(this);
 
+        
+        
     }
 
 
@@ -95,7 +98,9 @@ class RoutesSideBar extends Component {
                 alert(file.name + " is not valid");
 
             }
-
+            let btnChoose = $("#btnChoose");
+            btnChoose.html(file.name);
+            
 
         });
 
@@ -104,6 +109,7 @@ class RoutesSideBar extends Component {
         const {t} = this.props;
 
         let btnPod = $("#btnPod");
+
         btnPod.html(t("routes.uploadToPOD"));
         btnPod.prop("disabled", false);
     };
@@ -222,6 +228,10 @@ class RoutesSideBar extends Component {
         var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
 
         let folder = await this.fc.readFolder(url);
+
+        const {t} = this.props;
+        let btnChoose = $("#btnChoose");
+        btnChoose.html(t("routes.chooseFile"));
 
         for (let element of folder.files) {
             let content = await this.fc.readFile(element.url.toString());
@@ -373,10 +383,14 @@ class RoutesSideBar extends Component {
         const {t} = this.props;
         return (
             <StyledRoutesSidebar>
-                <input id="routeUploader" type="file" name="file" accept=".json"
-                       onChange={this.onChangeHandler.bind(this)} multiple  style={{marginTop:"10px"}}/>
+                
+                <InputFile id="routeUploader" type="file" name="file" accept=".json"
+                       onChange={this.onChangeHandler.bind(this)} multiple  style={{marginTop:"3vh"}}/>
+                
+                <LabelInput for = "routeUploader" id="btnChoose">{this.state.labelText}</LabelInput>
+
                 <Button id="btnPod" disabled={!this.uploadedFiles} variant="primary" block
-                        onClick={this.onClickHandler.bind(this)} style={{marginBottom:"10px"}}>{t("routes.uploadToPOD")}</Button>
+                        onClick={this.onClickHandler.bind(this)} style={{marginBottom:"2vh"}}>{t("routes.uploadToPOD")}</Button>
                 <MapsSideBar style={{height:"340px"}}>
                     {t("routes.hereYourRoutes")}
                     {this.listRoutes()}
