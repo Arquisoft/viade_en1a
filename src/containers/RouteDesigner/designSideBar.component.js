@@ -6,6 +6,7 @@ import {withTranslation} from "react-i18next";
 import $ from "jquery";
 import auth from "solid-auth-client";
 import FC from "solid-file-client";
+import { successToaster } from '@utils';
 
 const StyledDesignSidebar = styled.div`
 
@@ -46,8 +47,11 @@ class DesignSideBar extends Component {
                 await this.fc.createFolder(url);
             }
             await this.fc.createFile(url + trimmedRouteName + ".json", jsonLDFile, "text/plain");
-
-            alert("Route Uploaded!");
+            let {t} = this.props;
+            //alert("Route Uploaded!");
+            let message = t("routeDesigner.uploaded");
+            let title = t("routeDesigner.uploadingTitle");
+            successToaster(message, title);
 
             this.clearData();
         }

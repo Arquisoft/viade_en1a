@@ -287,7 +287,11 @@
     "routeDescription": "Description",
     "routeFormatError": "Please, add 2 or more points to the map in order to consider it as a route",
     "nameError": "The name of the route cannot be empty",
-    "confirmClear": "Are you sure you want to delete the route?"
+    "confirmClear": "Are you sure you want to delete the route?",
+    "uploaded":"Uploading to POD... So exciting!",
+    "uploadingTitle": "Uploading!"
+
+
   },
   "alt": {
     "friend": "Friend",
