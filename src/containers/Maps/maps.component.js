@@ -173,7 +173,7 @@ class SimpleMap extends Component {
 
     render() {
         return (
-            <div style={{ width: "100%", display: "flex", flex: "row"}} id="id1">
+            <div style={{ width: "100%", display: "flex", flex: "row", height:"100%"}} id="id1">
                 <RoutesSideBar show={this.show} toggleCOVID={this.toggleCOVID}/>
                 <div style={{height: "50vh", width: "80%", marginLeft:"10vh",marginTop:"5vh", marginRight:"5vh"}} id="id2">
                     <GoogleMapReact
@@ -184,7 +184,6 @@ class SimpleMap extends Component {
                         yesIWantToUseGoogleMapApiInternals={true}
                         center={this.state.center}
                         onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
-
                     >
                     </GoogleMapReact>
                     <Carousel id="carousel" renderBottomCenterControls={false} slidesToShow={3} height="17vh" dragging={true}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {NotificationsContainer, NotificationsWrapper} from "./notifications.style";
 import {Notis} from "./Notis";
+import { Loader } from "@util-components";
 import { getSharedRoutes } from "../../modules/podHandler.js";
 
 export class NotificationsComponent extends Component {
@@ -31,6 +32,10 @@ export class NotificationsComponent extends Component {
                 }               
             }}/>);
         }
+        if(list.length>0){
+            this.isLoading=false;
+        }
+        
         return list;
 
     };
@@ -40,8 +45,10 @@ export class NotificationsComponent extends Component {
         return (
             <NotificationsWrapper>
             <NotificationsContainer id="notificationsCard" className="card">
+                <h1>Notifications</h1>
                     {this.listNotifications()}
             </NotificationsContainer>
+            {this.isLoading && <Loader absolute/>}
             </NotificationsWrapper>
 
         );

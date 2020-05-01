@@ -12,7 +12,9 @@ import { getFileContent } from "../../modules/parseFile.js";
 import { isValidJSONRoute } from "../../modules/validation.js";
 
 const StyledRoutesSidebar = styled.div`
-      height: 70vh;
+
+      height: 50vh;
+
       width: 25%;
     `;
 
@@ -27,6 +29,8 @@ class RoutesSideBar extends Component {
             routesList: [],
             sharedRoutes: [],
             COVIDchecked: true,
+            labelText : ""
+
         };
 
         this.getPodRoutes = this.getPodRoutes.bind(this);
@@ -76,6 +80,10 @@ class RoutesSideBar extends Component {
             } else {
                 alert(file.name + " is not valid");
             }
+            let btnChoose = $("#btnChoose");
+            btnChoose.html(file.name);
+            
+
         });
 
         this.setState({routes});
@@ -83,6 +91,7 @@ class RoutesSideBar extends Component {
         const {t} = this.props;
 
         let btnPod = $("#btnPod");
+
         btnPod.html(t("routes.uploadToPOD"));
         btnPod.prop("disabled", false);
     };
@@ -209,31 +218,35 @@ class RoutesSideBar extends Component {
     }
 
     render() {
+        
         const {t} = this.props;
+        let btnChoose = $("#btnChoose");
+        btnChoose.html(t("routes.chooseFile"));
+
         return (
-
             <StyledRoutesSidebar>
-
-                <input id="routeUploader" type="file" name="file" accept=".json"
-                       onChange={this.onChangeHandler.bind(this)} multiple/>
-
+                
+                <InputFile id="routeUploader" type="file" name="file" accept=".json"
+                       onChange={this.onChangeHandler.bind(this)} multiple  style={{marginTop:"3vh"}}/>
+                
+                <LabelInput for = "routeUploader" id="btnChoose">{this.state.labelText}</LabelInput>
 
                 <Button id="btnPod" disabled={!this.uploadedFiles} variant="primary" block
-                        onClick={this.onClickHandler.bind(this)}>{t("routes.uploadToPOD")}</Button>
+                        onClick={this.onClickHandler.bind(this)} style={{marginBottom:"2vh"}}>{t("routes.uploadToPOD")}</Button>
                 <MapsSideBar style={{height:"340px"}}>
                     {t("routes.hereYourRoutes")}
                     {this.listRoutes()}
                     {t("routes.sharedRoutes")}
                     {this.listShared()}
                 </MapsSideBar>
-                <label>
+                <label style={{marginTop:"10px"}}>
                     <span>{t("routes.covidtoggle")}</span>
                     <Switch onChange={this.handleCOVIDChange} checked={this.state.COVIDchecked}/>
                 </label>
-                <Button variant="primary" block
-                        onClick={this.onClearArray}>{t("routes.clear")}</Button>
                 <a href="#/design" className="btn btn-primary"
                    style={{width: "100%"}}>{t("routes.designRoute")}</a>
+                <Button variant="primary" block
+                        onClick={this.onClearArray}>{t("routes.clear")}</Button>
             </StyledRoutesSidebar>
         );
 
