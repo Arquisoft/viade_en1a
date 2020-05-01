@@ -4,9 +4,9 @@ import { ShareRoutesPageContent } from "./shareroutes.component";
 import auth from "solid-auth-client";
 import FC from "solid-file-client";
 import { namedNode } from "@rdfjs/data-model";
-import { withTranslation } from "react-i18next";
+import {withTranslation} from "react-i18next";
 import SolidAclUtils from "solid-acl-utils";
-import { FriendsShareContainer, ShareWrapper } from "./shareroutes.style";
+import { ShareWrapper } from "./shareroutes.style";
 import {Redirect} from "react-router-dom";
 
 class ShareRoutesComponent extends Component<Props> {
@@ -172,15 +172,12 @@ class ShareRoutesComponent extends Component<Props> {
     }
 
     buildAcl(routeName){
-        let content = 
-        "@prefix acl: <http://www.w3.org/ns/auth/acl#>.\n" + 
+        return "@prefix acl: <http://www.w3.org/ns/auth/acl#>.\n" +
         "@prefix foaf: <http://xmlns.com/foaf/0.1/>.\n" + 
         "<#owner> a acl:Authorization;\n" + 
         "acl:agent </profile/card#me>;\n" +
         "acl:accessTo <./"+ routeName +">;" +
         "acl:mode acl:Write, acl:Control, acl:Read.";
-
-        return content; 
     }
 
     async sendMessage(app, session, targetUrl){
@@ -229,14 +226,9 @@ class ShareRoutesComponent extends Component<Props> {
             shareRoute: this.shareRoute.bind(this)
         };
 
-
         return (
             <ShareWrapper>
-            <FriendsShareContainer className="card">
                 {this.state.routeExists ? (<ShareRoutesPageContent {...{ inflatedGroups, share }} />) : (<Redirect to="/404" />)}
-                
-            </FriendsShareContainer>
-            
             </ShareWrapper>
         );
     }
