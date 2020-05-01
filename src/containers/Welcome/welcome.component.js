@@ -116,10 +116,12 @@ export const WelcomePageContent = (props) => {
                                             uploadingText: t("welcome.uploadingText")
                                         }}
                                     />
+                                    
                                 )
                             }}
                         />
-                    </ImageWrapper>
+                        
+                    </ImageWrapper><a href = {webId}>Go To POD</a>
                 </WelcomeProfile>
             </WelcomeCard>
             <WelcomeCard className="card">

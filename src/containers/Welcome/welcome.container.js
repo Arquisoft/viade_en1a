@@ -95,6 +95,7 @@ export class WelcomeComponent extends Component<Props> {
     const { webId } = this.props;
     return (
       <WelcomePageContent {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto }} />
+      
     );
   }
 }

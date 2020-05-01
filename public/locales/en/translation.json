@@ -256,6 +256,7 @@
     "grantAccess": "Grant Access"
   },
   "routes":{
+    "chooseFile":"Choose your route!",
     "yourRoutes": "Your routes",
     "uploadToPOD": "Upload to your POD",
     "uploadedToPOD": "Uploaded",
@@ -294,9 +295,14 @@
     "delete": "Delete",
     "changeGroup": "Change to group...",
     "addFriend": "Add Friend",
-    "groups": "Groups",
+    "groups": "Create/Edit Groups",
     "editGroups": "Edit Groups",
     "close": "Close",
-    "save": "Guardar"
+    "save": "Guardar",
+	"nameGroup": "Name of new group:",
+	"friendURL": "Your friend's URL:",
+	"addNewFriend": "Add new friend",
+	"yourGroups": "Your groups",
+    "typename": "Type the name of the group here"
   }
 }

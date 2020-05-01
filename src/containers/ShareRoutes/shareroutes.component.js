@@ -2,6 +2,7 @@ import React from "react";
 import {Button} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import * as Icon from "react-feather";
+import { Loader } from "@util-components";
 import {FriendsShareContainer} from "./shareroutes.style";
 import {
     Accordion,
@@ -17,6 +18,8 @@ export const ShareRoutesPageContent = (props) => {
 
     const {inflatedGroups, share} = props;
     const {t} = useTranslation();
+
+    let isLoading=true;
 
     function shareRoute(group) {
         inflatedGroups[String(group)].forEach(
@@ -62,6 +65,7 @@ export const ShareRoutesPageContent = (props) => {
                                                         );
                                                     }
                                                 )
+                                                
                                             }
                                         </table>
                                         <Button class="shareClass" id={"btn" + key} variant="primary"
@@ -69,7 +73,7 @@ export const ShareRoutesPageContent = (props) => {
                                             <Icon.Share2/> {t("routes.sharewithall")}
                                         </Button>
                                     </AccordionItemPanel>
-
+                                    {isLoading=false}
                                 </AccordionItem>
                             </>
                         );
@@ -77,6 +81,7 @@ export const ShareRoutesPageContent = (props) => {
                 }
 
             </Accordion>
+            {isLoading && <Loader absolute/>}
 
             <Button
                 href="#/maps"

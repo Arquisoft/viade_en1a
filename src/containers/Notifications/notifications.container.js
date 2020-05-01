@@ -3,6 +3,7 @@ import FC from "solid-file-client";
 import auth from "solid-auth-client";
 import {NotificationsContainer, NotificationsWrapper} from "./notifications.style";
 import {Notis} from "./Notis";
+import { Loader } from "@util-components";
 
 export class NotificationsComponent extends Component {
 
@@ -19,6 +20,8 @@ export class NotificationsComponent extends Component {
         this.getNotificationsFromInbox();
         
         this.fc = new FC(auth);
+
+        this.isLoading=true;
 
     } 
 
@@ -87,6 +90,10 @@ export class NotificationsComponent extends Component {
 
             }}/>);
         }
+        if(list.length>0){
+            this.isLoading=false;
+        }
+        
         return list;
 
     };
@@ -96,8 +103,10 @@ export class NotificationsComponent extends Component {
         return (
             <NotificationsWrapper>
             <NotificationsContainer id="notificationsCard" className="card">
+                <h1>Notifications</h1>
                     {this.listNotifications()}
             </NotificationsContainer>
+            {this.isLoading && <Loader absolute/>}
             </NotificationsWrapper>
 
         );

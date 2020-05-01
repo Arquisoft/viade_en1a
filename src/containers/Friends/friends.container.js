@@ -18,6 +18,7 @@ export class FriendsComponent extends Component<Props> {
         this.fc = new FC(auth);
 
         this.groups = {};
+        this.isLoading=false;
 
         this.addFriend = this.addFriend.bind(this);
         this.deleteFriend = this.deleteFriend.bind(this);
@@ -235,6 +236,7 @@ export class FriendsComponent extends Component<Props> {
         return aux;
     };
 
+
     render() {
         const groups = this.state.inflatedGroups;
         const {webId} = this.props;
@@ -245,7 +247,8 @@ export class FriendsComponent extends Component<Props> {
         const changeFriendGroup = this.changeFriendGroup;
 
         return (
-            <FriendsPageContent {...{webId, groups, addFriend, deleteFriend, addGroup, deleteGroup, changeFriendGroup}} />
+            <FriendsPageContent {...{webId, groups, addFriend, deleteFriend, addGroup, deleteGroup, changeFriendGroup}}></FriendsPageContent>
+            
         );
     }
 }
