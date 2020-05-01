@@ -7,8 +7,8 @@ import {Button} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 import Switch from "react-switch";
 import $ from "jquery";
-import { getPodRoutes, getSharedRoutes, deleteRoute, createRouteFile, createRouteText, 
-    createFileIfUnexisting, createFolderIfUnexisting } from "../../modules/podHandler.js";
+import { getPodRoutes, getSharedRoutes, deleteRoute, createRouteFile, 
+    createRouteText, createFile, createFolder, itemExists } from "../../modules/podHandler.js";
 
 const StyledRoutesSidebar = styled.div`
       height: 70vh;
@@ -88,7 +88,9 @@ class RoutesSideBar extends Component {
 
 
     async onClickHandler() {
-        await createFolderIfUnexisting("viade/routes/");
+        if(await itemExists("viade/routes/")){
+            await createFolder("viade/routes/");
+        }
 
         this.onClearArray();
 
@@ -119,13 +121,15 @@ class RoutesSideBar extends Component {
     async addMediaToRoute(routeWrapper, event) {
         const mediaElements = [...event.target.files];
 
-        let folderUrl = await createFolderIfUnexisting("viade/resources/");
+        let folderUrl = "";
+        if(await itemExists("viade/resources/")){
+            folderUrl = await createFolder("viade/resources/");
+        }
 
         this.onClearArray();
 
         for (let element of mediaElements) {
-            
-            await createFileIfUnexisting("viade/resources/" + element.name, element);
+            await createFile("viade/resources/" + element.name, element);
 
             // add media to route
             let url = {url: folderUrl + element.name};

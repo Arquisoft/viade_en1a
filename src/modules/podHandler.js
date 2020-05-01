@@ -48,9 +48,9 @@ export async function deleteRoute(url){
 
 export async function createRouteFile(relativeUrl, file) {
     let fileName = relativeUrl.split("viade/routes/")[1];
-    getFileContent(file, function(content){
+    getFileContent(file, async function(content){
         if(isValidRoute(fileName, content)){
-            createFile(relativeUrl, file);
+            await createFile(relativeUrl, file);
         }
     });
     
@@ -66,23 +66,20 @@ export async function createRouteText(relativeUrl, content) {
 export async function createFile(relativeUrl, file){
     let url = await webId() + relativeUrl;
     await fc.createFile(url, file, "text/plain");
+    console.log(url);
+    console.log(file);
     return url;
 }
 
-export async function createFileIfUnexisting(relativeUrl, file){
+export async function itemExists(relativeUrl){
     let url = await webId() + relativeUrl;
-    if (!await fc.itemExists(url)) {
-        createFile(url, file);
-    }
-    return url;
+    return await fc.itemExists(url);
 }
 
-export async function createFolderIfUnexisting(relativeUrl){
-    let folderUrl = await webId() + relativeUrl;
-    if (!await fc.itemExists(folderUrl)) {
-        await fc.createFolder(folderUrl);
-    }
-    return folderUrl;
+export async function createFolder(relativeUrl){
+    let url = await webId() + relativeUrl;
+    await fc.createFolder(url);
+    return url;
 }
 
 function checkNotLogFile(url){
