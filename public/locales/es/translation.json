@@ -300,6 +300,8 @@
 	"nameGroup": "Nombre del nuevo grupo:",
 	"friendURL": "URL del amigo:",
 	"addNewFriend": "Añadir nuevo amigo",
-	"yourGroups": "Tus Grupos"
+	"yourGroups": "Tus Grupos",
+    "typename": "Escriba aquí el nombre del grupo"
+
   }
 }

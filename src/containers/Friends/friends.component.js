@@ -102,7 +102,7 @@ function EditGroupsModal(props) {
                         })
                     }
                     {t("friends.nameGroup")}
-                    <input type={"text"} value={input} onInput={e => setInput(e.target.value)}/>
+                    <input placeHolder = {t("friends.typename")} type={"text"} value={input} onInput={e => setInput(e.target.value)}/>
                     <Button onClick={btnAddGroup}><Icon.Plus/></Button>
                 </Modal.Title>
             </Modal.Header>
