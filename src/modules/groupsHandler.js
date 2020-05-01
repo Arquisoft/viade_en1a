@@ -4,14 +4,14 @@ import { fullWebId } from "./solidAuth.js";
 import { itemExists, createFolder, createFile, getFriendGroupsFromPOD } from "./podHandler.js";
 
 export async function addFriendToGroup(friendid, callback){
-    const FOAF = Namespace("http://xmlns.com/foaf/0.1/");
+    const foaf = Namespace("http://xmlns.com/foaf/0.1/");
     const store = graph();
     const updater = new UpdateManager(store);
 
     const me = sym(await fullWebId());
     const profile = me.doc();
 
-    let ins = st(me, FOAF("knows"), sym(friendid), profile);
+    let ins = st(me, foaf("knows"), sym(friendid), profile);
     let del = [];
 
     updater.update(del, ins, async (uri, ok, message) => {
@@ -20,7 +20,7 @@ export async function addFriendToGroup(friendid, callback){
 }
 
 export async function deleteFriendToGroup(friendid, callback){
-    const FOAF = Namespace("http://xmlns.com/foaf/0.1/");
+    const foaf = Namespace("http://xmlns.com/foaf/0.1/");
     const store = graph();
     const fetcher = new Fetcher(store);
     const updater = new UpdateManager(store);
@@ -32,7 +32,7 @@ export async function deleteFriendToGroup(friendid, callback){
     await fetcher.load(myid);
 
     let ins = [];
-    let del = store.statementsMatching(me, FOAF("knows"), sym(friendid), profile);
+    let del = store.statementsMatching(me, foaf("knows"), sym(friendid), profile);
     updater.update(del, ins, async (uri, ok, message) => {
         callback(uri, ok, message);
     });

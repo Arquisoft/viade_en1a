@@ -65,7 +65,7 @@ export class FriendsComponent extends Component<Props> {
         if (ok) {
             Object.keys(_this.groups).map((key) => {
                 aux[key] = [];
-                _this.groups[key].forEach(
+                _this.groups[String(key)].forEach(
                     (e) => {
                         if (e !== friendid) {
                             aux[key].push(e);
@@ -102,7 +102,7 @@ export class FriendsComponent extends Component<Props> {
         addFriendToGroup(friendid, async function(uri, ok, message){
             if (ok) {
                 if(group !== "Default") {
-                    _this.groups[group].push(friendid);
+                    _this.groups[String(group)].push(friendid);
                     if(await itemExists("viade/groups/groups.json")){
                         await deleteFileRelativePath("viade/groups/groups.json");
                         await createFile("viade/groups/groups.json", JSON.stringify(_this.groups));

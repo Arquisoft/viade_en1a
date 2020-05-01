@@ -11,7 +11,7 @@ export function isValidJSONRoute(name, content){
             return false;
         }else{
             for (let i = 0; i < parsed.points.length; i++){
-                if(!parsed.points[parseInt(i)].hasOwnProperty("longitude") || !parsed.points[parseInt(i)].hasOwnProperty("latitude") || !parsed.points[parseInt(i)].hasOwnProperty("elevation")){
+                if(!parsed.points[parseInt(i, 10)].hasOwnProperty("longitude") || !parsed.points[parseInt(i, 10)].hasOwnProperty("latitude") || !parsed.points[parseInt(i, 10)].hasOwnProperty("elevation")){
                     return false;
                 }
             }
@@ -20,8 +20,8 @@ export function isValidJSONRoute(name, content){
             return false;
         }else{
             for(let i = 0; i < parsed.waypoints.length; i++){
-                if(!parsed.waypoints[parseInt(i)].hasOwnProperty("longitude") || !parsed.waypoints[parseInt(i)].hasOwnProperty("latitude") || !parsed.waypoints[parseInt(i)].hasOwnProperty("elevation") 
-                || !parsed.waypoints[parseInt(i)].hasOwnProperty("name") || !parsed.waypoints[parseInt(i)].hasOwnProperty("description")){
+                if(!parsed.waypoints[parseInt(i, 10)].hasOwnProperty("longitude") || !parsed.waypoints[parseInt(i, 10)].hasOwnProperty("latitude") || !parsed.waypoints[parseInt(i, 10)].hasOwnProperty("elevation") 
+                || !parsed.waypoints[parseInt(i, 10)].hasOwnProperty("name") || !parsed.waypoints[parseInt(i, 10)].hasOwnProperty("description")){
                     return false;
                 }
             }
@@ -30,7 +30,7 @@ export function isValidJSONRoute(name, content){
             return false;
         }else{
             for(let i = 0; i < parsed.media.length; i++){
-                if(!parsed.media[parseInt(i)].hasOwnProperty("url")){
+                if(!parsed.media[parseInt(i, 10)].hasOwnProperty("url")){
                     return false;
                 }
             }
