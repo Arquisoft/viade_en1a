@@ -9,9 +9,9 @@ import {
     AccordionItemHeading,
     AccordionItemButton,
     AccordionItemPanel,
-} from 'react-accessible-accordion';
+} from "react-accessible-accordion";
 
-import 'react-accessible-accordion/dist/fancy-example.css';
+import "react-accessible-accordion/dist/fancy-example.css";
 
 export const ShareRoutesPageContent = (props) => {
 
@@ -45,7 +45,7 @@ export const ShareRoutesPageContent = (props) => {
                                     <AccordionItemPanel>
                                         <table>
                                             {
-                                                inflatedGroups[key].map(
+                                                inflatedGroups[String(key)].map(
                                                     (friend) => {
                                                         return (
                                                             <tr>
@@ -59,7 +59,7 @@ export const ShareRoutesPageContent = (props) => {
                                                                     </Button>
                                                                 </td>
                                                             </tr>
-                                                        )
+                                                        );
                                                     }
                                                 )
                                             }
