@@ -7,7 +7,7 @@ import $ from "jquery";
 
 import { successToaster, errorToaster } from '@utils';
 
-import { isValidJSONRoute, isValidRouteName, isValidRoutePoints } from "../../modules/validation.js";
+import { isValidJSONRoute} from "../../modules/validation.js";
 import { itemExists, createFolder, createFile } from "../../modules/podHandler.js";
 import { buildRouteJSONLD } from "../../modules/buildFile.js";
 

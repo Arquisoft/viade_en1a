@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import {NotificationsContainer, NotificationsWrapper} from "./notifications.style";
 import {Notis} from "./Notis";
 import { Loader } from "@util-components";
-import { getSharedRoutes, getFullNotification } from "../../modules/podHandler.js";
-
+import auth from "solid-auth-client";
+import FC from "solid-file-client";
 
 export class NotificationsComponent extends Component {
 
@@ -14,10 +14,13 @@ export class NotificationsComponent extends Component {
             notifications: [],
         };
 
-        this.getFullNotification = getFullNotification;
+        this.getFullNotification = this.getFullNotification.bind(this);
 
         this.getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
         this.getNotificationsFromInbox();
+        this.fc = new FC(auth);
+
+        this.isLoading=true;
     } 
 
     async getNotificationsFromInbox() {
