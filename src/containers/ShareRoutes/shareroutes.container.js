@@ -111,7 +111,6 @@ class ShareRoutesComponent extends Component<Props> {
         message.title = "Shared route by " + await app.getSessionName();
         message.url = message.recipient + message.id + ".ttl";
         
-        console.log(message);
         await app.buildMessage(message);
     }
 
