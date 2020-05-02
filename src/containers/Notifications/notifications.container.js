@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import FC from "solid-file-client";
-import auth from "solid-auth-client";
 import {NotificationsContainer, NotificationsWrapper} from "./notifications.style";
 import {Notis} from "./Notis";
 import { Loader } from "@util-components";
+import { getSharedRoutes, getFullNotification } from "../../modules/podHandler.js";
 
 
 export class NotificationsComponent extends Component {
@@ -15,15 +14,10 @@ export class NotificationsComponent extends Component {
             notifications: [],
         };
 
-        this.getFullNotification = this.getFullNotification.bind(this);
+        this.getFullNotification = getFullNotification;
 
         this.getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
         this.getNotificationsFromInbox();
-        
-        this.fc = new FC(auth);
-
-        this.isLoading=true;
-
     } 
 
     async getNotificationsFromInbox() {
@@ -90,16 +84,12 @@ export class NotificationsComponent extends Component {
     }
 
     listNotifications = () => {
-
         let list = [];
-
         for (let i = 0; i < this.state.notifications.length; i++) {
             list.push(<Notis key={i}{...{
-
                 noti: {
                     name: this.state.notifications[parseInt(i)].trueName
                 }               
-
             }}/>);
         }
         if(list.length>0 ){

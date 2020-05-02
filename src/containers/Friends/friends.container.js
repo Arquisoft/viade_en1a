@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import data from "@solid/query-ldflex";
 import {FriendsPageContent} from "./friends.component";
 import FC from "solid-file-client";
 import auth from "solid-auth-client";
 import { errorToaster } from "@utils";
 
-import {Namespace, sym, st, graph, UpdateManager, Fetcher} from "rdflib";
+import { itemExists, deleteFileRelativePath, createFile } from "../../modules/podHandler.js"; 
+import { addFriendToGroup, deleteFriendToGroup, getFriendGroups, inflateGroups } from "../../modules/groupsHandler.js";
 
 export class FriendsComponent extends Component<Props> {
 
@@ -31,12 +31,9 @@ export class FriendsComponent extends Component<Props> {
     addGroup = async (group) => {
         this.groups[group] = [];
 
-        var session = await auth.currentSession();
-        var folderUrl = session.webId.split("profile/card#me")[0] + "viade/groups/";
-
-        if (await this.fc.itemExists(folderUrl + "groups.json")) {
-            await this.fc.deleteFile(folderUrl + "groups.json");
-            await this.fc.createFile(folderUrl + "groups.json", JSON.stringify(this.groups), "text/json");
+        if(await itemExists("viade/groups/groups.json")){
+            await deleteFileRelativePath("viade/groups/groups.json");
+            await createFile("viade/groups/groups.json", JSON.stringify(this.groups));
         }
 
         this.inflateGroups(this.groups).then((r) => {
@@ -48,12 +45,9 @@ export class FriendsComponent extends Component<Props> {
 
         delete this.groups[group];
 
-        var session = await auth.currentSession();
-        var folderUrl = session.webId.split("profile/card#me")[0] + "viade/groups/";
-
-        if (await this.fc.itemExists(folderUrl + "groups.json")) {
-            await this.fc.deleteFile(folderUrl + "groups.json");
-            await this.fc.createFile(folderUrl + "groups.json", JSON.stringify(this.groups), "text/json");
+        if(await itemExists("viade/groups/groups.json")){
+            await deleteFileRelativePath("viade/groups/groups.json");
+            await createFile("viade/groups/groups.json", JSON.stringify(this.groups));
         }
 
         this.inflateGroups(this.groups).then((r) => {
@@ -66,87 +60,57 @@ export class FriendsComponent extends Component<Props> {
     };
 
     deleteFriend = async (friendid, callback, group) => {
-        const {webId} = this.props;
-        const FOAF = Namespace("http://xmlns.com/foaf/0.1/");
-        const store = graph();
-        const fetcher = new Fetcher(store);
-        const updater = new UpdateManager(store);
+       let aux = {};
+       const _this = this;
+       deleteFriendToGroup(friendid, async function(uri, ok, message){
+        if (ok) {
+            Object.keys(_this.groups).map((key) => {
+                aux[key] = [];
+                _this.groups[String(key)].forEach(
+                    (e) => {
+                        if (e !== friendid) {
+                            aux[key].push(e);
+                        }
+                    }
+                );
+                return null;
+            });
 
-        const myid = webId;
+            if(await itemExists("viade/groups/groups.json")){
+                await deleteFileRelativePath("viade/groups/groups.json");
+                await createFile("viade/groups/groups.json", JSON.stringify(_this.groups)).then(
+                    () => {
+                        _this.groups = aux;
 
-        const me = sym(myid);
-        const profile = me.doc();
-
-        await fetcher.load(myid);
-
-        let ins = [];
-        let del = store.statementsMatching(me, FOAF("knows"), sym(friendid), profile);
-
-        var aux = {};
-
-        updater.update(del, ins, async (uri, ok, message) => {
-            if (ok) {
-                Object.keys(this.groups).map((key) => {
-                    aux[key] = [];
-                    this.groups[key].forEach(
-                        (e) => {
-                            if (e !== friendid) {
-                                aux[key].push(e);
+                        _this.inflateGroups(_this.groups).then((r) => {
+                            _this.setState({inflatedGroups: r});
+                            if(callback){
+                                callback(friendid, group);
                             }
-                        }
-                    );
-                    return null;
-                });
-
-                var session = await auth.currentSession();
-                var folderUrl = session.webId.split("profile/card#me")[0] + "viade/groups/";
-                if (await this.fc.itemExists(folderUrl + "groups.json")) {
-                    await this.fc.deleteFile(folderUrl + "groups.json");
-                    await this.fc.createFile(folderUrl + "groups.json", JSON.stringify(aux), "text/json").then(
-                        () => {
-                            this.groups = aux;
-
-                            this.inflateGroups(this.groups).then((r) => {
-                                this.setState({inflatedGroups: r});
-                                if(callback){
-                                    callback(friendid, group);
-                                }
-                            });
-                        }
-                    );
-                }
-
-            } else {
-                errorToaster(message, "Error");
+                        });
+                    }
+                );
             }
-        });
+
+        } else {
+            errorToaster(message, "Error");
+        }
+       });
     };
 
-    addFriend = async (friendid, group) => {
-        const {webId} = this.props;
-        const FOAF = Namespace("http://xmlns.com/foaf/0.1/");
-        const store = graph();
-        const updater = new UpdateManager(store);
-
-        const me = sym(webId);
-        const profile = me.doc();
-
-        let ins = st(me, FOAF("knows"), sym(friendid), profile);
-        let del = [];
-
-        updater.update(del, ins, async (uri, ok, message) => {
+    addFriend = async (friendid, group) => { 
+        const _this = this;
+        addFriendToGroup(friendid, async function(uri, ok, message){
             if (ok) {
                 if(group !== "Default") {
-                    this.groups[group].push(friendid);
-                    var session = await auth.currentSession();
-                    var folderUrl = session.webId.split("profile/card#me")[0] + "viade/groups/";
-                    if (await this.fc.itemExists(folderUrl + "groups.json")) {
-                        await this.fc.deleteFile(folderUrl + "groups.json");
-                        await this.fc.createFile(folderUrl + "groups.json", JSON.stringify(this.groups), "text/json");
+                    _this.groups[String(group)].push(friendid);
+                    if(await itemExists("viade/groups/groups.json")){
+                        await deleteFileRelativePath("viade/groups/groups.json");
+                        await createFile("viade/groups/groups.json", JSON.stringify(_this.groups));
                     }
                 }
-                this.inflateGroups(this.groups).then((r) => {
-                    this.setState({inflatedGroups: r});
+                _this.inflateGroups(_this.groups).then((r) => {
+                    _this.setState({inflatedGroups: r});
                 });
             } else {
                 errorToaster(message, "Error");
@@ -167,18 +131,7 @@ export class FriendsComponent extends Component<Props> {
     getProfileData = async () => {
         this.setState({isLoading: true});
 
-        var session = await auth.currentSession();
-        var folderUrl = session.webId.split("profile/card#me")[0] + "viade/groups/";
-
-        if (!await this.fc.itemExists(folderUrl)) {
-            await this.fc.createFolder(folderUrl);
-        }
-
-        if (!await this.fc.itemExists(folderUrl + "groups.json")) {
-            await this.fc.createFile(folderUrl + "groups.json", JSON.stringify({}), "text/json");
-        }
-
-        this.groups = JSON.parse(await this.fc.readFile(folderUrl + "groups.json"));
+        this.groups = await getFriendGroups();
 
         this.inflateGroups(this.groups).then((r) => {
             this.setState({inflatedGroups: r});
@@ -186,55 +139,7 @@ export class FriendsComponent extends Component<Props> {
     };
 
     inflateGroups = async (groups) => {
-        let aux = {};
-        aux["Default"] = [];
-        const {webId} = this.props;
-        const user = data[webId];
-
-        Object.keys(groups).map((key) => {
-            aux[key] = [];
-            return null;
-        });
-
-        for await (const friend of user.friends) {
-            const friendWebId = await friend.value;
-            const friend_data = data[friendWebId];
-            const nameLd = await friend_data.name;
-            const name = nameLd && nameLd.value.trim().length > 0 ? nameLd.value : friendWebId.toString();
-            const imageLd = await friend_data.vcard_hasPhoto;
-
-            let image;
-            if (imageLd && imageLd.value) {
-                image = imageLd.value;
-            } else {
-                image = "img/noimg.svg";
-            }
-
-            var friend_obj = {
-                "webId": friendWebId,
-                "name": name,
-                "image": image
-            };
-
-            let targetGroup = "Default";
-
-            // eslint-disable-next-line
-            Object.keys(groups).map((key) => {
-                groups[key].map(
-                    (e) => {
-                        if (e === friend_obj.webId) {
-                            targetGroup = key;
-                        }
-                        return null;
-                    }
-                );
-                return null;
-            });
-
-            aux[targetGroup].push(friend_obj);
-        }
-
-        return aux;
+        return await inflateGroups(groups);
     };
 
 

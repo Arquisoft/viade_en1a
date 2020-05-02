@@ -4,9 +4,12 @@ import styled from "styled-components";
 import {Button} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 import $ from "jquery";
-import auth from "solid-auth-client";
-import FC from "solid-file-client";
+
 import { successToaster, errorToaster } from '@utils';
+
+import { isValidJSONRoute, isValidRouteName, isValidRoutePoints } from "../../modules/validation.js";
+import { itemExists, createFolder, createFile } from "../../modules/podHandler.js";
+import { buildRouteJSONLD } from "../../modules/buildFile.js";
 
 const StyledDesignSidebar = styled.div`
 
@@ -17,10 +20,6 @@ const StyledDesignSidebar = styled.div`
     `;
 
 class DesignSideBar extends Component {
-    constructor(props) {
-        super(props);
-        this.fc = new FC(auth);
-    }
 
     removeMarkers = () => {
         this.props.removeMarkers();
@@ -31,22 +30,17 @@ class DesignSideBar extends Component {
         let routeDescription = $("#newRouteDescription").val();
 
         let trimmedRouteName = $.trim(routeName);
+
         if (this.checkValidRoute(trimmedRouteName)) {
 
             //Parse the information into a JSON-LD file
-            let parsedRoute = await this.parseToJSONLD(routeName, routeDescription);
-            let jsonLDFile = JSON.stringify(parsedRoute);
-
+            let jsonLDFile = await this.parseToJSONLD(routeName, routeDescription);
             //Upload the JSON-LD file to the POD
-            let session = await auth.currentSession();
-
-            let url = session.webId.split("profile/card#me")[0] + "viade/routes/";
-
-
-            if (!await this.fc.itemExists(url)) {
-                await this.fc.createFolder(url);
+            if (!await itemExists("viade/routes/")) {
+                await createFolder("viade/routes/");
             }
-            await this.fc.createFile(url + trimmedRouteName + ".json", jsonLDFile, "text/plain");
+            
+            await this.createRoute("viade/routes/" + trimmedRouteName + ".json", jsonLDFile);
             let {t} = this.props;
             
             let message = t("routeDesigner.uploaded");
@@ -54,6 +48,12 @@ class DesignSideBar extends Component {
             successToaster(message, title);
 
             this.clearData();
+        }
+    }
+
+    async createRoute(relativeUrl, content){
+        if(isValidJSONRoute(relativeUrl, content)){
+            await createFile(relativeUrl, content);
         }
     }
 
@@ -65,68 +65,7 @@ class DesignSideBar extends Component {
 
     parseToJSONLD = async (routeName, routeDescription) => {
         let routePoints = this.props.getRouteCoordinates();
-
-        let parsedRoute = {
-            "@context": {
-                "@version": 1.1,
-                "comments": {
-                    "@id": "viade:comments",
-                    "@type": "@id"
-                },
-                "description": {
-                    "@id": "schema:description",
-                    "@type": "xsd:string"
-                },
-                "media": {
-                    "@container": "@list",
-                    "@id": "viade:media"
-                },
-                "name": {
-                    "@id": "schema:name",
-                    "@type": "xsd:string"
-                },
-                "points": {
-                    "@container": "@list",
-                    "@id": "viade:points"
-                },
-                "latitude": {
-                    "@id": "schema:latitude",
-                    "@type": "xsd:double"
-                },
-                "longitude": {
-                    "@id": "schema:longitude",
-                    "@type": "xsd:double"
-                },
-                "elevation": {
-                    "@id": "schema:elevation",
-                    "@type": "xsd:double"
-                },
-                "author": {
-                    "@id": "schema:author",
-                    "@type": "@id"
-                },
-                "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-                "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-                "schema": "http://schema.org/",
-                "viade": "http://arquisoft.github.io/viadeSpec/",
-                "xsd": "http://www.w3.org/2001/XMLSchema#"
-            },
-            name: routeName,
-            author: await auth.currentSession().webId,
-            description: routeDescription,
-            comments: "",
-            media: [],
-            waypoints: [],
-            points: []
-        };
-        routePoints.forEach((routePoint) => {
-            let jsonLDPoint = {
-                latitude: routePoint.lat,
-                longitude: routePoint.lng,
-                elevation: 0
-            };
-            parsedRoute.points.push(jsonLDPoint);
-        });
+        let parsedRoute = await buildRouteJSONLD(routeName, routeDescription, routePoints);
         return parsedRoute;
     }
 
