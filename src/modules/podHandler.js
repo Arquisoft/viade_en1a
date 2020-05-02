@@ -140,7 +140,7 @@ export async function createFile(relativeUrl, file){
         await fc.createFile(url, file, "text/plain");
         return url;
     } catch {
-
+        //
     }
     
 }
