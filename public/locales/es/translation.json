@@ -258,8 +258,8 @@
   "routes":{    
     "loadingYours": "Cargando tus rutas...",
     "loadingShared": "Cargando compartidas...",
-    "yourRoutesEmpty": "No hay rutas guapas para ver en el mapa",
-    "sharedRoutesEmpty": "Pídele a alguien que te las comparta :(",
+    "yourRoutesEmpty": "No hay rutas para ver en el mapa",
+    "sharedRoutesEmpty": "Pídele a alguien que te las comparta",
     "chooseFile":"Elige tu ruta!",
     "yourRoutes": "Tus rutas",
     "uploadToPOD": "Subir a tu POD",

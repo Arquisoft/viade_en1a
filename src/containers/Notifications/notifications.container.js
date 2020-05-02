@@ -63,7 +63,7 @@ export class NotificationsComponent extends Component {
     let fol = await this.fc.readFile(url.toString());
     let getSchem = fol.split("<>");
     let urlText = getSchem[1].split("text");
-    return urlText[1].split('"')[1];
+    return urlText[1].split("\"")[1];
   }
 
   async getFullNotification(url) {
@@ -73,7 +73,7 @@ export class NotificationsComponent extends Component {
     let getSchem = fol.split("<>");
     let getImportant = getSchem[1].split("text");
 
-    let fullLabel = getImportant[1].split('"')[3];
+    let fullLabel = getImportant[1].split("\"")[3];
 
     return fullLabel + " (";
   }

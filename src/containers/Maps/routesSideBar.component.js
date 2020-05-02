@@ -55,10 +55,11 @@ class RoutesSideBar extends Component {
 
   async getPodRoutes() {
     const { t } = this.props;
+    this.setState({ loadingYourText: t("routes.loadingYours") });
     this.setState({ routesList: await getPodRoutes() });
     this.setState({ loadingYourText: t("routes.hereYourRoutes") });
 
-    if(this.state.routesList.length == 0){
+    if(this.state.routesList.length === 0){
         this.setState({loadingYourText: t("routes.yourRoutesEmpty")});
     }
 
@@ -66,9 +67,10 @@ class RoutesSideBar extends Component {
 
   async getSharedRoutes() {
     const { t } = this.props;
+    this.setState({ loadingSharedText: t("routes.loadingShared") });
     this.setState({ sharedRoutes: await getSharedRoutes() });
     this.setState({ loadingSharedText: t("routes.sharedRoutes") });
-    if(this.state.sharedRoutes.length == 0){
+    if(this.state.sharedRoutes.length === 0){
         this.setState({loadingSharedText: t("routes.sharedRoutesEmpty")});
     }
   }
@@ -97,7 +99,7 @@ class RoutesSideBar extends Component {
       if (file.name.endsWith(".json")) {
         routes = [...routes, file];
         this.uploadedFiles = true;
-        this.state.labelText = file.name.split(".")[0];
+        this.setState({labelText : file.name.split(".")[0]});
       } else {
         errorToaster("'" + file.name + "' " + t("routes.formatError"), "Error");
       }
@@ -245,7 +247,7 @@ class RoutesSideBar extends Component {
     const { t } = this.props;
     let btnChoose = $("#btnChoose");
     btnChoose.html(t("routes.chooseFile"));
-    this.setState()
+    this.setState();
     return (
       <StyledRoutesSidebar>
         <InputFile
