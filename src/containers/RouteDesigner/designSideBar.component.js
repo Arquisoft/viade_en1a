@@ -5,7 +5,9 @@ import {Button} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 import $ from "jquery";
 
-import { isValidJSONRoute, isValidRouteName, isValidRoutePoints } from "../../modules/validation.js";
+import { successToaster, errorToaster } from "@utils";
+
+import { isValidJSONRoute} from "../../modules/validation.js";
 import { itemExists, createFolder, createFile } from "../../modules/podHandler.js";
 import { buildRouteJSONLD } from "../../modules/buildFile.js";
 
@@ -37,8 +39,14 @@ class DesignSideBar extends Component {
             if (!await itemExists("viade/routes/")) {
                 await createFolder("viade/routes/");
             }
+            
             await this.createRoute("viade/routes/" + trimmedRouteName + ".json", jsonLDFile);
-            alert("Route Uploaded!");
+            let {t} = this.props;
+            
+            let message = t("routeDesigner.uploaded");
+            let title = t("routeDesigner.uploadingTitle");
+            successToaster(message, title);
+
             this.clearData();
         }
     }
@@ -64,11 +72,11 @@ class DesignSideBar extends Component {
     checkValidRoute = (trimmedRouteName) => {
         const {t} = this.props;
         let routePoints = this.props.getRouteCoordinates();
-        if (isValidRouteName(trimmedRouteName)) {
-            alert(t("routeDesigner.nameError"));
+        if (!trimmedRouteName.length > 0) {
+            errorToaster(t("routeDesigner.nameError"), "Error");
             return false;
-        } else if (isValidRoutePoints(routePoints)) {
-            alert(t("routeDesigner.routeFormatError"));
+        } else if (routePoints.length < 2) {
+            errorToaster(t("routeDesigner.routeFormatError"), "Error");
             return false;
         }
         return true;

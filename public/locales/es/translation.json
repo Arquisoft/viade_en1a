@@ -273,7 +273,9 @@
     "covidtoggle": "Mostrar datos de COVID-19",
 	"sharingError": "No se ha podido compartir la ruta. Si eres un usuario de Inrupt, o tu Solid Server usa NSS 5.2.4, existe un bug en esa versión.",
     "designRoute": "Diseña tu ruta",
-    "sharewithall": "Compartir con todos"
+    "sharewithall": "Compartir con todos",
+	"sharingMessage": "Compartir es vivir",
+	"sharingTitle": "Compartiendo..."
 
   },
   "routeDesigner": {
@@ -285,7 +287,11 @@
     "routeDescription": "Descripción",
     "routeFormatError": "Por favor, añada 2 o más puntos al mapa para poder considerarlo como una ruta",
     "nameError": "El nombre de la ruta no puede quedar en blanco",
-    "confirmClear": "¿Está seguro de querer borrar la ruta?"
+    "confirmClear": "¿Está seguro de querer borrar la ruta?",
+    "uploaded":"Un segundito... Guardando...",
+    "uploadingTitle": "Subiendo!"
+
+
   },
   "alt": {
     "friend": "Amigo",

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {MapsSideBar, InputFile, LabelInput} from "./maps.style";
 import styled from "styled-components";
+import {errorToaster} from "@utils";
 import {MapRoute} from "./components";
 import {SharedRoute} from "./shared";
 import {Button} from "react-bootstrap";
@@ -78,7 +79,9 @@ class RoutesSideBar extends Component {
                 routes = [...routes, file];
                 this.uploadedFiles = true;
             } else {
-                alert(file.name + " is not valid");
+
+                errorToaster(file.name + " is not valid", "Error");
+
             }
             let btnChoose = $("#btnChoose");
             btnChoose.html(file.name);

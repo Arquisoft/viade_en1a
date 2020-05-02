@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {FriendsPageContent} from "./friends.component";
 import FC from "solid-file-client";
 import auth from "solid-auth-client";
+import { errorToaster } from "@utils";
 
 import { itemExists, deleteFileRelativePath, createFile } from "../../modules/podHandler.js"; 
 import { addFriendToGroup, deleteFriendToGroup, getFriendGroups, inflateGroups } from "../../modules/groupsHandler.js";
@@ -92,7 +93,7 @@ export class FriendsComponent extends Component<Props> {
             }
 
         } else {
-            alert(message);
+            errorToaster(message, "Error");
         }
        });
     };
@@ -112,7 +113,7 @@ export class FriendsComponent extends Component<Props> {
                     _this.setState({inflatedGroups: r});
                 });
             } else {
-                alert(message);
+                errorToaster(message, "Error");
             }
         });
     };

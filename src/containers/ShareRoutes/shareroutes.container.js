@@ -5,6 +5,7 @@ import FC from "solid-file-client";
 import {withTranslation} from "react-i18next";
 import { ShareWrapper } from "./shareroutes.style";
 import {Redirect} from "react-router-dom";
+import { successToaster, errorToaster } from "@utils";
 import $ from "jquery";
 
 import { webId, fullWebId } from "../../modules/solidAuth.js";
@@ -71,8 +72,12 @@ class ShareRoutesComponent extends Component<Props> {
             let btnShare = $("#btn" + id);
             btnShare.prop("disabled", true);
             btnShare.html(t("routes.shared"));
+
+            let message = t("routes.sharingMessage");
+            let title = t("routes.sharingTitle");
+            successToaster(message, title);
         }catch(error){
-            alert(t("routes.sharingError"));
+            errorToaster(t("routes.sharingError"), "Error!");
         }
         
     }
