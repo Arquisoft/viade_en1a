@@ -15,7 +15,7 @@ function checkNotLogFile(url){
         let fileName = url.split("inbox/")[1];
         return fileName === "log.ttl";
     } catch {
-
+        //
     }
     
 }

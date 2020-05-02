@@ -5,7 +5,7 @@ import {Button} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 import $ from "jquery";
 
-import { successToaster, errorToaster } from '@utils';
+import { successToaster, errorToaster } from "@utils";
 
 import { isValidJSONRoute} from "../../modules/validation.js";
 import { itemExists, createFolder, createFile } from "../../modules/podHandler.js";
