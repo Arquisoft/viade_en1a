@@ -4,7 +4,8 @@ import { fullWebId } from "./solidAuth.js";
 import { itemExists, createFolder, createFile, getFriendGroupsFromPOD } from "./podHandler.js";
 
 export async function addFriendToGroup(friendid, callback){
-    const foaf = Namespace("http://xmlns.com/foaf/0.1/");
+    const namespace = Namespace;
+    const foaf = namespace("http://xmlns.com/foaf/0.1/");
     const store = graph();
     const updater = new UpdateManager(store);
 
@@ -20,7 +21,8 @@ export async function addFriendToGroup(friendid, callback){
 }
 
 export async function deleteFriendToGroup(friendid, callback){
-    const foaf = Namespace("http://xmlns.com/foaf/0.1/");
+    const namespace = Namespace;
+    const foaf = namespace("http://xmlns.com/foaf/0.1/");
     const store = graph();
     const fetcher = new Fetcher(store);
     const updater = new UpdateManager(store);
@@ -54,7 +56,7 @@ export async function inflateGroups(groups){
     let aux = {};
     aux["Default"] = [];
     const webId = await fullWebId();
-    const user = data[webId];
+    const user = data[String(webId)];
     Object.keys(groups).map((key) => {
         aux[String(key)] = [];
         return null;

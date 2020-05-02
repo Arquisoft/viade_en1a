@@ -9,6 +9,12 @@ import { buildAcl } from "./buildFile.js";
 
 const fc = new FC(auth);
 
+
+function checkNotLogFile(url){
+    let fileName = url.split("inbox/")[1];
+    return fileName === "log.ttl";
+}
+
 async function getFullNotification(url) {
     let myUrl = url.toString();
     let fol = await fc.readFile(myUrl);
@@ -28,6 +34,7 @@ async function getSharedRoute(url) {
     let urlText = getSchem[1].split("text");
     return urlText[1].split("\"")[1];
 }
+
 
 export async function getPodRoutes(){
     let routesList = [];
@@ -62,7 +69,7 @@ export async function getSharedRoutes(){
                 sharedRoutes.push({name, trueName, url, route});
             }
         }catch(error) {
-            //
+            
         }
     }
     return sharedRoutes;
@@ -105,7 +112,7 @@ export async function createFolder(relativeUrl){
 }
 
 export async function readFile(relativeUrl){
-    let url = await webId() + relativeUrl;
+    let url = await webId() + relativeUrl
     return await fc.readFile(url);
 }
 
@@ -118,7 +125,7 @@ export async function buildNotification(message){
     await data[mess.toString()].schema$text.add(message.content);
     await data[mess.toString()].rdfs$label.add(message.title);
     await data[mess.toString()].schema$dateSent.add(message.date.toISOString());
-    await data[mess.toString()].rdf$type.add(namedNode("https://schema.org/Message"));
+    await data[mess.toString()].rdf$type.add(namedNode('https://schema.org/Message'));
     await data[mess.toString()].schema$sender.add(namedNode(await fullWebId()));
 }
 
@@ -138,9 +145,3 @@ export async function manageAcl(fileUrl, fileName, friend){
 
     await acl.addRule(READ, friendWebId);
 }
-
-
-
-
-
-
