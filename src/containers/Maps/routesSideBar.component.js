@@ -7,7 +7,7 @@ import auth from "solid-auth-client";
 import {MapsSideBar, InputFile, LabelInput} from "./maps.style";
 
 import styled from "styled-components";
-
+import {errorToaster} from "@utils";
 import {MapRoute} from "./components";
 import {SharedRoute} from "./shared";
 
@@ -95,7 +95,7 @@ class RoutesSideBar extends Component {
 
             } else {
 
-                alert(file.name + " is not valid");
+                errorToaster(file.name + " is not valid", "Error");
 
             }
             let btnChoose = $("#btnChoose");

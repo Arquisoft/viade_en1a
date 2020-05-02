@@ -8,7 +8,7 @@ import {withTranslation} from "react-i18next";
 import SolidAclUtils from "solid-acl-utils";
 import { ShareWrapper } from "./shareroutes.style";
 import {Redirect} from "react-router-dom";
-import { successToaster } from "@utils";
+import { successToaster, errorToaster } from "@utils";
 
 class ShareRoutesComponent extends Component<Props> {
 
@@ -126,17 +126,17 @@ class ShareRoutesComponent extends Component<Props> {
 
         try{
 
-            let message = t("routes.sharingMessage");
-            let title = t("routes.sharingTitle");
-            successToaster(message, title);
-
             var session = await auth.currentSession();
             var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
             await this.modifyPermissionsRoute(this, session, this.getRouteName(), friend);
             await this.modifyPermissionsMedia(this, friend);
             await this.sendMessage(this, session, targetUrl);
+
+            let message = t("routes.sharingMessage");
+            let title = t("routes.sharingTitle");
+            successToaster(message, title);
         }catch(error){
-            alert(t("routes.sharingError"));
+            errorToaster(t("routes.sharingError"), "Error!");
         }
         
     }

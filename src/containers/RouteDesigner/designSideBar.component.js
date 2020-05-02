@@ -6,7 +6,7 @@ import {withTranslation} from "react-i18next";
 import $ from "jquery";
 import auth from "solid-auth-client";
 import FC from "solid-file-client";
-import { successToaster } from '@utils';
+import { successToaster, errorToaster } from '@utils';
 
 const StyledDesignSidebar = styled.div`
 
@@ -48,7 +48,7 @@ class DesignSideBar extends Component {
             }
             await this.fc.createFile(url + trimmedRouteName + ".json", jsonLDFile, "text/plain");
             let {t} = this.props;
-            //alert("Route Uploaded!");
+            
             let message = t("routeDesigner.uploaded");
             let title = t("routeDesigner.uploadingTitle");
             successToaster(message, title);
@@ -134,10 +134,10 @@ class DesignSideBar extends Component {
         const {t} = this.props;
         let routePoints = this.props.getRouteCoordinates();
         if (!trimmedRouteName.length > 0) {
-            alert(t("routeDesigner.nameError"));
+            errorToaster(t("routeDesigner.nameError"), "Error");
             return false;
         } else if (routePoints.length < 2) {
-            alert(t("routeDesigner.routeFormatError"));
+            errorToaster(t("routeDesigner.routeFormatError"), "Error");
             return false;
         }
         return true;

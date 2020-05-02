@@ -3,6 +3,7 @@ import data from "@solid/query-ldflex";
 import {FriendsPageContent} from "./friends.component";
 import FC from "solid-file-client";
 import auth from "solid-auth-client";
+import { errorToaster } from "@utils";
 
 import {Namespace, sym, st, graph, UpdateManager, Fetcher} from "rdflib";
 
@@ -116,7 +117,7 @@ export class FriendsComponent extends Component<Props> {
                 }
 
             } else {
-                alert(message);
+                errorToaster(message, "Error");
             }
         });
     };
@@ -148,7 +149,7 @@ export class FriendsComponent extends Component<Props> {
                     this.setState({inflatedGroups: r});
                 });
             } else {
-                alert(message);
+                errorToaster(message, "Error");
             }
         });
     };

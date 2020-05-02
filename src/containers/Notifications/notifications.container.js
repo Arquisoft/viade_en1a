@@ -37,12 +37,12 @@ export class NotificationsComponent extends Component {
             try{
                 var name = await this.getFullNotification(inboxFolder.files[parseInt(index)].url.toString());
                 let url = inboxFolder.files[parseInt(index)].url;
-                /*let routeUrl = await this.getSharedRoute(url);
+                let routeUrl = await this.getSharedRoute(url);
                 let content = await this.fc.readFile(routeUrl.toString());
                 let route = JSON.parse(content);
-                var trueName = name+route.name+")";*/
+                var trueName = name+route.name+")";
                 //console.log(trueName);
-                this.state.notifications.push({name, /*trueName,*/ url });
+                this.state.notifications.push({name, trueName, url });
             } catch {
                //do nothing ;
             }
@@ -54,9 +54,9 @@ export class NotificationsComponent extends Component {
             let message = "You have no notifications to be shown....";
             errorToaster(message, title);*/
 
-            name= "No notifications";
+            trueName= "No notifications";
             var url= "fakeURL";
-            this.state.notifications.push({name, /*trueName,*/ url });
+            this.state.notifications.push({name, trueName, url });
         }
 
         let notifications = [...this.state.notifications];
@@ -97,7 +97,7 @@ export class NotificationsComponent extends Component {
             list.push(<Notis key={i}{...{
 
                 noti: {
-                    name: this.state.notifications[parseInt(i)].name
+                    name: this.state.notifications[parseInt(i)].trueName
                 }               
 
             }}/>);
