@@ -28,6 +28,7 @@ export class NotificationsComponent extends Component {
         var inbox = session.webId.split("profile/card#me")[0] + "inbox/";
 
         let inboxFolder = await this.fc.readFolder(inbox);
+        var trueName ="";
 
 
         for (let index = 0; index < inboxFolder.files.length; index++) {
@@ -37,7 +38,7 @@ export class NotificationsComponent extends Component {
                 let routeUrl = await this.getSharedRoute(url);
                 let content = await this.fc.readFile(routeUrl.toString());
                 let route = JSON.parse(content);
-                var trueName = name+route.name+")";
+                trueName = name+route.name+")";
                 //console.log(trueName);
                 this.state.notifications.push({name, trueName, url });
             } catch {
