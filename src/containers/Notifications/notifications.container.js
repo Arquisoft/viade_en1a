@@ -28,7 +28,7 @@ export class NotificationsComponent extends Component {
         var inbox = session.webId.split("profile/card#me")[0] + "inbox/";
 
         let inboxFolder = await this.fc.readFolder(inbox);
-        var trueName ="";
+        var trueName = "";
 
 
         for (let index = 0; index < inboxFolder.files.length; index++) {
@@ -47,7 +47,7 @@ export class NotificationsComponent extends Component {
         }
         this.isLoading=false;
 
-        if(inboxFolder.files.length===0){
+        if(this.state.notifications.length===0){
             /*let title = "No notifications";
             let message = "You have no notifications to be shown....";
             errorToaster(message, title);*/
