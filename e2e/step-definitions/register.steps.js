@@ -62,7 +62,7 @@ defineFeature(feature, test => {
             await page.type("[id='email']", "UO263909@uniovi.es", {visible: true});
 
             await page.waitFor(500);
-            await expect(page).toClick('button', { text: 'Register' })
+            await expect(page).toClick("button", { text: "Register" });
           
         });
 
