@@ -69,7 +69,7 @@ export async function getSharedRoutes(){
                 sharedRoutes.push({name, trueName, url, route});
             }
         }catch(error) {
-            
+            //
         }
     }
     return sharedRoutes;
@@ -112,7 +112,7 @@ export async function createFolder(relativeUrl){
 }
 
 export async function readFile(relativeUrl){
-    let url = await webId() + relativeUrl
+    let url = await webId() + relativeUrl;
     return await fc.readFile(url);
 }
 
@@ -125,7 +125,7 @@ export async function buildNotification(message){
     await data[mess.toString()].schema$text.add(message.content);
     await data[mess.toString()].rdfs$label.add(message.title);
     await data[mess.toString()].schema$dateSent.add(message.date.toISOString());
-    await data[mess.toString()].rdf$type.add(namedNode('https://schema.org/Message'));
+    await data[mess.toString()].rdf$type.add(namedNode("https://schema.org/Message"));
     await data[mess.toString()].schema$sender.add(namedNode(await fullWebId()));
 }
 
