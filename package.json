@@ -73,7 +73,7 @@
     "start": "node scripts/start.js",
     "test:e2e": "jest -c e2e/jest.config.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --coverage",
+    "test": "node scripts/test.js --coverage && jest -c e2e/jest.config.js",
     "docs": "shx rm -rf build/docs && asciidoctor -D build/docs -a imagesdir=./images -r asciidoctor-diagram src/docs/index.adoc && shx cp -R src/docs/images build/docs",
     "molid": "molid"
   },
