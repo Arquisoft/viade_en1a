@@ -255,7 +255,11 @@
     "save": "Guardar",
     "grantAccess": "Dar Acceso"
   },
-  "routes":{
+  "routes":{    
+    "loadingYours": "Cargando tus rutas...",
+    "loadingShared": "Cargando compartidas...",
+    "yourRoutesEmpty": "No hay rutas para ver en el mapa",
+    "sharedRoutesEmpty": "Pídele a alguien que te las comparta",
     "chooseFile":"Elige tu ruta!",
     "yourRoutes": "Tus rutas",
     "uploadToPOD": "Subir a tu POD",
@@ -275,7 +279,10 @@
     "designRoute": "Diseña tu ruta",
     "sharewithall": "Compartir con todos",
 	"sharingMessage": "Compartir es vivir",
-	"sharingTitle": "Compartiendo..."
+	"sharingTitle": "Compartiendo...",
+    "uploading": "Subiendo...",
+    "uploadingMessage": "Espera... Espera... ehm... Espera... Un segundo...",
+    "formatError": "no tiene un formato válido. Prueba otro ;)"
 
   },
   "routeDesigner": {
