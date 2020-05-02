@@ -57,6 +57,7 @@
     "formModelConvert": "Form Model Convert",
     "text-editor": "Editor de Textos",
     "changeLanguage": "Cambiar Lenguaje",
+    "design": "Diseñar ruta",
     "languages": {
       "en": "English (Inglés)",
       "es": "Español (Español)"
@@ -81,6 +82,10 @@
   },
   "welcome": {
     "welcome": "Bienvenido",
+    "notice": "Aviso importante",
+    "covidtitle": "Sobre el COVID-19",
+    "covidbody": "Por favor #QuedateEnCasa por tu seguridad y la de todos.",
+    "close": "Cerrar",
     "doneMessage": "¿Terminaste?",
     "title": "<0>Esta aplicacion fue generada con <1>Solid React SDK by inrupt.</1></0>",
     "description": "<0>El <1>Solid React SDK by inrupt</1>  es una combinación de librerias, componentes, documentación, buenas prácticas y un generador de aplicaciones diseñada para acelerar el desarrollo de aplicaciones Solid de alta calidad:</0>",
@@ -250,22 +255,68 @@
     "save": "Guardar",
     "grantAccess": "Dar Acceso"
   },
-  "routes":{
+  "routes":{    
+    "loadingYours": "Cargando tus rutas...",
+    "loadingShared": "Cargando compartidas...",
+    "yourRoutesEmpty": "No hay rutas para ver en el mapa",
+    "sharedRoutesEmpty": "Pídele a alguien que te las comparta",
+    "chooseFile":"Elige tu ruta!",
     "yourRoutes": "Tus rutas",
     "uploadToPOD": "Subir a tu POD",
+    "uploadedToPOD": "Subida/s",
     "hereYourRoutes": "Tus rutas aquí",
     "sharedRoutes": "Rutas compartidas",
     "clear": "Limpiar",
     "share": "Compartir",
     "delete": "Borrar",
     "cancel": "Cancelar",
+    "return": "Volver",
     "shared": "Compartido",
     "addMedia": "Añadir multimedia",
-	"galery": "Galería"
+	"galery": "Galería",
+    "covidtoggle": "Mostrar datos de COVID-19",
+	"sharingError": "No se ha podido compartir la ruta. Si eres un usuario de Inrupt, o tu Solid Server usa NSS 5.2.4, existe un bug en esa versión.",
+    "designRoute": "Diseña tu ruta",
+    "sharewithall": "Compartir con todos",
+	"sharingMessage": "Compartir es vivir",
+	"sharingTitle": "Compartiendo...",
+    "uploading": "Subiendo...",
+    "uploadingMessage": "Espera... Espera... ehm... Espera... Un segundo...",
+    "formatError": "no tiene un formato válido. Prueba otro ;)"
+
   },
-  "alt":{
+  "routeDesigner": {
+    "selectPoints": "Seleccione los puntos",
+    "uploadToPOD": "Terminar y subir al POD",
+    "clearRoute": "Borrar ruta",
+    "newRoute": "Nueva ruta",
+    "routeName": "Nombre",
+    "routeDescription": "Descripción",
+    "routeFormatError": "Por favor, añada 2 o más puntos al mapa para poder considerarlo como una ruta",
+    "nameError": "El nombre de la ruta no puede quedar en blanco",
+    "confirmClear": "¿Está seguro de querer borrar la ruta?",
+    "uploaded":"Un segundito... Guardando...",
+    "uploadingTitle": "Subiendo!"
+
+
+  },
+  "alt": {
     "friend": "Amigo",
     "loading": "Esta página está cargando... No te preocupes, es solo unos segundos."
+  },
+  "friends": {
+    "delete": "Eliminar",
+    "changeGroup": "Cambiar de grupo...",
+    "addFriend": "Añadir amigo",
+    "groups": "Crear/Editar Grupos",
+    "editGroups": "Editar Grupos",
+    "close": "Cerrar",
+    "save": "Guardar",
+	"nameGroup": "Nombre del nuevo grupo:",
+	"friendURL": "URL del amigo:",
+	"addNewFriend": "Añadir nuevo amigo",
+	"yourGroups": "Tus Grupos",
+    "typename": "Escriba aquí el nombre del grupo"
 
   }
 }

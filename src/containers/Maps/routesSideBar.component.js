@@ -1,381 +1,306 @@
-import React, {Component} from "react";
-
-import FC from "solid-file-client";
-
-import auth from "solid-auth-client";
-
-import {MapsSideBar} from "./maps.style";
-
+import React, { Component } from "react";
+import { MapsSideBar, InputFile, LabelInput } from "./maps.style";
 import styled from "styled-components";
+import { errorToaster, successToaster } from "@utils";
+import { MapRoute } from "./components";
+import { SharedRoute } from "./shared";
+import { Button } from "react-bootstrap";
+import { withTranslation } from "react-i18next";
+import Switch from "react-switch";
+import $ from "jquery";
 
-import {MapRoute} from "./components";
-import {SharedRoute} from "./shared";
-
-import {Button} from "react-bootstrap";
-import {withTranslation} from "react-i18next";
-
+import {
+  getPodRoutes,
+  getSharedRoutes,
+  createFile,
+  createFolder,
+  itemExists,
+  deleteFile,
+} from "../../modules/podHandler.js";
+import { getFileContent } from "../../modules/parseFile.js";
+import { isValidJSONRoute } from "../../modules/validation.js";
 
 const StyledRoutesSidebar = styled.div`
+  height: 50vh;
 
-      height: 100vh;
-
-      width: 20%;
-
-    `;
-
+  width: 25%;
+`;
 
 class RoutesSideBar extends Component {
-
-    constructor(props) {
-
-        super(props);
-
-
-        this.state = {
-
-            selectedFile: null,
-
-            routes: [],
-
-            routesList: [],
-
-            sharedRoutes: [],
-
-        };
-
-
-        this.getPodRoutes = this.getPodRoutes.bind(this);
-
-        this.getPodRoutes();
-
-        this.getSharedRoutes = this.getSharedRoutes.bind(this);
-
-        this.getSharedRoutes();
-
-
-        this.deleteRoute = this.deleteRoute.bind(this);
-
-        this.deleteSharedRoute = this.deleteSharedRoute.bind(this);
-
-        this.fc = new FC(auth);
-
-        this.uploadedFiles = false;
-
-        this.addMediaToRoute = this.addMediaToRoute.bind(this);
-
-
-    }
-
-
-    onChangeHandler = (event) => {
-
-        this.uploadedFiles = false;
-
-        const files = [...event.target.files];
-
-        let routes = [...this.state.routes];
-
-        files.forEach((file) => {
-
-            if (file.name.endsWith(".json")) {
-
-                routes = [...routes, file];
-
-                this.uploadedFiles = true;
-
-            } else {
-
-                alert(file.name + " is not valid");
-
-            }
-
-
-        });
-
-        this.setState({routes});
-
+  constructor(props) {
+    super(props);
+    const {t} = this.props;
+    this.state = {
+      selectedFile: null,
+      routes: [],
+      routesList: [],
+      sharedRoutes: [],
+      COVIDchecked: true,
+      labelText: "",
+      loadingYourText: t("routes.loadingYours"),
+      loadingSharedText: t("routes.loadingShared"),
     };
 
+    this.getPodRoutes = this.getPodRoutes.bind(this);
+    this.getPodRoutes();
+    this.getSharedRoutes = this.getSharedRoutes.bind(this);
+    this.getSharedRoutes();
+    this.deleteRoute = this.deletePodRoute.bind(this);
+    this.deleteSharedRoute = this.deleteSharedRoute.bind(this);
 
-    async onClickHandler() {
+    this.uploadedFiles = false;
+    this.addMediaToRoute = this.addMediaToRoute.bind(this);
+    this.handleCOVIDChange = this.handleCOVIDChange.bind(this);
+  }
 
-        var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
+  async getPodRoutes() {
+    const { t } = this.props;
+    this.setState({ loadingYourText: t("routes.loadingYours") });
+    this.setState({ routesList: await getPodRoutes() });
+    this.setState({ loadingYourText: t("routes.hereYourRoutes") });
 
-        if (!await this.fc.itemExists(url)) {
-
-            await this.fc.createFolder(url);
-
-        }
-
-
-        this.onClearArray();
-
-
-        this.state.routes.forEach(async (route) => {
-
-
-            await this.fc.createFile(url + route.name, route, "text/plain");
-
-        });
-
-        document.getElementById("btnPod").innerHTML = "Uploaded";
-
-        document.getElementById("btnPod").disabled = true;
-
-
-        await this.getPodRoutes();
-        await this.getSharedRoutes();
-
-        document.getElementById("btnPod").innerHTML = "Upload to Pod";
-
-        document.getElementById("btnPod").disabled = false;
-
+    if(this.state.routesList.length === 0){
+        this.setState({loadingYourText: t("routes.yourRoutesEmpty")});
     }
 
+  }
 
-    async getRouteName(route) {
+  async getSharedRoutes() {
+    const { t } = this.props;
+    this.setState({ loadingSharedText: t("routes.loadingShared") });
+    this.setState({ sharedRoutes: await getSharedRoutes() });
+    this.setState({ loadingSharedText: t("routes.sharedRoutes") });
+    if(this.state.sharedRoutes.length === 0){
+        this.setState({loadingSharedText: t("routes.sharedRoutesEmpty")});
+    }
+  }
 
-        var fileReader = new FileReader();
+  async deletePodRoute(routeWrapper) {
+    await deleteFile(routeWrapper.url);
+    this.onClearArray();
+    await this.getPodRoutes();
+    await this.getSharedRoutes();
+  }
 
-        fileReader.readAsText(route);
+  async deleteSharedRoute(route) {
+    await deleteFile(route.url);
+    this.onClearArray();
+    await this.getPodRoutes();
+    await this.getSharedRoutes();
+  }
 
-        fileReader.onload = function () {
+  onChangeHandler = (event) => {
+    this.uploadedFiles = false;
+    const files = [...event.target.files];
+    let routes = [...this.state.routes];
 
-            var obj = JSON.parse(fileReader.result);
+    const { t } = this.props;
+    files.forEach((file) => {
+      if (file.name.endsWith(".json")) {
+        routes = [...routes, file];
+        this.uploadedFiles = true;
+        this.setState({labelText : file.name.split(".")[0]});
+      } else {
+        errorToaster("'" + file.name + "' " + t("routes.formatError"), "Error");
+      }
+    });
+    this.setState({ routes });
 
-            console.log(obj.routeName);
+    let btnPod = $("#btnPod");
+    btnPod.html(t("routes.uploadToPOD"));
+    btnPod.prop("disabled", false);
+  };
 
-            return obj.routeName;
-
-        };
-
+  async onClickHandler() {
+    if (await itemExists("viade/routes/")) {
+      await createFolder("viade/routes/");
     }
 
-    async getSharedRoutes() {
-        var session = await auth.currentSession();
+    this.onClearArray();
+    const { t } = this.props;
 
-        var urlShared = session.webId.split("profile/card#me")[0] + "inbox/";
-
-        let folderShared = await this.fc.readFolder(urlShared);
-        for (let sharedElement of folderShared.files) {
-            var name = await this.getFullNotification(sharedElement.url.toString());
-            let url = sharedElement.url;
-
-            let routeUrl = await this.getSharedRoute(url);
-
-            let content = await this.fc.readFile(routeUrl.toString());
-
-            let route = JSON.parse(content);
-
-            this.state.sharedRoutes.push({name, url, route});
-        }
-
-        let sharedRoutes = [...this.state.sharedRoutes];
-        this.setState({sharedRoutes});
-
+    try {
+      for (let route of this.state.routes) {
+        await this.createRouteFile("viade/routes/" + route.name, route);
+      }
+      successToaster(t("routes.uploadingMessage"), t("routes.uploading"));
+    } catch {
+      errorToaster("Oh oh... Error! ");
     }
 
-    async getFullNotification(url) {
-        let myUrl = url.toString();
-        let fol = await this.fc.readFile(myUrl);
-        let getSchem = fol.split("<>");
-        let getImportant = getSchem[1].split("text");
-        //let theUrl = getImportant[1].split("\"")[1];
-        //let theSplitUrl = theUrl.split("/");
+    let btnPod = $("#btnPod");
 
+    btnPod.html(t("routes.uploadedToPOD"));
+    btnPod.prop("disabled", true);
+    $("#routeUploader").val("");
 
-        //let name = theSplitUrl[theSplitUrl.length - 1];
+    await this.getPodRoutes();
+    await this.getSharedRoutes();
+  }
 
-        let fullLabel = getImportant[1].split("\"")[3];
-        let sender = fullLabel.split("Shared route ")[1];
-        //console.log(name+" "+sender)	
+  getRouteFileName(url) {
+    return url.split("viade/routes/")[1];
+  }
 
+  showRoute = async (routeWrapper) => {
+    let routeData = routeWrapper.route;
+    this.props.show(routeData);
+  };
 
-        return " " + sender;
+  async createRouteFile(relativeUrl, file) {
+    getFileContent(file, async function(content) {
+      if (isValidJSONRoute(relativeUrl, content)) {
+        await createFile(relativeUrl, content);
+      }
+    });
+  }
 
+  async createRouteText(relativeUrl, text) {
+    if (isValidJSONRoute(relativeUrl, text)) {
+      await createFile(relativeUrl, text);
+    }
+  }
+
+  async addMediaToRoute(routeWrapper, event) {
+    const mediaElements = [...event.target.files];
+
+    let folderUrl = "";
+    if (await itemExists("viade/resources/")) {
+      folderUrl = await createFolder("viade/resources/");
     }
 
-    async getSharedRoute(url) {
-        let fol = await this.fc.readFile(url.toString());
-        let getSchem = fol.split("<>");
-        let urlText = getSchem[1].split("text");
-        return urlText[1].split("\"")[1];
+    this.onClearArray();
 
+    for (let element of mediaElements) {
+      await createFile("viade/resources/" + element.name, element);
+
+      // add media to route
+      let url = { url: folderUrl + element.name };
+      routeWrapper.route.media.push(url);
     }
+    //Creates a new file and substitutes the old one
+    let routeJson = JSON.stringify(routeWrapper.route, null, 2);
+    let routeFileName = this.getRouteFileName(routeWrapper.url);
+    await this.createRouteText("viade/routes/" + routeFileName, routeJson);
 
-    async getPodRoutes() {
+    this.getPodRoutes();
+    this.getSharedRoutes();
+  }
 
-        var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
-
-        let folder = await this.fc.readFolder(url);
-
-        for (let element of folder.files) {
-            let content = await this.fc.readFile(element.url.toString());
-            let parsedRoute = JSON.parse(content);
-
-            this.setState((state) => ({
-
-                routeList: state.routesList.push({name: element.name, url: element.url, route: parsedRoute})
-
-            }));
-
-        }
-
+  listRoutes = () => {
+    let list = [];
+    for (let i = 0; i < this.state.routesList.length; i++) {
+      let routeTemp = this.state.routesList[parseInt(i)];
+      list.push(
+        <MapRoute
+          key={i}
+          {...{
+            routeWrapper: {
+              name: routeTemp.name,
+              url: routeTemp.url,
+              route: routeTemp.route,
+              showRoute: this.showRoute,
+              shareRoute: this.shareRoute,
+              deleteRoute: this.deleteRoute,
+              addMediaToRoute: this.addMediaToRoute,
+            },
+          }}
+        />
+      );
     }
+    return list;
+  };
 
-    showRoute = async (routeWrapper) => {
-        let routeData = routeWrapper.route;
-        this.props.show(routeData);
-
-    };
-
-    async deleteRoute(routeWrapper) {
-        await this.fc.deleteFile(routeWrapper.url);
-
-        this.onClearArray();
-
-        await this.getPodRoutes();
-        await this.getSharedRoutes();
+  listShared = () => {
+    let list = [];
+    for (let i = 0; i < this.state.sharedRoutes.length; i++) {
+      let sharedRoute = this.state.sharedRoutes[parseInt(i)];
+      list.push(
+        <SharedRoute
+          key={i}
+          {...{
+            routeWrapper: {
+              name: sharedRoute.name,
+              url: sharedRoute.url,
+              route: sharedRoute.route,
+              showRoute: this.showRoute,
+              deleteRoute: this.deleteSharedRoute,
+            },
+          }}
+        />
+      );
     }
+    return list;
+  };
 
-    async addMediaToRoute(routeWrapper, event) {
-        const mediaElements = [...event.target.files];
-        var session = await auth.currentSession();
-        var folderUrl = session.webId.split("profile/card#me")[0] + "viade/resources/";
+  onClearArray = () => {
+    this.setState({ routesList: [] });
+    this.setState({ sharedRoutes: [] });
+  };
 
-        if (!await this.fc.itemExists(folderUrl)) {
-            await this.fc.createFolder(folderUrl);
+  handleCOVIDChange(COVIDchecked) {
+    this.setState({ COVIDchecked });
+    this.props.toggleCOVID(COVIDchecked);
+  }
 
-        }
+  render() {
+    const { t } = this.props;
+    let btnChoose = $("#btnChoose");
+    btnChoose.html(t("routes.chooseFile"));
+    this.setState();
+    return (
+      <StyledRoutesSidebar>
+        <InputFile
+          id="routeUploader"
+          type="file"
+          name="file"
+          accept=".json"
+          onChange={this.onChangeHandler.bind(this)}
+          multiple
+          style={{ marginTop: "3vh" }}
+        />
 
-        this.onClearArray();
+        <LabelInput for="routeUploader" id="btnChoose">
+          {this.state.labelText}
+        </LabelInput>
 
-        for (let element of mediaElements) {
-
-            if (!await this.fc.itemExists(folderUrl + element.name)) {
-                await this.fc.createFile(folderUrl + element.name, element, "text/plain");
-            }
-
-            // add media to route
-            let url = {url: folderUrl + element.name};
-            routeWrapper.route.media.push(url);
-
-        }
-        //Creates a new file and substitutes the old one
-        let routeJson = JSON.stringify(routeWrapper.route, null, 2);
-        await this.fc.createFile(routeWrapper.url, routeJson, "text/plain");
-
-        await this.getPodRoutes();
-        await this.getSharedRoutes();
-    }
-
-    async deleteSharedRoute(route) {
-        await this.fc.deleteFile(route.url);
-
-        this.onClearArray();
-
-        await this.getPodRoutes();
-        await this.getSharedRoutes();
-    }
-
-
-    listRoutes = () => {
-
-        let list = [];
-
-        for (let i = 0; i < this.state.routesList.length; i++) {
-            let routeTemp = this.state.routesList[parseInt(i)];
-            list.push(<MapRoute key={i}{...{
-
-                routeWrapper: {
-                    name: routeTemp.name,
-
-                    url: routeTemp.url,
-
-                    route: routeTemp.route,
-
-                    showRoute: this.showRoute,
-
-                    shareRoute: this.shareRoute,
-
-                    deleteRoute: this.deleteRoute,
-
-                    addMediaToRoute: this.addMediaToRoute
-
-                }
-
-            }} />);
-
-        }
-
-        return list;
-
-    };
-
-    listShared = () => {
-
-        let list = [];
-
-        for (let i = 0; i < this.state.sharedRoutes.length; i++) {
-
-            let sharedRoute = this.state.sharedRoutes[parseInt(i)];
-
-            list.push(<SharedRoute key={i}{...{
-
-                routeWrapper: {
-                    name: sharedRoute.name,
-
-                    url: sharedRoute.url,
-
-                    route: sharedRoute.route,
-
-                    showRoute: this.showRoute,
-
-                    deleteRoute: this.deleteSharedRoute
-
-                }
-
-            }}/>);
-
-        }
-
-        return list;
-
-    };
-
-
-    onClearArray = () => {
-        this.setState({routesList: []});
-        this.setState({sharedRoutes: []});
-    };
-
-
-    render() {
-        const {t} = this.props;
-        return (
-
-            <StyledRoutesSidebar>
-
-                <input type="file" name="file" accept=".json" onChange={this.onChangeHandler.bind(this)} multiple/>
-
-
-                <Button id="btnPod" disabled={!this.uploadedFiles} variant="primary" block
-                        onClick={this.onClickHandler.bind(this)}>{t("routes.uploadToPOD")}</Button>
-                <MapsSideBar>
-                    {t("routes.hereYourRoutes")}
-                    {this.listRoutes()}
-                    {t("routes.sharedRoutes")}
-                    {this.listShared()}
-                </MapsSideBar>
-                <Button variant="primary" block
-                        onClick={this.onClearArray}>{t("routes.clear")}</Button>
-            </StyledRoutesSidebar>
-        );
-
-    }
-
+        <Button
+          id="btnPod"
+          disabled={!this.uploadedFiles}
+          variant="primary"
+          block
+          onClick={this.onClickHandler.bind(this)}
+          style={{ marginBottom: "2vh" }}
+        >
+          {t("routes.uploadToPOD")}
+        </Button>
+        <MapsSideBar style={{ height: "340px" }}>
+          {this.state.loadingYourText}
+          {this.listRoutes()}
+          <div></div>
+          {this.state.loadingSharedText}
+          {this.listShared()}
+        </MapsSideBar>
+        <label style={{ marginTop: "10px" }}>
+          <span>{t("routes.covidtoggle")}</span>
+          <Switch
+            onChange={this.handleCOVIDChange}
+            checked={this.state.COVIDchecked}
+          />
+        </label>
+        <a
+          href="#/design"
+          className="btn btn-primary"
+          style={{ width: "100%" }}
+        >
+          {t("routes.designRoute")}
+        </a>
+        <Button variant="primary" block onClick={this.onClearArray}>
+          {t("routes.clear")}
+        </Button>
+      </StyledRoutesSidebar>
+    );
+  }
 }
 
 export default withTranslation()(RoutesSideBar);

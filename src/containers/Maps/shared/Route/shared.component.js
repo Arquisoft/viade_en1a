@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
 const StyledSharedRoute = styled.div`
-  margin: 10px;
+    margin: 5px;
 `;
 
 export const SharedRoute = (props) => {
@@ -24,9 +24,9 @@ export const SharedRoute = (props) => {
     return (
         <StyledSharedRoute>
         <Dropdown as={ButtonGroup}>
-            <Button variant="success" onClick={showRoute}>{routeWrapper.route.name+routeWrapper.name}</Button>
+            <Button variant="success" onClick={showRoute}>{routeWrapper.route.name+" "+routeWrapper.name}</Button>
 
-            <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+            <Dropdown.Toggle split variant="tog" id="dropdown-split-basic" />
 
             <Dropdown.Menu>
                 <Dropdown.Item onClick={deleteRoute} href="#"><Icon.Trash/>{t("routes.delete")}</Dropdown.Item>

@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-import data from "@solid/query-ldflex";
 import { ShareRoutesPageContent } from "./shareroutes.component";
 import auth from "solid-auth-client";
 import FC from "solid-file-client";
-import { namedNode } from "@rdfjs/data-model";
-import { withTranslation } from "react-i18next";
-import { FriendsContainer } from "../Friends/friends.style";
+import {withTranslation} from "react-i18next";
+import { ShareWrapper } from "./shareroutes.style";
+import {Redirect} from "react-router-dom";
+import { successToaster, errorToaster } from "@utils";
+import $ from "jquery";
+
+import { webId, fullWebId } from "../../modules/solidAuth.js";
+import { getFriendGroups, inflateGroups } from "../../modules/groupsHandler.js";
+import { itemExists, readFile, getFriendInbox, buildNotification, manageAcl } from "../../modules/podHandler.js";
 
 class ShareRoutesComponent extends Component<Props> {
 
@@ -13,8 +18,9 @@ class ShareRoutesComponent extends Component<Props> {
         super(props);
 
         this.state = {
-            friends: [],
-            route: null
+            inflatedGroups: {},
+            route: null,
+            routeExists: true
         };
         this.fc = new FC(auth);
         this.getRoute();
@@ -31,90 +37,90 @@ class ShareRoutesComponent extends Component<Props> {
     }
 
     getProfileData = async () => {
-        this.setState({ isLoading: true });
-        const { webId } = this.props;
+        this.setState({isLoading: true});
 
-        const user = data[webId];
+        this.groups = await getFriendGroups();
+        
+        this.inflateGroups(this.groups).then((r) => {
+            this.setState({inflatedGroups: r});
+        });
+    };
 
-        let friends = [];
-
-        for await (const friend of user.friends) {
-            const friendWebId = await friend.value;
-
-            const friendData = data[friendWebId.toString()];
-
-            const nameLd = await friendData.name;
-
-            const name = nameLd && nameLd.value.trim().length > 0 ? nameLd.value : friendWebId.toString();
-            const imageLd = await friendData.vcard_hasPhoto;
-
-            let image;
-            if (imageLd && imageLd.value) {
-                image = imageLd.value;
-            } else {
-                image = "img/noimg.svg";
-            }
-
-            let webId = friendWebId;
-            var friendObj = {
-                webId,
-                name,
-                image
-            };
-
-            friends.push(friendObj);
-        }
-        this.setState({ friends });
+    inflateGroups = async (groups) => {
+        return await inflateGroups(groups);
     };
 
     async getRoute(){
         var name = this.getRouteName();
-        var session = await auth.currentSession();
-        var url = session.webId.split("profile/card#me")[0] + "viade/routes/";
-        var file = await this.fc.readFile(url + name);
-        if (file !== null){
-            this.setState({route: file});
+        if(await itemExists("viade/routes/" + name)){
+            let file = await readFile("viade/routes/" + name);
+            if (file !== null){
+                this.setState({route: file});
+            }
+        }else{
+            this.setState({routeExists: false});
         }
     }
 
-    async shareRoute(friend){
+    async shareRoute(friend, id){
         const { t } = this.props;
-
         try{
-            var session = await auth.currentSession();
-            var targetUrl = friend.webId.split("profile/card#me")[0] + "inbox/";
-            await this.sendMessage(this, session, targetUrl);
-            document.getElementById("btn"+friend.webId).innerHTML = t("routes.shared");
-            document.getElementById("btn"+friend.webId).disabled = true;
+            var targetUrl = getFriendInbox(friend);
+            await this.modifyPermissionsRoute(this, this.getRouteName(), friend);
+            await this.modifyPermissionsMedia(this, friend);
+            await this.sendMessage(this, targetUrl);
+            let btnShare = $("#btn" + id);
+            btnShare.prop("disabled", true);
+            btnShare.html(t("routes.shared"));
+
+            let message = t("routes.sharingMessage");
+            let title = t("routes.sharingTitle");
+            successToaster(message, title);
         }catch(error){
-            alert("Could not share the route");
+            errorToaster(t("routes.sharingError"), "Error!");
         }
         
     }
 
-    async sendMessage(app, session, targetUrl){
+    async modifyPermissionsRoute(app, routeName, friend){
+        let routeUrl = await webId() + "viade/routes/" + routeName;
+        await app.manageAcl(routeUrl, routeName, friend);    
+    }
+
+    async modifyPermissionsMedia(app, friend){
+        let routeJson = JSON.parse(app.state.route);
+
+        const { media } = routeJson;
+        if(media.length > 0){
+            media.forEach(async (m) => {
+                let fileUrl = m.url;
+                let mName = fileUrl.split("viade/resources/")[1];
+                await app.manageAcl(fileUrl, mName, friend);
+            });
+        }
+    }
+
+    async manageAcl(fileUrl, fileName, friend){
+        await manageAcl(fileUrl, fileName, friend);
+    }
+
+    async sendMessage(app, targetUrl){
         var message = {};
         message.date = new Date(Date.now());
         message.id = message.date.getTime();
-        message.sender = session.webId;
+        message.sender = await fullWebId();
         message.recipient = targetUrl;
 
-        var baseSource = session.webId.split("profile/card#me")[0];
-        var source = baseSource + "viade/routes/";
+        var source = await webId() + "viade/routes/";
         message.content = source + app.getRouteName();
         message.title = "Shared route by " + await app.getSessionName();
         message.url = message.recipient + message.id + ".ttl";
         
-        await app.buildMessage(session, message);
+        await app.buildMessage(message);
     }
 
-    async buildMessage(session, message){
-        var mess = message.url;
-        await data[mess.toString()].schema$text.add(message.content);
-        await data[mess.toString()].rdfs$label.add(message.title);
-        await data[mess.toString()].schema$dateSent.add(message.date.toISOString());
-        await data[mess.toString()].rdf$type.add(namedNode('https://schema.org/Message'));
-        await data[mess.toString()].schema$sender.add(namedNode(session.webId));
+    async buildMessage(message){
+        buildNotification(message);
     }
 
     async getSessionName(){
@@ -133,15 +139,15 @@ class ShareRoutesComponent extends Component<Props> {
     }
     
     render() {
-        const { friends } = this.state;
+        const  { inflatedGroups }  = this.state;
         const share = {
             shareRoute: this.shareRoute.bind(this)
         };
 
         return (
-            <FriendsContainer className="card">
-                <ShareRoutesPageContent {...{ friends, share }} />
-            </FriendsContainer>
+            <ShareWrapper>
+                {this.state.routeExists ? (<ShareRoutesPageContent {...{ inflatedGroups, share }} />) : (<Redirect to="/404" />)}
+            </ShareWrapper>
         );
     }
 }
