@@ -32,7 +32,7 @@ defineFeature(feature, test => {
         when("introduzco mi webId", async () => {
 
             await page.waitForSelector(".sc-EHOje.cffgrt");
-            await page.type(".sc-EHOje.cffgrt", "https://sofigbarbes.solid.community/profile/card#me");
+            await page.type(".sc-EHOje.cffgrt", "https://viade1a.solid.community/profile/card#me");
 
             await page.evaluate(() => {
                 let btns = [...document.querySelectorAll("button")];
@@ -47,11 +47,11 @@ defineFeature(feature, test => {
         and("relleno el formulario", async () => {
 
             await page.waitForSelector("[id='username']", {visible: true});
-            await page.type("[id='username']", "sofigbarbes");
+            await page.type("[id='username']", "viade1a");
 
             await page.waitFor(500);
             await page.waitForSelector("[id='password']", {visible: true});
-            await page.type("[id='password']", "contraseñaSolid!1", {visible: true});
+            await page.type("[id='password']", "putosolid", {visible: true});
 
             await page.waitFor(500);
 
