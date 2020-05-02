@@ -115,7 +115,7 @@ export async function readFile(relativeUrl){
 }
 
 export function getFriendInbox(friend){
-    return friend + "inbox/";
+    return friend.split("profile/card#me")[0] + "inbox/";
 }
 
 export async function buildNotification(message){
@@ -136,7 +136,7 @@ export async function manageAcl(fileUrl, fileName, friend){
         let content = buildAcl(fileName);
         await fc.createFile(aclUrl, content, "text/turtle");
     }
-    let friendWebId = friend + "profile/card#me";
+    let friendWebId = friend;
     const fetch = auth.fetch.bind(auth);
     const aclApi = new AclApi(fetch, { autoSave: true });    
     const acl = await aclApi.loadFromFileUrl(fileUrl);
