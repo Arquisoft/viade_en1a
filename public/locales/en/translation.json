@@ -256,6 +256,10 @@
     "grantAccess": "Grant Access"
   },
   "routes":{
+    "loadingYours": "Loading your routes...",
+    "loadingShared": "Loading shared...",
+    "yourRoutesEmpty": "Sad but true you have no routes",
+    "sharedRoutesEmpty": "Ask somebody to share with you..",
     "chooseFile":"Choose your route!",
     "yourRoutes": "Your routes",
     "uploadToPOD": "Upload to your POD",
@@ -275,8 +279,10 @@
     "designRoute": "Design your route",
     "sharewithall": "Share with all",
 	"sharingMessage": "Sharing is caring!",
-	"sharingTitle": "Sharing..."
-
+	"sharingTitle": "Sharing...",
+    "uploading": "Uploading...",
+    "uploadingMessage": "Wait... wait... ehm... wait... One second...",
+    "formatError": "is not a valid format. Try another ;)"
   },
   "routeDesigner": {
     "selectPoints": "Select the points",

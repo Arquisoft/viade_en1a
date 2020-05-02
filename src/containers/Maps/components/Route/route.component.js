@@ -4,6 +4,7 @@ import * as Icon from "react-feather";
 import styled from "styled-components";
 import {useTranslation} from "react-i18next";
 import buttonStyle from "./route.module.css";
+import { errorToaster, successToaster } from "@utils";
 
 const StyledMapRoute = styled.div`
     margin: 5px;
@@ -23,7 +24,15 @@ export const MapRoute = (props) => {
     }
 
     function addMedia(event) {
-        routeWrapper.addMediaToRoute(routeWrapper, event);
+        try{
+            routeWrapper.addMediaToRoute(routeWrapper, event);
+            successToaster(t("routes.uploadingMessage"), t("routes.uploading"));
+
+        }
+        catch{
+            errorToaster("ay");
+        }
+
     }
 
 
