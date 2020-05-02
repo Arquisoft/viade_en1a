@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {NotificationsContainer, NotificationsWrapper} from "./notifications.style";
 import {Notis} from "./Notis";
 import { Loader } from "@util-components";
-import { getSharedRoutes } from "../../modules/podHandler.js";
+import { getSharedRoutes, getFullNotification } from "../../modules/podHandler.js";
 
 export class NotificationsComponent extends Component {
 
@@ -13,7 +13,7 @@ export class NotificationsComponent extends Component {
             notifications: [],
         };
 
-        this.getFullNotification = this.getFullNotification.bind(this);
+        this.getFullNotification = getFullNotification;
 
         this.getNotificationsFromInbox = this.getNotificationsFromInbox.bind(this);
         this.getNotificationsFromInbox();

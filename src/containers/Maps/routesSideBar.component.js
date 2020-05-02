@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {MapsSideBar} from "./maps.style";
+import {MapsSideBar, InputFile, LabelInput} from "./maps.style";
 import styled from "styled-components";
 import {MapRoute} from "./components";
 import {SharedRoute} from "./shared";

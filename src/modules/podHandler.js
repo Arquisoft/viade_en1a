@@ -15,7 +15,14 @@ function checkNotLogFile(url){
     return fileName === "log.ttl";
 }
 
-async function getFullNotification(url) {
+async function getSharedRoute(url) {
+    let fol = await fc.readFile(url.toString());
+    let getSchem = fol.split("<>");
+    let urlText = getSchem[1].split("text");
+    return urlText[1].split("\"")[1];
+}
+
+export async function getFullNotification(url) {
     let myUrl = url.toString();
     let fol = await fc.readFile(myUrl);
     let getSchem = fol.split("<>");
@@ -25,16 +32,7 @@ async function getFullNotification(url) {
     let sender = fullLabel.split("Shared route ")[1];
 
     return sender;
-
 }
-
-async function getSharedRoute(url) {
-    let fol = await fc.readFile(url.toString());
-    let getSchem = fol.split("<>");
-    let urlText = getSchem[1].split("text");
-    return urlText[1].split("\"")[1];
-}
-
 
 export async function getPodRoutes(){
     let routesList = [];
