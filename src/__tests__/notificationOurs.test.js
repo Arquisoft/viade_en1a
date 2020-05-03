@@ -1,7 +1,6 @@
 import React from "react";
 import { render, cleanup } from "react-testing-library";
 import { Notis } from "../containers/Notifications/Notis/Comp/notis.component";
-
 describe.only("RouteComponent", () => {
 
 const noti= {
@@ -18,3 +17,4 @@ it("Notis renders without crashing", () => {
     expect(container).toBeTruthy();
   });
 });
+

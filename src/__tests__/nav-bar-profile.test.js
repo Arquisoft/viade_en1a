@@ -10,4 +10,9 @@ describe("NavBarProfile", () => {
   it("renders without crashing", () => {
     expect(container).toBeTruthy();
   });
+
+  
+  test("renders NavBarProfile elements", () => {
+    expect(document.querySelectorAll("Dropdown[id='dropdownProfile'")).toBeTruthy();
+  });
 });

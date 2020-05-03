@@ -125,7 +125,7 @@ class NavBarProfile extends Component<Props> {
     }));
 
     return image ? (
-      <Dropdown
+      <Dropdown id="dropdownProfile"
         actions={profileOpts}
         className={`nav-bar--profile ${customClass}`}
         open={open}
