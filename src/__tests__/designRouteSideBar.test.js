@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup } from "react-testing-library";
-import Enzyme, {shallow, mount} from "enzyme";
+import Enzyme, {shallow} from "enzyme";
 import DesignSideBar from "../containers/RouteDesigner/designSideBar.component";
 import Adapter from "enzyme-adapter-react-16";
 

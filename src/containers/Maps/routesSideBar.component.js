@@ -21,8 +21,6 @@ import { getFileContent } from "../../modules/parseFile.js";
 import { isValidJSONRoute } from "../../modules/validation.js";
 
 const StyledRoutesSidebar = styled.div`
-  height: 50vh;
-
   width: 25%;
 `;
 
@@ -274,14 +272,14 @@ class RoutesSideBar extends Component {
         >
           {t("routes.uploadToPOD")}
         </Button>
-        <MapsSideBar style={{ height: "340px" }}>
+        <MapsSideBar >
           {this.state.loadingYourText}
           {this.listRoutes()}
           <div></div>
           {this.state.loadingSharedText}
           {this.listShared()}
         </MapsSideBar>
-        <label style={{ marginTop: "10px" }}>
+        <label id="covid" style={{ marginTop: "10px" }}>
           <span>{t("routes.covidtoggle")}</span>
           <Switch
             onChange={this.handleCOVIDChange}
@@ -295,7 +293,7 @@ class RoutesSideBar extends Component {
         >
           {t("routes.designRoute")}
         </a>
-        <Button variant="primary" block onClick={this.onClearArray}>
+        <Button id="clear" variant="primary" block onClick={this.onClearArray}>
           {t("routes.clear")}
         </Button>
       </StyledRoutesSidebar>
