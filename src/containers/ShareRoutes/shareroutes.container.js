@@ -16,10 +16,11 @@ class ShareRoutesComponent extends Component<Props> {
 
     constructor(props) {
         super(props);
+        const { groups, route } = props;
 
         this.state = {
-            inflatedGroups: {},
-            route: null,
+            inflatedGroups: groups === null || typeof groups === undefined ? {} : groups,
+            route: groups === null || typeof groups === undefined ? null : route,
             routeExists: true
         };
         this.fc = new FC(auth);
