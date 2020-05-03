@@ -6,7 +6,7 @@ import Adapter from "enzyme-adapter-react-16";
 import Marker from "containers/RouteDesigner/components/Marker.component";
 Enzyme.configure({adapter: new Adapter()});
 
-import 'jest-dom/extend-expect';
+import "jest-dom/extend-expect";
 
 
 afterAll(cleanup);
