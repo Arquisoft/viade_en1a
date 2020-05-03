@@ -65,11 +65,7 @@ class DesignSideBar extends Component {
 
     parseToJSONLD = async (routeName, routeDescription) => {
         let routePoints = this.props.getRouteCoordinates();
-        console.log(routeName);
-        console.log(routeDescription);
-        console.log(routePoints);
         let parsedRoute = await buildRouteJSONLD(routeName, routeDescription, routePoints);
-        console.log(parsedRoute);
         return parsedRoute;
     }
 
