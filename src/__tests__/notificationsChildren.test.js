@@ -9,7 +9,7 @@ describe.only("Nav Bar", () => {
     <Notifications
       {...{
         inbox: "https://example/inbox",
-        webId: "https://example/profile/card#me"
+        webId: "https://example/profile/card#me" 
       }}
     />
   );
