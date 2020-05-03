@@ -1,5 +1,4 @@
-import React from "react";
-import { cleanup } from "react-testing-library";
+import { render, cleanup } from "react-testing-library";
 import { buildRouteJSONLD, buildAcl } from "../modules/buildFile";
 
 afterAll(cleanup);
@@ -10,13 +9,13 @@ jest.mock("solid-auth-client", () => {
   return auth;
 });
 
-describe('build file', () => {
+describe("build file", () => {
   let name = "Test route";
-  let description = "Route for testing"
+  let description = "Route for testing";
   let points = [];
-  points.push( { lat: 43.388103444729204, lng: -5.937627553939819 });
-  points.push( { lat: 43.3716343009739, lng: -5.887845754623413 });
-  points.push( {lat: 43.379120829971576, lng: -5.821584463119507});
+  points.push({lat: 43.388103444729204, lng: -5.937627553939819});
+  points.push({lat: 43.3716343009739, lng: -5.887845754623413});
+  points.push({lat: 43.379120829971576, lng: -5.821584463119507});
   points.push({lat: 43.40606468129765, lng: -5.848020315170288});
 
   let expectedJSON = `{
@@ -94,7 +93,7 @@ describe('build file', () => {
   ]
 }`;
 
-  test('builds route correctly', () => {
+  test("builds route correctly", () => {
     return buildRouteJSONLD(name, description, points).then((route) => {
       expect(route).toEqual(expectedJSON);
     });
@@ -107,7 +106,7 @@ describe('build file', () => {
 acl:agent </profile/card#me>;
 acl:accessTo <./Test route>;acl:mode acl:Write, acl:Control, acl:Read.`;
 
-  test('builds acl correctly', () => {
+  test("builds acl correctly", () => {
     let routeACL = buildAcl(name);
 
     expect(routeACL).toEqual(expectedACL);
