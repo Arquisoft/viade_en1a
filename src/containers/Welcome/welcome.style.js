@@ -18,10 +18,9 @@ export const WelcomeWrapper = styled.section`
   }
 `;
 
-export const WelcomeCard = styled.div`
+export const WelcomeCard = styled.section`
   background-color: #fff;
   margin: 30px auto;
-
   //Overriding the style guide card flexbox settings
   max-width: 80% !important;
   flex-direction: row !important;
@@ -39,6 +38,7 @@ export const WelcomeCard = styled.div`
   button {
     margin-left: 8px;
   }
+  
 `;
 
 export const WelcomeLogo = styled.div`

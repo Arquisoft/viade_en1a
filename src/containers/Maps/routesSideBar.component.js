@@ -21,8 +21,6 @@ import { getFileContent } from "../../modules/parseFile.js";
 import { isValidJSONRoute } from "../../modules/validation.js";
 
 const StyledRoutesSidebar = styled.div`
-  height: 50vh;
-
   width: 25%;
 `;
 
@@ -274,7 +272,7 @@ class RoutesSideBar extends Component {
         >
           {t("routes.uploadToPOD")}
         </Button>
-        <MapsSideBar style={{ height: "340px" }}>
+        <MapsSideBar >
           {this.state.loadingYourText}
           {this.listRoutes()}
           <div></div>

@@ -173,7 +173,7 @@ class SimpleMap extends Component {
 */
     render() {
         return (
-            <div style={{ width: "100%", display: "flex", flex: "row", height:"100%"}} id="id1">
+            <div style={{ width: "100%", display: "flex", flex: "row"}} id="id1">
                 <RoutesSideBar id = "routesSideBar" show={this.show} toggleCOVID={this.toggleCOVID}/>
                 <div style={{height: "50vh", width: "80%", marginLeft:"10vh",marginTop:"5vh", marginRight:"5vh"}} id="id2">
                     <GoogleMapReact id="map"
