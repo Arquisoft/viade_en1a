@@ -19,8 +19,8 @@ class ShareRoutesComponent extends Component<Props> {
         const { groups, route } = props;
 
         this.state = {
-            inflatedGroups: groups === null || groups === undefined ? {} : groups,
-            route: groups === null || groups === undefined ? null : route,
+            inflatedGroups: groups === null || groups === "undefined" ? {} : groups,
+            route: groups === null || groups === "undefined" ? null : route,
             routeExists: true
         };
         this.fc = new FC(auth);
