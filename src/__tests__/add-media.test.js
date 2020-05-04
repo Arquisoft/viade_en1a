@@ -1,9 +1,9 @@
 import React from "react";
-import {cleanup } from '@testing-library/react'
+import {cleanup} from "@testing-library/react";
 import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import RoutesSideBar from "../containers/Maps/routesSideBar.component";
-
+import "jest-dom/extend-expect";
 
 configure({adapter: new Adapter()});
 

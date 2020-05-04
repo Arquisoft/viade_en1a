@@ -1,9 +1,9 @@
 import React from "react";
-import { render, cleanup } from "react-testing-library";
+import {cleanup, render} from "react-testing-library";
 import SimpleMap from "../containers/Maps/maps.component";
-import RoutesSideBar from "../containers/Maps/routesSideBar.component";
-import Enzyme, { shallow } from "enzyme";
+import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+
 Enzyme.configure({ adapter: new Adapter() });
 afterAll(cleanup);
 

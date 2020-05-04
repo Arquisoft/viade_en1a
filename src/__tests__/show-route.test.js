@@ -1,10 +1,11 @@
 import React from "react";
-import {cleanup} from '@testing-library/react'
+import {cleanup} from "@testing-library/react";
 import {configure, mount, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import RoutesSideBar from "../containers/Maps/routesSideBar.component";
 import SimpleMap from "../containers/Maps/maps.component";
 import GoogleMapReact from "google-map-react";
+import "jest-dom/extend-expect";
 
 configure({adapter: new Adapter()});
 
