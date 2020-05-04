@@ -14,8 +14,4 @@ Because of the complexity of this project and the use of technologies we have ne
 Because of the risks mentioned before and some decisions taken by the team, we are aware of some aspects of our application that could be improved. These are some that we hope to fix in the near future.
 
 . *Few Test:* Until now we have chosen to focus more on implementation than testing so we hope to take our codecov to, at least, 60% by the next deliverable.
-. *Improve the CSS:* We will try to make our application more appealing, especially the routes and media view.
-. *Improve some features:* We will try to make our application easier to understand and use (for example, sharing routes to a group or not having to refresh when uploading a route).
-. *Repeated code:* Our project has a lot of repeated code that should be cleaned.
 . *Unnecesary code:* Due to the generator we used at the beggining, we have a lot of code we don't use and/or don't understand. This code should be deleted to avoid security issues and a dirty project.
-. *No actual architecture:* Due to the lack of experience with the technologies no actual architectural design has been followed, making it harder to maintain the code if we had to do so in the future.
