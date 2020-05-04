@@ -9,7 +9,7 @@ describe("fetFileContent tests", () => {
 
   test("parses route correctly", () => {
     return getFileContent(file, (result) => {
-      expect(result).toEqual(expectedOutput);;
-    })
+      expect(result).toEqual(expectedOutput);
+    });
   });
 });
