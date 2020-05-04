@@ -1,4 +1,4 @@
-import { render, cleanup } from "react-testing-library";
+import { cleanup } from "react-testing-library";
 import { buildRouteJSONLD, buildAcl } from "../modules/buildFile";
 
 afterAll(cleanup);
