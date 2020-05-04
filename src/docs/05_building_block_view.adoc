@@ -87,50 +87,9 @@ Contained Building Blocks::
 * *View*: Representation of the information, graphical interface.
 * *Controller*: Accepts input and converts it to commands for the model or view.
 
-=== Opening Model Black Box
+=== Opening Black Box
 
-[plantuml,"Models",png]
-----
-package "ViadeModels" {
-    [Routes] as Routes
-}
-
-package "SolidModels" {
-    [Friends] as Friends
-    [Notifications] as Notifications
-}
-
-package Views{
-    [FriendsList] as FriendsList
-    [ShareRoute] as ShareRoute
-    [Maps] as Maps
-}
-
-package Controller{
-
-}
-
-database  Solid
-
-Friends --> Friends :Sends --> Routes
-Notifications --> Routes :Include
-
-
-
-ShareRoute --> Friends:Uses
-ShareRoute --> Routes:Uses
-
-FriendsList --> Friends:Uses
-
-Maps --> Routes:Lists
-
-SolidModels -->  Solid
-
-Controller --> ViadeModels: "Modifies"
-Controller --> SolidModels: "Modifies"
-
-Views --> Controller : "User controller"
-----
+image::https://i.imgur.com/9Fl3hzB.png[Black Box]
 
 Let's explore the main models for the viade app
 
