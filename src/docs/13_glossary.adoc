@@ -1,28 +1,6 @@
 [[section-glossary]]
 == Glossary
 
-
-
-[role="arc42help"]
-****
-.Contents
-The most important domain and technical terms that your stakeholders use when discussing the system.
-
-You can also see the glossary as source for translations if you work in multi-language teams.
-
-.Motivation
-You should clearly define your terms, so that all stakeholders
-
-* have an identical understanding of these terms
-* do not use synonyms and homonyms
-
-.Form
-A table with columns <Term> and <Definition>.
-
-Potentially more columns in case you need translations.
-
-****
-
 [options="header",cols="1,4"]
 |===
 | Term         | Definition
@@ -52,5 +30,5 @@ Potentially more columns in case you need translations.
 
 | *_CODACY_*     | Codacy is a continuous integracion service that checks the quality of the project by performing an automatic review of the code.
 
-| *_CODECOV_*     | Codecov is a continuous integration tool that examines how many code lines were executed by a test suite and calculates what percentage of the project has not been tested.
+| *_CODECOV_*     | Codecov is a continuous integration tool that examines how many code lines were executed by a test suite and calculates what percentage of the project has been tested.
 |===

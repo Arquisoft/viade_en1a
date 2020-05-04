@@ -1,20 +1,6 @@
 [[section-technical-risks]]
 == Risks and Technical Debts
 
-
-[role="arc42help"]
-****
-.Contents
-A list of identified technical risks or technical debts, ordered by priority
-
-.Motivation
-“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.) 
-
-This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.
-
-.Form
-List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
-****
 === Risks
 Because of the complexity of this project and the use of technologies we have never tried before, the team may encounter some problems while developing the application. These are some of the problems we expect to have and, hopefully, surpass.
 
@@ -28,8 +14,4 @@ Because of the complexity of this project and the use of technologies we have ne
 Because of the risks mentioned before and some decisions taken by the team, we are aware of some aspects of our application that could be improved. These are some that we hope to fix in the near future.
 
 . *Few Test:* Until now we have chosen to focus more on implementation than testing so we hope to take our codecov to, at least, 60% by the next deliverable.
-. *Improve the CSS:* We will try to make our application more appealing, especially the pictures and media view.
-. *Improve some features:* We will try to make our application easier to understand and use (for example, sharing pictures to a group or not having to refresh when uploading a route).
-. *Repeated code:* Our project has a lot of repeated code that should be cleaned.
 . *Unnecesary code:* Due to the generator we used at the beggining, we have a lot of code we don't use and/or don't understand. This code should be deleted to avoid security issues and a dirty project.
-. *No actual architecture:* Due to the lack of experience with the technologies no actual architectural design has been followed, making it harder to maintain the code if we had to do so in the future.
