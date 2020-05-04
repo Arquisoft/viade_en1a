@@ -1,0 +1,12 @@
+version: '3'
+services:
+  solidserver:
+    image: nodesolidserver/node-solid-server
+    container_name: solidserver
+    ports:
+      - "8443:8443"
+  sampleweb:
+    container_name: viade_en1a
+    build: .
+    ports:
+      - "3000:3000"

@@ -14,17 +14,7 @@ describe.only("RouteComponent", () => {
       route: "route"
 
   };
-
-  const route = {
-
-    name: "Nombre ruta",
-
-    url: "url",
-
-    route: "route"
-
-  };
-
+  
   it("MapRoute renders without crashing", () => {
       afterAll(cleanup);
       const {container} = render(<MapRoute {...{routeWrapper}} />);
@@ -32,11 +22,11 @@ describe.only("RouteComponent", () => {
   });
 
 
-/*
+
   it("SharedRoute renders without crashing", () => {
     afterAll(cleanup);
       const {container} = render(<SharedRoute {...{routeWrapper}} />);
     expect(container).toBeTruthy();
   });
-*/
+
 });

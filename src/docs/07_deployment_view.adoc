@@ -12,7 +12,7 @@
     c. In privacy settings for your inbox folder, create a rule such that *anyone* can make *submissions* to it.
     d. In the Viade folder that the app will generate in your POD, create a rule such that *anyone* or *your friends*, being the latter the recommended one for security reasons, can *view the contents* inside it.
     e. For the *sharing* functionality to work properly, both you and the person who you want to share a route with, must have each other added as a *friend* in Solid.
-    e. Routes imported into the application must follow the JSON-LD syntax of the ViadeSpec, similar to the following example:
+    f. Routes imported into the application must follow the JSON-LD syntax of the ViadeSpec, similar to the following example:
 
 .JSON-LD format example:
 [#src-listing] 

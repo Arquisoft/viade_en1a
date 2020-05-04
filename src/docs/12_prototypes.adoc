@@ -20,5 +20,8 @@ image:prototypes/notifications.png[]
 .Profile
 image:prototypes/profile.png[] 
 
+=== Navigation Map
 
+.Navigation map
+image:prototypes/navigationMap.png[] 
 

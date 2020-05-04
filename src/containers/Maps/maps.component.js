@@ -10,7 +10,7 @@ class SimpleMap extends Component {
     constructor() {
         super();
 
-        this.fullscreen = this.fullscreen.bind(this);
+       // this.fullscreen = this.fullscreen.bind(this);
 
         this.heatMapData = {
             positions: loadHeatMap(),
@@ -148,7 +148,7 @@ class SimpleMap extends Component {
         }
         this.setState({galery : list}) ;
     }
-
+/*
     fullscreen(id, i) {
         if ("fullscreenEnabled" in document || "webkitFullscreenEnabled" in document || "mozFullScreenEnabled" in document || "msFullscreenEnabled" in document) {
             if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
@@ -170,13 +170,13 @@ class SimpleMap extends Component {
             }
         }
     }
-
+*/
     render() {
         return (
-            <div style={{ width: "100%", display: "flex", flex: "row", height:"100%"}} id="id1">
-                <RoutesSideBar show={this.show} toggleCOVID={this.toggleCOVID}/>
+            <div style={{ width: "100%", display: "flex", flex: "row"}} id="id1">
+                <RoutesSideBar id = "routesSideBar" show={this.show} toggleCOVID={this.toggleCOVID}/>
                 <div style={{height: "50vh", width: "80%", marginLeft:"10vh",marginTop:"5vh", marginRight:"5vh"}} id="id2">
-                    <GoogleMapReact
+                    <GoogleMapReact id="map"
                         bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
                         defaultZoom={this.state.zoom}
                         heatmapLibrary={true}
