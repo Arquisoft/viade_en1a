@@ -23,7 +23,7 @@ describe.only("Using molid", () => {
     test("test addFriendToGroup", () => {
         addFriendToGroup("https://uo236405.inrupt.net/profile/card#me").then(
             inflateGroups().then((r) => {
-                expect(r["default"].length).toBe(1)
+                expect(r["default"].length).toBe(1);
             })
         );
     });
@@ -31,15 +31,15 @@ describe.only("Using molid", () => {
     test("test deleteFriendToGroup", () => {
         deleteFriendToGroup("https://uo236405.inrupt.net/profile/card#me").then(
             inflateGroups().then((r) => {
-                expect(r["default"].length).toBe(0)
+                expect(r["default"].length).toBe(0);
             })
         );
     });
 
     test("test inflateGroups", () => {
         inflateGroups().then((r) => {
-            expect(r["default"].length).toBe(0)
-        })
+            expect(r["default"].length).toBe(0);
+        });
     });
 
 });
