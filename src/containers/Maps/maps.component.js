@@ -8,8 +8,9 @@ import loadHeatMap from "../../modules/loadHeatMap.js";
 class SimpleMap extends Component {
 
     constructor() {
-        super();
 
+        super();
+        this.map=null;
        // this.fullscreen = this.fullscreen.bind(this);
 
         this.heatMapData = {
@@ -44,20 +45,20 @@ class SimpleMap extends Component {
 
 
     handleApiLoaded = (map, maps) => {
-        this.map = map;
-        this.maps = maps;
+       this.map = map;
+       this.maps = maps;
     };
 
     loadMap = () => {
         if (this.state.route !== null && this.map !== null) {
             this.setState({features: this.map.data.addGeoJson(this.state.route)});
-            this.map.data.setMap(this.map);
+           this.map.data.setMap(this.map);
         }
     };
 
     deleteOldRoute = () => {
         for (var i = 0; i < this.state.features.length; i++) {
-            this.map.data.remove(this.state.features[parseInt(i)]);
+           this.map.data.remove(this.state.features[parseInt(i)]);
 
         }
     };

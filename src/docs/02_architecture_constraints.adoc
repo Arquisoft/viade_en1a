@@ -35,7 +35,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 
 |*_Team_* | The team is composed of seven people
 |*_Time_* | The application must be completed before the end of the curse
-|*_Scope_* | Decentralized application for managing routes 
+|*_Scope_* | Decentralized application for managing pictures
 |*_Data_* |  Data storage is separated from the app
 
 |=========================================================

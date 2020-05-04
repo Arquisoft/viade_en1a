@@ -36,7 +36,7 @@ Various options:
      | One of the main advantages of using React are its libraries for working with the Solid. 
     |The main drawback for its election is the fact that we have never worked with it, meaning that we have no experience with React.
 |*_Solid PODs_*  
-    | The routes data will be stored in the users' PODs, allowing users to reserve the right of deciding who can access that data.
+    | The pictures data will be stored in the users' PODs, allowing users to reserve the right of deciding who can access that data.
     |Since the aim of the project is developing a decentralized application, Solid PODs are a good candidate for data storing. Free, Open Source and gaining popularity, it is an interesting option to use as a base for our application.
     |Again, the lack of experience with this technology can be considered as a drawback. Moreover, Solid  itself is still a project in progress, which will undoubtly lead to problems.
 |*_GitHub_*  
@@ -45,12 +45,12 @@ Various options:
     |The usage of GitHub hardly has any disadvantage, aside from it's learning curve, which is not a huge problem.
 |*_Google Maps API_*  
     | We decided to use this API to easily show an interactive world map in our application, and load
-    routes in it, so that users can visualize them.
-    |It is really easy to integrate in any web app, it also provides a great support for displaying routes using GeoJSON and it's the most complete map API out there.
+    pictures in it, so that users can visualize them.
+    |It is really easy to integrate in any web app, it also provides a great support for displaying pictures using GeoJSON and it's the most complete map API out there.
     |The only disadvantage we can find is the need to use an API key for which you will have to pay once you exceed the number of free requests. For the moment, this does not reprensent a problem for our application, since it is not being used massively.
 |*_GeoJSON_*  
     | GeoJSON is an open standard, based in JSON, specifically designed for representing geographic elements.
-    |Those elements represented with this format can be directly shown in the Google API map, thanks to its Data Layer, meaning that it offers and easy way to show the routes once they have been converted to valid GeoJson objects. Since we are using JSON-LD for storing and sharing routes, there is another advantage, since converting from JSON-LD to GeoJSON is as simple as moving attributes from one Javascript object to another.
+    |Those elements represented with this format can be directly shown in the Google API map, thanks to its Data Layer, meaning that it offers and easy way to show the pictures once they have been converted to valid GeoJson objects. Since we are using JSON-LD for storing and sharing pictures, there is another advantage, since converting from JSON-LD to GeoJSON is as simple as moving attributes from one Javascript object to another.
     |It needs to be extended, since we need to add extra information to our rutes, e. g., pictures or a description, as it is not as complete as standards like GPX, although with the usage of JSON-LD it has not been an issue for us.
 |*_JSON-LD_*  
     | This provides a method for encoding Linked Data in a JSON format.

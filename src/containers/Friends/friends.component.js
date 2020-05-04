@@ -28,7 +28,6 @@ function GroupBox(props) {
         </StyledGroupBox>
     )
 }
-
 function ChooseGroupsModal(props) {
     const {t, groups, changeFriendFromGroupModal} = props;
 
@@ -52,7 +51,7 @@ function ChooseGroupsModal(props) {
                         {
                             Object.keys(groups).map((key) => {
                                 return (
-                                    <option value={key}>{key}</option>
+                                    <option key={key.toString()} value={key}>{key}</option>
                                 )
                             })
                         }
@@ -97,7 +96,7 @@ function EditGroupsModal(props) {
                         Object.keys(groups).map((key) => {
                             return (
                                 //<option value={index}>{key}</option>
-                                <GroupBox groupName={key} deleteGroup={deleteGroup}/>
+                                <GroupBox key={key.toString()} groupName={key} deleteGroup={deleteGroup}/>
                             )
                         })
                     }
@@ -179,7 +178,7 @@ export const FriendsPageContent = (props) => {
                                 {
                                     groups[key].map(
                                         (friend) => (
-                                            <Friend friend={friend} deleteFriend={deleteFriend} changeFriendGroup={showChangeFriendGroupModal}/>
+                                            <Friend key={friend.index} friend={friend} deleteFriend={deleteFriend} changeFriendGroup={showChangeFriendGroupModal}/>
                                         )
                                     )
                                     

@@ -258,7 +258,7 @@ class RoutesSideBar extends Component {
           style={{ marginTop: "3vh" }}
         />
 
-        <LabelInput for="routeUploader" id="btnChoose">
+        <LabelInput htmlFor="routeUploader" id="btnChoose">
           {this.state.labelText}
         </LabelInput>
 
@@ -275,7 +275,7 @@ class RoutesSideBar extends Component {
         <MapsSideBar >
           {this.state.loadingYourText}
           {this.listRoutes()}
-          <div></div>
+          <div/>
           {this.state.loadingSharedText}
           {this.listShared()}
         </MapsSideBar>

@@ -157,7 +157,7 @@ Friends can be seen from the Friends view on the app and also when sharing a rou
 
 
 Notifications::
-Notifications are used for alerting users of new routes that have been shared with them by friends.
+Notifications are used for alerting users of new pictures that have been shared with them by friends.
 
 [role="arc42help"]
 ****
