@@ -17,6 +17,7 @@ jest.mock("solid-auth-client", () => {
     auth.currentSession = jest.fn(() => Promise.resolve({webId: "https://uo264608.solid.community/profile/card#me"}));
     return auth;
 });
+
 const route = {
     "@context": {
         "@version": 1.1,
@@ -86,18 +87,17 @@ let routeStringify= JSON.stringify(route);
 const routeFile= new File( [routeStringify], "testRoute.json");
 let event= {target: {files: [routeFile]}};
 
+
 describe.only("Route uploading test", () => {
     let container = shallow(<RoutesSideBar/>);
-    let instance= container.dive().instance();
-
-   instance.onChangeHandler(event);
-
+    let instance = container.dive().instance();
 
    it("Route Uploaded successfully", async () => {
-       await instance.onClickHandler();
+       instance.onChangeHandler(event);
+       //await instance.onClickHandler();
 
        expect(container).toBeTruthy();
-    });
+   });
 
 
 

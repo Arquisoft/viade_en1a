@@ -5,11 +5,11 @@ import {Button} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 import $ from "jquery";
 
-import { successToaster, errorToaster } from "@utils";
+import {errorToaster, successToaster} from "@utils";
 
-import { isValidJSONRoute} from "../../modules/validation.js";
-import { itemExists, createFolder, createFile } from "../../modules/podHandler.js";
-import { buildRouteJSONLD } from "../../modules/buildFile.js";
+import {isValidJSONRoute} from "../../modules/validation.js";
+import {createFile, createFolder, itemExists} from "../../modules/podHandler.js";
+import {buildRouteJSONLD} from "../../modules/buildFile.js";
 
 const StyledDesignSidebar = styled.div`
 
@@ -66,8 +66,7 @@ class DesignSideBar extends Component {
 
     parseToJSONLD = async (routeName, routeDescription) => {
         let routePoints = this.props.getRouteCoordinates();
-        let parsedRoute = await buildRouteJSONLD(routeName, routeDescription, routePoints);
-        return parsedRoute;
+        return await buildRouteJSONLD(routeName, routeDescription, routePoints);
     };
 
     checkValidRoute = (trimmedRouteName) => {
@@ -109,6 +108,6 @@ class DesignSideBar extends Component {
 
         }
 
-    };
+}
 
 export default withTranslation()(DesignSideBar);
