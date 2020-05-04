@@ -1,25 +1,25 @@
-import React, { Component } from "react";
-import { ShareRoutesPageContent } from "./shareroutes.component";
+import React, {Component} from "react";
+import {ShareRoutesPageContent} from "./shareroutes.component";
 import auth from "solid-auth-client";
 import FC from "solid-file-client";
 import {withTranslation} from "react-i18next";
-import { ShareWrapper } from "./shareroutes.style";
+import {ShareWrapper} from "./shareroutes.style";
 import {Redirect} from "react-router-dom";
-import { successToaster, errorToaster } from "@utils";
+import {errorToaster, successToaster} from "@utils";
 import $ from "jquery";
 
-import { webId, fullWebId } from "../../modules/solidAuth.js";
-import { getFriendGroups, inflateGroups } from "../../modules/groupsHandler.js";
-import { itemExists, readFile, getFriendInbox, buildNotification, manageAcl } from "../../modules/podHandler.js";
+import {fullWebId, webId} from "../../modules/solidAuth.js";
+import {getFriendGroups, inflateGroups} from "../../modules/groupsHandler.js";
+import {buildNotification, getFriendInbox, itemExists, manageAcl, readFile} from "../../modules/podHandler.js";
 
 class ShareRoutesComponent extends Component<Props> {
 
     constructor(props) {
         super(props);
-        const { groups, route } = props;
+        const {groups, route} = props;
 
         this.state = {
-            inflatedGroups: groups === null || groups === "undefined" ? {} : groups,
+            inflatedGroups: {},
             route: groups === null || groups === "undefined" ? null : route,
             routeExists: true
         };
