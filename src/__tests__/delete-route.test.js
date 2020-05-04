@@ -7,7 +7,7 @@ import "jest-dom/extend-expect";
 
 configure({adapter: new Adapter()});
 
-jest.setTimeout(50000);
+jest.setTimeout(100000);
 afterAll(cleanup);
 
 
