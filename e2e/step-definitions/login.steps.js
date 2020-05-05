@@ -13,19 +13,21 @@ let page = null;
 defineFeature(feature, test => {
 
     beforeEach(async () => {
-        jest.setTimeout(18000000);
+        jest.setTimeout(30000000);
     });
 
     test("User log in", ({ given, when,and, then }) => {
 
         given("a user trying to log in", async () => {
             browser = await puppeteer.launch({
-                headless: false
+                headless: false,
+                timeout: 3000000
             });
 
             page = await browser.newPage();
             await page.goto("http://localhost:3000/#/login", {
-                waitUntil: "networkidle2"
+                waitUntil: "networkidle2",
+                timeout: 3000000
             });
         });
 
