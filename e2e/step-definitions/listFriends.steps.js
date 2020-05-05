@@ -27,6 +27,7 @@ defineFeature(feature, test => {
             page = await browser.newPage();
             await page.goto("http://localhost:3000/#/login", {
                 waitUntil: "networkidle2"
+                , timeout: 400000
             });
              await page.waitForSelector(".sc-EHOje.cffgrt");
             await page.type(".sc-EHOje.cffgrt", "https://viade1a.solid.community/profile/card#me");
@@ -60,28 +61,19 @@ defineFeature(feature, test => {
         });
 
         when("trying to see friends", async () => {
-            await page.click('[href="#/friends"]');
+           
+            page = await browser.newPage();
+            await page.goto("http://localhost:3000/#/friends", {
+                waitUntil: "networkidle2",
+                timeout: 3000000
+            });
 
         });
 
 
         then("we can see the friends", async () => {
-            await page.waitForNavigation({
-                waitUntil: "networkidle2"
-            });
-            await page.waitFor(500);
-             await page.evaluate(() => {
-                let btns = [...document.querySelectorAll("div")];
-                btns.forEach(function (btn) {
-                    if (btn.id === "Daniel Adrian Mare"){
-                        btn.click();
-                    }
-                });
-            });
-            
+            await expect(page).toMatchElement("div", {id: "Daniel Adrian Mare", timeout: 400000});
 
-            expect(page.url()).toBe("http://localhost:3000/viade_en1a/#/friends");
-            
             await browser.close();
         });
     });
