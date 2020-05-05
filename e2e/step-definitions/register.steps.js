@@ -68,7 +68,6 @@ defineFeature(feature, test => {
             await page.waitForNavigation({
                 waitUntil: "networkidle2"
             });
-
             expect(page.url()).toBe("https://solid.community/api/accounts/new");
             await browser.close();
         });

@@ -1,7 +1,7 @@
-  Feature: Logearse
+Feature: Log in
 
-Scenario: Iniciando sesión
-  Given Soy un usuario intentando iniciar sesión
-  When  introduzco mi webId
-  And   relleno el formulario
-  Then nos redirige a la página de bienvenida
+Scenario: User log in
+  Given a user trying to log in
+  When  introducing the url
+  And   introducing the data
+  Then we are logged in and welcome is shown

@@ -7,43 +7,7 @@ Our objective is to develop Viade as a decentralized application, so users will 
 
 === Business Context
 
-[plantuml,"Business context diagram",png]
-----
-:User A: as A
-
-node "System" as Sys{
-}
-
-:User B: as B
-
-database "A's POD" as AP {
-    folder Routes as r1
-}
-
-database "B's POD" as BP {
-    folder inbox as r2
-}
-
-cloud "Map" as Map{
-}
-
-A -right-> Sys : share to B
-A -[#0000ff]right-> Sys : My routes
-Sys -[#00ff00]right-> AP: get A's stored routes
-r1 -[#00ff00]-> Sys
-Sys -[#0000ff]down-> Map : set routes\n on map
-Map -[#0000ff]up-> A : show\n routes
-Sys ---> r2 : mail with\n route URL
-Sys -right-> B : User B is notified
-B -down-> r2 : User B\n access route
-
-legend right
-    |= Color |= Description |
-    | <size:11><back:#ff0000>           </back></size>|    Share routes |
-    | <size:11><back:#0000ff>           </back></size>|    See my routes |
-    | <size:11><back:#00ff00>           </back></size>|    Common process |
-endlegend
-----
+image:03_Business_Context.png[BusinessContext]
 
 === Technical Context
 
