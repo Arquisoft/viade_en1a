@@ -1,7 +1,8 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
 
-Viade is an application that will allow the user to store routes, view them on a map, share them with friends who are also using Viade, alongside multimedia like videos and pictures of said routes. 
+Viade is an application that will allow the user to store routes, view them on a map, share them with friends who are also using Viade, alongside multimedia like videos and pictures of said routes.
+Users will also be able to create their own routes inside the application and will also be able to manage their POD friends and groups of friends.
 
 Our objective is to develop Viade as a decentralized application, so users will be the ones storing all their information and thus, increasing the privacy and data security of the system, by not having any central server to store and manage said data.
 
@@ -10,7 +11,6 @@ Our objective is to develop Viade as a decentralized application, so users will 
 image:03_Business_Context.png[BusinessContext]
 
 === Technical Context
-
 
 [plantuml,"Technical context diagram",png]
 ----
