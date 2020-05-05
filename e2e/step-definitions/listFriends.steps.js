@@ -5,20 +5,21 @@ import {
     loadFeature,
 } from "jest-cucumber";
 
-const feature = loadFeature("./e2e/features/login.feature");
+const feature = loadFeature("./e2e/features/listFriends.feature");
 const puppeteer = require("puppeteer");
 let browser = null;
 let page = null;
 
+
 defineFeature(feature, test => {
 
     beforeEach(async () => {
-        jest.setTimeout(18000000);
+        jest.setTimeout(100000000);
     });
 
-    test("User log in", ({ given, when,and, then }) => {
+    test("Listing friends of a logged user", ({ given, when,and, then }) => {
 
-        given("a user trying to log in", async () => {
+        given("a logged in user", async () => {
             browser = await puppeteer.launch({
                 headless: false
             });
@@ -26,12 +27,9 @@ defineFeature(feature, test => {
             page = await browser.newPage();
             await page.goto("http://localhost:3000/#/login", {
                 waitUntil: "networkidle2"
+                , timeout: 400000
             });
-        });
-
-        when("introducing the url", async () => {
-
-            await page.waitForSelector(".sc-EHOje.cffgrt");
+             await page.waitForSelector(".sc-EHOje.cffgrt");
             await page.type(".sc-EHOje.cffgrt", "https://viade1a.solid.community/profile/card#me");
 
             await page.evaluate(() => {
@@ -42,10 +40,7 @@ defineFeature(feature, test => {
                     }
                 });
             });
-        });
-
-        and("introducing the data", async () => {
-
+            
             await page.waitForSelector("[id='username']", {visible: true});
             await page.type("[id='username']", "viade1a");
 
@@ -65,13 +60,20 @@ defineFeature(feature, test => {
             });
         });
 
-        then("we are logged in and welcome is shown", async () => {
-
-            await page.waitForNavigation({
-                waitUntil: "networkidle2"
+        when("trying to see friends", async () => {
+           
+            page = await browser.newPage();
+            await page.goto("http://localhost:3000/#/friends", {
+                waitUntil: "networkidle2",
+                timeout: 3000000
             });
 
-            expect(page.url()).toBe("http://localhost:3000/viade_en1a/#/welcome");
+        });
+
+
+        then("we can see the friends", async () => {
+            await expect(page).toMatchElement("div", {id: "Daniel Adrian Mare", timeout: 400000});
+
             await browser.close();
         });
     });
