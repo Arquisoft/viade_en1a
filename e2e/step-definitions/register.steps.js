@@ -1,9 +1,6 @@
 import "jest";
 
-import {
-    defineFeature,
-    loadFeature,
-} from "jest-cucumber";
+import {defineFeature, loadFeature,} from "jest-cucumber";
 
 const feature = loadFeature("./e2e/features/register.feature");
 const puppeteer = require("puppeteer");
@@ -13,7 +10,7 @@ let page = null;
 defineFeature(feature, test => {
 
     beforeEach(async () => {
-        jest.setTimeout(1200000);
+        jest.setTimeout(30000000);
     });
 
     test("Register already registered user", ({ given, when,and, then }) => {

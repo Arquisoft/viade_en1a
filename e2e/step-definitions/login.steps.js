@@ -1,9 +1,6 @@
 import "jest";
 
-import {
-    defineFeature,
-    loadFeature,
-} from "jest-cucumber";
+import {defineFeature, loadFeature,} from "jest-cucumber";
 
 const feature = loadFeature("./e2e/features/login.feature");
 const puppeteer = require("puppeteer");
@@ -13,19 +10,21 @@ let page = null;
 defineFeature(feature, test => {
 
     beforeEach(async () => {
-        jest.setTimeout(1200000);
+        jest.setTimeout(30000000);
     });
 
     test("Iniciando sesión", ({ given, when,and, then }) => {
 
         given("Soy un usuario intentando iniciar sesión", async () => {
             browser = await puppeteer.launch({
-                headless: false
+                headless: false,
+                timeout: 3000000
             });
 
             page = await browser.newPage();
             await page.goto("http://localhost:3000/#/login", {
-                waitUntil: "networkidle2"
+                waitUntil: "networkidle2",
+                timeout: 3000000
             });
         });
 
