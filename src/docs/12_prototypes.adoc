@@ -9,7 +9,7 @@ image:prototypes/homeSession.png[]
 image:prototypes/hamburger.png[] 
 
 .My Routes
-image:prototypes/routes.png[] 
+image:prototypes/pictures.png[]
 
 .My Friends
 image:prototypes/friends.png[] 

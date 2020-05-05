@@ -1,15 +1,16 @@
 import React from "react";
-import { render, cleanup } from "react-testing-library";
+import {cleanup, render} from "react-testing-library";
 import ShareRoutesComponent from "../containers/ShareRoutes/shareroutes.container";
-import { configure, mount } from "enzyme";
+import {configure, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { Button } from "react-bootstrap";
+import {Button} from "react-bootstrap";
+import "jest-dom/extend-expect";
 
 afterAll(cleanup);
 
 jest.mock("solid-auth-client", () => {
   const auth = jest.requireActual("solid-auth-client");
-  auth.currentSession = jest.fn(() => Promise.resolve({ webId: "https://adrianperezmanso.solid.community/profile/card#me" }));
+  auth.currentSession = jest.fn(() => Promise.resolve({webId: "https://adrianperezmanso.solid.community/profile/card#me"}));
   return auth;
 });
 

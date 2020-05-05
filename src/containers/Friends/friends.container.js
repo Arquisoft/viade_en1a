@@ -153,7 +153,7 @@ export class FriendsComponent extends Component<Props> {
         const changeFriendGroup = this.changeFriendGroup;
 
         return (
-            <FriendsPageContent {...{webId, groups, addFriend, deleteFriend, addGroup, deleteGroup, changeFriendGroup}}></FriendsPageContent>
+            <FriendsPageContent {...{webId, groups, addFriend, deleteFriend, addGroup, deleteGroup, changeFriendGroup}}/>
             
         );
     }

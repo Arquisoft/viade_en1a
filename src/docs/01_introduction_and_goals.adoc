@@ -3,7 +3,7 @@
 
 The goal of this project is to develop an application which is able to store user routes in a *decentralized* manner but still manages to share these decentralized routes with other users.
 
-The technologies that will be used in the development of this application will be _React_ in the front-end and a _SOLID_ based server in the back-end, as well as _JSON-LD_ for the parsing of routes and _GPX_ for the use of mapping data.
+The technologies that will be used in the development of this application will be _React_ in the front-end and a _SOLID_ based server in the back-end, as well as _JSON-LD_ for the parsing of pictures and _GPX_ for the use of mapping data.
 
 For the foundations of the project we used an open source *generator* for Solid-React applications. 
 
@@ -11,11 +11,11 @@ For the foundations of the project we used an open source *generator* for Solid-
 
 These are the *functional* requirements our application will provide:
 
-. Data stored in a decentralized way (separated from the application). Each user has their own pod for the routes to be stored on.
+. Data stored in a decentralized way (separated from the application). Each user has their own pod for the pictures to be stored on.
 
-. Users are able to view their routes in a map.
+. Users are able to view their pictures in a map.
 
-. Users have the possibility to add media elements to their routes.
+. Users have the possibility to add media elements to their pictures.
 
 . Users can share the data stored in their pods with other single users or with groups of users selected by them.
 

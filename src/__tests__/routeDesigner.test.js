@@ -3,10 +3,9 @@ import { render, cleanup } from "react-testing-library";
 import Enzyme, {shallow} from "enzyme";
 import RouteDesigner from "../containers/RouteDesigner/routeDesigner.component";
 import Adapter from "enzyme-adapter-react-16";
-import Marker from "containers/RouteDesigner/components/Marker.component";
-Enzyme.configure({adapter: new Adapter()});
 
 import "jest-dom/extend-expect";
+Enzyme.configure({adapter: new Adapter()});
 
 
 afterAll(cleanup);

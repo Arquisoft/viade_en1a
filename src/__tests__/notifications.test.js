@@ -1,5 +1,5 @@
 import React from "react";
-import { render, cleanup } from "react-testing-library";
+import {cleanup, render} from "react-testing-library";
 import Notifications from "../components/Notifications/notifications.component";
 
 afterAll(cleanup);
@@ -9,7 +9,7 @@ describe.only("Nav Bar", () => {
     <Notifications
       {...{
         inbox: [{ path: "https://example/inbox" }],
-        webId: "https://example/profile/card#me"
+        webId: "https://UO264608.solid.community/profile/card#me"
       }}
     />
   );

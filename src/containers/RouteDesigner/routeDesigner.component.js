@@ -41,7 +41,7 @@ class RouteDesigner extends Component {
             }]
         });
         this.drawRoute();
-    }
+    };
 
     drawRoute = () => {
         const self = this;
@@ -56,11 +56,11 @@ class RouteDesigner extends Component {
         this.setState({
             routeLines: [...this.state.routeLines, routeLine]
         });
-    }
+    };
 
     getRouteCoordinates = () => {
         return this.state.markers;
-    }
+    };
 
     render() {
         const {t} = this.props;

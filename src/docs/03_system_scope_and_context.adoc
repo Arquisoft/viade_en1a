@@ -1,7 +1,7 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
 
-Viade is an application that will allow the user to store routes, view them on a map, share them with friends who are also using Viade, alongside multimedia like videos and pictures of said routes. 
+Viade is an application that will allow the user to store pictures, view them on a map, share them with friends who are also using Viade, alongside multimedia like videos and pictures of said pictures.
 
 Our objective is to develop Viade as a decentralized application, so users will be the ones storing all their information and thus, increasing the privacy and data security of the system, by not having any central server to store and manage said data.
 
@@ -28,19 +28,19 @@ cloud "Map" as Map{
 }
 
 A -right-> Sys : share to B
-A -[#0000ff]right-> Sys : My routes
-Sys -[#00ff00]right-> AP: get A's stored routes
+A -[#0000ff]right-> Sys : My pictures
+Sys -[#00ff00]right-> AP: get A's stored pictures
 r1 -[#00ff00]-> Sys
-Sys -[#0000ff]down-> Map : set routes\n on map
-Map -[#0000ff]up-> A : show\n routes
+Sys -[#0000ff]down-> Map : set pictures\n on map
+Map -[#0000ff]up-> A : show\n pictures
 Sys ---> r2 : mail with\n route URL
 Sys -right-> B : User B is notified
 B -down-> r2 : User B\n access route
 
 legend right
     |= Color |= Description |
-    | <size:11><back:#ff0000>           </back></size>|    Share routes |
-    | <size:11><back:#0000ff>           </back></size>|    See my routes |
+    | <size:11><back:#ff0000>           </back></size>|    Share pictures |
+    | <size:11><back:#0000ff>           </back></size>|    See my pictures |
     | <size:11><back:#00ff00>           </back></size>|    Common process |
 endlegend
 ----

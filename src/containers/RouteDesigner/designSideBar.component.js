@@ -5,11 +5,11 @@ import {Button} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 import $ from "jquery";
 
-import { successToaster, errorToaster } from "@utils";
+import {errorToaster, successToaster} from "@utils";
 
-import { isValidJSONRoute} from "../../modules/validation.js";
-import { itemExists, createFolder, createFile } from "../../modules/podHandler.js";
-import { buildRouteJSONLD } from "../../modules/buildFile.js";
+import {isValidJSONRoute} from "../../modules/validation.js";
+import {createFile, createFolder, itemExists} from "../../modules/podHandler.js";
+import {buildRouteJSONLD} from "../../modules/buildFile.js";
 
 const StyledDesignSidebar = styled.div`
 
@@ -21,9 +21,10 @@ const StyledDesignSidebar = styled.div`
 
 class DesignSideBar extends Component {
 
+
     removeMarkers = () => {
         this.props.removeMarkers();
-    }
+    };
 
     uploadToPOD = async () => {
         let routeName = $("#newRouteName").val();
@@ -39,20 +40,20 @@ class DesignSideBar extends Component {
             if (!await itemExists("viade/routes/")) {
                 await createFolder("viade/routes/");
             }
-            
+
             await this.createRoute("viade/routes/" + trimmedRouteName + ".json", jsonLDFile);
             let {t} = this.props;
-            
+
             let message = t("routeDesigner.uploaded");
             let title = t("routeDesigner.uploadingTitle");
             successToaster(message, title);
 
             this.clearData();
         }
-    }
+    };
 
-    async createRoute(relativeUrl, content){
-        if(isValidJSONRoute(relativeUrl, content)){
+    async createRoute(relativeUrl, content) {
+        if (isValidJSONRoute(relativeUrl, content)) {
             await createFile(relativeUrl, content);
         }
     }
@@ -61,13 +62,12 @@ class DesignSideBar extends Component {
         this.props.removeMarkers();
         $("#newRouteName").val("");
         $("#newRouteDescription").val("");
-    }
+    };
 
     parseToJSONLD = async (routeName, routeDescription) => {
         let routePoints = this.props.getRouteCoordinates();
-        let parsedRoute = await buildRouteJSONLD(routeName, routeDescription, routePoints);
-        return parsedRoute;
-    }
+        return await buildRouteJSONLD(routeName, routeDescription, routePoints);
+    };
 
     checkValidRoute = (trimmedRouteName) => {
         const {t} = this.props;
@@ -80,30 +80,33 @@ class DesignSideBar extends Component {
             return false;
         }
         return true;
-    }
+    };
 
-    render() {
-        const {t} = this.props;
-        return (
+        render()
+        {
+            const {t} = this.props;
+            return (
 
-            <StyledDesignSidebar>
+                <StyledDesignSidebar>
 
-                <MapsSideBar style={{height: "85%"}}>
-                    <h2>{t("routeDesigner.newRoute")}</h2>
-                    <form>
-                        <label htmlFor="newRouteName">{t("routeDesigner.routeName")}:</label>
-                        <input id="newRouteName" type="text" required/>
-                        <label htmlFor="newRouteDescription">{t("routeDesigner.routeDescription")}:</label>
-                        <input id="newRouteDescription" type="text"/>
-                    </form>
-                </MapsSideBar>
-                <Button variant="primary" block onClick={this.uploadToPOD}>{t("routeDesigner.uploadToPOD")}</Button>
-                <Button variant="primary" block onClick={this.removeMarkers}>{t("routeDesigner.clearRoute")}</Button>
+                    <MapsSideBar style={{height: "85%"}}>
+                        <h2>{t("routeDesigner.newRoute")}</h2>
+                        <form>
+                            <label htmlFor="newRouteName">{t("routeDesigner.routeName")}:</label>
+                            <input id="newRouteName" type="text" required/>
+                            <label htmlFor="newRouteDescription">{t("routeDesigner.routeDescription")}:</label>
+                            <input id="newRouteDescription" type="text"/>
+                        </form>
+                    </MapsSideBar>
+                    <Button variant="primary" block
+                            onClick={this.uploadToPOD}>{t("routeDesigner.uploadToPOD")}</Button>
+                    <Button variant="primary" block
+                            onClick={this.removeMarkers}>{t("routeDesigner.clearRoute")}</Button>
 
-            </StyledDesignSidebar>
-        );
+                </StyledDesignSidebar>
+            );
 
-    }
+        }
 
 }
 
