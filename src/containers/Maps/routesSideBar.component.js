@@ -18,7 +18,7 @@ import {
   itemExists,
 } from "../../modules/podHandler.js";
 import {getFileContent} from "../../modules/parseFile.js";
-import {isValidJSONRoute} from "../../modules/validation.js";
+import {isValidJSONLDRoute} from "../../modules/validation.js";
 
 const StyledRoutesSidebar = styled.div`
       margin: 10px;
@@ -149,14 +149,14 @@ class RoutesSideBar extends Component {
 
   async createRouteFile(relativeUrl, file) {
     getFileContent(file, async function (content) {
-      if (isValidJSONRoute(relativeUrl, content)) {
+      if (isValidJSONLDRoute(relativeUrl, content)) {
         await createFile(relativeUrl, content);
       }
     });
   }
 
   async createRouteText(relativeUrl, text) {
-    if (isValidJSONRoute(relativeUrl, text)) {
+    if (isValidJSONLDRoute(relativeUrl, text)) {
       await createFile(relativeUrl, text);
     }
   }

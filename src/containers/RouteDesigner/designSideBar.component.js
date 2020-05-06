@@ -7,7 +7,7 @@ import $ from "jquery";
 
 import {errorToaster, successToaster} from "@utils";
 
-import {isValidJSONRoute} from "../../modules/validation.js";
+import {isValidJSONLDRoute} from "../../modules/validation.js";
 import {createFile, createFolder, itemExists} from "../../modules/podHandler.js";
 import {buildRouteJSONLD} from "../../modules/buildFile.js";
 
@@ -52,7 +52,7 @@ class DesignSideBar extends Component {
     }
 
     async createRoute(relativeUrl, content){
-        if(isValidJSONRoute(relativeUrl, content)){
+        if (isValidJSONLDRoute(relativeUrl, content)) {
             await createFile(relativeUrl, content);
         }
     }

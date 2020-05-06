@@ -5,7 +5,9 @@ import Carousel from "nuka-carousel";
 import {withTranslation} from "react-i18next";
 import loadHeatMap from "../../modules/loadHeatMap.js";
 import {errorToaster, warningToaster} from "../../utils";
+import * as Icon from 'react-feather';
 
+const GeolocationMarker = ({icon}) => <div>{icon}</div>;
 class SimpleMap extends Component {
 
     constructor() {
@@ -42,8 +44,9 @@ class SimpleMap extends Component {
     }
 
     centerMap = () => {
-        if (navigator.geolocation)
+        if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.moveToUserGeoLocation);
+        }
     };
 
     moveToUserGeoLocation = (position) => {
@@ -78,7 +81,7 @@ class SimpleMap extends Component {
             this.deleteOldRoute();
             this.setState({route: parsedRoute, center: [latitude, longitude]}, this.loadMap);
             this.createGalery(route);
-        } catch {
+        } catch (error) {
             const {t} = this.props;
             errorToaster(t("routes.parsingErrorBody"), t("routes.parsingErrorHeader"))
         }
@@ -198,7 +201,11 @@ class SimpleMap extends Component {
                                     center={this.state.center}
                                     onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
                     >
-
+                        <GeolocationMarker
+                            lat={this.state.center[0]}
+                            lng={this.state.center[1]}
+                            icon={<Icon.MapPin/>}
+                        />
                     </GoogleMapReact>
 
                     <Carousel id="carousel" renderBottomCenterControls={() => {

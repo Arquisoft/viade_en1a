@@ -63,8 +63,9 @@ class RouteDesigner extends Component {
     };
 
     centerMap = () => {
-        if (navigator.geolocation)
+        if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.moveToUserGeoLocation);
+        }
     };
 
     moveToUserGeoLocation = (position) => {
