@@ -259,7 +259,7 @@ class RoutesSideBar extends Component {
                   style={{marginTop: "2vh"}}
               />
 
-              <LabelInput for="routeUploader" id="btnChoose">
+              <LabelInput htmlFor="routeUploader" id="btnChoose">
                 {this.state.labelText}
               </LabelInput>
 

@@ -41,14 +41,14 @@ class SimpleMap extends Component {
         };
     }
 
-    static defaultProps = {
-        center: {
-            lat: 59.95,
-            lng: 30.33
-        },
-        zoom: 11
+    centerMap = () => {
+        if (navigator.geolocation)
+            navigator.geolocation.getCurrentPosition(this.moveToUserGeoLocation);
     };
 
+    moveToUserGeoLocation = (position) => {
+        this.setState({center: [position.coords.latitude, position.coords.longitude]});
+    };
 
     handleApiLoaded = (map, maps) => {
         this.map = map;
@@ -181,6 +181,7 @@ class SimpleMap extends Component {
     };
 
     render() {
+        this.centerMap();
         return (
             <div style={{width: "100%", display: "flex", flex: "row"}} id="id1">
                 {this.covidWarningToast()}
@@ -200,7 +201,8 @@ class SimpleMap extends Component {
 
                     </GoogleMapReact>
 
-                    <Carousel id="carousel" renderBottomCenterControls={false} slidesToShow={3} height="17vh"
+                    <Carousel id="carousel" renderBottomCenterControls={() => {
+                    }} slidesToShow={3} height="17vh"
                               dragging={true}
                               style={{
                                   marginTop: "5vh",

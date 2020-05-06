@@ -62,8 +62,18 @@ class RouteDesigner extends Component {
         return this.state.markers;
     };
 
+    centerMap = () => {
+        if (navigator.geolocation)
+            navigator.geolocation.getCurrentPosition(this.moveToUserGeoLocation);
+    };
+
+    moveToUserGeoLocation = (position) => {
+        this.setState({center: [position.coords.latitude, position.coords.longitude]});
+    };
+
     render() {
         const {t} = this.props;
+        this.centerMap();
         return (
             <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
                 <DesignSideBar removeMarkers={this.removeMarkers} getRouteCoordinates={this.getRouteCoordinates}/>
