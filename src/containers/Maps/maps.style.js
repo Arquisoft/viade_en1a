@@ -109,7 +109,6 @@ export const InputFile = styled.input`
   overflow: hidden;
   position: absolute;
   z-index: -1;
-  margin-top:"5vh";
 }
 `;
 

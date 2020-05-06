@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Dropdown, ButtonGroup } from "react-bootstrap";
+import {Button, ButtonGroup, Dropdown} from "react-bootstrap";
 import * as Icon from "react-feather";
 import styled from "styled-components";
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 const StyledSharedRoute = styled.div`
     margin: 5px;
@@ -24,7 +24,8 @@ export const SharedRoute = (props) => {
     return (
         <StyledSharedRoute>
         <Dropdown as={ButtonGroup}>
-            <Button variant="success" onClick={showRoute}>{routeWrapper.route.name+" "+routeWrapper.name}</Button>
+            <Button variant="success" style={{borderBottomLeftRadius: "8px", borderTopLeftRadius: "8px"}}
+                    onClick={showRoute}>{routeWrapper.route.name + " " + routeWrapper.name}</Button>
 
             <Dropdown.Toggle split variant="tog" id="dropdown-split-basic" />
 

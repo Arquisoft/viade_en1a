@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {errorToaster, successToaster} from "@utils";
 import {MapRoute} from "./components";
 import {SharedRoute} from "./shared";
-import {Button, Card, CardGroup} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 import Switch from "react-switch";
 import $ from "jquery";
@@ -21,7 +21,8 @@ import {getFileContent} from "../../modules/parseFile.js";
 import {isValidJSONRoute} from "../../modules/validation.js";
 
 const StyledRoutesSidebar = styled.div`
-  
+      margin: 10px;
+     
 `;
 
 class RoutesSideBar extends Component {
@@ -33,7 +34,7 @@ class RoutesSideBar extends Component {
       routes: [],
       routesList: [],
       sharedRoutes: [],
-      COVIDchecked: true,
+      COVIDchecked: false,
       labelText: "",
       loadingYourText: t("routes.loadingYours"),
       loadingSharedText: t("routes.loadingShared"),
@@ -247,8 +248,8 @@ class RoutesSideBar extends Component {
     btnChoose.html(t("routes.chooseFile"));
     this.setState();
     return (
-        <CardGroup style={{display: "flex", flexDirection: "column", height: "80%", flexGrow: 7}}>
-          <Card style={{padding: "16px", left: "0", flexGrow: 1}}>
+        <StyledRoutesSidebar>
+          <Card style={{}}>
             <Card.Body><Card.Title>Upload your routes</Card.Title>
               <InputFile
                   id="routeUploader"
@@ -270,20 +271,13 @@ class RoutesSideBar extends Component {
                   variant="primary"
                   block
                   onClick={this.onClickHandler.bind(this)}
-                  style={{marginBottom: "1vh"}}
+                  style={{}}
               >
                 {t("routes.uploadToPOD")}
               </Button>
             </Card.Body>
           </Card>
-          <Card style={{
-            padding: "12px",
-            overflowY: "scroll",
-            display: "flex",
-            flexGrow: 5,
-            flexDirection: "column",
-            flexWrap: "wrap"
-          }}>
+          <Card style={{padding: "8px", overflowY: "scroll", height: "45vh"}}>
             <Card.Body styule={{display: "flex", flexDirection: "column"}}>
               <Card.Title>{this.state.loadingYourText}</Card.Title>
               {this.listRoutes()}
@@ -291,9 +285,9 @@ class RoutesSideBar extends Component {
               {this.listShared()}
             </Card.Body>
           </Card>
-          <Card style={{padding: "12px", flexGrow: 1}}>
+          <Card style={{padding: "10px"}}>
             <Card.Body>
-              <label id="covid" style={{marginTop: "10px"}}>
+              <label id="covid" style={{marginTop: "6px"}}>
                 <span>{t("routes.covidtoggle")}</span>
                 <Switch
                     onChange={this.handleCOVIDChange}
@@ -307,12 +301,9 @@ class RoutesSideBar extends Component {
               >
                 {t("routes.designRoute")}
               </a>
-              <Button style={{marginTop: "1vh"}} id="clear" variant="primary" block onClick={this.onClearArray}>
-                {t("routes.clear")}
-              </Button>
             </Card.Body>
           </Card>
-        </CardGroup>
+        </StyledRoutesSidebar>
     );
   }
 }
