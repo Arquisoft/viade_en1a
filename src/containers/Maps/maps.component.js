@@ -150,7 +150,7 @@ class SimpleMap extends Component {
                         width: "auto",
                         border: "5px",
                     }} /*onClick={() => this.fullscreen(this, i)}*/ alt="Route {route.name}"
-                         src={route.media[parseInt(i)].url}/>
+                         src={route.media[parseInt(i)].url} onError={this.imageErrorHandler}/>
                 );
             } else {
                 list.push(
@@ -162,6 +162,11 @@ class SimpleMap extends Component {
         }
         this.setState({galery: list});
     }
+
+    imageErrorHandler = (event) => {
+        event.onError = null;
+        event.target.src = "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg";
+    };
 
     covidWarningToast = () => {
         const {t} = this.props;
@@ -200,6 +205,29 @@ class SimpleMap extends Component {
         );
     }
 
+    /*
+    fullscreen(id, i) {
+        if ("fullscreenEnabled" in document || "webkitFullscreenEnabled" in document || "mozFullScreenEnabled" in document || "msFullscreenEnabled" in document) {
+            if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+
+                var elem = id.state.galery[i-1];
+
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                } else {
+                    alert("This element does not allow fullscreen mode in your browser");
+                }
+
+            }
+        }
+    }
+*/
 
 }
 
