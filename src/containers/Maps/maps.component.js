@@ -180,7 +180,9 @@ class SimpleMap extends Component {
     covidWarningToast = () => {
         const {t} = this.props;
         if (this.state.showCOVID)
-            warningToaster(t("routes.togglingCOVIDBody"), t("routes.togglingCOVIDTitle"));
+            {
+                warningToaster(t("routes.togglingCOVIDBody"), t("routes.togglingCOVIDTitle"));
+            }
     };
 
     render() {
