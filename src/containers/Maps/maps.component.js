@@ -4,7 +4,7 @@ import GoogleMapReact from "google-map-react";
 import Carousel from "nuka-carousel";
 import {withTranslation} from "react-i18next";
 import loadHeatMap from "../../modules/loadHeatMap.js";
-import {errorToaster} from "@utils";
+import {successToaster} from "../../utils";
 
 class SimpleMap extends Component {
 
@@ -171,7 +171,7 @@ class SimpleMap extends Component {
     covidWarningToast = () => {
         const {t} = this.props;
         if (this.state.showCOVID)
-            return errorToaster(t("routes.togglingCOVIDTitle"), t("routes.togglingCOVIDBody"));
+            successToaster(t("routes.togglingCOVIDTitle"), t("routes.togglingCOVIDBody"));
     };
 
     render() {

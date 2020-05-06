@@ -35,7 +35,7 @@ class RoutesSideBar extends Component {
       routesList: [],
       sharedRoutes: [],
       COVIDchecked: false,
-      labelText: "",
+      labelText: t("routes.chooseFile"),
       loadingYourText: t("routes.loadingYours"),
       loadingSharedText: t("routes.loadingShared"),
     };
@@ -131,8 +131,7 @@ class RoutesSideBar extends Component {
 
     btnPod.html(t("routes.uploadedToPOD"));
     btnPod.prop("disabled", true);
-    $("#routeUploader").val("");
-
+    this.setState({labelText: t("routes.chooseFile")});
     await this.getPodRoutes();
     await this.getSharedRoutes();
   }
@@ -244,13 +243,10 @@ class RoutesSideBar extends Component {
 
   render() {
     const {t} = this.props;
-    let btnChoose = $("#btnChoose");
-    btnChoose.html(t("routes.chooseFile"));
-    this.setState();
     return (
         <StyledRoutesSidebar>
           <Card style={{}}>
-            <Card.Body><Card.Title>Upload your routes</Card.Title>
+            <Card.Body><Card.Title>{t("routes.UploadYourRoutes")}</Card.Title>
               <InputFile
                   id="routeUploader"
                   type="file"
