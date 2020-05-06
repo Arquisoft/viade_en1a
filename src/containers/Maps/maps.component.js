@@ -5,7 +5,7 @@ import Carousel from "nuka-carousel";
 import {withTranslation} from "react-i18next";
 import loadHeatMap from "../../modules/loadHeatMap.js";
 import {errorToaster, warningToaster} from "../../utils";
-import * as Icon from 'react-feather';
+import * as Icon from "react-feather";
 
 const GeolocationMarker = ({icon}) => <div>{icon}</div>;
 class SimpleMap extends Component {
@@ -83,7 +83,7 @@ class SimpleMap extends Component {
             this.createGalery(route);
         } catch (error) {
             const {t} = this.props;
-            errorToaster(t("routes.parsingErrorBody"), t("routes.parsingErrorHeader"))
+            errorToaster(t("routes.parsingErrorBody"), t("routes.parsingErrorHeader"));
         }
     };
 
