@@ -1,4 +1,4 @@
-import { ToastContainer } from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import styled from "styled-components";
 
 export const Toaster = styled(ToastContainer)`
@@ -9,12 +9,16 @@ export const Toaster = styled(ToastContainer)`
     padding: 0;
     & .toaster-error {
       color: #fff;
-      background: rgba(107, 39, 163, 0.9);
+      background: rgba(209, 23, 23, 0.9);
     }
 
     & .toaster-success {
       color: #fff;
-      background: rgba(124, 77, 255, 0.9);
+      background: rgba(124, 77, 255, 0.6);
+    }
+    & .toaster-warning {
+      color: #fff;
+      background: rgba(18, 154, 227, 1);
     }
   }
 

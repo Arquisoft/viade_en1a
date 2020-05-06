@@ -4,7 +4,7 @@ import GoogleMapReact from "google-map-react";
 import Carousel from "nuka-carousel";
 import {withTranslation} from "react-i18next";
 import loadHeatMap from "../../modules/loadHeatMap.js";
-import {successToaster} from "../../utils";
+import {errorToaster, warningToaster} from "../../utils";
 
 class SimpleMap extends Component {
 
@@ -70,12 +70,18 @@ class SimpleMap extends Component {
     };
 
     show = (route) => {
-        let parsedRoute = this.convertToGeoJSON(route);
-        let latitude = parsedRoute.features[0].geometry.coordinates[0][1];
-        let longitude = parsedRoute.features[0].geometry.coordinates[0][0];
-        this.deleteOldRoute();
-        this.setState({route: parsedRoute, center: [latitude, longitude]}, this.loadMap);
-        this.createGalery(route);
+        try {
+            let parsedRoute = this.convertToGeoJSON(route);
+            let latitude = parsedRoute.features[0].geometry.coordinates[0][1];
+            let longitude = parsedRoute.features[0].geometry.coordinates[0][0];
+
+            this.deleteOldRoute();
+            this.setState({route: parsedRoute, center: [latitude, longitude]}, this.loadMap);
+            this.createGalery(route);
+        } catch {
+            const {t} = this.props;
+            errorToaster(t("routes.parsingErrorBody"), t("routes.parsingErrorHeader"))
+        }
     };
 
     toggleCOVID = (showCOVID) => {
@@ -171,7 +177,7 @@ class SimpleMap extends Component {
     covidWarningToast = () => {
         const {t} = this.props;
         if (this.state.showCOVID)
-            successToaster(t("routes.togglingCOVIDTitle"), t("routes.togglingCOVIDBody"));
+            warningToaster(t("routes.togglingCOVIDBody"), t("routes.togglingCOVIDTitle"));
     };
 
     render() {
@@ -179,6 +185,7 @@ class SimpleMap extends Component {
             <div style={{width: "100%", display: "flex", flex: "row"}} id="id1">
                 {this.covidWarningToast()}
                 <RoutesSideBar id="routesSideBar" show={this.show} toggleCOVID={this.toggleCOVID}/>
+
                 <div style={{height: "50vh", width: "80%", marginLeft: "10vh", marginTop: "5vh", marginRight: "5vh"}}
                      id="id2">
                     <GoogleMapReact id="map"
@@ -190,7 +197,9 @@ class SimpleMap extends Component {
                                     center={this.state.center}
                                     onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
                     >
+
                     </GoogleMapReact>
+
                     <Carousel id="carousel" renderBottomCenterControls={false} slidesToShow={3} height="17vh"
                               dragging={true}
                               style={{
@@ -201,6 +210,7 @@ class SimpleMap extends Component {
                         {this.state.galery}
                     </Carousel>
                 </div>
+
             </div>
         );
     }

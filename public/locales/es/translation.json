@@ -273,17 +273,21 @@
     "return": "Volver",
     "shared": "Compartido",
     "addMedia": "Añadir multimedia",
-	"galery": "Galería",
+    "galery": "Galería",
     "covidtoggle": "Mostrar datos de COVID-19",
-	"sharingError": "No se ha podido compartir la ruta. Si eres un usuario de Inrupt, o tu Solid Server usa NSS 5.2.4, existe un bug en esa versión.",
+    "sharingError": "No se ha podido compartir la ruta. Si eres un usuario de Inrupt, o tu Solid Server usa NSS 5.2.4, existe un bug en esa versión.",
     "designRoute": "Diseña tu ruta",
     "sharewithall": "Compartir con todos",
-	"sharingMessage": "Compartir es vivir",
-	"sharingTitle": "Compartiendo...",
+    "sharingMessage": "Compartir es vivir",
+    "sharingTitle": "Compartiendo...",
     "uploading": "Subiendo...",
     "uploadingMessage": "Espera... Espera... ehm... Espera... Un segundo...",
-    "formatError": "no tiene un formato válido. Prueba otro ;)"
-
+    "formatError": "no tiene un formato válido. Prueba otro ;)",
+    "UploadYourRoutes": "Sube tus rutas",
+    "togglingCOVIDTitle": "Datos de prueba de COVID",
+    "togglingCOVIDBody": "Por el momento, el mapa de calor de COVID solo usa información de prueba",
+    "parsingErrorHeader": "Error de formato",
+    "parsingErrorHeaderBody": " tiene un formato incorrecto y no se ha podido mostrar en el mapa"
   },
   "routeDesigner": {
     "selectPoints": "Seleccione los puntos",

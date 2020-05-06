@@ -61,13 +61,12 @@ class DesignSideBar extends Component {
         this.props.removeMarkers();
         $("#newRouteName").val("");
         $("#newRouteDescription").val("");
-    }
+    };
 
     parseToJSONLD = async (routeName, routeDescription) => {
         let routePoints = this.props.getRouteCoordinates();
-        let parsedRoute = await buildRouteJSONLD(routeName, routeDescription, routePoints);
-        return parsedRoute;
-    }
+        return await buildRouteJSONLD(routeName, routeDescription, routePoints);
+    };
 
     checkValidRoute = (trimmedRouteName) => {
         const {t} = this.props;
@@ -80,7 +79,7 @@ class DesignSideBar extends Component {
             return false;
         }
         return true;
-    }
+    };
 
     render() {
         const {t} = this.props;

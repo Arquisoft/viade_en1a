@@ -92,22 +92,24 @@ class RoutesSideBar extends Component {
     this.uploadedFiles = false;
     const files = [...event.target.files];
     let routes = [...this.state.routes];
-
+    let btnPod = $("#btnPod");
     const {t} = this.props;
     files.forEach((file) => {
-      if (file.name.endsWith(".json")) {
+      if (!file.name.endsWith(".json")) {
+        errorToaster("'" + file.name + "' " + t("routes.formatError"), "Error");
+        btnPod.prop("disabled", true);
+      } else {
         routes = [...routes, file];
         this.uploadedFiles = true;
         this.setState({labelText: file.name.split(".")[0]});
-      } else {
-        errorToaster("'" + file.name + "' " + t("routes.formatError"), "Error");
-      }
-    });
-    this.setState({routes});
 
-    let btnPod = $("#btnPod");
-    btnPod.html(t("routes.uploadToPOD"));
-    btnPod.prop("disabled", false);
+        this.setState({routes});
+        btnPod.prop("disabled", false);
+      }
+      btnPod.html(t("routes.uploadToPOD"));
+    });
+
+
   };
 
   async onClickHandler() {
