@@ -8,7 +8,6 @@ import {Button, Card} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 import Switch from "react-switch";
 import $ from "jquery";
-
 import {
   createFile,
   createFolder,
@@ -18,7 +17,8 @@ import {
   itemExists,
 } from "../../modules/podHandler.js";
 import {getFileContent} from "../../modules/parseFile.js";
-import {isValidJSONLDRoute} from "../../modules/validation.js";
+import {isValidGeoJsonRoute, isValidJSONLDRoute} from "../../modules/validation.js";
+import {buildRouteJSONLFromGeoJson} from "../../modules/buildFile";
 
 const StyledRoutesSidebar = styled.div`
       margin: 10px;
@@ -76,14 +76,14 @@ class RoutesSideBar extends Component {
 
   async deletePodRoute(routeWrapper) {
     await deleteFile(routeWrapper.url);
-    this.onClearArray();
+    await this.onClearArray();
     await this.getPodRoutes();
     await this.getSharedRoutes();
   }
 
   async deleteSharedRoute(route) {
     await deleteFile(route.url);
-    this.onClearArray();
+    await this.onClearArray();
     await this.getPodRoutes();
     await this.getSharedRoutes();
   }
@@ -117,7 +117,7 @@ class RoutesSideBar extends Component {
       await createFolder("viade/routes/");
     }
 
-    this.onClearArray();
+
     const {t} = this.props;
 
     try {
@@ -134,6 +134,9 @@ class RoutesSideBar extends Component {
     btnPod.html(t("routes.uploadedToPOD"));
     btnPod.prop("disabled", true);
     this.setState({labelText: t("routes.chooseFile")});
+
+    await new Promise((resolve) => setTimeout(resolve, 650));
+    await this.onClearArray();
     await this.getPodRoutes();
     await this.getSharedRoutes();
   }
@@ -143,14 +146,23 @@ class RoutesSideBar extends Component {
   }
 
   showRoute = async (routeWrapper) => {
-    let routeData = routeWrapper.route;
-    this.props.show(routeData);
+    this.props.show(routeWrapper.route);
   };
 
   async createRouteFile(relativeUrl, file) {
-    getFileContent(file, async function (content) {
+    const {t} = this.props;
+    await getFileContent(file, async function (content) {
       if (isValidJSONLDRoute(relativeUrl, content)) {
         await createFile(relativeUrl, content);
+      } else if (isValidGeoJsonRoute(relativeUrl, content)) {
+        let convertedRoute = await buildRouteJSONLFromGeoJson(content);
+        if (convertedRoute !== null) {
+          await createFile(relativeUrl, convertedRoute);
+        } else {
+          errorToaster(t("uploadingRouteParseErrorBody"), t("uploadingRouteParseErrorTitle"));
+        }
+      } else {
+        errorToaster(t("uploadingRouteParseErrorBody"), t("uploadingRouteParseErrorTitle"));
       }
     });
   }
@@ -169,7 +181,7 @@ class RoutesSideBar extends Component {
       folderUrl = await createFolder("viade/resources/");
     }
 
-    this.onClearArray();
+    await this.onClearArray();
 
     for (let element of mediaElements) {
       await createFile("viade/resources/" + element.name, element);
@@ -183,8 +195,8 @@ class RoutesSideBar extends Component {
     let routeFileName = this.getRouteFileName(routeWrapper.url);
     await this.createRouteText("viade/routes/" + routeFileName, routeJson);
 
-    this.getPodRoutes();
-    this.getSharedRoutes();
+    await this.getPodRoutes();
+    await this.getSharedRoutes();
   }
 
   listRoutes = () => {
@@ -233,9 +245,9 @@ class RoutesSideBar extends Component {
     return list;
   };
 
-  onClearArray = () => {
-    this.setState({routesList: []});
-    this.setState({sharedRoutes: []});
+  onClearArray = async () => {
+    await this.setState({routesList: []});
+    await this.setState({sharedRoutes: []});
   };
 
   handleCOVIDChange(COVIDchecked) {

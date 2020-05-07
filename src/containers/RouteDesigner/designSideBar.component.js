@@ -23,7 +23,7 @@ class DesignSideBar extends Component {
 
     removeMarkers = () => {
         this.props.removeMarkers();
-    }
+    };
 
     uploadToPOD = async () => {
         let routeName = $("#newRouteName").val();
@@ -39,17 +39,17 @@ class DesignSideBar extends Component {
             if (!await itemExists("viade/routes/")) {
                 await createFolder("viade/routes/");
             }
-            
+
             await this.createRoute("viade/routes/" + trimmedRouteName + ".json", jsonLDFile);
             let {t} = this.props;
-            
+
             let message = t("routeDesigner.uploaded");
             let title = t("routeDesigner.uploadingTitle");
             successToaster(message, title);
 
             this.clearData();
         }
-    }
+    };
 
     async createRoute(relativeUrl, content){
         if (isValidJSONLDRoute(relativeUrl, content)) {

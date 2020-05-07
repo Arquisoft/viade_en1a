@@ -33,6 +33,7 @@ class SimpleMap extends Component {
             galery: [],
             zoom: 12,
             showCOVID: false,
+            usingGeoLocation: false,
             COVIDdata: {
                 positions: [],
                 options: {
@@ -50,7 +51,17 @@ class SimpleMap extends Component {
     };
 
     moveToUserGeoLocation = (position) => {
-        this.setState({center: [position.coords.latitude, position.coords.longitude]});
+        this.setState({usingGeoLocation: true, center: [position.coords.latitude, position.coords.longitude]});
+    };
+
+    placeGeolocationMarker = () => {
+        if (this.state.usingGeoLocation) {
+            return <GeolocationMarker
+                lat={this.state.center[0]}
+                lng={this.state.center[1]}
+                icon={<Icon.MapPin/>}
+            />;
+        }
     };
 
     handleApiLoaded = (map, maps) => {
@@ -203,11 +214,8 @@ class SimpleMap extends Component {
                                     center={this.state.center}
                                     onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
                     >
-                        <GeolocationMarker
-                            lat={this.state.center[0]}
-                            lng={this.state.center[1]}
-                            icon={<Icon.MapPin/>}
-                        />
+                        {this.placeGeolocationMarker()}
+
                     </GoogleMapReact>
 
                     <Carousel id="carousel" renderBottomCenterControls={() => {
