@@ -2,18 +2,17 @@ import React from "react";
 import {Uploader} from "@inrupt/solid-react-components";
 import {Trans, useTranslation} from "react-i18next";
 import {
-    WelcomeWrapper,
+    ImageWrapper,
     WelcomeCard,
-    WelcomeLogo,
-    WelcomeProfile,
     WelcomeDetail,
+    WelcomeLogo,
     WelcomeName,
-    ImageWrapper
+    WelcomeProfile,
+    WelcomeWrapper
 } from "./welcome.style";
 import {ImageProfile} from "@components";
 import {errorToaster} from "@utils";
-import {Button} from "react-bootstrap";
-import {Modal} from "react-bootstrap";
+import {Button, Modal} from "react-bootstrap";
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -40,12 +39,13 @@ function MyVerticallyCenteredModal(props) {
                 <p>
                     {t("welcome.covidbody")}
                 </p>
-                <p>
-                    <ul>
-                    <li><a href={"https://www.who.int/emergencies/diseases/novel-coronavirus-2019/events-as-they-happen"} >Rolling updates on coronavirus disease</a></li>
-                    <li><a href={"https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public"} >Coronavirus disease (COVID-19) advice for the public</a></li>
-                    </ul>
-                </p>
+                <ul>
+                    <li><a
+                        href={"https://www.who.int/emergencies/diseases/novel-coronavirus-2019/events-as-they-happen"}>Rolling
+                        updates on coronavirus disease</a></li>
+                    <li><a href={"https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public"}>Coronavirus
+                        disease (COVID-19) advice for the public</a></li>
+                </ul>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>{t("welcome.close")}</Button>
@@ -70,7 +70,7 @@ export const WelcomePageContent = (props) => {
             <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                t = {t}
+                t={t}
             />
             <WelcomeCard className="card">
                 <WelcomeLogo data-testid="welcome-logo">
@@ -116,12 +116,12 @@ export const WelcomePageContent = (props) => {
                                             uploadingText: t("welcome.uploadingText")
                                         }}
                                     />
-                                    
+
                                 )
                             }}
                         />
-                        
-                    </ImageWrapper><a href = {webId}>Go To POD</a>
+
+                    </ImageWrapper><a href={webId}>Go To POD</a>
                 </WelcomeProfile>
             </WelcomeCard>
             <WelcomeCard className="card">

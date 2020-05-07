@@ -1,13 +1,13 @@
-export function isValidJSONRoute(name, content){
-    if(!name.endsWith(".json")){
+export function isValidJSONLDRoute(name, content) {
+    if (!name.endsWith(".json")) {
         return false;
     }
-    try{
+    try {
         let parsed = JSON.parse(content);
-        if(!parsed.hasOwnProperty("name")){
+        if (!parsed.hasOwnProperty("name")) {
             return false;
         }
-        if(!parsed.hasOwnProperty("points")){
+        if (!parsed.hasOwnProperty("points")) {
             return false;
         }else{
             for (let i = 0; i < parsed.points.length; i++){
@@ -30,18 +30,18 @@ export function isValidJSONRoute(name, content){
             return false;
         }else{
             for(let i = 0; i < parsed.media.length; i++){
-                if(!parsed.media[parseInt(i, 10)].hasOwnProperty("url")){
+                if (!parsed.media[parseInt(i, 10)].hasOwnProperty("url")) {
                     return false;
                 }
             }
         }
         return true;
-    }catch(error){
+    } catch (error) {
         return false;
     }
 }
 
-export function isValidRouteName(trimmedRouteName){
+export function isValidRouteName(trimmedRouteName) {
     return !trimmedRouteName.length > 0;
 }
 
