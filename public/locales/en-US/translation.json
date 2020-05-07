@@ -289,7 +289,9 @@
     "togglingCOVIDTitle": "Mockup COVID data",
     "togglingCOVIDBody": "For now, this COVID heatmap is only using mockup data",
     "parsingErrorHeader": "Format error",
-    "parsingErrorHeaderBody": " has a wrong format and could not be shown in the map"
+    "parsingErrorBody": "This route has a wrong format and could not be shown in the map",
+    "uploadingRouteParseErrorBody": "It seems like you are trying to upload a wrong route format. Remember that we only accept JSON-LD (Viade spec.) and GeoJson",
+    "uploadingRouteParseErrorTitle": "Uploading wrong route format"
   },
   "routeDesigner": {
     "selectPoints": "Select the points",

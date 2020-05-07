@@ -287,7 +287,9 @@
     "togglingCOVIDTitle": "Datos de prueba de COVID",
     "togglingCOVIDBody": "Por el momento, el mapa de calor de COVID solo usa información de prueba",
     "parsingErrorHeader": "Error de formato",
-    "parsingErrorHeaderBody": " tiene un formato incorrecto y no se ha podido mostrar en el mapa"
+    "parsingErrorBody": "This route has a wrong format and could not be shown in the map",
+    "uploadingRouteParseErrorBody": "Parece que está intentando subir una ruta con un formato erroneo. Recuerde que solo aceptamos JSON-LD (especif. Viade) y GeoJson",
+    "uploadingRouteParseErrorTitle": "Subiendo ruta con formato erróneo"
   },
   "routeDesigner": {
     "selectPoints": "Seleccione los puntos",

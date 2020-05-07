@@ -15,6 +15,7 @@ export const MapRoute = (props) => {
     const url = "#/share?route=" + routeWrapper.name;
     const {t} = useTranslation();
 
+
     function showRoute() {
         routeWrapper.showRoute(routeWrapper);
     }

@@ -17,11 +17,11 @@ function checkNotLogFile(url) {
     } catch {
         //
     }
-    
+
 }
 
 async function getSharedRoute(url) {
-    try{
+    try {
         let fol = await fc.readFile(url.toString());
         let getSchem = fol.split("<>");
         let urlText = getSchem[1].split("text");
@@ -45,10 +45,10 @@ export async function getFullNotification(url) {
     } catch {
         //
     }
-    
+
 }
 
-export async function getPodRoutes(){
+export async function getPodRoutes() {
     let routesList = [];
     try {
         var url = await webId() + "viade/routes/";
@@ -56,9 +56,10 @@ export async function getPodRoutes(){
         let folder = await fc.readFolder(url);
 
         for (let element of folder.files) {
-            try{
+            try {
                 let content = await fc.readFile(element.url.toString());
                 if (isValidJSONLDRoute(element.url.toString(), content)) {
+                    console.log(content);
                     let parsedRoute = JSON.parse(content);
                     routesList.push({name: element.name, url: element.url, route: parsedRoute});
                 }
@@ -69,44 +70,47 @@ export async function getPodRoutes(){
     } catch {
         //
     }
-    
+
     return routesList;
 }
 
-export async function getSharedRoutes(){
+export async function getSharedRoutes() {
     let sharedRoutes = [];
-    try{
+    try {
         var urlShared = await webId() + "inbox/";
 
         let folderShared = await fc.readFolder(urlShared);
         for (let sharedElement of folderShared.files) {
-            try{
-                if(!checkNotLogFile(sharedElement.url.toString())){
+            try {
+                if (!checkNotLogFile(sharedElement.url.toString())) {
                     var name = await getFullNotification(sharedElement.url.toString());
                     let url = sharedElement.url;
                     let routeUrl = await getSharedRoute(url);
                     let content = await fc.readFile(routeUrl.toString());
-                    let route = JSON.parse(content);
-                    let trueName = name+route.name+")";
-                    sharedRoutes.push({name, trueName, url, route});
+
+                    if (isValidJSONLDRoute(routeUrl.toString(), content)) {
+                        let route = JSON.parse(content);
+                        let trueName = name + route.name + ")";
+                        sharedRoutes.push({name, trueName, url, route, isGeoJson: false});
+                    }
                 }
-            }catch(error) {
+            } catch (error) {
                 //
             }
         }
     } catch {
         //
     }
-    
+
     return sharedRoutes;
 }
 
-export async function getFriendGroupsFromPOD(){
+export async function getFriendGroupsFromPOD() {
     let groups = [];
 
-    try{
+    try {
         let urlGroups = await webId() + "viade/groups/groups.json";
-    
+
         let fileContent = await fc.readFile(urlGroups);
         groups = JSON.parse(fileContent);
     } catch {
@@ -116,7 +120,7 @@ export async function getFriendGroupsFromPOD(){
     return groups;
 }
 
-export async function deleteFile(url){
+export async function deleteFile(url) {
     try {
         await fc.deleteFile(url);
     } catch {
@@ -124,17 +128,17 @@ export async function deleteFile(url){
     }
 }
 
-export async function deleteFileRelativePath(relativeUrl){
-    try{
+export async function deleteFileRelativePath(relativeUrl) {
+    try {
         let url = await webId() + relativeUrl;
         await deleteFile(url);
     } catch {
         //
-    } 
+    }
 }
 
-export async function createFile(relativeUrl, file){
-    try{
+export async function createFile(relativeUrl, file) {
+    try {
         let url = await webId() + relativeUrl;
 
         await fc.createFile(url, file, "text/plain");
@@ -142,20 +146,20 @@ export async function createFile(relativeUrl, file){
     } catch {
         //
     }
-    
+
 }
 
-export async function itemExists(relativeUrl){
-    try{
+export async function itemExists(relativeUrl) {
+    try {
         let url = await webId() + relativeUrl;
         return await fc.itemExists(url);
     } catch {
         //
     }
-    
+
 }
 
-export async function createFolder(relativeUrl){
+export async function createFolder(relativeUrl) {
     try {
         let url = await webId() + relativeUrl;
         await fc.createFolder(url);
@@ -163,25 +167,25 @@ export async function createFolder(relativeUrl){
     } catch {
         //
     }
-    
+
 }
 
-export async function readFile(relativeUrl){
-    try{
+export async function readFile(relativeUrl) {
+    try {
         let url = await webId() + relativeUrl;
         return await fc.readFile(url);
     } catch {
         //
     }
-    
+
 }
 
-export function getFriendInbox(friend){
+export function getFriendInbox(friend) {
     return friend.split("profile/card#me")[0] + "inbox/";
 }
 
-export async function buildNotification(message){
-    try{
+export async function buildNotification(message) {
+    try {
         var mess = message.url;
         await data[mess.toString()].schema$text.add(message.content);
         await data[mess.toString()].rdfs$label.add(message.title);
@@ -191,27 +195,27 @@ export async function buildNotification(message){
     } catch {
         //
     }
-    
+
 }
 
-export async function manageAcl(fileUrl, fileName, friend){
+export async function manageAcl(fileUrl, fileName, friend) {
     try {
-        const { AclApi, Permissions } = SolidAclUtils;
-        const { READ } = Permissions;
+        const {AclApi, Permissions} = SolidAclUtils;
+        const {READ} = Permissions;
 
         let aclUrl = fileUrl + ".acl";
-        if(!await fc.itemExists(aclUrl)){
+        if (!await fc.itemExists(aclUrl)) {
             let content = buildAcl(fileName);
             await fc.createFile(aclUrl, content, "text/turtle");
         }
         let friendWebId = friend;
         const fetch = auth.fetch.bind(auth);
-        const aclApi = new AclApi(fetch, { autoSave: true });    
+        const aclApi = new AclApi(fetch, {autoSave: true});
         const acl = await aclApi.loadFromFileUrl(fileUrl);
 
         await acl.addRule(READ, friendWebId);
     } catch {
         //
     }
-    
+
 }
