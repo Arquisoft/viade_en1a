@@ -51,14 +51,14 @@ export function isValidGeoJsonRoute(name, content) {
             return false;
         }
         if (!parsed.hasOwnProperty("features")) {
-            return false
+            return false;
         } else {
             let feature = parsed.features[0];
             if (!feature.hasOwnProperty("type") || feature.type !== "Feature") {
                 return false;
             }
             if (!feature.hasOwnProperty("properties")) {
-                return false
+                return false;
             }
             if (!feature.hasOwnProperty("geometry")) {
                 return false;
@@ -68,7 +68,7 @@ export function isValidGeoJsonRoute(name, content) {
                     return false;
                 }
                 if (!geometry.hasOwnProperty("coordinates")) {
-                    return false
+                    return false;
                 }
             }
 
