@@ -59,7 +59,6 @@ export async function getPodRoutes() {
             try {
                 let content = await fc.readFile(element.url.toString());
                 if (isValidJSONLDRoute(element.url.toString(), content)) {
-                    console.log(content);
                     let parsedRoute = JSON.parse(content);
                     routesList.push({name: element.name, url: element.url, route: parsedRoute});
                 }

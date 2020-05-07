@@ -135,10 +135,9 @@ class RoutesSideBar extends Component {
     btnPod.prop("disabled", true);
     this.setState({labelText: t("routes.chooseFile")});
 
-    await new Promise(resolve => setTimeout(resolve, 650));
+    await new Promise((resolve) => setTimeout(resolve, 650));
     await this.onClearArray();
     await this.getPodRoutes();
-    console.log(this.state.routesList);
     await this.getSharedRoutes();
   }
 

@@ -60,7 +60,7 @@ class SimpleMap extends Component {
                 lat={this.state.center[0]}
                 lng={this.state.center[1]}
                 icon={<Icon.MapPin/>}
-            />
+            />;
         }
     };
 

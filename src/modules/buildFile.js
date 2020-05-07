@@ -151,7 +151,6 @@ export async function buildRouteJSONLFromGeoJson(content) {
         }
         let routePoints = geoJsonContent.features[0].geometry.coordinates;
         routePoints.forEach((routePoint) => {
-            console.log(routePoint);
             let jsonLDPoint = {
                 latitude: routePoint[1],
                 longitude: routePoint[0],

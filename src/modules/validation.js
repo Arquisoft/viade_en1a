@@ -47,7 +47,6 @@ export function isValidGeoJsonRoute(name, content) {
     }
     try {
         let parsed = JSON.parse(content);
-        console.log(parsed);
         if (!parsed.hasOwnProperty("type") || parsed.type !== "FeatureCollection") {
             return false;
         }
@@ -74,11 +73,10 @@ export function isValidGeoJsonRoute(name, content) {
             }
 
         }
-        console.log(true);
         return true;
 
     } catch (error) {
-        return false
+        return false;
     }
 }
 
