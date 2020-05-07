@@ -29,7 +29,7 @@ const Footer = (props: Props) => {
           <ul>
           <li>
               <a
-                href="https://github.com/Arquisoft/viade_en1a/public/tutorials"
+                href="https://github.com/Arquisoft/viade_en1a/tree/master/public/tutorials"
                 target="_blank"
                 rel="noopener noreferrer"
               >
