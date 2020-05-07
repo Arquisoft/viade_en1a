@@ -41,7 +41,7 @@ class RouteDesigner extends Component {
             }]
         });
         this.drawRoute();
-    }
+    };
 
     drawRoute = () => {
         const self = this;
@@ -56,40 +56,53 @@ class RouteDesigner extends Component {
         this.setState({
             routeLines: [...this.state.routeLines, routeLine]
         });
-    }
+    };
 
     getRouteCoordinates = () => {
         return this.state.markers;
-    }
+    };
+
+    centerMap = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.moveToUserGeoLocation);
+        }
+    };
+
+    moveToUserGeoLocation = (position) => {
+        this.setState({center: [position.coords.latitude, position.coords.longitude]});
+    };
 
     render() {
         const {t} = this.props;
+        this.centerMap();
         return (
             <div style={{height: "80vh", width: "100%", display: "flex", flex: "row"}}>
                 <DesignSideBar removeMarkers={this.removeMarkers} getRouteCoordinates={this.getRouteCoordinates}/>
-                <div style={{height: "80vh", width: "80%"}}>
+                <div style={{height: "80vh", width: "80%", marginLeft: "10vh", marginRight: "5vh"}}>
                     <h2>{t("routeDesigner.selectPoints")}</h2>
-                    <GoogleMapReact
-                        bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
-                        defaultZoom={this.state.zoom}
-                        yesIWantToUseGoogleMapApiInternals={true}
-                        center={this.state.center}
-                        onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
-                        onClick={(e) => this.handleClick(e)}
-                    >
-                        {this.state.markers.map((marker, i) => {
-                            return (
-                                <Marker key={i}
-                                        lat={marker.lat}
-                                        lng={marker.lng}
-                                        color="#7b17a6"
-                                        name={"Waypoint" + i}
-                                />
+                    <div style={{height: "60vh", marginTop: "5vh"}} id="id2">
+                        <GoogleMapReact
+                            bootstrapURLKeys={{key: "AIzaSyBJH6rDTJZ8ehbHIuCo0egn1zwbz0FIOwQ"}}
+                            defaultZoom={this.state.zoom}
+                            yesIWantToUseGoogleMapApiInternals={true}
+                            center={this.state.center}
+                            onGoogleApiLoaded={({map, maps}) => this.handleApiLoaded(map, maps)}
+                            onClick={(e) => this.handleClick(e)}
+                        >
+                            {this.state.markers.map((marker, i) => {
+                                return (
+                                    <Marker key={i}
+                                            lat={marker.lat}
+                                            lng={marker.lng}
+                                            color="#7b17a6"
+                                            name={"Waypoint" + i}
+                                    />
 
-                            );
+                                );
 
-                        })}
-                    </GoogleMapReact>
+                            })}
+                        </GoogleMapReact>
+                    </div>
                 </div>
             </div>
         );

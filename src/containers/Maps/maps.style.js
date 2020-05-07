@@ -94,12 +94,6 @@ export const styledUploadButton = `
 
 export const MapsSideBar = styled.div`
 
-  border-right: 1px solid blue;
-
-  overflow-y: scroll;
-
-  height: 50vh;
-
   padding: 0;
 
   left: 0;
@@ -115,7 +109,6 @@ export const InputFile = styled.input`
   overflow: hidden;
   position: absolute;
   z-index: -1;
-  margin-top:"5vh";
 }
 `;
 

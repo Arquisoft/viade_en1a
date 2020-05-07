@@ -1,18 +1,18 @@
 import React, {Component} from "react";
 import {MapsSideBar} from "../Maps/maps.style";
 import styled from "styled-components";
-import {Button} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 import {withTranslation} from "react-i18next";
 import $ from "jquery";
 
-import { successToaster, errorToaster } from "@utils";
+import {errorToaster, successToaster} from "@utils";
 
-import { isValidJSONRoute} from "../../modules/validation.js";
-import { itemExists, createFolder, createFile } from "../../modules/podHandler.js";
-import { buildRouteJSONLD } from "../../modules/buildFile.js";
+import {isValidJSONLDRoute} from "../../modules/validation.js";
+import {createFile, createFolder, itemExists} from "../../modules/podHandler.js";
+import {buildRouteJSONLD} from "../../modules/buildFile.js";
 
 const StyledDesignSidebar = styled.div`
-
+      margin: 10px;
       height: 70vh;
 
       width: 25%;
@@ -52,7 +52,7 @@ class DesignSideBar extends Component {
     }
 
     async createRoute(relativeUrl, content){
-        if(isValidJSONRoute(relativeUrl, content)){
+        if (isValidJSONLDRoute(relativeUrl, content)) {
             await createFile(relativeUrl, content);
         }
     }
@@ -61,13 +61,12 @@ class DesignSideBar extends Component {
         this.props.removeMarkers();
         $("#newRouteName").val("");
         $("#newRouteDescription").val("");
-    }
+    };
 
     parseToJSONLD = async (routeName, routeDescription) => {
         let routePoints = this.props.getRouteCoordinates();
-        let parsedRoute = await buildRouteJSONLD(routeName, routeDescription, routePoints);
-        return parsedRoute;
-    }
+        return await buildRouteJSONLD(routeName, routeDescription, routePoints);
+    };
 
     checkValidRoute = (trimmedRouteName) => {
         const {t} = this.props;
@@ -80,26 +79,41 @@ class DesignSideBar extends Component {
             return false;
         }
         return true;
-    }
+    };
 
     render() {
         const {t} = this.props;
         return (
 
             <StyledDesignSidebar>
+                <Card style={{
+                    height: "85%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "top",
+                    justifyContent: "center"
+                }}>
+                    <Card.Title>{t("routeDesigner.newRoute")}</Card.Title>
+                    <Card.Body>
+                        <MapsSideBar>
 
-                <MapsSideBar style={{height: "85%"}}>
-                    <h2>{t("routeDesigner.newRoute")}</h2>
-                    <form>
-                        <label htmlFor="newRouteName">{t("routeDesigner.routeName")}:</label>
-                        <input id="newRouteName" type="text" required/>
-                        <label htmlFor="newRouteDescription">{t("routeDesigner.routeDescription")}:</label>
-                        <input id="newRouteDescription" type="text"/>
-                    </form>
-                </MapsSideBar>
-                <Button variant="primary" block onClick={this.uploadToPOD}>{t("routeDesigner.uploadToPOD")}</Button>
-                <Button variant="primary" block onClick={this.removeMarkers}>{t("routeDesigner.clearRoute")}</Button>
 
+                            <form>
+                                <label htmlFor="newRouteName">{t("routeDesigner.routeName")}:</label>
+                                <input id="newRouteName" type="text" required/>
+                                <label htmlFor="newRouteDescription">{t("routeDesigner.routeDescription")}:</label>
+                                <textarea id="newRouteDescription"/>
+                            </form>
+
+                        </MapsSideBar>
+                    </Card.Body>
+                </Card>
+                <Card style={{padding: "10px"}}>
+                    <Button className="btn btn-primary" block
+                            onClick={this.uploadToPOD}>{t("routeDesigner.uploadToPOD")}</Button>
+                    <Button className="btn btn-primary" block
+                            onClick={this.removeMarkers}>{t("routeDesigner.clearRoute")}</Button>
+                </Card>
             </StyledDesignSidebar>
         );
 

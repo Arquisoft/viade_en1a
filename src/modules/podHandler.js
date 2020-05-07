@@ -1,16 +1,16 @@
 import auth from "solid-auth-client";
 import data from "@solid/query-ldflex";
-import { namedNode } from "@rdfjs/data-model";
+import {namedNode} from "@rdfjs/data-model";
 import SolidAclUtils from "solid-acl-utils";
-import { webId, fullWebId } from "./solidAuth.js";
+import {fullWebId, webId} from "./solidAuth.js";
 import FC from "solid-file-client";
-import { isValidJSONRoute } from "./validation.js";
-import { buildAcl } from "./buildFile.js";
+import {isValidJSONLDRoute} from "./validation.js";
+import {buildAcl} from "./buildFile.js";
 
 const fc = new FC(auth);
 
 
-function checkNotLogFile(url){
+function checkNotLogFile(url) {
     try {
         let fileName = url.split("inbox/")[1];
         return fileName === "log.ttl";
@@ -58,7 +58,7 @@ export async function getPodRoutes(){
         for (let element of folder.files) {
             try{
                 let content = await fc.readFile(element.url.toString());
-                if(isValidJSONRoute(element.url.toString(), content)){
+                if (isValidJSONLDRoute(element.url.toString(), content)) {
                     let parsedRoute = JSON.parse(content);
                     routesList.push({name: element.name, url: element.url, route: parsedRoute});
                 }

@@ -1,15 +1,10 @@
-import React from "react";
-import {useState} from "react";
-import {
-    FriendsWrapper,
-    FriendsContainer,
-    StyledGroupBox
-} from "./friends.style";
+import React, {useState} from "react";
+import {FriendsContainer, FriendsWrapper, StyledGroupBox} from "./friends.style";
 import {Friend} from "./components";
 import {Button, ButtonGroup, Modal} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import * as Icon from "react-feather";
-import { Loader } from "@util-components";
+import {Loader} from "@util-components";
 
 
 function GroupBox(props) {
@@ -47,8 +42,8 @@ function ChooseGroupsModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    <label for="groupsSelect">{t("friends.changeGroup")}</label>
-                    <select id = "groupsSelect" value={group} onChange={(e) => setGroup(e.target.value)}>
+                    <label htmlFor="groupsSelect">{t("friends.changeGroup")}</label>
+                    <select id="groupsSelect" value={group} onChange={(e) => setGroup(e.target.value)}>
                         {
                             Object.keys(groups).map((key) => {
                                 return (

@@ -1,4 +1,4 @@
-import { fullWebId } from "./solidAuth.js";
+import {fullWebId} from "./solidAuth.js";
 
 export async function buildRouteJSONLD(routeName, routeDescription, routePoints){
     let parsedRoute = {
@@ -46,9 +46,9 @@ export async function buildRouteJSONLD(routeName, routeDescription, routePoints)
             "viade": "http://arquisoft.github.io/viadeSpec/",
             "xsd": "http://www.w3.org/2001/XMLSchema#"
         },
-        name: routeName,
+        name: routeName.toString(),
         author: await fullWebId(),
-        description: routeDescription,
+        description: routeDescription.toString(),
         comments: "",
         media: [],
         waypoints: [],

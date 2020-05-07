@@ -275,17 +275,21 @@
     "return": "Return",
     "shared": "Shared",
     "addMedia": "Add media",
-	"galery": "Galery",
+    "galery": "Galery",
     "covidtoggle": "Show COVID-19 data",
-	"sharingError": "Could not share the route. If you are an Inrupt user, or your Solid Server is using NSS 5.2.4., there is a bug in that version.",
+    "sharingError": "Could not share the route. If you are an Inrupt user, or your Solid Server is using NSS 5.2.4., there is a bug in that version.",
     "designRoute": "Design your route",
     "sharewithall": "Share with all",
-	"sharingMessage": "Sharing is caring!",
-	"sharingTitle": "Sharing...",
+    "sharingMessage": "Sharing is caring!",
+    "sharingTitle": "Sharing...",
     "uploading": "Uploading...",
     "uploadingMessage": "Wait... wait... ehm... wait... One second...",
-    "formatError": "is not a valid format. Try another ;)"
-
+    "formatError": "is not a valid format. Try another ;)",
+    "UploadYourRoutes": "Upload your routes",
+    "togglingCOVIDTitle": "Mockup COVID data",
+    "togglingCOVIDBody": "For now, this COVID heatmap is only using mockup data",
+    "parsingErrorHeader": "Format error",
+    "parsingErrorHeaderBody": " has a wrong format and could not be shown in the map"
   },
   "routeDesigner": {
     "selectPoints": "Select the points",

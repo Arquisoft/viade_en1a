@@ -1,9 +1,9 @@
-import { cleanup } from "react-testing-library";
-import { isValidJSONRoute, isValidRouteName, isValidRoutePoints } from "../modules/validation";
+import {cleanup} from "react-testing-library";
+import {isValidJSONLDRoute, isValidRouteName, isValidRoutePoints} from "../modules/validation";
 
 afterAll(cleanup);
 
-describe("isValidJSONRoute tests", () => {
+describe("isValidJSONLDRoute tests", () => {
   let correctContent = `{
   "@context": {
     "@version": 1.1,
@@ -725,61 +725,61 @@ let invalidWaypointContent = `{
 }`;
 
   test("Correct name and content returns true", () => {
-    let result = isValidJSONRoute("Test.json", correctContent);
+    let result = isValidJSONLDRoute("Test.json", correctContent);
 
     expect(result).toBe(true);
   });
 
   test("Invalid name and correct content returns false", () => {
-    let result = isValidJSONRoute("Test", correctContent);
+    let result = isValidJSONLDRoute("Test", correctContent);
 
     expect(result).toBe(false);
   });
 
   test("Content with no points returns false", () => {
-    let result = isValidJSONRoute("Test.json", noPointsContent);
+    let result = isValidJSONLDRoute("Test.json", noPointsContent);
 
     expect(result).toBe(false);
   });
 
   test("Content with no name returns false", () => {
-    let result = isValidJSONRoute("Test.json", noNameContent);
+    let result = isValidJSONLDRoute("Test.json", noNameContent);
 
     expect(result).toBe(false);
   });
 
   test("Content with no waypoints returns false", () => {
-    let result = isValidJSONRoute("Test.json", noWaypointContent);
+    let result = isValidJSONLDRoute("Test.json", noWaypointContent);
 
     expect(result).toBe(false);
   });
 
   test("Content with no media returns false", () => {
-    let result = isValidJSONRoute("Test.json", noMediaContent);
+    let result = isValidJSONLDRoute("Test.json", noMediaContent);
 
     expect(result).toBe(false);
   });
 
   test("Invalid point returns false", () => {
-    let result = isValidJSONRoute("Test.json", invalidPointContent);
+    let result = isValidJSONLDRoute("Test.json", invalidPointContent);
 
     expect(result).toBe(false);
   });
 
   test("Invalid waypoint returns false", () => {
-    let result = isValidJSONRoute("Test.json", invalidWaypointContent);
+    let result = isValidJSONLDRoute("Test.json", invalidWaypointContent);
 
     expect(result).toBe(false);
   });
 
   test("Invalid media returns false", () => {
-    let result = isValidJSONRoute("Test.json", invalidMediaContent);
+    let result = isValidJSONLDRoute("Test.json", invalidMediaContent);
 
     expect(result).toBe(false);
   });
 
   test("Invalid JSON syntax returns false", () => {
-    let result = isValidJSONRoute("Test.json", invalidJSON);
+    let result = isValidJSONLDRoute("Test.json", invalidJSON);
 
     expect(result).toBe(false);
   });

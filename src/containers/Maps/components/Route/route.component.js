@@ -4,10 +4,10 @@ import * as Icon from "react-feather";
 import styled from "styled-components";
 import {useTranslation} from "react-i18next";
 import buttonStyle from "./route.module.css";
-import { errorToaster, successToaster } from "@utils";
+import {errorToaster, successToaster} from "@utils";
 
 const StyledMapRoute = styled.div`
-    margin: 5px;
+    margin:5px;
 `;
 
 export const MapRoute = (props) => {
@@ -49,12 +49,13 @@ export const MapRoute = (props) => {
                     .btn-tog {
                         background-color: green;
                         color: white;
-                        border-radius: 20px;
+                        border-radius: 8px;
                         width:2em;
                     }
                 `}
             </style>
-                <Button variant="success" onClick={showRoute}>{routeWrapper.route.name}</Button>
+                <Button variant="success" style={{borderBottomLeftRadius: "8px", borderTopLeftRadius: "8px"}}
+                        onClick={showRoute}>{routeWrapper.route.name}</Button>
 
                 <Dropdown.Toggle split variant="tog" id="dropdown-split-basic"/>
 
