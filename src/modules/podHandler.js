@@ -60,7 +60,7 @@ export async function getPodRoutes(){
                 let content = await fc.readFile(element.url.toString());
                 if (isValidJSONLDRoute(element.url.toString(), content)) {
                     let parsedRoute = JSON.parse(content);
-                    routesList.push({name: element.name, url: element.url, route: parsedRoute, isGeoJson: false});
+                    routesList.push({name: element.name, url: element.url, route: parsedRoute});
                 }
             } catch {
                 //

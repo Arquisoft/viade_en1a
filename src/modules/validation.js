@@ -41,17 +41,6 @@ export function isValidJSONLDRoute(name, content) {
     }
 }
 
-export function isValidGeoJSONRoute(name, content) {
-    if (!name.endsWith(".json")) {
-        return false;
-    }
-    try {
-        let parsed = JSON.parse(content);
-    } catch (error) {
-        return false;
-    }
-}
-
 export function isValidRouteName(trimmedRouteName) {
     return !trimmedRouteName.length > 0;
 }
