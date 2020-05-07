@@ -121,7 +121,7 @@ export async function buildRouteJSONLFromGeoJson(content) {
                 "viade": "http://arquisoft.github.io/viadeSpec/",
                 "xsd": "http://www.w3.org/2001/XMLSchema#"
             },
-            name: "",
+            name: "Unnamed route",
             author: await fullWebId(),
             description: "",
             comments: "",
@@ -130,29 +130,24 @@ export async function buildRouteJSONLFromGeoJson(content) {
             points: []
         };
         let geoJsonContent = JSON.parse(content);
-        if (!geoJsonContent.features[0].properties.hasOwnProperty("name")) {
-            parsedRoute.name = "Unnamed route";
-        } else {
+        if (geoJsonContent.features[0].properties.hasOwnProperty("name")) {
             parsedRoute.name = geoJsonContent.features[0].properties.name;
         }
-        if (!geoJsonContent.features[0].properties.hasOwnProperty("description")) {
-            parsedRoute.description = "";
-        } else {
+        if (geoJsonContent.features[0].properties.hasOwnProperty("description")) {
+
             parsedRoute.description = geoJsonContent.features[0].properties.description;
         }
-        if (!geoJsonContent.features[0].properties.hasOwnProperty("media")) {
-            parsedRoute.media = [];
-        } else {
+        if (geoJsonContent.features[0].properties.hasOwnProperty("media")) {
             let media = geoJsonContent.features[0].properties.media;
-            if (!geoJsonContent.features[0].properties.media[0].hasOwnProperty("url")) {
-                media.forEach((mediaElement) => {
-                    parsedRoute.media.push({url: mediaElement.toString()})
-                });
-            } else {
-                media.forEach((mediaElement) => {
-                    parsedRoute.media.push(mediaElement)
-                });
-            }
+
+            media.forEach((mediaElement) => {
+                if (!mediaElement.hasOwnProperty("url")) {
+                    parsedRoute.media.push({url: mediaElement.toString()});
+                } else {
+                    parsedRoute.media.push(mediaElement);
+                }
+            });
+
         }
         let routePoints = geoJsonContent.features[0].geometry.coordinates;
         routePoints.forEach((routePoint) => {
