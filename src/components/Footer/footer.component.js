@@ -27,6 +27,16 @@ const Footer = (props: Props) => {
 
         <div className="solid-footer__content--links">
           <ul>
+          <li>
+              <a
+                href="https://github.com/Arquisoft/viade_en1a/public/tutorials"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon className="link-icon" icon={githubIconDef} />
+                See tutorials!
+              </a>
+            </li>
             <li>
               <a
                 href="https://github.com/inrupt/solid-react-sdk"

@@ -272,7 +272,7 @@ class RoutesSideBar extends Component {
               />
 
               <LabelInput htmlFor="routeUploader" id="btnChoose">
-                {this.state.labelText}
+              1. {this.state.labelText}
               </LabelInput>
 
               <Button
@@ -283,7 +283,7 @@ class RoutesSideBar extends Component {
                   onClick={this.onClickHandler.bind(this)}
                   style={{}}
               >
-                {t("routes.uploadToPOD")}
+               2. {t("routes.uploadToPOD")}
               </Button>
             </Card.Body>
           </Card>
