@@ -47,7 +47,7 @@
     "react-app-polyfill": "^0.2.2",
     "react-bootstrap": "^1.0.1",
     "react-click-outside": "^3.0.1",
-    "react-dev-utils": "^7.0.1",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "16.8.4",
     "react-feather": "^2.0.8",
     "react-i18next": "^10.1.2",
